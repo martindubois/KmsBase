@@ -1,0 +1,27 @@
+
+Auteur	:	KMS -	Martin Dubois, ing.
+Projet	:	KmsBase
+Fichier	:	_DocDev/Procedures/Compiler.txt
+
+[ ]	Ouvrir la solution en utilisant Visual Studio 2013;
+	- Modifier le fichier "Common/Version.h" pour incrementer le numero de
+	  compilation;
+	- Modifier le fichier "Script/Install.cmd" pour incrementer le numero de
+	  version si necessaire;
+	- Dans le menu "BUILD", selectionner l'item "Batch Build...";
+	- Dans le dialogue "Batch Build", cliquer "Rebuild";
+	- Verifier qu'il n'y a pas d'erreur de compilation ou de warning;
+	- Dans le menu "FILE", selectionner l'item "Save All".
+[ ] Executer les tests automatiques;
+[ ]	Onvrir une fenetre de commande;
+	- Naviguer jusqu'au repertoire du projet;
+	- Entrer la commande "Export.cmd Ma.Mi.Bu_Type" ou
+		Ma = Numero majeur de version;
+		Mi = Numero mineur de version;
+		Bu = Numero de comilation;
+		Type = Internal | Test.
+[ ]	Ouvrir un "GIT GUI" pour le repertoire du projet;
+	- Intexer les fichier modifier lors de la compilation;
+	- Effetuer un commit en utilisant "Ma.Mi.Bu" comme message;
+[ ] Ouvrir un "GIT BASH" pour le repertoire du projet;
+	- Entrer la commande "git tag Ma.Mi.Bu"

@@ -1,0 +1,34 @@
+
+# Auteur	: KMS -		Martin Dubois, ing.
+# Projet	: KmsBase
+# Fichier	: _DocDev/Composants.kdg
+
+Diagram Component
+	Project = KmsBase
+
+Box Headers
+	Name = Common
+
+Box Headers
+	Name = Includes
+
+Box LIB
+	Name = KmsLib
+	Public = true
+Link DependsOn
+	From = KmsLib
+	To = Common
+Link DependsOn
+	From = KmsLib
+	To = Includes
+
+Box EXE
+	Name = KmsLib_Test
+Link DependsOn
+	From = KmsLib_Test
+	To = Includes
+Link DependsOn
+	From = KmsLib_Test
+	To = KmsLib
+
+End

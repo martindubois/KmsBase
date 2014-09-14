@@ -1,0 +1,8 @@
+
+Auteur	:	KMS -	Martin Dubois, ing.
+Projet	:	KmsBase
+Fichier	:	_DocDev/Requis.txt
+
+Windows
+	Le logiciel doit s'installer, s'utiliser et s'executer sous Windows 7 et
+	plus recent, 32 ou 64 bits.

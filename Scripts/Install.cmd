@@ -12,8 +12,8 @@ set DST="C:\Logiciels\KmsBase_0.0"
 
 rem  ===== Execution ========================================================
 
-xcopy /IKQS Includes	%DST%
-xcopy /IKQS Libraries	%DST%
+xcopy /IKQS Includes	%DST%\Includes
+xcopy /IKQS Libraries	%DST%\Libraries
 
 if ERRORLEVEL 1 (
     echo  ERREUR : xcopy a indique une erreur!

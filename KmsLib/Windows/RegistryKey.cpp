@@ -9,10 +9,9 @@
 // ===== C ==================================================================
 #include <assert.h>
 
-// ===== C++ ================================================================
-#include <exception>
-
 // ===== Interface ==========================================================
+#include <KmsLib/Exception.h>
+
 #include <KmsLib/Windows/RegistryKey.h>
 
 namespace KmsLib
@@ -28,6 +27,8 @@ namespace KmsLib
 		}
 
 		// Destructeur
+		//
+		// Exception : KmsLib::Exception
 		RegistryKey::~RegistryKey()
 		{
 			if (NULL != mKey)
@@ -48,7 +49,7 @@ namespace KmsLib
 
 		// aValue	: [in]	
 		//
-		// Exception : std::exception
+		// Exception : KmsLib::Exception
 		void RegistryKey::SetDefaultValue(const char * aValue)
 		{
 			assert(NULL != aValue);
@@ -59,7 +60,7 @@ namespace KmsLib
 		// aName	: [in]	Nom de la valeur
 		// aValue	:		La valeur
 		//
-		// Exception : std::exception
+		// Exception : KmsLib::Exception
 		void RegistryKey::SetValue(const char * aName, DWORD aValue)
 		{
 			assert(NULL != aName);
@@ -70,7 +71,7 @@ namespace KmsLib
 		// aName	: [in,opt]	Nom de la valeur
 		// aValue	: [in    ]	La valeur
 		//
-		// Exception : std::exception
+		// Exception : KmsLib::Exception
 		void RegistryKey::SetValue(const char * aName, const char * aValue)
 		{
 			assert(NULL != aValue	);
@@ -83,7 +84,7 @@ namespace KmsLib
 		// aValue			: [in]	La valeur
 		// aValueSize_byte	:		La taille de la valeur
 		//
-		// Exception	: std::exception
+		// Exception	: KmsLib::Exception
 		void RegistryKey::SetValue(const char * aName, DWORD aType, const void * aValue, unsigned int aValueSize_byte)
 		{
 			assert(NULL != mKey);
@@ -91,13 +92,14 @@ namespace KmsLib
 			LSTATUS lRet = RegSetValueEx(mKey, aName, 0, aType, reinterpret_cast< const BYTE * >(aValue), aValueSize_byte);
 			if (ERROR_SUCCESS != lRet)
 			{
-				throw new std::exception("RegSetValueEx( , , , , ,  ) failed", lRet);
+				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegSetValueEx( , , , , ,  ) failed",
+					NULL, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 		}
 
 		// Fermer la cle
 		//
-		// Exception : std::exception
+		// Exception : KmsLib::Exception
 		void RegistryKey::Close()
 		{
 			assert(NULL != mKey);
@@ -109,14 +111,15 @@ namespace KmsLib
 			if (ERROR_SUCCESS != lRet)
 			{
 				// PAS TESTE : Difficile de faire echouer RegCloseKey.
-				throw new std::exception("RegCloseKey(  ) failed", lRet);
+				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegCloseKey(  ) failed",
+					NULL, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 		}
 
 		// aKey		:		La cle parent
 		// aSubKey	: [in]	Le nom de la sous cle
 		//
-		// Exception : std::exception
+		// Exception : KmsLib::Exception
 		void RegistryKey::Create(HKEY aKey, const char * aSubKey)
 		{
 			assert(NULL != aKey		);
@@ -130,7 +133,8 @@ namespace KmsLib
 			LSTATUS lRet = RegCreateKeyEx(aKey, aSubKey, 0, NULL, 0, KEY_READ | KEY_WRITE, NULL, &mKey, NULL);
 			if (ERROR_SUCCESS != lRet)
 			{
-				throw new std::exception("RegCreateKeyEx( , , , , , , , ,  ) failed", lRet);
+				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegCreateKeyEx( , , , , , , , ,  ) failed",
+					NULL, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 
 			assert(NULL != mKey);
@@ -138,7 +142,7 @@ namespace KmsLib
 
 		// aSubKey	: [in]
 		//
-		// Exception : std::exception
+		// Exception : KmsLib::Exception
 		void RegistryKey::DeleteSubKey(const char * aSubKey)
 		{
 			assert(NULL != aSubKey);
@@ -148,13 +152,14 @@ namespace KmsLib
 			LSTATUS lRet = RegDeleteKey(mKey, aSubKey);
 			if (ERROR_SUCCESS != lRet)
 			{
-				throw new std::exception("RegDeleteKey( ,  ) failed", lRet);
+				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegDeleteKey( ,  ) failed",
+					NULL, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 		}
 
 		// aName	: [in]
 		//
-		// Exception : std::exception
+		// Exception : KmsLib::Exception
 		void RegistryKey::DeleteValue(const char * aName)
 		{
 			assert(NULL != aName);
@@ -164,14 +169,15 @@ namespace KmsLib
 			LSTATUS lRet = RegDeleteValue(mKey, aName);
 			if (ERROR_SUCCESS != lRet)
 			{
-				throw new std::exception("RegDeleteValue( ,  ) failed", lRet);
+				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegDeleteValue( ,  ) failed",
+					NULL, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 		}
 
 		// aKey		:		La cle parent
 		// aSubKey	: [in]	Le nom de la sous cle
 		//
-		// Exception : std::exception
+		// Exception : KmsLib::Exception
 		void RegistryKey::Open(HKEY aKey, const char * aSubKey)
 		{
 			assert(NULL != aKey);
@@ -185,11 +191,13 @@ namespace KmsLib
 			LSTATUS lRet = RegOpenKeyEx(aKey, aSubKey, 0, KEY_READ | KEY_WRITE, &mKey);
 			if (ERROR_SUCCESS != lRet)
 			{
-				throw new std::exception("RegOpenKeyEx( , , , ,  ) failed", lRet);
+				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegOpenKeyEx( , , , ,  ) failed",
+					NULL, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 
 			assert(NULL != mKey);
 		}
 
 	}
+
 }

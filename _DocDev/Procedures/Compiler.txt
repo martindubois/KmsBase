@@ -12,9 +12,9 @@ Fichier	:	_DocDev/Procedures/Compiler.txt
 	- Dans le dialogue "Batch Build", cliquer "Rebuild";
 	- Verifier qu'il n'y a pas d'erreur de compilation ou de warning;
 	- Dans le menu "FILE", selectionner l'item "Save All".
-[ ] Executer les tests automatiques;
 [ ]	Onvrir une fenetre de commande;
 	- Naviguer jusqu'au repertoire du projet;
+	- Entrer la commande "Test.cmd";
 	- Entrer la commande "Export.cmd Ma.Mi.Bu_Type" ou
 		Ma = Numero majeur de version;
 		Mi = Numero mineur de version;

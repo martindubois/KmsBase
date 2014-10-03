@@ -1,7 +1,7 @@
 
 // Auteur	:	KMS -	Martin Dubois, ing.
 // Projet	:	KmsBase
-// Fichier	:	KmsLib_Test/RegistryKey.cpp
+// Fichier	:	KmsLib_Test/Windows/RegistryKey.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -10,6 +10,7 @@
 #include <exception>
 
 // ===== Interface ==========================================================
+#include <KmsLib\Exception.h>
 #include <KmsLib\Windows\RegistryKey.h>
 #include <KmsTest.h>
 
@@ -23,7 +24,6 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 	KmsLib::Windows::RegistryKey lKey2;
 
 	lKey0.Open	(HKEY_CURRENT_USER, "Software");
-
 
 	lKey1.Create			(lKey0, "KmsLib_Test");
 	lKey1.SetDefaultValue	("KmsLib_Test");
@@ -40,41 +40,61 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 	try
 	{
 		lKey2.SetValue("KmsLib_Test", 2);
+		KMS_TEST_ASSERT(false);
 	}
-	catch (std::exception *)
+	catch (KmsLib::Exception * eE)
 	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
 	}
 
 	try
 	{
 		lKey2.Create(HKEY_LOCAL_MACHINE, "KmsLib_Test");
+		KMS_TEST_ASSERT(false);
 	}
-	catch (std::exception *)
+	catch (KmsLib::Exception * eE)
 	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
 	}
 
 	try
 	{
 		lKey0.DeleteValue("DoNotExist");
+		KMS_TEST_ASSERT(false);
 	}
-	catch (std::exception *)
+	catch (KmsLib::Exception * eE)
 	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
 	}
 
 	try
 	{
 		lKey0.DeleteSubKey("DoNotExist");
+		KMS_TEST_ASSERT(false);
 	}
-	catch (std::exception *)
+	catch (KmsLib::Exception * eE)
 	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
 	}
 
 	try
 	{
 		lKey2.Open(HKEY_LOCAL_MACHINE, "DoNotExist");
+		KMS_TEST_ASSERT(false);
 	}
-	catch (std::exception *)
+	catch (KmsLib::Exception * eE)
 	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
 	}
 
 	KMS_TEST_END

@@ -9,9 +9,6 @@
 // ===== C ==================================================================
 #include <assert.h>
 
-// ===== C++ ================================================================
-#include <exception>
-
 // ===== Interface ==========================================================
 #include <KmsLib/Windows/RegistryKey.h>
 
@@ -36,7 +33,7 @@ namespace KmsLib
 		// aCommandName : [in]	See COMMAND_...
 		// aCommand		: [in]
 		//
-		// Exception : std::Exception
+		// Exception : KmsLib::Exception
 		void Extension_Register(const char * aExt,
 			const char * aClassId, const char * aCommandName, const char * aCommand)
 		{
@@ -87,7 +84,7 @@ namespace KmsLib
 		// aClassId		: [in]
 		// aCommandName : [in]	See COMMAND_...
 		//
-		// Exception : std::Exception
+		// Exception : KmsLib::Exception
 		void Extension_Unregister(const char * aExt, const char * aClassId, const char * aCommandName)
 		{
 			assert(NULL != aExt);

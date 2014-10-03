@@ -13,6 +13,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+// ===== C++ ================================================================
+#include <exception>
+
 // Constants
 /////////////////////////////////////////////////////////////////////////////
 
@@ -38,7 +41,7 @@ KmsTestDescription;
 // ===== Test ===============================================================
 
 #define KMS_TEST_ASSERT(Co)																	\
-	if (!Co)																				\
+	if (!(Co))																				\
 	{																						\
 		printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ "\n", __LINE__);	\
 		return 1;																			\
@@ -50,21 +53,29 @@ KmsTestDescription;
 		try					\
 		{
 
-#define KMS_TEST_END	\
-		}				\
-		catch ( ... )	\
-		{				\
-			printf("Test " __FUNCTION__ "failed at line %u of file "__FILE__ "(Unexpected exception)\n", __LINE__);	\
-			return 1;	\
-		}				\
-						\
-		return 0;		\
+#define KMS_TEST_END				\
+		}							\
+		catch (std::exception * eE)	\
+		{							\
+			printf("Test " __FUNCTION__ " failed at line %u of file "__FILE__ " (std::exception - %s)\n", __LINE__, eE->what());	\
+			return 1;				\
+		}							\
+		catch ( ... )				\
+		{							\
+			printf("Test " __FUNCTION__ " failed at line %u of file "__FILE__ " (Unknown exception)\n", __LINE__);	\
+			return 1;				\
+		}							\
+									\
+		return 0;					\
 	}
+
+#define KMS_TEST_ERROR_INFO	\
+	printf("    ===== Information about a succesfully tested error condition =====\n")
 
 // ===== Test group list ====================================================
 
 #define KMS_TEST_GROUP_LIST_BEGIN					\
-	static const char * KMS_TEST_GROUP_NAMES[] = \
+	static const char * KMS_TEST_GROUP_NAMES[] =	\
 {
 
 #define KMS_TEST_GROUP_LIST_END	\
@@ -108,7 +119,7 @@ KmsTestDescription;
 			return RunAuto();												\
 		}																	\
 																			\
-		if (0 == _stricmp("all", aVector[2]))								\
+		if (0 == _stricmp("all", aVector[1]))								\
 		{																	\
 			if (2 != aCount) { DisplayHelp(aVector[0]); return 1001; }		\
 																			\

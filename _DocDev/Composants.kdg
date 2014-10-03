@@ -9,6 +9,13 @@ Diagram Component
 Box Headers
 	Name = Common
 
+Box Template
+	Name = DLL
+	Planned = true
+
+Box Template
+	Name = Driver_KMDF
+
 Box Headers
 	Name = Includes
 
@@ -30,5 +37,17 @@ Link DependsOn
 Link DependsOn
 	From = KmsLib_Test
 	To = KmsLib
+
+Box Template
+	Name = Solution
+	Planned = true
+
+Box Template
+	Name = Test
+	Planned = true
+
+Box Template
+	Name = Tool
+	Planned = true
 
 End

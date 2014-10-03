@@ -6,7 +6,7 @@ Fichier	:	KmsLib/_DocDev/Requis.h
 
 Error.Exception
 	Les condition d'erreur sont rapporte en lancant des exception de type
-	std::exception ou de type derive de ce type.
+	KmsLib::Exception ou de type derive de ce type.
 
 Extension.Register
 	En utilisant la librairie, une application peu s'enregistrer comme

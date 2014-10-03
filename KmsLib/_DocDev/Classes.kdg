@@ -6,13 +6,22 @@
 Diagram Classes
 
 Box class
+	Name = Windows::DriverHandle
+	Public = true
+Link Extend
+	From = Windows::DriverHandle
+	To = Windows::FileHandle
+
+Box class
+	Name = Windows::FileHandle
+	Public = true
+
+Box class
 	Name = Windows::RegistryKey
-	Planned = true
 	Public = true
 
 Box Module
 	Name = Windows::Windows
-	Planned = true
 	Public = true
 Link Use
 	From = Windows::Windows

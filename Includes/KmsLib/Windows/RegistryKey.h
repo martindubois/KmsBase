@@ -44,6 +44,10 @@ namespace KmsLib
 
 		private:
 
+			RegistryKey(const RegistryKey &);
+
+			const RegistryKey & operator = (const RegistryKey &);
+
 			HKEY	mKey;
 
 		};

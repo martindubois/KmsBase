@@ -8,12 +8,13 @@ echo  Execution de Install.cmd ...
 
 rem  ===== Verification =====================================================
 
-set DST="C:\Logiciels\KmsBase_0.0"
+set DST="C:\Logiciels\KmsBase_2.0"
 
 rem  ===== Execution ========================================================
 
 xcopy /IKQSY Includes	%DST%\Includes
 xcopy /IKQSY Libraries	%DST%\Libraries
+xcopy /IKQSY Templates	%DST%\Templates
 
 if ERRORLEVEL 1 (
     echo  ERREUR : xcopy a indique une erreur!

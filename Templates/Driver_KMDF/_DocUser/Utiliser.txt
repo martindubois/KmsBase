@@ -1,0 +1,25 @@
+
+Auteur	:	KMS	-	Martin Dubois, ing.
+Projet	:	KmsBase
+Fichier	:	Templates/Driver_KMDF/_DocUser/Utiliser.txt
+
+[ ]	Lancer "Visual Studio 2013"
+	- Si ce n'est deja fait, creer une solution;
+	- Ajouter un projet de type "Kernel Mode Driver, Empty (KMDF)" (dans la
+	  section "WDF");
+	- Acceder les proprietes du projet du pilotes
+		- Naviguer vers la section "Wpp Tracing"
+		- Naviguer vers la sous-section "General"
+		- Changer la valeur du parametre "Run Wpp Tracing" pour "No"
+	- Copier le fichier "TodoInterface.h" dans un repertoire accessible lors
+	  de la compilation du pilote et aussi lors de la compilation des
+	  composants communiquant directement avec le pilote;
+	- Copier les autres fichiers du template dans le repertoire du projet
+	  nouvellement cree;
+	- Renommer le fichier ".inf" copie pour remplacer celui genere lors de la
+	  creation du projet;
+	- Ajouter les fichiers ".cpp" et ".h" copies au projet du pilote;
+	- Compiler le nouveau projet;
+	- Verifier qu'il n'y a pas d'erreur de compilation;
+	- Rechercher les "TODO" dans les fichiers copies et les adresser un par
+	  un.

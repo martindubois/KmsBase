@@ -1,0 +1,19 @@
+
+# Auteur	:	KMS -	Martin Dubois, ing.
+# Projet	:	KmsBase
+# Fichier	:	Templates/Driver_KMDF/.gitignore
+
+build.err
+build.log
+msbuild.log
+runsdvui.cmd
+SDV-default.xml
+sdv-user.sdv
+staticdv.job
+
+sdv/
+sdv.temp/
+Win7Debug/
+Win7Release/
+Win8.1Debug/
+

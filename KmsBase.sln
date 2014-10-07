@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Includes", "Includes", "{98
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KmsLib", "KmsLib", "{EE152025-CE8B-4099-89C4-C60CC1B7797C}"
 	ProjectSection(SolutionItems) = preProject
+		Includes\KmsLib\Dump.h = Includes\KmsLib\Dump.h
 		Includes\KmsLib\Exception.h = Includes\KmsLib\Exception.h
 		Includes\KmsLib\KmsLib.h = Includes\KmsLib\KmsLib.h
 		Includes\KmsLib\ToolBase.h = Includes\KmsLib\ToolBase.h

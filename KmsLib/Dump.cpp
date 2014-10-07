@@ -22,7 +22,7 @@ namespace KmsLib
 	// aOut			: [in,out]
 	// aIn			: [in	 ]
 	// aInSize_byte	:
-	void Dumb(FILE * aOut, const unsigned char * aIn, unsigned int aInSize_byte)
+	void Dump(FILE * aOut, const unsigned char * aIn, unsigned int aInSize_byte)
 	{
 		assert(NULL !=	aOut			);
 		assert(NULL !=	aIn				);

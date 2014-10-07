@@ -11,6 +11,6 @@ namespace KmsLib
 	// Function
 	/////////////////////////////////////////////////////////////////////////
 
-	extern void Dumb(FILE * aOut, const unsigned char * aIn, unsigned int aInSize_byte);
+	extern void Dump(FILE * aOut, const unsigned char * aIn, unsigned int aInSize_byte);
 
 }

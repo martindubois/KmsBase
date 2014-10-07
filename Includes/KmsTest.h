@@ -186,7 +186,7 @@ KmsTestDescription;
 		}																	\
 		printf( "\n" );														\
 		printf("Tests\n");													\
-		printf("    #     Groupe	Name\n");								\
+		printf("    #     Group		Name\n");								\
 		for (i = 0; i < (sizeof(KMS_TESTS) / sizeof(KMS_TESTS[0])); i++)	\
 		{																	\
 			printf("    %2u    %2u        %s", i, KMS_TESTS[i].mGroup, KMS_TESTS[i].mName);	\

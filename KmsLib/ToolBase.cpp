@@ -207,20 +207,31 @@ namespace KmsLib
 	{
 		assert(NULL != aFileName);
 
-		FILE * lFile;
-
-		int lRet = fopen_s(&lFile, aFileName, "r");
-		if (0 == lRet)
+		switch (aFileName[0])
 		{
-			printf("\nExecuting commands from file %s ...\n", aFileName);
+		case '\0' :
+		case '\n' :
+		case '\r' :
+		case '\t' :
+			printf("\nERROR : Le filename is not valid (%s)\n", aFileName);
+			break;
 
-			ParseCommands(lFile);
+		default:
+			FILE * lFile;
 
-			printf("\nEnd of file %s\n", aFileName);
-		}
-		else
-		{
-			printf("\nERROR : Cannot open file %s\n", aFileName);
+			int lRet = fopen_s(&lFile, aFileName, "r");
+			if (0 == lRet)
+			{
+				printf("\nExecuting commands from file %s ...\n", aFileName);
+
+				ParseCommands(lFile);
+
+				printf("\nEnd of file %s\n", aFileName);
+			}
+			else
+			{
+				printf("\nERROR : Cannot open file %s\n", aFileName);
+			}
 		}
 	}
 

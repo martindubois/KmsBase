@@ -6,6 +6,14 @@
 Diagram Classes
 
 Box class
+	Name = Exception
+	Public = true
+
+Box class
+	Name = ToolBase
+	Public = true
+
+Box class
 	Name = Windows::DriverHandle
 	Public = true
 Link Extend

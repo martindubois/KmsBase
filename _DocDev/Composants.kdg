@@ -40,14 +40,11 @@ Link DependsOn
 
 Box Template
 	Name = Solution
-	Planned = true
 
 Box Template
 	Name = Test
-	Planned = true
 
 Box Template
 	Name = Tool
-	Planned = true
 
 End

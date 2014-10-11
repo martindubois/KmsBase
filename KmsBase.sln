@@ -36,6 +36,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DocDev", "_DocDev", "{00EE
 		_DocDev\.gitignore = _DocDev\.gitignore
 		_DocDev\Composants.kdg = _DocDev\Composants.kdg
 		_DocDev\Requis.txt = _DocDev\Requis.txt
+		_DocDev\TODO.txt = _DocDev\TODO.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{EA71243B-5549-4F76-9D8B-547E36BE8BB4}"

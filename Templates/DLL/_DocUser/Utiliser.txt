@@ -1,0 +1,11 @@
+
+Auteur	:	KMS -	Martin Dubois, ing.
+Projet	:	KmsBase
+Fichier	:	Templates/DLL/_DocUser/Utiliser.txt
+
+[ ]	Creer un projet vide de type Win32 DLL;
+[ ]	Copier le fichier "TODOInterface.h" vers le repertoire approprie tout en
+	le renommant;
+[ ]	Copier les autres fichier du template vers le repertoire de projet
+	nouvellement créé;
+[ ]	Rechercher les "TODO" dans les fichier copies et les adresser un par un.

@@ -36,7 +36,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DocDev", "_DocDev", "{00EE
 		_DocDev\.gitignore = _DocDev\.gitignore
 		_DocDev\Composants.kdg = _DocDev\Composants.kdg
 		_DocDev\Requis.txt = _DocDev\Requis.txt
-		_DocDev\TODO.txt = _DocDev\TODO.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{EA71243B-5549-4F76-9D8B-547E36BE8BB4}"
@@ -66,8 +65,15 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Driver_KMDF", "Templates\Driver_KMDF\Driver_KMDF.vcxproj", "{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{41514692-FD16-4D5E-9E69-522D6D404276}"
+	ProjectSection(SolutionItems) = preProject
+		Templates\Solution\.gitignore = Templates\Solution\.gitignore
+		Templates\Solution\Export.cmd = Templates\Solution\Export.cmd
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DocUser", "_DocUser", "{B31575E3-402F-4B1D-B5C5-6DB9F028DB12}"
+	ProjectSection(SolutionItems) = preProject
+		Templates\Solution\_DocUser\Utiliser.txt = Templates\Solution\_DocUser\Utiliser.txt
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Templates\Test\Test.vcxproj", "{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}"
 EndProject

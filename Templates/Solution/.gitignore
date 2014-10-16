@@ -1,0 +1,22 @@
+
+# Auteur	:	KMS -	Martin Dubois, ing.
+# Client	:	TODO
+# Projet	:	TODO
+# Fichier	:	.gitignore
+
+*.opensdf
+*.sdf
+*.v12.suo
+
+Debug/
+Debug_DLL/
+Release/
+Release_DLL/
+x64/
+Win7Debug/
+Win7Release/
+Win8.1Debug/
+Win8.1Release/
+
+
+

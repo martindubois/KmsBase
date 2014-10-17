@@ -33,4 +33,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="_DocUser\Utiliser.txt">
+      <Filter>_DocUser</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

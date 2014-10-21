@@ -95,8 +95,13 @@ namespace KmsLib
 			mHandle = CreateFile(aFileName, aDesiredAccess, aSharedMode, NULL, aCreationDisposition, aFlagsAndAttributes, NULL);
 			if (INVALID_HANDLE_VALUE == mHandle)
 			{
+				char lMessage[2048];
+
+				sprintf_s(lMessage, sizeof(lMessage), "CreateFile( \"%s\", 0x%08x, 0x%08x, , 0x%08x, 0x%08x,  ) failed",
+					aFileName, aDesiredAccess, aSharedMode, aCreationDisposition, aFlagsAndAttributes);
+
 				throw new Exception(Exception::CODE_IO_ERROR, "CreateFile( , , , , , ,  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, reinterpret_cast< unsigned int >( aFileName ) );
+					lMessage, __FILE__, __FUNCTION__, __LINE__, reinterpret_cast< unsigned int >( aFileName ) );
 			}
 		}
 
@@ -118,8 +123,13 @@ namespace KmsLib
 
 			if (!ReadFile(mHandle, aOut, aOutSize_byte, &lInfo_byte, NULL))
 			{
+				char lMessage[2048];
+
+				sprintf_s(lMessage, sizeof(lMessage), "ReadFile( 0x%08x, , %u bytes, ,  ) failed",
+					reinterpret_cast<unsigned int>(mHandle), aOutSize_byte);
+
 				throw new Exception(Exception::CODE_IO_ERROR, "ReadFile( , , , ,  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, aOutSize_byte);
+					lMessage, __FILE__, __FUNCTION__, __LINE__, 0);
 			}
 
 			assert(aOutSize_byte >= lInfo_byte);
@@ -145,16 +155,26 @@ namespace KmsLib
 
 			if (!WriteFile(mHandle, aIn, aInSize_byte, &lInfo_byte, NULL))
 			{
+				char lMessage[2048];
+
+				sprintf_s(lMessage, sizeof(lMessage), "WriteFile( 0x%08x, , %u bytes, ,  ) failed",
+					reinterpret_cast<unsigned int>(mHandle), aInSize_byte);
+
 				throw new Exception(Exception::CODE_IO_ERROR, "WriteFile( , , , ,  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, aInSize_byte);
+					lMessage, __FILE__, __FUNCTION__, __LINE__, 0);
 			}
 
 			// PAS TESTE : Modifier un fichier complexifierait le test.
 
 			if (aInSize_byte != lInfo_byte)
 			{
-				throw new Exception(Exception::CODE_IO_ERROR, "WriteFile( , , , ,  ) did not write all the data",
-					NULL, __FILE__, __FUNCTION__, __LINE__, lInfo_byte);
+				char lMessage[2048];
+
+				sprintf_s(lMessage, sizeof(lMessage), "WriteFile did not write all data (Handle = 0x%08x, To write = %u byte, Written = %u byte)",
+					reinterpret_cast<unsigned int>(mHandle), aInSize_byte, lInfo_byte);
+
+				throw new Exception(Exception::CODE_IO_ERROR, "WriteFile did not write all the data",
+					lMessage, __FILE__, __FUNCTION__, __LINE__, lInfo_byte);
 			}
 		}
 

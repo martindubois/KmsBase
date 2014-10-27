@@ -35,6 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DocDev", "_DocDev", "{00EE
 	ProjectSection(SolutionItems) = preProject
 		_DocDev\.gitignore = _DocDev\.gitignore
 		_DocDev\Composants.kdg = _DocDev\Composants.kdg
+		_DocDev\Planification.kdg = _DocDev\Planification.kdg
 		_DocDev\Requis.txt = _DocDev\Requis.txt
 	EndProjectSection
 EndProject
@@ -70,6 +71,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{41
 		Templates\Solution\.gitignore = Templates\Solution\.gitignore
 		Templates\Solution\Export.cmd = Templates\Solution\Export.cmd
 		Templates\Solution\ExportSources.sh = Templates\Solution\ExportSources.sh
+		Templates\Solution\Test.cmd = Templates\Solution\Test.cmd
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DocUser", "_DocUser", "{B31575E3-402F-4B1D-B5C5-6DB9F028DB12}"
@@ -84,6 +86,11 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DLL", "Templates\DLL\DLL.vcxproj", "{81BED578-900A-47A0-9CBD-C7D07EBFF37C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dialog", "Templates\Dialog\Dialog.vcxproj", "{DD5E6A78-6F66-4DC8-B886-1DE03865D0E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{723C70DB-54E9-4DBA-BAFB-886F8454952D}"
+	ProjectSection(SolutionItems) = preProject
+		Templates\Solution\Common\Version.h = Templates\Solution\Common\Version.h
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -279,6 +286,7 @@ Global
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug_DLL|Mixed Platforms.Build.0 = Debug_DLL|Win32
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug_DLL|Win32.ActiveCfg = Win7 Debug|Win32
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug_DLL|x64.ActiveCfg = Win7 Debug|x64
+		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug_DLL|x64.Build.0 = Win7 Debug|x64
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug|Mixed Platforms.ActiveCfg = Win8.1 Debug|Win32
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug|Mixed Platforms.Build.0 = Win8.1 Debug|Win32
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug|Mixed Platforms.Deploy.0 = Win8.1 Debug|Win32
@@ -553,6 +561,7 @@ Global
 		{DD5E6A78-6F66-4DC8-B886-1DE03865D0E7}.Debug_DLL|Mixed Platforms.Build.0 = Debug|Win32
 		{DD5E6A78-6F66-4DC8-B886-1DE03865D0E7}.Debug_DLL|Win32.ActiveCfg = Debug|Win32
 		{DD5E6A78-6F66-4DC8-B886-1DE03865D0E7}.Debug_DLL|x64.ActiveCfg = Debug|x64
+		{DD5E6A78-6F66-4DC8-B886-1DE03865D0E7}.Debug_DLL|x64.Build.0 = Debug|x64
 		{DD5E6A78-6F66-4DC8-B886-1DE03865D0E7}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
 		{DD5E6A78-6F66-4DC8-B886-1DE03865D0E7}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{DD5E6A78-6F66-4DC8-B886-1DE03865D0E7}.Debug|Win32.ActiveCfg = Debug|Win32
@@ -614,5 +623,6 @@ Global
 		{81BED578-900A-47A0-9CBD-C7D07EBFF37C} = {17C49143-B3BF-492F-AA07-D08EBEE3756D}
 		{DD5E6A78-6F66-4DC8-B886-1DE03865D0E7} = {17C49143-B3BF-492F-AA07-D08EBEE3756D}
 		{B31575E3-402F-4B1D-B5C5-6DB9F028DB12} = {41514692-FD16-4D5E-9E69-522D6D404276}
+		{723C70DB-54E9-4DBA-BAFB-886F8454952D} = {41514692-FD16-4D5E-9E69-522D6D404276}
 	EndGlobalSection
 EndGlobal

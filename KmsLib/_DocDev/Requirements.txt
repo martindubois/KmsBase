@@ -1,7 +1,7 @@
 
 Auteur	:	KMS -	Martin Dubois, ing.
 Projet	:	KmsBase
-Fichier	:	KmsLib/_DocDev/Requis.h
+Fichier	:	KmsLib/_DocDev/Requirements.h
 
 
 Error.Exception

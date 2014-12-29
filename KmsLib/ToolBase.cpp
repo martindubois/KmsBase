@@ -176,6 +176,10 @@ namespace KmsLib
 				{
 					DisplayHelp(aCommands);
 				}
+				else
+				{
+					printf("\nERROR : Invalid command line (%s)\n", aLine);
+				}
 			}
 
 			break;

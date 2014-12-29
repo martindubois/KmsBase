@@ -92,8 +92,13 @@ namespace KmsLib
 			LSTATUS lRet = RegSetValueEx(mKey, aName, 0, aType, reinterpret_cast< const BYTE * >(aValue), aValueSize_byte);
 			if (ERROR_SUCCESS != lRet)
 			{
+				char lMessage[2048];
+
+				sprintf_s(lMessage, sizeof(lMessage), "RegSetValueEx( 0x%08x, \"%s\", , 0x%08x, , %u bytes ) failed\n",
+					reinterpret_cast<unsigned int>(mKey), aName, aType, aValueSize_byte);
+
 				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegSetValueEx( , , , , ,  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, lRet);
+					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 		}
 
@@ -111,8 +116,13 @@ namespace KmsLib
 			if (ERROR_SUCCESS != lRet)
 			{
 				// PAS TESTE : Difficile de faire echouer RegCloseKey.
+				char lMessage[2048];
+
+				sprintf_s(lMessage, sizeof(lMessage), "RegCloseKey( 0x%08x ) failed",
+					reinterpret_cast<unsigned int>(mKey));
+
 				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegCloseKey(  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, lRet);
+					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 		}
 
@@ -133,8 +143,13 @@ namespace KmsLib
 			LSTATUS lRet = RegCreateKeyEx(aKey, aSubKey, 0, NULL, 0, KEY_READ | KEY_WRITE, NULL, &mKey, NULL);
 			if (ERROR_SUCCESS != lRet)
 			{
+				char lMessage[2048];
+
+				sprintf_s(lMessage, sizeof(lMessage), "RegCreateKeyEx( 0x%08x, \"%s\", , , , , , ,  ) failed",
+					reinterpret_cast<unsigned int>(aKey), aSubKey);
+
 				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegCreateKeyEx( , , , , , , , ,  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, lRet);
+					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 
 			assert(NULL != mKey);
@@ -152,8 +167,13 @@ namespace KmsLib
 			LSTATUS lRet = RegDeleteKey(mKey, aSubKey);
 			if (ERROR_SUCCESS != lRet)
 			{
+				char lMessage[2048];
+
+				sprintf_s(lMessage, sizeof(lMessage), "RegDeleteKey( 0x%08x, \"%s\" ) failed",
+					reinterpret_cast<unsigned int>(mKey), aSubKey);
+
 				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegDeleteKey( ,  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, lRet);
+					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 		}
 
@@ -169,8 +189,13 @@ namespace KmsLib
 			LSTATUS lRet = RegDeleteValue(mKey, aName);
 			if (ERROR_SUCCESS != lRet)
 			{
+				char lMessage[2048];
+
+				sprintf_s(lMessage, sizeof(lMessage), "RegDeleteValue( 0x%08x, \"%s\" ) failed",
+					reinterpret_cast<unsigned int>(mKey), aName);
+
 				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegDeleteValue( ,  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, lRet);
+					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 		}
 
@@ -191,8 +216,13 @@ namespace KmsLib
 			LSTATUS lRet = RegOpenKeyEx(aKey, aSubKey, 0, KEY_READ | KEY_WRITE, &mKey);
 			if (ERROR_SUCCESS != lRet)
 			{
+				char lMessage[2048];
+
+				sprintf_s(lMessage, sizeof(lMessage), "RegOpenKeyEx( 0x%08x, \"%s\", , ,  ) failed",
+					reinterpret_cast<unsigned int>(aKey), aSubKey);
+
 				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegOpenKeyEx( , , , ,  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, lRet);
+					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 
 			assert(NULL != mKey);

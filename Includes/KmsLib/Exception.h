@@ -28,6 +28,7 @@ namespace KmsLib
 
 		typedef enum
 		{
+			// ----- 2.0 ----------------------------------------------------
 			CODE_IO_ERROR			= 0,
 			CODE_IOCTL_ERROR		= 1,
 			CODE_NO_SUCH_DEVICE		= 2,
@@ -38,7 +39,31 @@ namespace KmsLib
 			CODE_UNKNOWN			= 7,
 			CODE_USER_ERROR			= 8,
 
-			CODE_QTY	= 9
+			// ----- 2.1 ----------------------------------------------------
+			CODE_AUTHENTIFICATION_ERROR	= 9 ,
+			CODE_COMMUNICATION_ERROR	= 10,
+			CODE_GUI_ERROR				= 11,
+			CODE_HARDWARE_ERROR			= 12,
+			CODE_INSTALLATION_ERROR		= 13,
+			CODE_INVALID_ARGUMENT		= 14,
+			CODE_INVALID_BUFFER_ADDRESS	= 15,
+			CODE_INVALID_BUFFER_SIZE	= 16,
+			CODE_INVALID_DATA			= 17,
+			CODE_INVALID_DATE			= 18,
+			CODE_INVALID_HANDLE			= 19,
+			CODE_INVALID_TIME			= 20,
+			CODE_NETWORK_ERROR			= 21,
+			CODE_NOT_FOUND				= 22,
+			CODE_OVERFLOW				= 23,
+			CODE_PERMISSION_DENIED		= 24,
+			CODE_PROTOCOL_ERROR			= 25,
+			CODE_STATE_ERROR			= 26,
+			CODE_SYSTEM_ERROR			= 27,
+			CODE_THREAD_ERROR			= 28,
+			CODE_TIMEOUT				= 29,
+			CODE_UNDERFLOW				= 30,
+
+			CODE_QTY	= 31
 		}
 		Code;
 

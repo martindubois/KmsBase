@@ -17,4 +17,25 @@
       <UniqueIdentifier>{03e9ae38-cae5-4ddb-bf54-0aee7b709976}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TODOInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TODO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TODOInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TODO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="_DocUser\Utiliser.txt">
+      <Filter>_DocUser</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

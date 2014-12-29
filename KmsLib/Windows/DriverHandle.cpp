@@ -45,8 +45,12 @@ namespace KmsLib
 
 			if (!CancelIoEx(mHandle, NULL))
 			{
+				char lMessage[2048];
+
+				sprintf_s(lMessage, sizeof(lMessage), "CancelIoEx( 0x%08x,  ) failed", reinterpret_cast<unsigned int>(mHandle));
+
 				throw new Exception(Exception::CODE_IO_ERROR, "CancelIoEx( ,  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, reinterpret_cast< unsigned int >( mHandle ) );
+					lMessage, __FILE__, __FUNCTION__, __LINE__, reinterpret_cast< unsigned int >( mHandle ) );
 			}
 		}
 
@@ -151,15 +155,25 @@ namespace KmsLib
 
 			if (!DeviceIoControl(mHandle, aCode, const_cast<void *>(aIn), aInSize_byte, aOut, aOutSize_byte, &lInfo_byte, NULL))
 			{
+				char lMessage[2048];
+
+				sprintf_s(lMessage, sizeof(lMessage), "DeviceIoControl( 0x%08x, 0x%08x, , %u bytes, , %u bytes, ,  ) failed",
+					reinterpret_cast<unsigned int>(mHandle), aCode, aInSize_byte, aOutSize_byte);
+
 				throw new Exception(Exception::CODE_IOCTL_ERROR, "DeviceIoControl( , , , , , , ,  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, aCode);
+					lMessage, __FILE__, __FUNCTION__, __LINE__, aCode);
 			}
 
 			if (aOutSize_byte < lInfo_byte)
 			{
 				// NOT TESTED
-				throw new Exception(Exception::CODE_IOCTL_ERROR, "DeviceIoControl( , , , , , , ,  ) returned too much data",
-					NULL, __FILE__, __FUNCTION__, __LINE__, lInfo_byte);
+				char lMessage[2048];
+
+				sprintf_s(lMessage, sizeof(lMessage), "DeviceIoControl returned too much data (Code = 0x%08x, Expected = %u bytes, Returned = %u bytes)",
+					aCode, aOutSize_byte, lInfo_byte);
+
+				throw new Exception(Exception::CODE_IOCTL_ERROR, "DeviceIoControl returned too much data",
+					lMessage, __FILE__, __FUNCTION__, __LINE__, lInfo_byte);
 			}
 
 			return lInfo_byte;

@@ -50,7 +50,7 @@ int main(int aCount, const char ** aVector)
 	assert(NULL !=	aVector		);
 	assert(NULL !=	aVector[0]	);
 
-	printf("TODO_Tool.exe - Version  (Compiled at " __TIME__ " on " __DATE__ ")\n");
+	printf("TODO_Tool.exe - Version TODO (Compiled at " __TIME__ " on " __DATE__ ")\n" );
 
 	KmsLib::ToolBase lToolBase(COMMAND);
 

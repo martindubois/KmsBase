@@ -8,7 +8,7 @@ echo  Execution de Install.cmd ...
 
 rem  ===== Verification =====================================================
 
-set DST="C:\Logiciels\KmsBase_2.1"
+set DST="C:\Software\KmsBase_2.2"
 
 rem  ===== Execution ========================================================
 

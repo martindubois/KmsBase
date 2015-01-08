@@ -8,6 +8,8 @@ Fichier	:	_DocDev/Procedures/Compiler.txt
 	  compilation;
 	- Modifier le fichier "Script/Install.cmd" pour incrementer le numero de
 	  version si necessaire;
+	- Modifier le fichier "Templates/Driver_KMDF/Driver_KMDF.ing" pour
+	  incrementer le numero de version;
 	- Dans le menu "BUILD", selectionner l'item "Batch Build...";
 	- Dans le dialogue "Batch Build", cliquer "Rebuild";
 	- Verifier qu'il n'y a pas d'erreur de compilation ou de warning;

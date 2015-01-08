@@ -47,6 +47,39 @@ namespace KmsLib
 			return mKey;
 		}
 
+		// aName			:	[in,opt]
+		// aDefaultValue	:
+		DWORD RegistryKey::GetValue_DWORD(const char * aName, DWORD aDefaultValue)
+		{
+			assert(NULL != mKey);
+
+			DWORD lResult						;
+			DWORD lSize_byte = sizeof(lResult)	;
+			DWORD lType							;
+
+			LSTATUS lRetS = RegQueryValueEx(mKey, aName, NULL, &lType, reinterpret_cast<LPBYTE>(&lResult), &lSize_byte);
+			switch (lRetS)
+			{
+			case ERROR_SUCCESS :
+				if ((REG_DWORD != lType) || (sizeof(lResult) != lSize_byte))
+				{
+					throw new KmsLib::Exception(KmsLib::Exception::CODE_REGISTRY_ERROR, "Invalid registry value",
+						NULL, __FILE__, __FUNCTION__, __LINE__, lType);
+				}
+				break;
+
+			case ERROR_FILE_NOT_FOUND :
+				lResult = aDefaultValue;
+				break;
+
+			default :
+				throw new KmsLib::Exception(KmsLib::Exception::CODE_REGISTRY_ERROR, "Registry error",
+					NULL, __FILE__, __FUNCTION__, __LINE__, lRetS);
+			}
+
+			return lResult;
+		}
+
 		// aValue	: [in]	
 		//
 		// Exception : KmsLib::Exception

@@ -28,7 +28,37 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 	lKey1.Create			(lKey0, "KmsLib_Test");
 	lKey1.SetDefaultValue	("KmsLib_Test");
 	lKey1.SetValue			("KmsLib_Test", 1);
-	lKey1.DeleteValue		("KmsLib_Test");
+
+	KMS_TEST_ASSERT(1 == lKey1.GetValue_DWORD("KmsLib_Test"	, 0));
+	KMS_TEST_ASSERT(1 == lKey1.GetValue_DWORD("DoNotExist"	, 1));
+
+	try
+	{
+		lKey1.GetValue_DWORD(NULL, 0);
+		KMS_TEST_ASSERT(false);
+	}
+	catch (KmsLib::Exception * eE)
+	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
+	}
+
+	lKey1.SetDefaultValue("");
+
+	try
+	{
+		lKey1.GetValue_DWORD(NULL, 0);
+		KMS_TEST_ASSERT(false);
+	}
+	catch (KmsLib::Exception * eE)
+	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
+	}
+
+	lKey1.DeleteValue("KmsLib_Test");
 
 	lKey2.Open	(lKey0, "KmsLib_Test"	);
 	lKey2.Open	(lKey0, "KmsLib_Test"	);

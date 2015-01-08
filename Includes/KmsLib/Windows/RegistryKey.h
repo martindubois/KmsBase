@@ -30,6 +30,8 @@ namespace KmsLib
 
 			operator HKEY ();
 
+			DWORD	GetValue_DWORD	(const char * aName, DWORD aDefaultValue);
+
 			void SetDefaultValue(const char						  * aValue);
 			void SetValue		(const char * aName, DWORD			aValue);
 			void SetValue		(const char * aName, const char   * aValue);

@@ -1,7 +1,7 @@
 
 Auteur	:	KMS -	Martin Dubois, ing.
 Projet	:	KmsBase
-Fichier	:	_DocDev/Requis.txt
+Fichier	:	_DocDev/Requirements.txt
 
 Windows
 	Le logiciel doit s'installer, s'utiliser et s'executer sous Windows 7 et

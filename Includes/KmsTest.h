@@ -47,10 +47,18 @@ KmsTestDescription;
 		return 1;																			\
 	}
 
-#define KMS_TEST_BEGIN(Na)	\
-	int Na()				\
-	{						\
-		try					\
+#define KMS_TEST_ASSERT_CLEANUP(Co,Cl)														\
+	if (!(Co))																				\
+	{																						\
+		printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ "\n", __LINE__);	\
+		goto Cl;																			\
+	}
+
+#define KMS_TEST_BEGIN(Na)			\
+	int Na()						\
+	{								\
+		unsigned int lResult = 0;	\
+		try							\
 		{
 
 #define KMS_TEST_END				\
@@ -66,7 +74,7 @@ KmsTestDescription;
 			return 1;				\
 		}							\
 									\
-		return 0;					\
+		return lResult;				\
 	}
 
 #define KMS_TEST_ERROR_INFO	\
@@ -86,7 +94,7 @@ KmsTestDescription;
 
 // ===== Test list ==========================================================
 
-#define	KMS_TEST_LIST_BEGIN				\
+#define	KMS_TEST_LIST_BEGIN					\
 	static KmsTestDescription KMS_TESTS[] = \
 {
 

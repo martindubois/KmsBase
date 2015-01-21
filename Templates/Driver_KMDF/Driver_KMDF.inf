@@ -1,8 +1,8 @@
 
-; Auteur	:	KMS -	Martin Dubois, ing.
-; Client	:	TODO
-; Project	:	TODO
-; Fichier	:	TODO/TODO.inf
+; Author / Auteur	:	KMS -	Martin Dubois, ing.
+; Client			:	TODO
+; Product / Produit	:	TODO
+; File / Fichier	:	TODO/TODO.inf
 
 [Version]
 Signature   = "$WINDOWS NT$"
@@ -10,7 +10,7 @@ Class       = TODO
 ClassGuid   = {2E94C38D-3777-42A0-BBD1-3812902108F1}
 Provider    = %ManufacturerName%
 CatalogFile = TODO.cat
-DriverVer   = 2.2.0.0
+DriverVer   = 2.2.1.0
 
 ; TODO : Changer le GUID de la classe
 

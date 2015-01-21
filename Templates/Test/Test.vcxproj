@@ -284,6 +284,9 @@
     <ClCompile Include="TODO.cpp" />
     <ClCompile Include="TODO_Test.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="_DocUser\Use.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

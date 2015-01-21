@@ -25,4 +25,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="_DocUser\Use.txt">
+      <Filter>_DocUser</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

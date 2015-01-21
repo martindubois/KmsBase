@@ -1,14 +1,16 @@
 
-Auteur	:	KMS -	Martin Dubois, ing.
-Projet	:	KmsBase
-Fichier	:	_DocDev/Procedures/Compiler.txt
+Author / Auteur		:	KMS -	Martin Dubois, ing.
+Product / Produit	:	KmsBase
+File / Fichier		:	_DocDev/Procedures/Compiler.txt
+
+TODO : Traduire
 
 [ ]	Ouvrir la solution en utilisant Visual Studio 2013
 	- Modifier le fichier "Common/Version.h" pour incrementer le numero de
 	  compilation;
 	- Modifier le fichier "Script/Install.cmd" pour incrementer le numero de
 	  version si necessaire;
-	- Modifier le fichier "Templates/Driver_KMDF/Driver_KMDF.ing" pour
+	- Modifier le fichier "Templates/Driver_KMDF/Driver_KMDF.inf" pour
 	  incrementer le numero de version;
 	- Dans le menu "BUILD", selectionner l'item "Batch Build...";
 	- Dans le dialogue "Batch Build", cliquer "Rebuild";

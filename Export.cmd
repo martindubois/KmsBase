@@ -1,8 +1,8 @@
 @echo off
 
-rem  Auteur		:	KMS -	Martin Dubois, ing.
-rem  Projet		:	KmsBase
-rem  Fichier	:	Export.cmd
+rem  Author / Auteur		:	KMS -	Martin Dubois, ing.
+rem  Product / Produit		:	KmsBase
+rem  File / Fichier			:	Export.cmd
 
 echo  Execution de Export.cmd %1 ...
 
@@ -42,6 +42,8 @@ mkdir "%DST%\Templates\DLL"
 mkdir "%DST%\Templates\DLL\_DocUser"
 mkdir "%DST%\Templates\Driver_KMDF"
 mkdir "%DST%\Templates\Driver_KMDF\_DocUser"
+mkdir "%DST%\Templates\Service"
+mkdir "%DST%\Templates\Service\_DocUser"
 mkdir "%DST%\Templates\Solution"
 mkdir "%DST%\Templates\Solution\_DocUser"
 mkdir "%DST%\Templates\Solution\Common"
@@ -49,8 +51,6 @@ mkdir "%DST%\Templates\Test"
 mkdir "%DST%\Templates\Test\_DocUser"
 mkdir "%DST%\Templates\Tool"
 mkdir "%DST%\Templates\Tool\_DocUser"
-mkdir "%DST%\Templates\Solution"
-mkdir "%DST%\Templates\Solution\_DocUser"
 
 xcopy /IKQS Debug\KmsLib.lib						"%DST%\Libraries\Debug_32"
 xcopy /IKQS Debug_DLL\KmsLib.lib					"%DST%\Libraries\Debug_32_DLL"
@@ -65,13 +65,17 @@ xcopy /IKQS Templates\Driver_KMDF\*.cpp				"%DST%\Templates\Driver_KMDF"
 xcopy /IKQS Templates\Driver_KMDF\*.h				"%DST%\Templates\Driver_KMDF"
 xcopy /IKQS Templates\Driver_KMDF\*.inf				"%DST%\Templates\Driver_KMDF"
 xcopy /IKQS Templates\Driver_KMDF\_DocUser\*.txt	"%DST%\Templates\Driver_KMDF\_DocUser"
+xcopy /IKQS Templates\Service\.gitignore			"%DST%\Templates\Service"
+xcopy /IKQS Templates\Service\*.cpp					"%DST%\Templates\Service"
+xcopy /IKQS Templates\Service\*.mc					"%DST%\Templates\Service"
+xcopy /IKQS Templates\Service\_DocUser\*.txt		"%DST%\Templates\Service\_DocUser"
 xcopy /IKQS Templates\Solution\.gitignore			"%DST%\Templates\Solution"
 xcopy /IKQS Templates\Solution\*.cmd				"%DST%\Templates\Solution"
 xcopy /IKQS Templates\Solution\*.sh					"%DST%\Templates\Solution"
 xcopy /IKQS Templates\Solution\_DocUser\*.txt		"%DST%\Templates\Solution\_DocUser"
 xcopy /IKQS Templates\Solution\Common\*.h			"%DST%\Templates\Solution\Common"
-rem  TODO : xcopy /IKQS Templates\Test\*.cpp			"%DST%\Templates\Test"
-rem  TODO : xcopy /IKQS Templates\Test\_DocUser\*.txt	"%DST%\Templates\Test\_DocUser"
+xcopy /IKQS Templates\Test\*.cpp					"%DST%\Templates\Test"
+xcopy /IKQS Templates\Test\_DocUser\*.txt			"%DST%\Templates\Test\_DocUser"
 xcopy /IKQS Templates\Tool\*.cpp					"%DST%\Templates\Tool"
 xcopy /IKQS Templates\Tool\_DocUser\*.txt			"%DST%\Templates\Tool\_DocUser"
 xcopy /IKQS x64\Debug\KmsLib.lib					"%DST%\Libraries\Debug_64"

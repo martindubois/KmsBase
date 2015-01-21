@@ -47,6 +47,49 @@ namespace KmsLib
 			return mKey;
 		}
 
+		// aSubKey	: [in]
+		//
+		// Return :
+		//	false	= The sub key does not exist / La sous cle n'existe pas
+		//	true	= The sub key exists / La sous cle existe
+		//
+		// Exception : KmsLib::Exception
+		bool RegistryKey::DoesSubKeyExist(const char * aSubKey)
+		{
+			assert(NULL != aSubKey);
+			
+			assert(NULL != mKey);
+
+			HKEY lKey;
+
+			LSTATUS lRetS = RegOpenKey(mKey, aSubKey, &lKey);
+			switch (lRetS)
+			{
+			case ERROR_SUCCESS :
+				assert(NULL != lKey);
+
+				lRetS = RegCloseKey(lKey);
+				if (ERROR_SUCCESS != lRetS)
+				{
+					// NOTE TESTED : Realy not easy to test / Vraiment pas facile a tester
+					char lMsg[2048];
+
+					sprintf_s(lMsg, "An error occured when closing the sub key %s", aSubKey);
+
+					throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegCloseKey(  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, lRetS);
+				}
+				return true;
+
+			case ERROR_FILE_NOT_FOUND :
+				break;
+
+			default:
+				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegOpenKey( , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, lRetS);
+			}
+
+			return false;
+		}
+
 		// aName			:	[in,opt]
 		// aDefaultValue	:
 		DWORD RegistryKey::GetValue_DWORD(const char * aName, DWORD aDefaultValue)
@@ -148,7 +191,7 @@ namespace KmsLib
 
 			if (ERROR_SUCCESS != lRet)
 			{
-				// PAS TESTE : Difficile de faire echouer RegCloseKey.
+				// NOTE TESTED : Realy not easy to test / Vraiment pas facile a tester
 				char lMessage[2048];
 
 				sprintf_s(lMessage, sizeof(lMessage), "RegCloseKey( 0x%08x ) failed",

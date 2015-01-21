@@ -42,6 +42,8 @@
     <ClCompile Include="Windows\DriverHandle.cpp" />
     <ClCompile Include="Windows\FileHandle.cpp" />
     <ClCompile Include="Windows\RegistryKey.cpp" />
+    <ClCompile Include="Windows\Service.cpp" />
+    <ClCompile Include="Windows\SystemLog.cpp" />
     <ClCompile Include="Windows\Windows.cpp" />
   </ItemGroup>
   <ItemGroup>

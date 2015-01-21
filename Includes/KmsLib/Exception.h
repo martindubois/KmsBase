@@ -63,7 +63,11 @@ namespace KmsLib
 			CODE_TIMEOUT				= 29,
 			CODE_UNDERFLOW				= 30,
 
-			CODE_QTY	= 31
+			// ----- 2.2 ----------------------------------------------------
+			CODE_SERVICE_MANAGER_ERROR	= 31,
+			CODE_SYSTEM_LOG_ERROR		= 32,
+
+			CODE_QTY	= 33
 		}
 		Code;
 

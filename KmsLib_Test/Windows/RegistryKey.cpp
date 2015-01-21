@@ -25,12 +25,29 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 
 	lKey0.Open	(HKEY_CURRENT_USER, "Software");
 
-	lKey1.Create			(lKey0, "KmsLib_Test");
+	KMS_TEST_ASSERT(!lKey0.DoesSubKeyExist("DoesNotExist"));
+
+	lKey1.Create(lKey0, "KmsLib_Test");
+
+	KMS_TEST_ASSERT(lKey0.DoesSubKeyExist("KmsLib_Test"));
+
 	lKey1.SetDefaultValue	("KmsLib_Test");
 	lKey1.SetValue			("KmsLib_Test", 1);
 
 	KMS_TEST_ASSERT(1 == lKey1.GetValue_DWORD("KmsLib_Test"	, 0));
 	KMS_TEST_ASSERT(1 == lKey1.GetValue_DWORD("DoNotExist"	, 1));
+
+	try
+	{
+		lKey0.DoesSubKeyExist("\\NotValid\\");
+		KMS_TEST_ASSERT(false);
+	}
+	catch (KmsLib::Exception * eE)
+	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
+	}
 
 	try
 	{
@@ -127,4 +144,4 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 		eE->Write(stdout);
 	}
 
-	KMS_TEST_END
+KMS_TEST_END

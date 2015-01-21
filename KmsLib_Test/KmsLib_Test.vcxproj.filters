@@ -33,6 +33,12 @@
     <ClCompile Include="ToolBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Windows\Service.cpp">
+      <Filter>Source Files\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\SystemLog.cpp">
+      <Filter>Source Files\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ToolBase.txt">
@@ -43,5 +49,14 @@
     <ResourceCompile Include="..\Common\Version.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+    <ResourceCompile Include="Messages.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Messages.mc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include=".gitignore" />
   </ItemGroup>
 </Project>

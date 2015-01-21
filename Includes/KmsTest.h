@@ -65,16 +65,36 @@ KmsTestDescription;
 		}							\
 		catch (std::exception * eE)	\
 		{							\
-			printf("Test " __FUNCTION__ " failed at line %u of file "__FILE__ " (std::exception - %s)\n", __LINE__, eE->what());	\
+			printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (std::exception - %s)\n", __LINE__, eE->what());	\
 			return 1;				\
 		}							\
 		catch ( ... )				\
 		{							\
-			printf("Test " __FUNCTION__ " failed at line %u of file "__FILE__ " (Unknown exception)\n", __LINE__);	\
+			printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (Unknown exception)\n", __LINE__);	\
 			return 1;				\
 		}							\
-									\
 		return lResult;				\
+	}
+
+#define KMS_TEST_END_2					\
+		}								\
+		catch (KmsLib::Exception * eE)	\
+		{								\
+			printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (KmsLib::Exception)\n", __LINE__);	\
+			eE->Write(stdout);			\
+			return 1;					\
+		}								\
+		catch (std::exception * eE)		\
+		{								\
+			printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (std::exception - %s)\n", __LINE__, eE->what());	\
+			return 1;					\
+		}								\
+		catch (...)						\
+		{								\
+			printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (Unknown exception)\n", __LINE__);	\
+			return 1;					\
+		}								\
+	return lResult;						\
 	}
 
 #define KMS_TEST_ERROR_INFO	\
@@ -200,7 +220,7 @@ KmsTestDescription;
 			printf("    %2u    %2u        %s", i, KMS_TESTS[i].mGroup, KMS_TESTS[i].mName);	\
 			if (0 != (KMS_TEST_FLAG_INTERACTION_NEEDED | KMS_TESTS[i].mFlags))	\
 			{																\
-				printf(" - Interaction needed");							\
+				printf("\t- Interaction needed");							\
 			}																\
 			printf("\n");													\
 		}																	\

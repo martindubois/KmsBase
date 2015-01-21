@@ -30,13 +30,14 @@ namespace KmsLib
 
 			operator HKEY ();
 
+			bool	DoesSubKeyExist	(const char * aSubKey);
+
 			DWORD	GetValue_DWORD	(const char * aName, DWORD aDefaultValue);
 
 			void SetDefaultValue(const char						  * aValue);
 			void SetValue		(const char * aName, DWORD			aValue);
 			void SetValue		(const char * aName, const char   * aValue);
 			void SetValue		(const char * aName, DWORD aType, const void * aValue, unsigned int aValueSize_byte);
-
 
 			void Close			();
 			void Create			(HKEY aKey, const char * aSubKey);

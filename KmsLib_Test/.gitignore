@@ -1,0 +1,10 @@
+
+# Author / Auteur	:	KMS -	Martin Dubois, ing.
+# Project / Projet	:	KmsBase
+# File / Fichier	:	KmsLib_Test/.gitignore
+
+*.bin
+
+Messages.h
+Messages.rc
+

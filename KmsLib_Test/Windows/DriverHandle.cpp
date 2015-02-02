@@ -1,7 +1,7 @@
 
-// Auteur	:	KMS -	Martin Dubois, ing.
-// Projet	:	KmsBase
-// Fichier	:	KmsLib_Test/Windows/DriverHandle.cpp
+// Author / Auteur		:	KMS -	Martin Dubois, ing.
+// Product / Produit	:	KmsBase
+// File / Fichier		:	KmsLib_Test/Windows/DriverHandle.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -24,8 +24,11 @@ KMS_TEST_BEGIN(DriverHandle_Base)
 
 	KmsLib::Windows::DriverHandle	lDH0;
 
-	lDH0.Connect("nul:");
+	// Always possible to open the NUL device / Toujours possible d'ouvrir
+	// le peripherique NUL.
+	lDH0.Connect("nul:", GENERIC_READ | GENERIC_WRITE);
 
+	// Nothing to cancel / Rien a canceller
 	try
 	{
 		lDH0.CancelAll();
@@ -38,6 +41,7 @@ KMS_TEST_BEGIN(DriverHandle_Base)
 		eE->Write(stdout);
 	}
 
+	// Invalid IOCTL / IOCTL invalid
 	try
 	{
 		unsigned int lInfo_byte = lDH0.Control(0, NULL, 0, NULL, 0);
@@ -50,11 +54,12 @@ KMS_TEST_BEGIN(DriverHandle_Base)
 		eE->Write(stdout);
 	}
 
+	// Invalid interface GUID / Identifiant d'interface invalid
 	try
 	{
 		static const GUID GUID_ZERO = { 0x00000000, 0x0000, 0x0000, { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } };
 
-		lDH0.Connect(GUID_ZERO);
+		lDH0.Connect(GUID_ZERO, GENERIC_READ | GENERIC_WRITE);
 		KMS_TEST_ASSERT(false);
 	}
 	catch (KmsLib::Exception * eE)
@@ -64,11 +69,12 @@ KMS_TEST_BEGIN(DriverHandle_Base)
 		eE->Write(stdout);
 	}
 
+	// No permission / Pas de permission
 	try
 	{
 		static const GUID GUID_INTERFACE_KEYBOARD = { 0x884b96c3, 0x56ef, 0x11d1, { 0xbc, 0x8c, 0x00, 0xa0, 0xc9, 0x14, 0x05, 0xdd } };
 
-		lDH0.Connect(GUID_INTERFACE_KEYBOARD);
+		lDH0.Connect(GUID_INTERFACE_KEYBOARD, GENERIC_READ | GENERIC_WRITE);
 		KMS_TEST_ASSERT(false);
 	}
 	catch (KmsLib::Exception * eE)
@@ -85,7 +91,8 @@ KMS_TEST_BEGIN(DriverHandle_SetupA)
 
 	KmsLib::Windows::DriverHandle	lDH0;
 
-	lDH0.Connect(GUID_DEVINTERFACE_COMPORT);
+	// Connect to RS232-USB adapted / Connexion a l'adaptateur RS232-USB
+	lDH0.Connect(GUID_DEVINTERFACE_COMPORT, GENERIC_READ | GENERIC_WRITE);
 
 	unsigned int lInfo_byte = lDH0.Control( IOCTL_SERIAL_CLEAR_STATS, NULL, 0, NULL, 0);
 

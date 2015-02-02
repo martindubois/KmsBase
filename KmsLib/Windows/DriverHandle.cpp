@@ -1,7 +1,7 @@
 
-// Auteur	:	KMS -	Martin Dubois, ing.
-// Projet	:	KmsBase
-// Fichier	:	KmsLib/Windows/DriverHandle.cpp
+// Author / Auteur		:	KMS -	Martin Dubois, ing.
+// Product / Produit	:	KmsBase
+// File / Fichier		:	KmsLib/Windows/DriverHandle.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -28,12 +28,12 @@ namespace KmsLib
 		// Public
 		/////////////////////////////////////////////////////////////////////
 
-		// Constructeur par defaut
+		// Default contructor / Constructeur par defaut
 		DriverHandle::DriverHandle()
 		{
 		}
 
-		// Destructeur
+		// Destructor / Destructeur
 		DriverHandle::~DriverHandle()
 		{
 		}
@@ -54,20 +54,22 @@ namespace KmsLib
 			}
 		}
 
-		// aLink	: [in]	Le nom du lien symbolique
+		// aLink			: [in]	The symbolic name / Le nom du lien symbolique
+		// aDesiredAccess	:		See / Voir GENERIC_...
 		//
 		// Exception : KmsLib::Exception
-		void DriverHandle::Connect(const char * aLink)
+		void DriverHandle::Connect(const char * aLink, DWORD aDesiredAccess)
 		{
 			assert(NULL != aLink);
 
-			Create(aLink, GENERIC_READ | GENERIC_WRITE, 0, OPEN_EXISTING, 0);
+			Create(aLink, aDesiredAccess, 0, OPEN_EXISTING, 0);
 		}
 
-		// aInterface	:	Identifiant unique de l'interface
+		// aInterface		:	Interface GUID / Identifiant unique de l'interface
+		// aDesiredAccess	:	See / Voir GENERIC_...
 		//
 		// Exception : KmsLib::Exception
-		void DriverHandle::Connect(const GUID & aInterface)
+		void DriverHandle::Connect(const GUID & aInterface, DWORD aDesiredAccess)
 		{
 			HDEVINFO lDevInfo = SetupDiGetClassDevs(&aInterface, NULL, NULL, DIGCF_DEVICEINTERFACE | DIGCF_PRESENT);
 			if (INVALID_HANDLE_VALUE == lDevInfo)
@@ -113,7 +115,7 @@ namespace KmsLib
 								NULL, __FILE__, __FUNCTION__, __LINE__, i);
 						}
 
-						Connect(lDetail->DevicePath);
+						Connect(lDetail->DevicePath, aDesiredAccess);
 						break;
 					}
 				}
@@ -135,7 +137,8 @@ namespace KmsLib
 			}
 		}
 
-		// Voir la documentation de la fonction DeviceIoControl sur le site
+		// See the Microsoft documentation about the DeviceIoControl function
+		// / Voir la documentation de la fonction DeviceIoControl sur le site
 		// de Microsoft.
 		//
 		// aCode			:
@@ -144,7 +147,8 @@ namespace KmsLib
 		// aOut				: [out,opt]
 		// aOutSize_byte	:
 		//
-		// Retour : Taille des donnees retournee dans aOut en octets.
+		// Retour :	Size of returned data in bytes / Taille des donnees
+		//			retournee en octets.
 		//
 		// Exception : KmsList::Exception
 		unsigned int DriverHandle::Control(unsigned int aCode, const void * aIn, unsigned int aInSize_byte, void * aOut, unsigned int aOutSize_byte)

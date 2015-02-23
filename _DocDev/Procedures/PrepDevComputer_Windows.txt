@@ -1,0 +1,7 @@
+
+# Author / Auteur	:	KMS -	Martin Dubois, ing.
+# Product / Produit	:	KmsBase
+# File / Fichier	:	_DocDev/Procedures/PrepDevComputer_Windows.txt
+
+[ ]	Install "Visual Studio 2013";
+[ ]	Install "WDK 8.1".

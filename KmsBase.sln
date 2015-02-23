@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Includes", "Includes", "{98
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KmsLib", "KmsLib", "{EE152025-CE8B-4099-89C4-C60CC1B7797C}"
 	ProjectSection(SolutionItems) = preProject
+		Includes\KmsLib\DebugLog.h = Includes\KmsLib\DebugLog.h
 		Includes\KmsLib\Dump.h = Includes\KmsLib\Dump.h
 		Includes\KmsLib\Exception.h = Includes\KmsLib\Exception.h
 		Includes\KmsLib\KmsLib.h = Includes\KmsLib\KmsLib.h
@@ -44,6 +45,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{EA71243B-5549-4F76-9D8B-547E36BE8BB4}"
 	ProjectSection(SolutionItems) = preProject
 		_DocDev\Procedures\Compiler.txt = _DocDev\Procedures\Compiler.txt
+		_DocDev\Procedures\PrepDevComputer_Windows.txt = _DocDev\Procedures\PrepDevComputer_Windows.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{F88CC9DD-1927-455C-96C7-834931B958F9}"

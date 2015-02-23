@@ -57,7 +57,7 @@ static const char * ARGUMENTS_F1[] =
 {
 	"KmsLib_Test.exe"			,
 	"File"						,
-	"KmsLib_Test\\ToolBase.txt"	,
+	"KmsLib_Test\\Tests\\ToolBase0.txt"	,
 };
 
 static void A(KmsLib::ToolBase * aThis, const char * aArguments)
@@ -121,4 +121,46 @@ KMS_TEST_BEGIN(ToolBase_Base)
 	lRetB = lTB.ParseArguments(3, ARGUMENTS_F1);
 	KMS_TEST_ASSERT(lRetB);
 
-KMS_TEST_END
+	FILE * lFile;
+
+	errno_t lRetE = fopen_s(&lFile, "KmsLib_Test\\Tests\\ToolBase1.txt", "r");
+	KMS_TEST_ASSERT(0 == lRetE);
+
+	unsigned short lValue;
+
+	KmsLib::ToolBase::AskUser(lFile, "Name", 10, 99, 54, &lValue);
+	KMS_TEST_ASSERT(54 == lValue);
+
+	KmsLib::ToolBase::AskUser(lFile, "Name", 10, 99, 54, &lValue);
+	KMS_TEST_ASSERT(60 == lValue);
+
+	char lString[16];
+
+	KmsLib::ToolBase::AskUser(lFile, "Name", lString, sizeof(lString));
+	KMS_TEST_ASSERT(0 == strcmp("Test", lString));
+
+	KmsLib::ToolBase::AskUser(lFile, "Name", lString, sizeof(lString));
+	KMS_TEST_ASSERT(0 == strcmp("", lString));
+
+	KmsLib::ToolBase::AskUser(lFile, "Name", "Default", lString, sizeof(lString));
+	KMS_TEST_ASSERT(0 == strcmp("Test", lString));
+
+	KmsLib::ToolBase::AskUser(lFile, "Name", "Default", lString, sizeof(lString));
+	KMS_TEST_ASSERT(0 == strcmp("Default", lString));
+
+	try
+	{
+		KmsLib::ToolBase::AskUser(lFile, "Name", 10, 99, 54, &lValue);
+		KMS_TEST_ASSERT(false);
+	}
+	catch (KmsLib::Exception * eE)
+	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_IO_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
+	}
+
+	int lRetI = fclose(lFile);
+	KMS_TEST_ASSERT(0 == lRetI);
+
+KMS_TEST_END_2

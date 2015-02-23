@@ -308,6 +308,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DebugLog.cpp" />
     <ClCompile Include="KmsLib_Test.cpp" />
     <ClCompile Include="ToolBase.cpp" />
     <ClCompile Include="Windows\DriverHandle.cpp" />
@@ -317,15 +318,16 @@
     <ClCompile Include="Windows\SystemLog.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ToolBase.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="..\Common\Version.rc" />
     <ResourceCompile Include="Messages.rc" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
     <None Include="Messages.mc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Tests\ToolBase0.txt" />
+    <Text Include="Tests\ToolBase1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

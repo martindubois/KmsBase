@@ -16,6 +16,9 @@
     <Filter Include="Source Files\Windows">
       <UniqueIdentifier>{61702b25-c66c-4ccb-a626-ef47f7c0e3ef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{9869c52e-4f88-4601-808c-2b1bbe9f25f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KmsLib_Test.cpp">
@@ -39,11 +42,9 @@
     <ClCompile Include="Windows\SystemLog.cpp">
       <Filter>Source Files\Windows</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ToolBase.txt">
+    <ClCompile Include="DebugLog.cpp">
       <Filter>Source Files</Filter>
-    </Text>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\Common\Version.rc">
@@ -58,5 +59,13 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Tests\ToolBase0.txt">
+      <Filter>Tests</Filter>
+    </Text>
+    <Text Include="Tests\ToolBase1.txt">
+      <Filter>Tests</Filter>
+    </Text>
   </ItemGroup>
 </Project>

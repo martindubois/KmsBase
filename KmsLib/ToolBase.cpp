@@ -196,7 +196,7 @@ namespace KmsLib
 				return;
 
 			default:
-				strcpy_s(aOut, aOutSize_byte, lValue);
+				strcpy_s(aOut, aOutSize_byte, aDefault);
 				return;
 			}
 		}

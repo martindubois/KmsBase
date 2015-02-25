@@ -22,7 +22,7 @@ KMS_TEST_BEGIN(DebugLog_Base)
 	KMS_TEST_ASSERT(!lDL0.IsEnabled());
 
 	lDL0.Log(&lE);
-	lDL0.Log(__FILE__, __LINE__, __FUNCTION__);
+	lDL0.Log(__FILE__, __FUNCTION__, __LINE__);
 	lDL0.Log("Test");
 
 	lDL0.LogTime();
@@ -30,7 +30,7 @@ KMS_TEST_BEGIN(DebugLog_Base)
 	KmsLib::DebugLog lDL1("KmsLib_Test", "Test");
 	
 	lDL1.Log(&lE);
-	lDL1.Log(__FILE__, __LINE__, __FUNCTION__);
+	lDL1.Log(__FILE__, __FUNCTION__, __LINE__);
 	lDL1.Log("Test");
 
 	lDL1.LogTime();

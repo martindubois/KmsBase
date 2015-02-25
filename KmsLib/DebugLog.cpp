@@ -68,7 +68,7 @@ namespace KmsLib
 		{
 			assert(NULL != mFile);
 
-			Log(__FILE__, __LINE__, __FUNCTION__);
+			Log(__FILE__, __FUNCTION__, __LINE__);
 			LogTime();
 			Log("Creating log file");
 		}
@@ -83,7 +83,7 @@ namespace KmsLib
 	{
 		if (NULL != mFile)
 		{
-			Log(__FILE__, __LINE__, __FUNCTION__);
+			Log(__FILE__, __FUNCTION__, __LINE__);
 			LogTime();
 			Log("Closing log file");
 
@@ -121,10 +121,10 @@ namespace KmsLib
 	}
 
 	// aFile		: [in]	Source file name / Nom du fichier source
+	// aFunction	: [in]	Function name / Nom de la fonction
 	// aLine		:		Line into the source file / Ligne dans le ficheir
 	//						source
-	// aFunction	: [in]	Function name / Nom de la fonction
-	void DebugLog::Log(const char * aFile, unsigned int aLine, const char * aFunction)
+	void DebugLog::Log(const char * aFile, const char * aFunction, unsigned int aLine)
 	{
 		assert(NULL != aFile		);
 		assert(NULL != aFunction	);
@@ -166,7 +166,7 @@ namespace KmsLib
 			}
 			else
 			{
-				Log(__FILE__, __LINE__, __FUNCTION__);
+				Log(__FILE__, __FUNCTION__, __LINE__);
 				fprintf(mFile, "localtime_s( , 0x%08x%08x ) failed returning %u\n",
 					static_cast<unsigned int>(lTime & 0xffffffff), static_cast<unsigned int>(lTime >> 32),
 					lRet);

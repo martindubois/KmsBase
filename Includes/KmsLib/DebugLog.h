@@ -34,7 +34,7 @@ namespace KmsLib
 		bool	IsEnabled() const;
 
 		void	Log(Exception  * aException	);
-		void	Log(const char * aFile, unsigned int aLine, const char * aFunction);
+		void	Log(const char * aFile, const char * aFunction, unsigned int aLine);
 		void	Log(const char * aMessage		);
 
 		void	LogTime();

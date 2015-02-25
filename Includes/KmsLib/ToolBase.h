@@ -17,6 +17,9 @@ namespace KmsLib
 	// Class / Classe
 	/////////////////////////////////////////////////////////////////////////
 
+	// TODO :	AskUser - En faire des method non statique. Si le aFile est
+	//			NULL, utiliser le fichier d'entree courrant.
+
 	class ToolBase
 	{
 

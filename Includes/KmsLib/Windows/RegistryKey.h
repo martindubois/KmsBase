@@ -1,22 +1,24 @@
 
-// Auteur	: KMS -		Martin Dubois
-// Projet	: KmsBase
-// Fichier	: Includes/KmsLib/Windows/RegistryKey.h
+// Author / Auteur		:	KMS -		Martin Dubois
+// Product / Produit	:	KmsBase
+// File / Fichier		:	Includes/KmsLib/Windows/RegistryKey.h
 
 #pragma once
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
 
-// ===== System =============================================================
+// ===== Windows =============================================================
 #include <Windows.h>
+
+#include <SetupAPI.h>
 
 namespace KmsLib
 {
 	namespace Windows
 	{
 
-		// Classe
+		// Class / Classe
 		/////////////////////////////////////////////////////////////////////
 
 		class RegistryKey
@@ -44,6 +46,7 @@ namespace KmsLib
 			void DeleteSubKey	(const char * aSubKey);
 			void DeleteValue	(const char * aName);
 			void Open			(HKEY aKey, const char * aSubKey);
+			void Open			(HDEVINFO aDevInfoSet, PSP_DEVINFO_DATA aDevInfoData, DWORD aKeyType);
 
 		private:
 
@@ -54,5 +57,6 @@ namespace KmsLib
 			HKEY	mKey;
 
 		};
+
 	}
 }

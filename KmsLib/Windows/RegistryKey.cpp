@@ -304,6 +304,36 @@ namespace KmsLib
 			assert(NULL != mKey);
 		}
 
+		// aDevInfoSet	: [in]	Information set containing aDevInfoData /
+		//						L'ensemble d'information contenant aDevInfoData
+		// aDevInfoData	: [in]	Information about the device / Information au
+		//						sujet du peripherique
+		// aKeyType		:		See / Voir DIREG_...
+		//
+		// Exception :	KmsLib::Exception	CODE_REGISTRY_ERROR
+		void RegistryKey::Open(HDEVINFO aDevInfoSet, PSP_DEVINFO_DATA aDevInfoData, DWORD aKeyType)
+		{
+			assert(NULL != aDevInfoSet	);
+			assert(NULL != aDevInfoData	);
+
+			if (NULL != mKey)
+			{
+				Close();
+			}
+
+			mKey = SetupDiOpenDevRegKey(aDevInfoSet, aDevInfoData, 0, 0, KEY_READ | KEY_WRITE, aKeyType);
+			if (INVALID_HANDLE_VALUE == mKey)
+			{
+				// This class use NULL, not INVALID_HANDLE_VALUE / Cette
+				// classe utilise NULL et non INVALID_HANDLE_VALUE.
+				mKey = NULL;
+
+				throw new Exception(Exception::CODE_REGISTRY_ERROR, "SetupDiOpenDevRegKey( , , , , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, aKeyType);
+			}
+
+			// NOT TESTED :
+		}
+
 	}
 
 }

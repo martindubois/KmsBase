@@ -38,7 +38,7 @@ namespace KmsLib
 		{
 		}
 
-		// Exception : KmsLib::Exception
+		// Exception :	KmsLib::Exception	CODE_IO_ERROR
 		void DriverHandle::CancelAll()
 		{
 			assert(INVALID_HANDLE_VALUE != mHandle);
@@ -52,6 +52,9 @@ namespace KmsLib
 				throw new Exception(Exception::CODE_IO_ERROR, "CancelIoEx( ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, reinterpret_cast< unsigned int >( mHandle ) );
 			}
+
+			// NOT TESTED : Testing need multithread program / Test necessite
+			//				un programme multi-thread
 		}
 
 		// aLink			: [in]	The symbolic name / Le nom du lien symbolique
@@ -60,21 +63,27 @@ namespace KmsLib
 		// Exception : KmsLib::Exception
 		void DriverHandle::Connect(const char * aLink, DWORD aDesiredAccess)
 		{
-			assert(NULL != aLink);
+			assert(NULL != aLink			);
+			assert(0	!= aDesiredAccess	);
 
 			Create(aLink, aDesiredAccess, 0, OPEN_EXISTING, 0);
 		}
 
 		// aInterface		:	Interface GUID / Identifiant unique de l'interface
 		// aDesiredAccess	:	See / Voir GENERIC_...
+		// aFlags			:	See / Voir CONNECT_FLAG_...
 		//
-		// Exception : KmsLib::Exception
-		void DriverHandle::Connect(const GUID & aInterface, DWORD aDesiredAccess)
+		// Exception :	KmsLib::Exception	CODE_REGISTRY_ERROR
+		//									CODE_SETUP_API_ERROR
+		void DriverHandle::Connect(const GUID & aInterface, DWORD aDesiredAccess, unsigned int aFlags)
 		{
+			assert(NULL != (&aInterface)	);
+			assert(0	!= aDesiredAccess	);
+
 			HDEVINFO lDevInfo = SetupDiGetClassDevs(&aInterface, NULL, NULL, DIGCF_DEVICEINTERFACE | DIGCF_PRESENT);
 			if (INVALID_HANDLE_VALUE == lDevInfo)
 			{
-				// NOT TESTED
+				// NOT TESTED : Not easy to test / Pas facile a tester
 				throw new Exception(Exception::CODE_SETUP_API_ERROR, "SetupDiGetClassDevs( , , ,  ) failed",
 					NULL, __FILE__, __FUNCTION__, __LINE__, 0 );
 			}
@@ -94,6 +103,11 @@ namespace KmsLib
 							NULL, __FILE__, __FUNCTION__, __LINE__, i);
 					}
 
+					if (0 != (aFlags & CONNECT_FLAG_OPEN_DEVICE_KEY))
+					{
+						mDeviceKey.Open(lDevInfo, &lDevInfoData, DIREG_DEV);
+					}
+
 					SP_DEVICE_INTERFACE_DATA lDevIntData;
 
 					memset(&lDevIntData, 0, sizeof(lDevIntData));
@@ -110,12 +124,14 @@ namespace KmsLib
 
 						if (!SetupDiGetDeviceInterfaceDetail(lDevInfo, &lDevIntData, lDetail, sizeof(lBuffer), &lInfo_byte, NULL))
 						{
-							// NOT TESTED
+							// NOT TESTED : Not easy to test / Pas facile a tester
 							throw new Exception(Exception::CODE_SETUP_API_ERROR, "SetupDiGetDeviceInterfaceDetail( , , , , ,  ) failed",
 								NULL, __FILE__, __FUNCTION__, __LINE__, i);
 						}
 
 						Connect(lDetail->DevicePath, aDesiredAccess);
+
+						// TESTED : KmsLib_Test.exe - DriverHandle - Setup A
 						break;
 					}
 				}
@@ -129,9 +145,10 @@ namespace KmsLib
 				throw;
 			}
 
+			// TESTED : KmsLib_Test.exe - DriverHandle - Setup A
 			if (!SetupDiDestroyDeviceInfoList(lDevInfo))
 			{
-				// NOT TESTED
+				// NOT TESTED : Not easy to test / Pas facile a tester
 				throw new Exception(Exception::CODE_SETUP_API_ERROR, "SetupDiDestroyDeviceInfoList(  ) failed",
 					NULL, __FILE__, __FUNCTION__, __LINE__, reinterpret_cast< unsigned int >( lDevInfo ) );
 			}
@@ -168,9 +185,10 @@ namespace KmsLib
 					lMessage, __FILE__, __FUNCTION__, __LINE__, aCode);
 			}
 
+			// TESTED : KmsLib_Test.exe - DriverHandle - Setup A
 			if (aOutSize_byte < lInfo_byte)
 			{
-				// NOT TESTED
+				// NOT TESTED : Not easy to test / Pas facile a tester
 				char lMessage[2048];
 
 				sprintf_s(lMessage, sizeof(lMessage), "DeviceIoControl returned too much data (Code = 0x%08x, Expected = %u bytes, Returned = %u bytes)",

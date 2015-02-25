@@ -10,6 +10,7 @@
 
 // ===== Interface ==========================================================
 #include <KmsLib/Windows/FileHandle.h>
+#include <KmsLib/Windows/RegistryKey.h>
 
 namespace KmsLib
 {
@@ -17,7 +18,7 @@ namespace KmsLib
 	namespace Windows
 	{
 
-		// Class
+		// Class / Classe
 		/////////////////////////////////////////////////////////////////////
 
 		class DriverHandle : public FileHandle
@@ -25,16 +26,23 @@ namespace KmsLib
 
 		public:
 
+			enum
+			{
+				CONNECT_FLAG_OPEN_DEVICE_KEY = 0x00000001,
+			};
+
 			DriverHandle();
 
 			virtual ~DriverHandle();
 
 			void	CancelAll();
 
-			void	Connect(const char * aLink		, DWORD aDesiredAccess	);
-			void	Connect(const GUID & aInterface	, DWORD aDesiredAccess	);
+			void	Connect(const char * aLink		, DWORD aDesiredAccess						);
+			void	Connect(const GUID & aInterface	, DWORD aDesiredAccess, unsigned int aFlags	);
 
 			unsigned int	Control(unsigned int aCode, const void * aIn, unsigned int aInSize_byte, void * aOut, unsigned int aOutSize_byte);
+
+			RegistryKey	mDeviceKey;
 
 		private:
 

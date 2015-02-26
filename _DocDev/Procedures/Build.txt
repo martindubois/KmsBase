@@ -1,7 +1,7 @@
 
 Author / Auteur		:	KMS -	Martin Dubois, ing.
 Product / Produit	:	KmsBase
-File / Fichier		:	_DocDev/Procedures/Compiler.txt
+File / Fichier		:	_DocDev/Procedures/Build.txt
 
 /English/
 

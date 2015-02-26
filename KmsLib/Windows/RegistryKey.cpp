@@ -9,6 +9,10 @@
 // ===== C ==================================================================
 #include <assert.h>
 
+// ===== Windows ============================================================
+#include <Windows.h>
+#include <Cfgmgr32.h>
+
 // ===== Interface ==========================================================
 #include <KmsLib/Exception.h>
 
@@ -304,34 +308,58 @@ namespace KmsLib
 			assert(NULL != mKey);
 		}
 
-		// aDevInfoSet	: [in]	Information set containing aDevInfoData /
-		//						L'ensemble d'information contenant aDevInfoData
-		// aDevInfoData	: [in]	Information about the device / Information au
-		//						sujet du peripherique
-		// aKeyType		:		See / Voir DIREG_...
+		// aDevInfoSet		: [in]	Information set containing aDevInfoData /
+		//							L'ensemble d'information contenant
+		//							aDevInfoData
+		// aDevInfoData		: [in]	Information about the device /
+		//							Information au sujet du peripherique
+		// aFlags			:		See OPEN_FLAG_...
 		//
 		// Exception :	KmsLib::Exception	CODE_REGISTRY_ERROR
-		void RegistryKey::Open(HDEVINFO aDevInfoSet, PSP_DEVINFO_DATA aDevInfoData, DWORD aKeyType)
+		void RegistryKey::Open(HDEVINFO aDevInfoSet, PSP_DEVINFO_DATA aDevInfoData, unsigned int aFlags)
 		{
-			assert(NULL != aDevInfoSet	);
-			assert(NULL != aDevInfoData	);
+			assert(NULL != aDevInfoSet		);
+			assert(NULL != aDevInfoData		);
 
 			if (NULL != mKey)
 			{
 				Close();
 			}
 
-			mKey = SetupDiOpenDevRegKey(aDevInfoSet, aDevInfoData, 0, 0, KEY_READ | KEY_WRITE, aKeyType);
-			if (INVALID_HANDLE_VALUE == mKey)
+			char lMsg[2048];
+
+			if (0 != (aFlags & OPEN_FLAG_ADMINISTRATOR))
 			{
-				// This class use NULL, not INVALID_HANDLE_VALUE / Cette
-				// classe utilise NULL et non INVALID_HANDLE_VALUE.
-				mKey = NULL;
+				DWORD lFlags = (0 != (aFlags & OPEN_FLAG_DRIVER_KEY)) ? CM_REGISTRY_SOFTWARE : CM_REGISTRY_HARDWARE;
 
-				throw new Exception(Exception::CODE_REGISTRY_ERROR, "SetupDiOpenDevRegKey( , , , , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, aKeyType);
+				CONFIGRET lRetCR = CM_Open_DevNode_Key(aDevInfoData->DevInst, KEY_QUERY_VALUE | KEY_SET_VALUE, 0, RegDisposition_OpenAlways, &mKey, lFlags);
+				if (CR_SUCCESS != lRetCR)
+				{
+					sprintf_s(lMsg, "CM_Open_DevNode_key( , , , , , 0x%08x ) failed", lFlags);
+
+					throw new Exception(Exception::CODE_REGISTRY_ERROR, "CM_Open_DevNode_Key( , , , , ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, lRetCR);
+				}
+
+				// TESTED : KmsLib_Test.exe - DriverHandle - Setup C
 			}
+			else
+			{
+				DWORD lKeyType = (0 != (aFlags & OPEN_FLAG_DRIVER_KEY)) ? DIREG_DRV : DIREG_DEV;
 
-			// NOT TESTED :
+				mKey = SetupDiOpenDevRegKey(aDevInfoSet, aDevInfoData, DICS_FLAG_GLOBAL, 0, KEY_QUERY_VALUE, lKeyType);
+				if (INVALID_HANDLE_VALUE == mKey)
+				{
+					// NOT TESTED : Not easy to test / Pas facile a tester
+
+					// This class use NULL, not INVALID_HANDLE_VALUE / Cette
+					// classe utilise NULL et non INVALID_HANDLE_VALUE.
+					mKey = NULL;
+
+					sprintf_s(lMsg, "SetupDiOpenDevRegKey( , , , , , %u ) failed", lKeyType);
+
+					throw new Exception(Exception::CODE_REGISTRY_ERROR, "SetupDiOpenDevRegKey( , , , , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
+				}
+			}
 		}
 
 	}

@@ -26,6 +26,12 @@ namespace KmsLib
 
 		public:
 
+			enum
+			{
+				OPEN_FLAG_ADMINISTRATOR	= 0x00000001,
+				OPEN_FLAG_DRIVER_KEY	= 0x00000002,
+			};
+
 			RegistryKey();
 
 			~RegistryKey();
@@ -46,7 +52,7 @@ namespace KmsLib
 			void DeleteSubKey	(const char * aSubKey);
 			void DeleteValue	(const char * aName);
 			void Open			(HKEY aKey, const char * aSubKey);
-			void Open			(HDEVINFO aDevInfoSet, PSP_DEVINFO_DATA aDevInfoData, DWORD aKeyType);
+			void Open			(HDEVINFO aDevInfoSet, PSP_DEVINFO_DATA aDevInfoData, unsigned int aFlags);
 
 		private:
 

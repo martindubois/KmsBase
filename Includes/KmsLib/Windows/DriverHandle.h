@@ -28,7 +28,8 @@ namespace KmsLib
 
 			enum
 			{
-				CONNECT_FLAG_OPEN_DEVICE_KEY = 0x00000001,
+				CONNECT_FLAG_ADMINISTRATOR		= 0x00000001,
+				CONNECT_FLAG_OPEN_DEVICE_KEY	= 0x00000002,
 			};
 
 			DriverHandle();

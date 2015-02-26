@@ -89,11 +89,23 @@ KMS_TEST_BEGIN(DriverHandle_Base)
 
 	lDH0.mDeviceKey.Open(HKEY_CURRENT_USER, "SOFTWARE");
 
+	try
+	{
+		lDH0.Connect(GUID_INTERFACE_KEYBOARD, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY);
+		KMS_TEST_ASSERT(false);
+	}
+	catch (KmsLib::Exception * eE)
+	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_IO_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
+	}
+
 	// No permission on the device registry key / Pas de permission pour le
 	// cle de registre du peripherique
 	try
 	{
-		lDH0.Connect(GUID_INTERFACE_KEYBOARD, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY);
+		lDH0.Connect(GUID_INTERFACE_KEYBOARD, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY | KmsLib::Windows::DriverHandle::CONNECT_FLAG_ADMINISTRATOR);
 		KMS_TEST_ASSERT(false);
 	}
 	catch (KmsLib::Exception * eE)
@@ -130,5 +142,15 @@ KMS_TEST_BEGIN(DriverHandle_SetupA)
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
 	}
+
+KMS_TEST_END_2
+
+
+KMS_TEST_BEGIN(DriverHandle_SetupC)
+
+	KmsLib::Windows::DriverHandle	lDH0;
+
+	// Connect to RS232-USB adapted / Connexion a l'adaptateur RS232-USB
+	lDH0.Connect(GUID_DEVINTERFACE_COMPORT, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY);
 
 KMS_TEST_END_2

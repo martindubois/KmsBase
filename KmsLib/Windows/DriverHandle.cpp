@@ -105,7 +105,7 @@ namespace KmsLib
 
 					if (0 != (aFlags & CONNECT_FLAG_OPEN_DEVICE_KEY))
 					{
-						mDeviceKey.Open(lDevInfo, &lDevInfoData, DIREG_DEV);
+						mDeviceKey.Open(lDevInfo, &lDevInfoData, (0 != (aFlags & CONNECT_FLAG_ADMINISTRATOR)) ? RegistryKey::OPEN_FLAG_ADMINISTRATOR : 0);
 					}
 
 					SP_DEVICE_INTERFACE_DATA lDevIntData;

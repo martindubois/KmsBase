@@ -41,8 +41,11 @@ namespace KmsLib
 		{
 			if (NULL != mManager)
 			{
+				// TESTED : KmsLib_Test.exe - Service - Setup B
+
 				// The config can have been allocated before deleting the
-				// service.
+				// service / Le tampon pour la configuration peut avoir
+				// ete allouer avant la destruction du service.
 				if (NULL != mConfig)
 				{
 					assert(sizeof(mConfig) <= mConfigSize_byte);
@@ -73,24 +76,12 @@ namespace KmsLib
 		//	false	=	The service is disabed / Le service est inactif
 		//	true	=	The service is enabled / Le service est actif
 		//
-		// Exception : KmsLib::Exception
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		bool Service::IsEnabled()
 		{
-			if (NULL == mManager)
-			{
-				Connect();
-			}
+			return (SERVICE_AUTO_START == GetStartType());
 
-			if (NULL == mHandle)
-			{
-				Open();
-			}
-
-			UpdateConfig();
-
-			assert(NULL != mConfig);
-
-			return (SERVICE_AUTO_START == mConfig->dwStartType);
+			// TESTED : KmsLib_Test.exe - Service - Setup B
 		}
 
 		// Return :
@@ -103,10 +94,9 @@ namespace KmsLib
 		{
 			assert(NULL != mName);
 
-			if (NULL == mManager)
-			{
-				Connect();
-			}
+			ConnectIfNeeded();
+
+			// TESTED : KmsLib_Test.exe - Service - Setup B
 
 			assert(NULL != mManager);
 
@@ -124,29 +114,109 @@ namespace KmsLib
 		//	true	=	The service is running / Le service est en cours
 		//				d'execution
 		//
-		// Exception : KmsLib::Exception
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		bool Service::IsRunning()
 		{
-			if (NULL == mManager)
-			{
-				Connect();
-			}
+			ConnectAndOpenIfNeeded();
 
-			if (NULL == mHandle)
-			{
-				Open();
-			}
+			// TESTED : KmsLib_Test.exe - Service - Setup B
 
 			UpdateStatus();
 
 			return (SERVICE_RUNNING == mStatus.dwCurrentState);
 		}
 
+		// Return / Retour :
+		//	false	= No delay at start / Pas de delai au demarrage
+		//	true	= Delay at start / Delai au demarrage
+		//
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
+		bool Service::GetDelayedAutoStart()
+		{
+			ConnectAndOpenIfNeeded();
+
+			// TESTED : KmsLib_Test.exe - Service - Setup B
+
+			assert(NULL != mHandle);
+
+			SERVICE_DELAYED_AUTO_START_INFO lOut;
+
+			DWORD lInfo_byte;
+
+			if (!QueryServiceConfig2(mHandle, SERVICE_CONFIG_DELAYED_AUTO_START_INFO, reinterpret_cast<LPBYTE>(&lOut), sizeof(lOut), &lInfo_byte))
+			{
+				// NOT TESTED : Not easy to test / Pas facile a tester
+				throw new Exception(Exception::CODE_SERVICE_MANAGER_ERROR, "QueryServiceConfig2( , , , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, lInfo_byte);
+			}
+
+			assert(sizeof(lOut) == lInfo_byte);
+
+			return (FALSE != lOut.fDelayedAutostart);
+		}
+
+		// Return / Retour : See / Voir SERVICE_...
+		//
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
+		unsigned int Service::GetStartType()
+		{
+			ConnectAndOpenIfNeeded();
+
+			// TESTED : KmsLib_Test.exe - Service - Setup B
+
+			UpdateConfig();
+
+			assert(NULL != mConfig);
+
+			return mConfig->dwStartType;
+		}
+
+		// aIn	:
+		//	false	:	No delay start / Pas de delay au demarrage
+		//	true	:	Delay start / Delay au demarrage
+		//
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
+		void Service::SetDelayedAutoStart(bool aIn)
+		{
+			ConnectAndOpenIfNeeded();
+
+			// TESTED : KmsLib_Test.exe - Service - Setup B
+
+			assert(NULL != mHandle);
+
+			SERVICE_DELAYED_AUTO_START_INFO lIn;
+
+			lIn.fDelayedAutostart = aIn;
+
+			if (!ChangeServiceConfig2(mHandle, SERVICE_CONFIG_DELAYED_AUTO_START_INFO, &lIn))
+			{
+				// NOT TESTED : Not easy to test / Pas facile a tester
+				throw new Exception(Exception::CODE_SERVICE_MANAGER_ERROR, "ChangeServiceConfig2( , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, aIn);
+			}
+		}
+
+		// aIn	:	See / Voir SERVICE_
+		//
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
+		void Service::SetStartType(unsigned int aIn)
+		{
+			ConnectAndOpenIfNeeded();
+
+			// TESTED : KmsLib_Test.exe - Service - Setup B
+
+			assert(NULL != mHandle);
+
+			if (!ChangeServiceConfig(mHandle, SERVICE_NO_CHANGE, aIn, SERVICE_NO_CHANGE, NULL, NULL, NULL, NULL, NULL, NULL, NULL))
+			{
+				// NOT TESTED : Not easy to test / Pas facile a tester
+				throw new Exception(Exception::CODE_SERVICE_MANAGER_ERROR, "ChangeServiceConfig( , , , , , , , , , , ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, aIn);
+			}
+		}
+
 		// aDisplayName	: [in]	Display name / Nom affiche
 		// aBinary		: [in]	Binary name including path / Nom de
 		//						l'executable incluant le chemin
 		//
-		// Exception :	KmsLib::Exception
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::Create(const char * aDisplayName, const char * aBinary)
 		{
 			assert(NULL != aDisplayName	);
@@ -155,16 +225,17 @@ namespace KmsLib
 			assert(NULL == mHandle	);
 			assert(NULL != mName	);
 
-			if (NULL == mManager)
-			{
-				Connect();
-			}
+			ConnectIfNeeded();
+
+			// TESTED : KmsLib_Test.exe - Service - Setup B
 
 			assert(NULL != mManager);
 
 			mHandle = CreateService(mManager, mName, aDisplayName, SERVICE_ACCESS, SERVICE_WIN32_OWN_PROCESS, SERVICE_DISABLED, SERVICE_ERROR_NORMAL, aBinary, NULL, NULL, NULL, NULL, NULL);
 			if (NULL == mHandle)
 			{
+				// NOT TESTED :
+
 				char lMsg[2048];
 
 				sprintf_s(lMsg, "Cannot create the service %s (%s, %s)", mName, aDisplayName, aBinary);
@@ -174,18 +245,12 @@ namespace KmsLib
 			}
 		}
 
-		// Exception : KmsLib::Exception
+		// Exception : KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::Delete()
 		{
-			if (NULL == mManager)
-			{
-				Connect();
-			}
+			ConnectAndOpenIfNeeded();
 
-			if (NULL == mHandle)
-			{
-				Open();
-			}
+			// TESTED : KmsLib_Test.exe - Service - Setup B
 
 			assert(NULL != mHandle);
 
@@ -198,7 +263,6 @@ namespace KmsLib
 			if (!lRetB)
 			{
 				// NOT TESTED :
-				// TODO : Test
 				throw new Exception(Exception::CODE_SERVICE_MANAGER_ERROR,
 					"DeleteService(  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
 			}
@@ -207,24 +271,19 @@ namespace KmsLib
 			mHandle = NULL;
 		}
 
-		// Exception : KmsLib::Exception
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::Start()
 		{
-			if (NULL == mManager)
-			{
-				Connect();
-			}
+			ConnectAndOpenIfNeeded();
 
-			if (NULL == mHandle)
-			{
-				Open();
-			}
+			// TESTED : KmsLib_Test.exe - Service - Setup B
 
 			assert(NULL != mHandle);
 
 			BOOL lRetB = StartService(mHandle, 0, NULL);
 			if (!lRetB)
 			{
+				// NOT TESTED :
 				throw new Exception(Exception::CODE_SERVICE_MANAGER_ERROR,
 					"Cannot start the service", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
 			}
@@ -232,54 +291,54 @@ namespace KmsLib
 			Wait(SERVICE_START_PENDING, SERVICE_RUNNING);
 		}
 
-		// Exception : KmsLib::Exception
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::Disable()
 		{
-			if (NULL == mManager)
-			{
-				Connect();
-			}
+			SetStartType(SERVICE_DISABLED);
 
-			if (NULL == mHandle)
-			{
-				Open();
-			}
-
-			UpdateConfig();
-
-			assert(NULL != mConfig);
-
-			mConfig->dwStartType = SERVICE_DISABLED;
-
-			ApplyConfig();
+			// TESTED : KmsLib_Test.exe - Service - Setup B
 		}
 
-		// Exception : KmsLib::Exception
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::Enable()
 		{
-			if (NULL == mManager)
-			{
-				Connect();
-			}
+			SetStartType(SERVICE_AUTO_START);
 
-			if (NULL == mHandle)
-			{
-				Open();
-			}
-
-			UpdateConfig();
-
-			assert(NULL != mConfig);
-
-			mConfig->dwStartType = SERVICE_AUTO_START;
-
-			ApplyConfig();
+			// TESTED : KmsLib_Test.exe - Service - Setup B
 		}
 
 		// Private
 		/////////////////////////////////////////////////////////////////////
 
-		// Exception : KmsLib::Exception
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
+		void Service::ConnectAndOpenIfNeeded()
+		{
+			ConnectIfNeeded();
+
+			// TESTED : KmsLib_Test.exe - Service - Setup B
+
+			if (NULL == mHandle)
+			{
+				Open();
+			}
+
+			assert(NULL != mHandle);
+		}
+
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
+		void Service::ConnectIfNeeded()
+		{
+			// TESTED : KmsLib_Test.exe - Service - Setup B
+
+			if (NULL == mManager)
+			{
+				Connect();
+			}
+
+			assert(NULL != mManager);
+		}
+
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::Connect()
 		{
 			assert(NULL == mManager);
@@ -290,26 +349,34 @@ namespace KmsLib
 				throw new Exception(Exception::CODE_SERVICE_MANAGER_ERROR,
 					"OpenSCManager( , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
 			}
+
+			// TESTED : KmsLib_Test.exe - Service - Setup B
 		}
 
-		// Exception : KmsLib::Exception
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::Control(DWORD aControl)
 		{
+			// TESTED : KmsLib_Test.exe - Service - Setup B
+
 			assert(NULL != mHandle);
 
 			SERVICE_STATUS lSS;
 
 			if (!ControlService(mHandle, aControl, &lSS))
 			{
+				// NOT TESTED :
+
 				throw new Exception(Exception::CODE_SERVICE_MANAGER_ERROR,
 				"The service did not accept the stop request", NULL, __FILE__, __FUNCTION__, __LINE__, lSS.dwCurrentState);
 			}
 		}
 
-		// Exception : KmsLib::Exception
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::Open()
 		{
-			assert(NULL == mHandle	);
+			// TESTED : KmsLib_Test.exe - Service - Setup B
+
+			assert(NULL == mHandle);
 			assert(NULL != mManager	);
 			assert(NULL != mName	);
 
@@ -325,19 +392,23 @@ namespace KmsLib
 			}
 		}
 
-		// Exception : KmsLib::Exception
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::Stop()
 		{
-			Control	(SERVICE_CONTROL_STOP);
+			// TESTED : KmsLib_Test.exe - Service - Setup B
+
+			Control(SERVICE_CONTROL_STOP);
 			Wait	(SERVICE_STOP_PENDING, SERVICE_STOPPED);
 		}
 
 		// aPending :
 		// aFinal	:
 		//
-		// Exception : KmsLib::Exception
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::Wait(DWORD aPending, DWORD aFinal)
 		{
+			// TESTED : KmsLib_Test.exe - Service - Setup B
+
 			for (unsigned int lRetry = 0; lRetry < 30; lRetry++)
 			{
 				Sleep(500); // 0.5 s
@@ -351,31 +422,17 @@ namespace KmsLib
 
 			if (aFinal != mStatus.dwCurrentState)
 			{
+				// NOT TESTED : Not easy to test / Pas facile a tester
 				throw new Exception(Exception::CODE_SERVICE_MANAGER_ERROR,
 					"The service did not change state as requested", NULL, __FILE__, __FUNCTION__, __LINE__, mStatus.dwCurrentState);
 			}
 		}
 
-		// Exception : KmsLib::Exception
-		void Service::ApplyConfig()
-		{
-			assert(NULL != mConfig);
-			assert(SERVICE_ERROR_NORMAL			== mConfig->dwErrorControl	);
-			assert(SERVICE_WIN32_OWN_PROCESS	== mConfig->dwServiceType	);
-			assert((SERVICE_AUTO_START == mConfig->dwStartType) || (SERVICE_DISABLED == mConfig->dwStartType));
-			assert(NULL != mHandle);
-
-			BOOL lRetB = ChangeServiceConfig(mHandle, mConfig->dwServiceType, mConfig->dwStartType, mConfig->dwErrorControl, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-			if (!lRetB)
-			{
-				throw new Exception(Exception::CODE_SERVICE_MANAGER_ERROR,
-					"ChangeServiceConfig( , , , , , , , , , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
-			}
-		}
-
-		// Exception : KmsLib::Exception
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::UpdateConfig()
 		{
+			// TESTED : KmsLib_Test.exe - Service - Setup B
+
 			assert(NULL != mHandle);
 
 			DWORD	lSize_byte;
@@ -392,6 +449,7 @@ namespace KmsLib
 
 				if (NULL != mConfig)
 				{
+					// NOT TESTED : Not easy to test / Pas facile a tester
 					delete[] reinterpret_cast<unsigned char *>(mConfig);
 				}
 
@@ -400,9 +458,11 @@ namespace KmsLib
 			}
 		}
 
-		// Exception : KmsLib::Exception
+		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::UpdateStatus()
 		{
+			// TESTED : KmsLib_Test.exe - Service - Setup B
+
 			assert(NULL != mHandle);
 
 			DWORD	lSize_byte;
@@ -410,6 +470,8 @@ namespace KmsLib
 			BOOL lRetB = QueryServiceStatusEx(mHandle, SC_STATUS_PROCESS_INFO, reinterpret_cast<LPBYTE>(&mStatus), sizeof(mStatus), &lSize_byte);
 			if (!lRetB)
 			{
+				// NOT TESTED : Not easy to test / Pas facile a tester
+
 				throw new Exception(Exception::CODE_SERVICE_MANAGER_ERROR,
 					"QueryServiceStatusEx( , , , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, lSize_byte);
 			}

@@ -62,6 +62,30 @@ KMS_TEST_BEGIN(Service_Base)
 
 	try
 	{
+		lS0.GetDelayedAutoStart();
+		KMS_TEST_ASSERT(false);
+	}
+	catch (KmsLib::Exception * eE)
+	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_SERVICE_MANAGER_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
+	}
+
+	try
+	{
+		lS0.SetDelayedAutoStart(false);
+		KMS_TEST_ASSERT(false);
+	}
+	catch (KmsLib::Exception * eE)
+	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_SERVICE_MANAGER_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
+	}
+
+	try
+	{
 		lS0.Create("Useless", "Useless");
 		KMS_TEST_ASSERT(false);
 	}
@@ -152,6 +176,10 @@ KMS_TEST_BEGIN(Service_SetupB)
 	KMS_TEST_ASSERT(!	lS0.IsEnabled	());
 	KMS_TEST_ASSERT(	lS0.IsInstalled	());
 	KMS_TEST_ASSERT(!	lS0.IsRunning	());
+
+	KMS_TEST_ASSERT(!	lS0.GetDelayedAutoStart());
+
+	lS0.SetDelayedAutoStart(true);
 
 	// Disabling a disabled service is OK / Desactiver un service desactive
 	// est correct.

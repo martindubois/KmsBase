@@ -26,6 +26,12 @@ namespace KmsLib
 			bool	IsInstalled	();
 			bool	IsRunning	();
 
+			bool			GetDelayedAutoStart	();
+			unsigned int	GetStartType		();
+
+			void	SetDelayedAutoStart	(bool			aValue);
+			void	SetStartType		(unsigned int	aValue);
+
 			void	Create	(const char * aDisplayName, const char * aBinary);
 			void	Delete	();
 			void	Start	();
@@ -35,13 +41,15 @@ namespace KmsLib
 
 		private:
 
+			void	ConnectAndOpenIfNeeded	();
+			void	ConnectIfNeeded			();
+
 			void	Connect	();
 			void	Control	(DWORD aControl);
 			void	Open	();
 			void	Stop	();
 			void	Wait	(DWORD aPending, DWORD aFinal);
 
-			void	ApplyConfig		();
 			void	UpdateConfig	();
 			void	UpdateStatus	();
 

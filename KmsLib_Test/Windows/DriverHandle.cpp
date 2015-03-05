@@ -129,11 +129,13 @@ KMS_TEST_BEGIN(DriverHandle_SetupA)
 
 	KMS_TEST_ASSERT(0 == lInfo_byte);
 
+	lDH0.Connect(GUID_DEVINTERFACE_COMPORT, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY);
+
 	// No permission on the device registry key / Pas de permission pour le
 	// cle de registre du peripherique
 	try
 	{
-		lDH0.Connect(GUID_DEVINTERFACE_COMPORT, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY);
+		lDH0.Connect(GUID_DEVINTERFACE_COMPORT, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY | KmsLib::Windows::DriverHandle::CONNECT_FLAG_ADMINISTRATOR);
 		KMS_TEST_ASSERT(false);
 	}
 	catch (KmsLib::Exception * eE)

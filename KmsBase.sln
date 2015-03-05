@@ -58,7 +58,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		Export.cmd = Export.cmd
 		ExportSources.sh = ExportSources.sh
+		ForEachConfig.cmd = ForEachConfig.cmd
 		Test.cmd = Test.cmd
+		Test_SetupA.cmd = Test_SetupA.cmd
+		Test_SetupB.cmd = Test_SetupB.cmd
+		Test_SetupC.cmd = Test_SetupC.cmd
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KmsLib_Test", "KmsLib_Test\KmsLib_Test.vcxproj", "{E7A45A2C-BD9F-4BAB-83DE-0BDBA896FE64}"

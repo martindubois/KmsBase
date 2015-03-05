@@ -2,9 +2,9 @@
 
 rem  Author / Auteur	:	KMS -	Martin Dubois, ing.
 rem  Product / Produit	:	KmsBase
-rem  File / Fichier		:	Test.cmd
+rem  File / Fichier		:	Test_SetupC.cmd
 
-echo  Executing Test.cmd ...
+echo  Executing Test_SetupA.cmd ...
 
 rem  ===== Verification =====================================================
 
@@ -17,7 +17,7 @@ if not exist %FOR_EACH_CONFIG% (
 
 rem  ===== Execution ========================================================
 
-call %FOR_EACH_CONFIG% KmsLib_Test.exe
+call %FOR_EACH_CONFIG% KmsLib_Test.exe group 3
 if ERRORLEVEL 1 (
     echo  ERROR : %FOR_EACH_CONFIG% reported an error!
 	pause

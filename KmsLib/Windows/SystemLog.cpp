@@ -66,6 +66,8 @@ namespace KmsLib
 
 			lKey0.Open(HKEY_LOCAL_MACHINE, REG_KEY_EVENT_LOG);
 
+			// TESTED : KmsLib_Test.exe - SystemLog - Setup B
+
 			RegistryKey lKey1;
 
 			lKey1.Open(lKey0, mLogName);
@@ -87,6 +89,8 @@ namespace KmsLib
 
 			lKey0.Open(HKEY_LOCAL_MACHINE, REG_KEY_EVENT_LOG);
 
+			// TESTED : KmsLib_Test.exe - SystemLog - Setup B
+
 			RegistryKey lKey1;
 
 			lKey1.Open		(lKey0, mLogName	);
@@ -105,6 +109,8 @@ namespace KmsLib
 			RegistryKey lKey0;
 
 			lKey0.Open(HKEY_LOCAL_MACHINE, REG_KEY_EVENT_LOG);
+
+			// TESTED : KmsLib_Test.exe - SystemLog - Setup B
 
 			RegistryKey lKey1;
 
@@ -126,7 +132,11 @@ namespace KmsLib
 			if (NULL == mHandle)
 			{
 				Register();
+
+				// TESTED : KmsLib_Test.exe - SystemLog - Setup B
 			}
+
+			// TESTED : KmsLib_Test.exe - SystemLog - Setup B
 
 			if (!ReportEvent(mHandle, aType, aCategory, aEventId, NULL, aStringCount, aDataSize_byte, aString, aData))
 			{
@@ -145,6 +155,8 @@ namespace KmsLib
 		// Exception : KmsLib::Exception
 		void SystemLog::Deregister()
 		{
+			// TESTED : KmsLib_Test.exe - SystemLog - Setup B
+
 			assert(NULL != mHandle);
 
 			BOOL lRetB = DeregisterEventSource(mHandle);
@@ -166,7 +178,6 @@ namespace KmsLib
 			mHandle = RegisterEventSource(NULL, mSourceName);
 			if (NULL == mHandle)
 			{
-				// NOTE TESTED : Not easy to test / Pas facile a tester
 				char lMsg[2048];
 
 				sprintf_s(lMsg, "Cannot register the event source %s", mSourceName);
@@ -174,6 +185,8 @@ namespace KmsLib
 				throw new Exception(Exception::CODE_SYSTEM_LOG_ERROR,
 					"RegisterEventSource( ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, 0);
 			}
+
+			// TESTED : KmsLib_Test.exe - SystemLog - Setup B
 		}
 
 	}

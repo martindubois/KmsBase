@@ -6,10 +6,14 @@
 // Includes
 /////////////////////////////////////////////////////////////////////////////
 
+#include <KmsBase.h>
+
 // ===== C ==================================================================
-#include <assert.h>
-#include <process.h>
 #include <time.h>
+
+#ifdef _WINDOWS_
+	#include <process.h>
+#endif // _WINDOWS_
 
 // ===== Includes ===========================================================
 #include <KmsLib/DebugLog.h>

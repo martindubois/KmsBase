@@ -6,8 +6,9 @@
 // Includes
 /////////////////////////////////////////////////////////////////////////////
 
+#include <KmsBase.h>
+
 // ===== C ==================================================================
-#include <assert.h>
 #include <stdio.h>
 
 // ===== Interface ==========================================================
@@ -123,7 +124,7 @@ KMS_TEST_BEGIN(ToolBase_Base)
 
 	FILE * lFile;
 
-	errno_t lRetE = fopen_s(&lFile, "KmsLib_Test\\Tests\\ToolBase1.txt", "r");
+	errno_t lRetE = fopen_s(&lFile, "KmsLib_Test/Tests/ToolBase1.txt", "r");
 	KMS_TEST_ASSERT(0 == lRetE);
 
 	unsigned short lValue;

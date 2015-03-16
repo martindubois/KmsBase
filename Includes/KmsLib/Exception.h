@@ -70,7 +70,7 @@ namespace KmsLib
 			CODE_QTY	= 33
 		}
 		Code;
-
+		
 		Exception(Code aCode, const char * aWhat, const char * aMessage, const char * aFile, const char * aFunction, unsigned int aLine, unsigned int aInfoA);
 
 		Code			GetCode			() const;
@@ -82,7 +82,13 @@ namespace KmsLib
 		const char    * GetMessage		() const;
 
 		void	Write(FILE * aFile) const;
+		
+		// ===== std::exception ========================================
 
+		virtual	~Exception() throw ();
+
+		virtual const char * what() const throw ();
+		
 	private:
 
 		Code			mCode		;
@@ -92,6 +98,7 @@ namespace KmsLib
 		unsigned int	mLastError	;
 		unsigned int	mLine		;
 		std::string		mMessage	;
+		const char	  * mWhat		;
 
 	};
 

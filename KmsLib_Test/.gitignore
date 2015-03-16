@@ -3,7 +3,9 @@
 # Project / Projet	:	KmsBase
 # File / Fichier	:	KmsLib_Test/.gitignore
 
+*.bak
 *.bin
+*.o
 
 Messages.h
 Messages.rc

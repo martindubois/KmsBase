@@ -9,11 +9,17 @@
 // Macro
 /////////////////////////////////////////////////////////////////////////////
 
-#ifdef _TODO_INTERFACE_DLL_
-	#define TODO_INTERFACE_API _declspec(dllexport)
-#else
-	#define TODO_INTERFACE_API _declspec(dllimport)
-#endif // _TODO_INERFACE_DLL_
+#ifdef _LINUX_
+	#define TODO_INTERFACE_API
+#endif // _LINUX_
+
+#ifdef _WINDOWS_
+	#ifdef _TODO_INTERFACE_DLL_
+		#define TODO_INTERFACE_API _declspec(dllexport)
+	#else
+		#define TODO_INTERFACE_API _declspec(dllimport)
+	#endif // _TODO_INERFACE_DLL_
+#endif // _WINDOWS_
 
 // Class
 /////////////////////////////////////////////////////////////////////////////

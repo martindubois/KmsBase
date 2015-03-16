@@ -9,11 +9,16 @@
 // Includes
 /////////////////////////////////////////////////////////////////////////////
 
+#include <KmsBase.h>
+
 // ===== C ==================================================================
 #include <assert.h>
-#include <io.h>
 #include <stdio.h>
 #include <string.h>
+
+#ifdef _WINDOWS_
+	#include <io.h>
+#endif // _WINDOWS_
 
 // ===== Interface ==========================================================
 #include <KmsLib/Exception.h>
@@ -124,7 +129,7 @@ namespace KmsLib
 
 			memset(&lValue, 0, sizeof(lValue));
 
-			int lRetI = sscanf_s(lLine, "%[^\n\r\t]", lValue, sizeof(lValue) - 1);
+			int lRetI = sscanf_s(lLine, "%[^\n\r\t]", lValue SIZE_INFO( sizeof( lValue ) - 1 ) );
 			switch (lRetI)
 			{
 			case 1:
@@ -179,7 +184,7 @@ namespace KmsLib
 
 			memset(&lValue, 0, sizeof(lValue));
 
-			int lRetI = sscanf_s(lLine, "%[^\n\r\t]", lValue, sizeof(lValue) - 1);
+			int lRetI = sscanf_s(lLine, "%[^\n\r\t]", lValue SIZE_INFO( sizeof( lValue ) - 1 ) );
 			switch (lRetI)
 			{
 			case 1:
@@ -406,7 +411,7 @@ namespace KmsLib
 		bool	lFound	;
 		size_t	lLen	;
 
-		int lRet = sscanf_s(aLine, "%[0-1A-Za-z] %[^\n\r\t]", lName, LINE_LENGTH_MAX, lArguments, LINE_LENGTH_MAX);
+		int lRet = sscanf_s(aLine, "%[0-1A-Za-z] %[^\n\r\t]", lName SIZE_INFO( LINE_LENGTH_MAX ), lArguments SIZE_INFO( LINE_LENGTH_MAX ) );
 		switch (lRet)
 		{
 		case 1:

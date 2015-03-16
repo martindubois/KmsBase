@@ -7,8 +7,10 @@
 *.sdf
 *.v12.suo
 
+Binaries/
 Debug/
 Debug_DLL/
+Libraries/
 Release/
 Release_DLL/
 x64/

@@ -34,7 +34,9 @@ KMS_TEST_GROUP_LIST_BEGIN
 	#endif // _WINDOWS_
 KMS_TEST_GROUP_LIST_END
 
+extern int Exception_Base	();
 extern int DebugLog_Base	();
+extern int RLE_Base			();
 extern int ToolBase_Base	();
 
 #ifdef _WINDOWS_
@@ -50,8 +52,10 @@ extern int ToolBase_Base	();
 #endif // _WINDOWS_
 
 KMS_TEST_LIST_BEGIN
-	KMS_TEST_LIST_ENTRY(DebugLog_Base	, "DebugLog - Base"	, 0, 0	)
-	KMS_TEST_LIST_ENTRY(ToolBase_Base	, "ToolBase - Base"	, 0, 0	)
+	KMS_TEST_LIST_ENTRY(Exception_Base	, "Exception - Base"	, 0, 0	)
+	KMS_TEST_LIST_ENTRY(DebugLog_Base	, "DebugLog - Base"		, 0, 0	)
+	KMS_TEST_LIST_ENTRY(RLE_Base		, "RLE - Base"			, 0, 0	)
+	KMS_TEST_LIST_ENTRY(ToolBase_Base	, "ToolBase - Base"		, 0, 0	)
 	
 	#ifdef _WINDOWS_
 		KMS_TEST_LIST_ENTRY(DriverHandle_Base	, "DriverHandle - Base"		, 0, 0									)

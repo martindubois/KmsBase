@@ -55,13 +55,46 @@ static const char * CODE_NAMES[ KmsLib::Exception::CODE_QTY ] =
 	// ----- 2.2 ----------------------------------------------------
 	"CODE_SERVICE_MANAGER_ERROR"	,
 	"CODE_SYSTEM_LOG_ERROR"			,
+
+	// ----- 2.2 ----------------------------------------------------
+	"CODE_ACCESS_VIOLATION"			,
+	"CODE_INTEGER_DIVIDE_BY_ZERO"	,
+	"CODE_STRUCTURED_EXCEPTION"		,
 };
+
+// Static method declarations / Declaration des fonctions statique
+/////////////////////////////////////////////////////////////////////////////
+
+// ===== Entry points / Points d'entres =====================================
+
+static void TranslateException(unsigned int aCode, struct _EXCEPTION_POINTERS * aStruct );
 
 namespace KmsLib
 {
 
 	// Public
 	/////////////////////////////////////////////////////////////////////////
+
+	// Return :
+	//	NULL			=	No translator was registered / Il n'y avais pas
+	//						de traducteur
+	//  Other / Autre	=	Previous translator address / Adresse du
+	//						traducteur precedent
+	void * Exception::RegisterTranslator()
+	{
+		return _set_se_translator(TranslateException);
+	}
+
+	// aTranslator	:
+	//	NULL			=	Remote the translator
+	//	Other / Auter	=	Restore a translater previously returned by
+	//						RegisterTranslator / Re-active un traducteur que
+	//						RegisterTranslator a precedement retourne
+	void Exception::RestoreTranslator(void * aTranslator)
+	{
+		void * lTranslator = _set_se_translator(reinterpret_cast<_se_translator_function>(aTranslator));
+		assert(TranslateException == lTranslator);
+	}
 
 	// aCode		:			Voir CODE_...
 	// aWhat		: [in,keep]	Message statique
@@ -124,6 +157,7 @@ namespace KmsLib
 		}
 		else
 		{
+			// NOT TESTED : Not easy to test / Pas facile a tester
 			fprintf(aFile, "%u (0x%08x)", mCode, mCode);
 		}
 
@@ -164,4 +198,29 @@ namespace KmsLib
 		return mWhat;
 	}
 	
+}
+
+// Static functions / Fonction statiques
+/////////////////////////////////////////////////////////////////////////////
+
+// ===== Entry points / Points d'entres =====================================
+
+void TranslateException(unsigned int aCode, struct _EXCEPTION_POINTERS * aStruct )
+{
+	assert(NULL != aStruct);
+
+	KmsLib::Exception::Code	lCode	;
+	const char			  * lMsg	;
+
+	switch (aCode)
+	{
+	case 0xc0000005: lCode = KmsLib::Exception::CODE_ACCESS_VIOLATION		; lMsg = "Access violation"		; break;
+	case 0xc0000094: lCode = KmsLib::Exception::CODE_INTEGER_DIVIDE_BY_ZERO	; lMsg = "Integet divide by 0"	; break;
+
+	default:
+		// NOT TESTED : Not easy to test / Pas facile a tester
+		lCode = KmsLib::Exception::CODE_STRUCTURED_EXCEPTION; lMsg = "Structured exception";
+	}
+
+	throw new KmsLib::Exception(lCode, lMsg, NULL, __FILE__, __FUNCTION__, __LINE__, aCode);
 }

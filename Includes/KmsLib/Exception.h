@@ -67,10 +67,19 @@ namespace KmsLib
 			CODE_SERVICE_MANAGER_ERROR	= 31,
 			CODE_SYSTEM_LOG_ERROR		= 32,
 
-			CODE_QTY	= 33
+			// ----- 2.3 ----------------------------------------------------
+			CODE_ACCESS_VIOLATION		= 33,
+			CODE_INTEGER_DIVIDE_BY_ZERO	= 34,
+			CODE_STRUCTURED_EXCEPTION	= 35,
+
+			CODE_QTY = 36
 		}
 		Code;
 		
+		// Version 2.3
+		static void	  * RegisterTranslator	();
+		static void		RestoreTranslator	(void * aTranslator);
+
 		Exception(Code aCode, const char * aWhat, const char * aMessage, const char * aFile, const char * aFunction, unsigned int aLine, unsigned int aInfoA);
 
 		Code			GetCode			() const;
@@ -88,7 +97,7 @@ namespace KmsLib
 		virtual	~Exception() throw ();
 
 		virtual const char * what() const throw ();
-		
+
 	private:
 
 		Code			mCode		;

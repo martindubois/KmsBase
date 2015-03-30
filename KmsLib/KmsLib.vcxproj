@@ -39,6 +39,7 @@
     <ClCompile Include="Dump.cpp" />
     <ClCompile Include="Exception.cpp" />
     <ClCompile Include="KmsLib.cpp" />
+    <ClCompile Include="RLE.cpp" />
     <ClCompile Include="ToolBase.cpp" />
     <ClCompile Include="Windows\DriverHandle.cpp" />
     <ClCompile Include="Windows\FileHandle.cpp" />
@@ -151,6 +152,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -167,6 +169,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -183,6 +186,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -199,6 +203,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -217,6 +222,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -237,6 +243,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -257,6 +264,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -277,6 +285,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

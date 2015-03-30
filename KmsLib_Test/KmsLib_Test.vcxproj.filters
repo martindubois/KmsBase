@@ -45,6 +45,12 @@
     <ClCompile Include="DebugLog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RLE.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\Common\Version.rc">

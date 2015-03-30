@@ -43,9 +43,10 @@ KMS_TEST_BEGIN(Exception_Base)
 
 	try
 	{
-		unsigned int lInt = 1;
+		volatile unsigned int lA = 1;
+		volatile unsigned int lB = 0;
 
-		lInt /= 0;
+		lA /= lB;
 
 		KMS_TEST_ASSERT(false);
 	}

@@ -61,9 +61,10 @@ KMS_TEST_BEGIN(SystemLog_Base)
 		eE->Write(stdout);
 	}
 
+	// Invalid argument / Argument invalid
 	try
 	{
-		lSL0.LogEvent(EVENTLOG_INFORMATION_TYPE, 1, 1, 0, 0, NULL, NULL);
+		lSL0.LogEvent(EVENTLOG_INFORMATION_TYPE, 1, 1, 1, 0, NULL, NULL);
 		KMS_TEST_ASSERT(false);
 	}
 	catch (KmsLib::Exception * eE)

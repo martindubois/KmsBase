@@ -471,6 +471,8 @@ unsigned int Uncompress(const unsigned char * aIn, unsigned int aInSize_byte, un
 	{
 		aOut[i] = lValue;
 	}
+
+	return lResult_byte;
 }
 
 // aInOut		: [in,out]

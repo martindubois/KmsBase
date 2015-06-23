@@ -75,35 +75,17 @@ namespace KmsLib
 	// Public
 	/////////////////////////////////////////////////////////////////////////
 
-	// Return :
-	//	NULL			=	No translator was registered / Il n'y avais pas
-	//						de traducteur
-	//  Other / Autre	=	Previous translator address / Adresse du
-	//						traducteur precedent
 	void * Exception::RegisterTranslator()
 	{
 		return _set_se_translator(TranslateException);
 	}
 
-	// aTranslator	:
-	//	NULL			=	Remote the translator
-	//	Other / Auter	=	Restore a translater previously returned by
-	//						RegisterTranslator / Re-active un traducteur que
-	//						RegisterTranslator a precedement retourne
 	void Exception::RestoreTranslator(void * aTranslator)
 	{
 		void * lTranslator = _set_se_translator(reinterpret_cast<_se_translator_function>(aTranslator));
 		assert(TranslateException == lTranslator);
 	}
 
-	// aCode		:			Voir CODE_...
-	// aWhat		: [in,keep]	Message statique
-	// aMessage		: [in     ]	Message dynamique
-	// aFile		: [in,keep]	Fichier source
-	// aFunction	: [in,keep]	Nom de la fonction
-	// aLine		:			Numero de ligne dans le fichier source
-	// aInfoA		:			Infomation dont la signification depend de
-	//							l'exception.
 	Exception::Exception(Code aCode, const char * aWhat, const char * aMessage, const char * aFile, const char * aFunction, unsigned int aLine, unsigned int aInfoA) :
 		mCode		(aCode			),
 		mFile		(aFile			),
@@ -124,7 +106,6 @@ namespace KmsLib
 		}
 	}
 
-	// Retour : Le nom du fichier source
 	const char * Exception::GetFile() const
 	{
 		assert(NULL != mFile);

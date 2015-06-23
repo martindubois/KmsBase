@@ -26,14 +26,10 @@ namespace KmsLib
 		// Public
 		/////////////////////////////////////////////////////////////////////
 
-		// Constructeur par defaut
 		FileHandle::FileHandle() : mHandle(INVALID_HANDLE_VALUE)
 		{
 		}
 
-		// Destructeur
-		//
-		// Exception : KmsLib::Exception
 		FileHandle::~FileHandle()
 		{
 			if (INVALID_HANDLE_VALUE != mHandle)
@@ -42,7 +38,6 @@ namespace KmsLib
 			}
 		}
 
-		// Operateur de convertion
 		FileHandle::operator HANDLE ()
 		{
 			assert(INVALID_HANDLE_VALUE != mHandle);
@@ -50,10 +45,6 @@ namespace KmsLib
 			return mHandle;
 		}
 
-		// Void la documentation de la fonction CloseHandle sur le site de
-		// Microsoft.
-		//
-		// Exception : KmsLib::Exception
 		void FileHandle::Close()
 		{
 			assert(INVALID_HANDLE_VALUE != mHandle);
@@ -70,16 +61,6 @@ namespace KmsLib
 			}
 		}
 
-		// Void la documentation de la fonction CreateFile sur le site de
-		// Microsoft.
-		//
-		// aFileName			: [in]
-		// aDesiredAccess		:
-		// aSharedMode			:
-		// aCreationDisposition	:
-		// aFlagsAndAttributes	:
-		//
-		// Exception : KmsLib::Exception
 		void FileHandle::Create(const char * aFileName, DWORD aDesiredAccess, DWORD aSharedMode, DWORD aCreationDisposition, DWORD aFlagsAndAttributes)
 		{
 			assert(NULL != aFileName);
@@ -105,13 +86,6 @@ namespace KmsLib
 			}
 		}
 
-		// Voir la documentation de la fonction ReadFile sur le site de
-		// Microsoft.
-		//
-		// aOut				: [out]
-		// aOutSize_byte	:
-		//
-		// Exception : KmsLib::Exception
 		unsigned int FileHandle::Read(void * aOut, unsigned int aOutSize_byte)
 		{
 			assert(NULL !=	aOut			);
@@ -137,13 +111,6 @@ namespace KmsLib
 			return lInfo_byte;
 		}
 
-		// Voir la documentation de la fonction WriteFile sur le site de
-		// Microsoft.
-		//
-		// aIn			: [in]
-		// aInSize_byte	:
-		//
-		// Exception : KmsLib::Exception
 		void FileHandle::Write(const void * aIn, unsigned int aInSize_byte)
 		{
 			assert(NULL != aIn);

@@ -31,17 +31,12 @@ namespace KmsLib
 		// Public
 		/////////////////////////////////////////////////////////////////////
 
-		// aLogName		: [in,keep]
-		// aSourceName	: [in,keep]
 		SystemLog::SystemLog(const char * aLogName, const char * aSourceName) : mHandle(NULL), mLogName(aLogName), mSourceName(aSourceName)
 		{
 			assert(NULL != mLogName);
 			assert(NULL != mSourceName);
 		}
 
-		// Destructor / Destructeur
-		//
-		// Exception : KmsLib::Exception
 		SystemLog::~SystemLog()
 		{
 			if (NULL != mHandle)
@@ -52,11 +47,6 @@ namespace KmsLib
 			assert(NULL == mHandle);
 		}
 
-		// Return :
-		//	false	= Not configured / Pas configure
-		//	true	= Configured / Configure
-		//
-		// Exception : KmsLib::Exception
 		bool SystemLog::IsConfigured() const
 		{
 			assert(NULL != mLogName);
@@ -75,9 +65,6 @@ namespace KmsLib
 			return lKey1.DoesSubKeyExist(mSourceName);
 		}
 
-		// aMessageFile	: [in]
-		//
-		// Exception : KmsLib::Exception
 		void SystemLog::Configure(const char * aMessageFile)
 		{
 			assert(NULL != aMessageFile);
@@ -100,7 +87,6 @@ namespace KmsLib
 			lKey0.SetValue("TypeSupported"		, 0x00000007);
 		}
 
-		// Exception : KmsLib::Exception
 		void SystemLog::Unconfigure()
 		{
 			assert(NULL != mLogName);
@@ -119,14 +105,6 @@ namespace KmsLib
 			lKey1.DeleteSubKey(mSourceName);
 		}
 
-		// aType			:
-		// aCategory		:
-		// aStringCount		:
-		// aDataSize_byte	:
-		// aString			: [in,opt]
-		// aData			: [in,opt]
-		//
-		// Exception : KmsLib::Exception
 		void SystemLog::LogEvent(WORD aType, WORD aCategory, DWORD aEventId, WORD aStringCount, DWORD aDataSize_byte, LPCTSTR * aString, LPVOID aData)
 		{
 			if (NULL == mHandle)
@@ -152,7 +130,7 @@ namespace KmsLib
 		// Private
 		/////////////////////////////////////////////////////////////////////
 
-		// Exception : KmsLib::Exception
+		// Exception : KmsLib::Exception	CODE_SYSTEM_LOG_ERROR
 		void SystemLog::Deregister()
 		{
 			// TESTED : KmsLib_Test.exe - SystemLog - Setup B
@@ -169,7 +147,7 @@ namespace KmsLib
 			}
 		}
 
-		// Exception : KmsLib::Exception
+		// Exception : KmsLib::Exception	CODE_SYSTEM_LOG_ERROR
 		void SystemLog::Register()
 		{
 			assert(NULL == mHandle);

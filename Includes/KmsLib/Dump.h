@@ -1,7 +1,14 @@
 
-// Auteur	:	KMS -	Martin Dubois, ing.
-// Projet	:	KmsBase
-// Fichier	:	Includes/KmsLib/Dump.h
+// Product / Produit	:	KmsBase
+
+/// \author	KMS -	Martin Dubois, ing.
+/// \file	Includes/KmsLib/Dump.h
+
+// Includes
+/////////////////////////////////////////////////////////////////////////////
+
+// ==== C ===================================================================
+#include <stdio.h>
 
 #pragma once
 
@@ -11,6 +18,18 @@ namespace KmsLib
 	// Function
 	/////////////////////////////////////////////////////////////////////////
 
+	/// \cond	en
+	/// \brief	Dump binary data in hexadecimal format
+	/// \param	aOut	[in,out]	The output stream
+	/// \param	aIn		[in]		The data to dump
+	///	\param	aInSize_byte		The size of data to dump
+	/// \endcond
+	/// \cond	fr
+	/// \brief	Ecrit des donnees binaire en format hexadecimal
+	/// \param	aOut	[in,out]	Le fichier de sortie
+	/// \param	aIn		[in]		Les donnees a ecrire
+	/// \param	aInSize_byte		La taille des donnees a ecrire
+	/// \endcond
 	extern void Dump(FILE * aOut, const unsigned char * aIn, unsigned int aInSize_byte);
 
 }

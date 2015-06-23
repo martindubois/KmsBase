@@ -30,13 +30,11 @@ namespace KmsLib
 		// Public
 		/////////////////////////////////////////////////////////////////////
 
-		// aServiceName	: [in,keep]		Service name / Nom du service
 		Service::Service(const char * aServiceName) : mConfig(NULL), mConfigSize_byte(0), mHandle(NULL), mManager(NULL), mName(aServiceName)
 		{
 			assert(NULL != mName);
 		}
 
-		// Destructor / Destructeur
 		Service::~Service()
 		{
 			if (NULL != mManager)
@@ -72,11 +70,6 @@ namespace KmsLib
 			assert(NULL	== mHandle			);
 		}
 
-		// Return :
-		//	false	=	The service is disabed / Le service est inactif
-		//	true	=	The service is enabled / Le service est actif
-		//
-		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		bool Service::IsEnabled()
 		{
 			return (SERVICE_AUTO_START == GetStartType());
@@ -84,12 +77,6 @@ namespace KmsLib
 			// TESTED : KmsLib_Test.exe - Service - Setup B
 		}
 
-		// Return :
-		//	false	=	The service is not installed / Le service n'est pas
-		//				installe
-		//	true	=	The service is installed / Le service est installe
-		//
-		// Exception : KmsLib::Exception
 		bool Service::IsInstalled()
 		{
 			assert(NULL != mName);
@@ -108,13 +95,6 @@ namespace KmsLib
 			return (NULL != mHandle);
 		}
 
-		// Return :
-		//	false	=	The service is not running / Le service n'est pas
-		//				en cours d'execution
-		//	true	=	The service is running / Le service est en cours
-		//				d'execution
-		//
-		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		bool Service::IsRunning()
 		{
 			ConnectAndOpenIfNeeded();
@@ -126,11 +106,6 @@ namespace KmsLib
 			return (SERVICE_RUNNING == mStatus.dwCurrentState);
 		}
 
-		// Return / Retour :
-		//	false	= No delay at start / Pas de delai au demarrage
-		//	true	= Delay at start / Delai au demarrage
-		//
-		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		bool Service::GetDelayedAutoStart()
 		{
 			ConnectAndOpenIfNeeded();
@@ -154,9 +129,6 @@ namespace KmsLib
 			return (FALSE != lOut.fDelayedAutostart);
 		}
 
-		// Return / Retour : See / Voir SERVICE_...
-		//
-		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		unsigned int Service::GetStartType()
 		{
 			ConnectAndOpenIfNeeded();
@@ -170,11 +142,6 @@ namespace KmsLib
 			return mConfig->dwStartType;
 		}
 
-		// aIn	:
-		//	false	:	No delay start / Pas de delay au demarrage
-		//	true	:	Delay start / Delay au demarrage
-		//
-		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::SetDelayedAutoStart(bool aIn)
 		{
 			ConnectAndOpenIfNeeded();
@@ -194,9 +161,6 @@ namespace KmsLib
 			}
 		}
 
-		// aIn	:	See / Voir SERVICE_
-		//
-		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::SetStartType(unsigned int aIn)
 		{
 			ConnectAndOpenIfNeeded();
@@ -212,11 +176,6 @@ namespace KmsLib
 			}
 		}
 
-		// aDisplayName	: [in]	Display name / Nom affiche
-		// aBinary		: [in]	Binary name including path / Nom de
-		//						l'executable incluant le chemin
-		//
-		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::Create(const char * aDisplayName, const char * aBinary)
 		{
 			assert(NULL != aDisplayName	);
@@ -245,7 +204,6 @@ namespace KmsLib
 			}
 		}
 
-		// Exception : KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::Delete()
 		{
 			ConnectAndOpenIfNeeded();
@@ -271,7 +229,6 @@ namespace KmsLib
 			mHandle = NULL;
 		}
 
-		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::Start()
 		{
 			ConnectAndOpenIfNeeded();
@@ -291,7 +248,6 @@ namespace KmsLib
 			Wait(SERVICE_START_PENDING, SERVICE_RUNNING);
 		}
 
-		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::Disable()
 		{
 			SetStartType(SERVICE_DISABLED);
@@ -299,7 +255,6 @@ namespace KmsLib
 			// TESTED : KmsLib_Test.exe - Service - Setup B
 		}
 
-		// Exception :	KmsLib::Exception	CODE_SERVICE_MANAGER_ERROR
 		void Service::Enable()
 		{
 			SetStartType(SERVICE_AUTO_START);

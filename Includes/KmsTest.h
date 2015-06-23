@@ -1,7 +1,8 @@
 
-// Auteur	:	KMS -	Martin Dubois, ing.
-// Projet	:	KmsBase
-// Fichier	:	Includes/KmsTest.h
+// Product / Produit	:	KmsBase
+
+/// \author	KMS - Martin Dubois, ing.
+/// \file	Includes/KmsTest.h
 
 #pragma once
 
@@ -21,12 +22,27 @@
 // Constants
 /////////////////////////////////////////////////////////////////////////////
 
+/// \cond en
+/// \brief  This flag indicates the test require user interaction.
+/// \endcond
+/// \cond fr
+/// \brief	Ce drapeau indique que le test necessite une interaction avec
+///			l'utilisateur.
+/// \endcond
 #define KMS_TEST_FLAG_INTERACTION_NEEDED	(0x00000001)
 
 // Type de donnees
 /////////////////////////////////////////////////////////////////////////////
 
+/// \cond en
+/// \brief  Definition of the type of a test function
+/// \endcond
+/// \cond fr
+/// \brief	Definition du type d'une fonction de test
+/// \endcond
 typedef int(*KmsTestFunction)(void);
+
+/// \cond
 
 typedef struct
 {
@@ -37,11 +53,19 @@ typedef struct
 }
 KmsTestDescription;
 
+/// \endcond
+
 // Macro
 /////////////////////////////////////////////////////////////////////////////
 
 // ===== Test ===============================================================
 
+/// \cond	en
+/// \brief  This macro fail the test if the condition \a Co is false.
+/// \endcond
+/// \cond	fr
+/// \brief	Cette macro echoue le test si la condition \a Co est fausse.
+/// \endcond	
 #define KMS_TEST_ASSERT(Co)																	\
 	if (!(Co))																				\
 	{																						\
@@ -49,6 +73,14 @@ KmsTestDescription;
 		return 1;																			\
 	}
 
+/// \cond	en
+/// \brief	If the condition \a Co is false, this macro fail the test and
+///			continue the execution at \a Cl label for cleanup.
+/// \endcond
+/// \cond	fr
+/// \brief	Si la condition \a Co est fausse, cette macro echoue le test et
+///			continue l'execution a l'ettiquette \a Cl pour le nettoyage.
+/// \endcond
 #define KMS_TEST_ASSERT_CLEANUP(Co,Cl)														\
 	if (!(Co))																				\
 	{																						\
@@ -56,6 +88,12 @@ KmsTestDescription;
 		goto Cl;																			\
 	}
 
+/// \cond	en
+/// \brief	This macro indicates the begining of the test named \a Na.
+/// \endcond
+/// \cond	fr
+/// \brief	Cette macro indique le debut du test nomme \a Na.
+/// \endcond
 #define KMS_TEST_BEGIN(Na)			\
 	int Na()						\
 	{								\
@@ -63,6 +101,12 @@ KmsTestDescription;
 		try							\
 		{
 
+/// \cond	en
+/// \brief	This macro indicate the end of the test.
+/// \endcond
+/// \cond	fr
+/// \brief	Cette macro indique la fin du test.
+/// \endcond
 #define KMS_TEST_END				\
 		}							\
 		catch (std::exception * eE)	\
@@ -78,6 +122,15 @@ KmsTestDescription;
 		return lResult;				\
 	}
 
+/// \cond	en
+/// \brief	As KMS_TEST_END but display KmsLib::Exception.
+/// \note	If a test program use this macro, it must link with KmsLib.lib.
+/// \endcond
+/// \cond	fr
+/// \brief	Comme KMS_TEST_END, mais affiche les KmsLib::Exception.
+/// \note	Si un programme de test utilise cette macro, KmsLib.lib doit etre
+///			inclue lors de l'edition des liens.
+/// \endcond
 #define KMS_TEST_END_2					\
 		}								\
 		catch (KmsLib::Exception * eE)	\
@@ -99,35 +152,85 @@ KmsTestDescription;
 	return lResult;						\
 	}
 
+/// \cond	en
+/// \brief	This macro display a message indicating the following error
+///			message is caused by a test of error handling code.
+/// \endcond
+/// \cond	fr
+/// \brief	Cette macro affiche un message qui indique que le message
+//			d'erreur qui suit est du a un test du code de gestion d'erreur.
+/// \endcond
 #define KMS_TEST_ERROR_INFO	\
 	printf("    ===== Information about a succesfully tested error condition =====\n")
 
 // ===== Test group list ====================================================
 
+/// \cond	en
+/// \brief	This macro indicate the begining of the test group list.
+/// \endcond
+/// \cond	fr
+/// \brief	Cette macro indique le debut de la liste de groupes de tests.
+/// \endcond
 #define KMS_TEST_GROUP_LIST_BEGIN					\
 	static const char * KMS_TEST_GROUP_NAMES[] =	\
 {
 
+/// \cond	en
+/// \brief	This macro indicate the end of the test group list.
+/// \endcond
+/// \cond	fr
+/// \brief	Cette macro indique la fin de la liste de groupes de tests.
+/// \endcond
 #define KMS_TEST_GROUP_LIST_END	\
 };
 
+/// \cond	en
+/// \brief	This macro add a test group to the test group list.
+/// \endcond
+/// \cond	fr
+/// \brief	Cette macro ajoute un groupe a la liste des groupes de tests.
+/// \endcond
 #define KMS_TEST_GROUP_LIST_ENTRY(Na)	\
 	Na,
 
 // ===== Test list ==========================================================
 
+/// \cond	en
+/// \brief	This macro indicate the begining of the test list.
+/// \endcond
+/// \cond	fr
+/// \brief	Cette macro indique le debut de la liste de tests.
+/// \endcond
 #define	KMS_TEST_LIST_BEGIN					\
 	static KmsTestDescription KMS_TESTS[] = \
 {
 
+/// \cond	en
+/// \brief	This macro indicate the end of the test list.
+/// \endcond
+/// \cond	fr
+/// \brief	Cette macro indique la fin de la liste de tests.
+/// \endcond
 #define KMS_TEST_LIST_END	\
 };
 
+/// \cond	en
+/// \brief	This macro add a test to the test list.
+/// \endcond
+/// \cond	fr
+/// \brief	Cette macro ajoute un test a la liste de tests.
+/// \endcond
 #define KMS_TEST_LIST_ENTRY(Fu,Na,Gr,Fl)	\
 { Fl, Fu, Gr, Na },
 
 // ===== Main ===============================================================
 
+/// \cond	en
+/// \brief	This macro define the test executable entry point.
+/// \endcond
+/// \cond	fr
+/// \brief  Cet macro definit le point d'entre d'un executable de test.
+/// \endcond
 #define KMS_TEST_MAIN														\
 	static void	DisplayHelp(const char * aExe);								\
 	static void	DisplayTests();												\

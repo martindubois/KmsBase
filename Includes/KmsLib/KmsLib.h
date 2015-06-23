@@ -1,16 +1,23 @@
 
-// Auteur	:	KMS -	Martin Dubois, ing.
-// Projet	:	KmsBase
-// Fichier	:	Includes/KmsLib/KmsLib.h
+// Product / Produit	:	KmsBase
+
+/// \author	KMS -	Martin Dubois, ing.
+/// \file	Includes/KmsLib/KmsLib.h
 
 #pragma once
 
 namespace KmsLib
 {
 
-	// Constantes
+	// Constants / Constantes
 	/////////////////////////////////////////////////////////////////////////
 
+	/// \cond	en
+	/// \brief	The library version
+	/// \endcond
+	/// \cond	fr
+	/// \brie	La version de la librairie
+	/// \endcond
 	extern const char * VERSION;
 
 }

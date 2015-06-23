@@ -43,15 +43,6 @@ namespace KmsLib
 	// Public
 	/////////////////////////////////////////////////////////////////////////
 
-	// aFile	: [in,out]	Input stream / Fichier d'entree
-	// aName	: [in]		Name of the requested information / Nom de
-	//						l'information a obtenir
-	// aMin		:			Minmal value / Valeur minimale
-	// aMax		:			Maximal value / Valeur maximale
-	// aDefault	:			Default value / Valeur par defaut
-	// aOut		: [   out]	Output buffer / Emplacement de sortie
-	//
-	// Exception :	KmsLib::Exception	CODE_IO_ERROR
 	void ToolBase::AskUser(FILE * aFile, const char * aName, unsigned short aMin, unsigned short aMax, unsigned short aDefault, unsigned short * aOut)
 	{
 		assert(NULL !=	aFile		);
@@ -99,12 +90,6 @@ namespace KmsLib
 		}
 	}
 
-	// aFile	: [in,out]	Input stream / Fichier d'entree
-	// aName	: [in]		Name of the requested information / Nom de
-	//						l'information a obtenir
-	// aOut		: [   out]	Output buffer / Emplacement de sortie
-	//
-	// Exception :	KmsLib::Exception	CODE_IO_ERROR
 	void ToolBase::AskUser(FILE * aFile, const char * aName, char * aOut, unsigned int aOutSize_byte)
 	{
 		assert(NULL !=	aFile			);
@@ -151,16 +136,6 @@ namespace KmsLib
 		}
 	}
 
-	// aFile			: [in,out]	Input stream / Fichier d'entree
-	// aName			: [in]		Name of the requested information / Nom
-	//								de l'information a obtenir
-	// aDefault			: [in]		Default value / Valeur par defaut
-	// aOut				: [   out]	Output buffer / Emplacement de sortie
-	// aOutSize_byte	:			Output buffer size / Taille de
-	//								l'emplacement de sortie
-	//
-	// Exception :	KmsLib::Exception	CODE_IO_ERROR
-	//									CODE_USER_ERROR
 	void ToolBase::AskUser(FILE * aFile, const char * aName, const char * aDefault, char * aOut, unsigned int aOutSize_byte)
 	{
 		assert(NULL !=	aFile			);
@@ -207,15 +182,6 @@ namespace KmsLib
 		}
 	}
 
-	// aFile			: [in,out]	Input stream / Fichier d'entree
-	// aName			: [in]		Name of the requested information / Nom
-	//								de l'information a obtenir
-	// aOut				: [   out]	Output buffer / Emplacement de sortie
-	// aOutSize_byte	:			Output buffer size / Taille de
-	//								l'emplacement de sortie
-	//
-	// Exception :	KmsLib::Exception	CODE_IO_ERROR
-	//									CODE_USER_ERROR
 	void ToolBase::AskUser_InputFileName(FILE * aFile, const char * aName, char * aOut, unsigned int aOutSize_byte)
 	{
 		assert(NULL !=	aFile			);
@@ -236,17 +202,6 @@ namespace KmsLib
 		}
 	}
 
-	// aFile			: [in,out]	Input stream / Fichier d'entree
-	// aName			: [in    ]	Name of the requested information / Nom
-	//								de l'information a obtenir
-	// aDefault			: [in    ]  Default file name / Nom de fichier par
-	//								defaut
-	// aOut				: [   out]	Output buffer / Emplacement de sortie
-	// aOutSize_byte	:			Output buffer size / Taille de
-	//								l'emplacement de sortie
-	//
-	// Exception :	KmsLib::Exception	CODE_IO_ERROR
-	//									CODE_USER_ERROR
 	void ToolBase::AskUser_OutputFileName(FILE * aFile, const char * aName, const char * aDefault, char * aOut, unsigned int aOutSize_byte)
 	{
 		assert(NULL !=	aFile			);
@@ -268,7 +223,6 @@ namespace KmsLib
 		}
 	}
 
-	// aType	:	See / Voir REPORT_...
 	void ToolBase::Report(ReportType aType)
 	{
 		const char * lTypeName = NULL;
@@ -290,8 +244,6 @@ namespace KmsLib
 		printf("\n%s : ", lTypeName);
 	}
 
-	// aType		:	See / Voir REPORT_...
-	// aException	:	Exception to report / L'exception a rapporter
 	void ToolBase::Report(ReportType aType, const KmsLib::Exception * aException)
 	{
 		assert(NULL != aException);
@@ -303,8 +255,6 @@ namespace KmsLib
 		aException->Write(stdout);
 	}
 
-	// aType	:		See / Voir REPORT_...
-	// aMessage	: [in]	Message
 	void ToolBase::Report(ReportType aType, const char * aMessage)
 	{
 		assert(NULL != aMessage);
@@ -314,19 +264,11 @@ namespace KmsLib
 		printf("%s\n", aMessage);
 	}
 
-	// aCommands	: [in,keep]
 	ToolBase::ToolBase(const CommandInfo * aCommands) : mCommands(aCommands)
 	{
 		assert(NULL != mCommands);
 	}
 
-	// aCount	:
-	// aVector	: [in]
-	//
-	// Return :
-	//  false	= La method n'a pas executer de commande
-	//  true	= La method a executer au moins une commande
-	//
 	// Exception : KmsLib::Exception
 	bool ToolBase::ParseArguments(int aCount, const char ** aVector)
 	{
@@ -361,11 +303,46 @@ namespace KmsLib
 		return false;
 	}
 
-	// Exception : KmsLib::Exception
 	void ToolBase::ParseCommands()
 	{
 		// NOT TESTED : Conflit avec le stdin du program de test!
 		ParseCommands(stdin);
+	}
+
+	void ToolBase::ParseCommands(const char * aFileName)
+	{
+		assert(NULL != aFileName);
+
+		switch (aFileName[0])
+		{
+		case '\0':
+		case '\n':
+		case '\r':
+		case '\t':
+			Report(REPORT_USER_ERROR);
+			printf("The filename is not valid (%s)\n", aFileName);
+			break;
+
+		default:
+			FILE * lFile;
+
+			int lRet = fopen_s(&lFile, aFileName, "r");
+			if (0 == lRet)
+			{
+				Report(REPORT_INFO);
+				printf("Executing commands from file %s ...\n", aFileName);
+
+				ParseCommands(lFile);
+
+				Report(REPORT_INFO);
+				printf("End of file %s\n", aFileName);
+			}
+			else
+			{
+				Report(REPORT_ERROR);
+				printf("Cannot open file %s\n", aFileName);
+			}
+		}
 	}
 
 	// ===== Function =======================================================
@@ -514,43 +491,6 @@ namespace KmsLib
 						lLen = 0;
 					}
 				}
-			}
-		}
-	}
-
-	// aFileName	: [in]
-	void ToolBase::ParseCommands(const char * aFileName)
-	{
-		assert(NULL != aFileName);
-
-		switch (aFileName[0])
-		{
-		case '\0' :
-		case '\n' :
-		case '\r' :
-		case '\t' :
-			Report(REPORT_USER_ERROR);
-			printf("The filename is not valid (%s)\n", aFileName);
-			break;
-
-		default:
-			FILE * lFile;
-
-			int lRet = fopen_s(&lFile, aFileName, "r");
-			if (0 == lRet)
-			{
-				Report(REPORT_INFO);
-				printf("Executing commands from file %s ...\n", aFileName);
-
-				ParseCommands(lFile);
-
-				Report(REPORT_INFO);
-				printf("End of file %s\n", aFileName);
-			}
-			else
-			{
-				Report(REPORT_ERROR);
-				printf("Cannot open file %s\n", aFileName);
 			}
 		}
 	}

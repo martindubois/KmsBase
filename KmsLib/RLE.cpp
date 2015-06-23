@@ -40,15 +40,6 @@ namespace KmsLib
 	// Functions / Fonctions
 	/////////////////////////////////////////////////////////////////////////
 
-	// aIn				: [in ]
-	// aInSize_byte		:
-	// aOut				: [out]
-	// aOutSize_byte	:
-	//
-	// Return : Compressed size / Taille compressee
-	//
-	// Exception :	KmsLib::Exception	CODE_INVALID_BUFFER_SIZE
-	//									CODE_NOT_ENOUGH_MEMORY
 	unsigned int RLE_Compress(const unsigned char * aIn, unsigned int aInSize_byte, unsigned char * aOut, unsigned int aOutSize_byte)
 	{
 		assert(NULL !=	aIn				);
@@ -70,16 +61,6 @@ namespace KmsLib
 		return lResult_byte;
 	}
 
-	// aIn				: [in ]
-	// aInSize_byte		:
-	// aOut				: [out]
-	// aOutSize_byte	:
-	//
-	// Return : Uncompressed size / Taille non compressee
-	//
-	// Exception :	KmsLib::Exception	CODE_INVALID_BUFFER_SIZE
-	//									CODE_INVALID_DATA
-	//									CODE_NOT_ENOUGH_MEMORY
 	unsigned int RLE_Uncompress(const unsigned char * aIn, unsigned int aInSize_byte, unsigned char * aOut, unsigned int aOutSize_byte)
 	{
 		assert(NULL !=	aIn				);
@@ -101,10 +82,6 @@ namespace KmsLib
 		return lResult_byte;
 	}
 
-	// aIn			: [in]
-	// aInSize_byte	:
-	//
-	// Return : Compressed size / Taille compressee
 	unsigned int RLE_ComputeCompressedSize(const unsigned char * aIn, unsigned int aInSize_byte)
 	{
 		assert(NULL !=	aIn				);
@@ -136,12 +113,6 @@ namespace KmsLib
 		return lResult_byte;
 	}
 
-	// aIn			: [in]
-	// aInSize_byte	:
-	//
-	// Return : Uncompressed size / Taille non compressee
-	//
-	// Exception :	KmsLib::Exception	CODE_INVALID_DATA
 	unsigned int RLE_ComputeUncompressedSize(const unsigned char * aIn, unsigned int aInSize_byte)
 	{
 		assert(NULL !=	aIn				);

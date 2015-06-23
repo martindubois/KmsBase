@@ -25,14 +25,10 @@ namespace KmsLib
 		// Public
 		/////////////////////////////////////////////////////////////////////
 
-		// Constructeur par defaut
 		RegistryKey::RegistryKey() : mKey( NULL )
 		{
 		}
 
-		// Destructeur
-		//
-		// Exception : KmsLib::Exception
 		RegistryKey::~RegistryKey()
 		{
 			if (NULL != mKey)
@@ -43,7 +39,6 @@ namespace KmsLib
 			assert(NULL == mKey);
 		}
 
-		// Cast operator
 		RegistryKey::operator HKEY ()
 		{
 			assert(NULL != mKey);
@@ -51,13 +46,6 @@ namespace KmsLib
 			return mKey;
 		}
 
-		// aSubKey	: [in]
-		//
-		// Return :
-		//	false	= The sub key does not exist / La sous cle n'existe pas
-		//	true	= The sub key exists / La sous cle existe
-		//
-		// Exception : KmsLib::Exception
 		bool RegistryKey::DoesSubKeyExist(const char * aSubKey)
 		{
 			assert(NULL != aSubKey);
@@ -94,8 +82,6 @@ namespace KmsLib
 			return false;
 		}
 
-		// aName			:	[in,opt]
-		// aDefaultValue	:
 		DWORD RegistryKey::GetValue_DWORD(const char * aName, DWORD aDefaultValue)
 		{
 			assert(NULL != mKey);
@@ -127,9 +113,6 @@ namespace KmsLib
 			return lResult;
 		}
 
-		// aValue	: [in]	
-		//
-		// Exception : KmsLib::Exception
 		void RegistryKey::SetDefaultValue(const char * aValue)
 		{
 			assert(NULL != aValue);
@@ -137,10 +120,6 @@ namespace KmsLib
 			SetValue(NULL, aValue);
 		}
 
-		// aName	: [in]	Nom de la valeur
-		// aValue	:		La valeur
-		//
-		// Exception : KmsLib::Exception
 		void RegistryKey::SetValue(const char * aName, DWORD aValue)
 		{
 			assert(NULL != aName);
@@ -148,10 +127,6 @@ namespace KmsLib
 			SetValue(aName, REG_DWORD, &aValue, sizeof(DWORD));
 		}
 
-		// aName	: [in,opt]	Nom de la valeur
-		// aValue	: [in    ]	La valeur
-		//
-		// Exception : KmsLib::Exception
 		void RegistryKey::SetValue(const char * aName, const char * aValue)
 		{
 			assert(NULL != aValue	);
@@ -159,12 +134,6 @@ namespace KmsLib
 			SetValue(aName, REG_SZ, aValue, static_cast< unsigned int >( strlen(aValue) ) + 1);
 		}
 
-		// aName			: [in]	Le nom de la valeur
-		// aType			:		Le type de la valeur. Voir REG_...
-		// aValue			: [in]	La valeur
-		// aValueSize_byte	:		La taille de la valeur
-		//
-		// Exception	: KmsLib::Exception
 		void RegistryKey::SetValue(const char * aName, DWORD aType, const void * aValue, unsigned int aValueSize_byte)
 		{
 			assert(NULL != mKey);
@@ -182,9 +151,6 @@ namespace KmsLib
 			}
 		}
 
-		// Fermer la cle
-		//
-		// Exception : KmsLib::Exception
 		void RegistryKey::Close()
 		{
 			assert(NULL != mKey);
@@ -206,10 +172,6 @@ namespace KmsLib
 			}
 		}
 
-		// aKey		:		La cle parent
-		// aSubKey	: [in]	Le nom de la sous cle
-		//
-		// Exception : KmsLib::Exception
 		void RegistryKey::Create(HKEY aKey, const char * aSubKey)
 		{
 			assert(NULL != aKey		);
@@ -235,9 +197,6 @@ namespace KmsLib
 			assert(NULL != mKey);
 		}
 
-		// aSubKey	: [in]
-		//
-		// Exception : KmsLib::Exception
 		void RegistryKey::DeleteSubKey(const char * aSubKey)
 		{
 			assert(NULL != aSubKey);
@@ -257,9 +216,6 @@ namespace KmsLib
 			}
 		}
 
-		// aName	: [in]
-		//
-		// Exception : KmsLib::Exception
 		void RegistryKey::DeleteValue(const char * aName)
 		{
 			assert(NULL != aName);
@@ -279,10 +235,6 @@ namespace KmsLib
 			}
 		}
 
-		// aKey		:		La cle parent
-		// aSubKey	: [in]	Le nom de la sous cle
-		//
-		// Exception : KmsLib::Exception
 		void RegistryKey::Open(HKEY aKey, const char * aSubKey)
 		{
 			assert(NULL != aKey);
@@ -308,14 +260,6 @@ namespace KmsLib
 			assert(NULL != mKey);
 		}
 
-		// aDevInfoSet		: [in]	Information set containing aDevInfoData /
-		//							L'ensemble d'information contenant
-		//							aDevInfoData
-		// aDevInfoData		: [in]	Information about the device /
-		//							Information au sujet du peripherique
-		// aFlags			:		See OPEN_FLAG_...
-		//
-		// Exception :	KmsLib::Exception	CODE_REGISTRY_ERROR
 		void RegistryKey::Open(HDEVINFO aDevInfoSet, PSP_DEVINFO_DATA aDevInfoData, unsigned int aFlags)
 		{
 			assert(NULL != aDevInfoSet		);

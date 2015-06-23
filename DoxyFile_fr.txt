@@ -1,0 +1,13 @@
+
+## Auteur	:	KMS -	Martin Dubois, ing.
+## Produit	:	KmsBase
+## Fichier	:	DoxyFile_fr.txt
+
+ENABLED_SECTIONS	= fr
+GENERATE_LATEX		= NO
+HIDE_UNDOC_MEMBERS	= YES
+INPUT				= Includes Includes/KmsLib Includes/KmsLib/Windows
+OUTPUT_DIRECTORY	= doxygen_fr
+OUTPUT_LANGUAGE		= French
+PROJECT_NAME		= "KmsBase"
+SEARCHENGINE		= NO

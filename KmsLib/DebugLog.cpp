@@ -54,9 +54,6 @@ namespace KmsLib
 	// Public
 	/////////////////////////////////////////////////////////////////////////
 
-	// aFolder	: [in]	Name of the folder to create in order to enable the
-	//					log / Nom du dossier a creer pour activer le log.
-	// aName	: [in]	Log name / Nom du log
 	DebugLog::DebugLog(const char * aFolder, const char * aName)
 	{
 		assert(NULL != aFolder	);
@@ -82,7 +79,6 @@ namespace KmsLib
 		}
 	}
 
-	// Destructor / Destructeur
 	DebugLog::~DebugLog()
 	{
 		if (NULL != mFile)
@@ -98,22 +94,17 @@ namespace KmsLib
 		}
 	}
 
-	// Cast operator / Operateur de conversion
 	DebugLog::operator FILE * ()
 	{
 		return mFile;
 	}
 
-	// Return / Retour :
-	//	false	= The log is disabled / Le log n'est pas actif
-	//	true	= The log is enabled / Le log est actif
 	bool DebugLog::IsEnabled() const
 	{
 		return (NULL != mFile);
 	}
 
-	// aException : [in]	The exception to log / L'exception a logger.
-	void DebugLog::Log(Exception * aException)
+	void DebugLog::Log( const Exception * aException)
 	{
 		assert(NULL != aException);
 
@@ -124,10 +115,6 @@ namespace KmsLib
 		}
 	}
 
-	// aFile		: [in]	Source file name / Nom du fichier source
-	// aFunction	: [in]	Function name / Nom de la fonction
-	// aLine		:		Line into the source file / Ligne dans le ficheir
-	//						source
 	void DebugLog::Log(const char * aFile, const char * aFunction, unsigned int aLine)
 	{
 		assert(NULL != aFile		);
@@ -139,7 +126,6 @@ namespace KmsLib
 		}
 	}
 
-	// aMessage	: [in] Message to log / Message a logger
 	void DebugLog::Log(const char *aMessage)
 	{
 		assert(NULL != aMessage);
@@ -150,7 +136,6 @@ namespace KmsLib
 		}
 	}
 
-	// Add the current time to the log / Ajoute le temps actuel au log
 	void DebugLog::LogTime()
 	{
 		if (NULL != mFile)

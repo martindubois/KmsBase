@@ -28,17 +28,14 @@ namespace KmsLib
 		// Public
 		/////////////////////////////////////////////////////////////////////
 
-		// Default contructor / Constructeur par defaut
 		DriverHandle::DriverHandle()
 		{
 		}
 
-		// Destructor / Destructeur
 		DriverHandle::~DriverHandle()
 		{
 		}
 
-		// Exception :	KmsLib::Exception	CODE_IO_ERROR
 		void DriverHandle::CancelAll()
 		{
 			assert(INVALID_HANDLE_VALUE != mHandle);
@@ -57,10 +54,6 @@ namespace KmsLib
 			//				un programme multi-thread
 		}
 
-		// aLink			: [in]	The symbolic name / Le nom du lien symbolique
-		// aDesiredAccess	:		See / Voir GENERIC_...
-		//
-		// Exception : KmsLib::Exception
 		void DriverHandle::Connect(const char * aLink, DWORD aDesiredAccess)
 		{
 			assert(NULL != aLink			);
@@ -69,12 +62,6 @@ namespace KmsLib
 			Create(aLink, aDesiredAccess, 0, OPEN_EXISTING, 0);
 		}
 
-		// aInterface		:	Interface GUID / Identifiant unique de l'interface
-		// aDesiredAccess	:	See / Voir GENERIC_...
-		// aFlags			:	See / Voir CONNECT_FLAG_...
-		//
-		// Exception :	KmsLib::Exception	CODE_REGISTRY_ERROR
-		//									CODE_SETUP_API_ERROR
 		void DriverHandle::Connect(const GUID & aInterface, DWORD aDesiredAccess, unsigned int aFlags)
 		{
 			assert(NULL != (&aInterface)	);
@@ -154,20 +141,6 @@ namespace KmsLib
 			}
 		}
 
-		// See the Microsoft documentation about the DeviceIoControl function
-		// / Voir la documentation de la fonction DeviceIoControl sur le site
-		// de Microsoft.
-		//
-		// aCode			:
-		// aIn				: [in ,opt]
-		// aInSize_byte		:
-		// aOut				: [out,opt]
-		// aOutSize_byte	:
-		//
-		// Retour :	Size of returned data in bytes / Taille des donnees
-		//			retournee en octets.
-		//
-		// Exception : KmsList::Exception
 		unsigned int DriverHandle::Control(unsigned int aCode, const void * aIn, unsigned int aInSize_byte, void * aOut, unsigned int aOutSize_byte)
 		{
 			assert(INVALID_HANDLE_VALUE != mHandle);

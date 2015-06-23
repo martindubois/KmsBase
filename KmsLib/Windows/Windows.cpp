@@ -28,12 +28,6 @@ namespace KmsLib
 		// Fonctions
 		/////////////////////////////////////////////////////////////////////
 
-		// aExt			: [in]
-		// aClassId		: [in]
-		// aCommandName : [in]	See COMMAND_...
-		// aCommand		: [in]
-		//
-		// Exception : KmsLib::Exception
 		void Extension_Register(const char * aExt,
 			const char * aClassId, const char * aCommandName, const char * aCommand)
 		{
@@ -80,11 +74,6 @@ namespace KmsLib
 			lKey3.Close();
 		}
 
-		// aExt			: [in]
-		// aClassId		: [in]
-		// aCommandName : [in]	See COMMAND_...
-		//
-		// Exception : KmsLib::Exception
 		void Extension_Unregister(const char * aExt, const char * aClassId, const char * aCommandName)
 		{
 			assert(NULL != aExt);

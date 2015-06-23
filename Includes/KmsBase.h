@@ -1,7 +1,8 @@
 
-// Author / Auteur		:	KMS -	Martin Dubois, ing.
 // Product / Produit	:	KmsBase
-// File / Fichier		:	Includes/KmsBase.h
+
+/// \author	KMS -	Martin Dubois, ing.
+/// \file	Includes/KmsBase.h
 
 #pragma once
 

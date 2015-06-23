@@ -12,7 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{38892F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Includes", "Includes", "{980DE536-B130-41B8-A65B-F1DEDC466C43}"
 	ProjectSection(SolutionItems) = preProject
+		Includes\KmsBase.h = Includes\KmsBase.h
 		Includes\KmsTest.h = Includes\KmsTest.h
+		Includes\SafeAPI.h = Includes\SafeAPI.h
+		Includes\WindowsToLinux.h = Includes\WindowsToLinux.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KmsLib", "KmsLib", "{EE152025-CE8B-4099-89C4-C60CC1B7797C}"
@@ -57,9 +60,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EDCA233C-71A7-4C3E-9F35-105EA6BCE7CF}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		DoxyFile_en.txt = DoxyFile_en.txt
+		DoxyFile_fr.txt = DoxyFile_fr.txt
 		Export.cmd = Export.cmd
 		ExportSources.sh = ExportSources.sh
 		ForEachConfig.cmd = ForEachConfig.cmd
+		RunDoxygen.cmd = RunDoxygen.cmd
 		Test.cmd = Test.cmd
 		Test_SetupA.cmd = Test_SetupA.cmd
 		Test_SetupB.cmd = Test_SetupB.cmd

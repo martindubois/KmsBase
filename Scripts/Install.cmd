@@ -12,9 +12,12 @@ set DST="C:\Software\KmsBase_2.3"
 
 rem  ===== Execution ========================================================
 
-xcopy /IKQSY Includes	%DST%\Includes
-xcopy /IKQSY Libraries	%DST%\Libraries
-xcopy /IKQSY Templates	%DST%\Templates
+xcopy /IKQSY DoxyFile_en.txt	%DST%
+xcopy /IKQSY DoxyFile_fr.txt	%DST%
+xcopy /IKQSY RunDoxygen.cmd		%DST%
+xcopy /IKQSY Includes			%DST%\Includes
+xcopy /IKQSY Libraries			%DST%\Libraries
+xcopy /IKQSY Templates			%DST%\Templates
 
 if ERRORLEVEL 1 (
     echo  ERREUR : xcopy a indique une erreur!

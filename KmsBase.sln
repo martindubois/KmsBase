@@ -41,8 +41,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DocDev", "_DocDev", "{00EEE413-B9A0-44E8-9AE8-8FD3EAC01E7D}"
 	ProjectSection(SolutionItems) = preProject
 		_DocDev\.gitignore = _DocDev\.gitignore
-		_DocDev\Composants.kdg = _DocDev\Composants.kdg
-		_DocDev\Planification.kdg = _DocDev\Planification.kdg
 		_DocDev\Requis.txt = _DocDev\Requis.txt
 	EndProjectSection
 EndProject

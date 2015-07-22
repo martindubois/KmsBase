@@ -24,12 +24,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KmsLib", "KmsLib", "{EE1520
 		Includes\KmsLib\Dump.h = Includes\KmsLib\Dump.h
 		Includes\KmsLib\Exception.h = Includes\KmsLib\Exception.h
 		Includes\KmsLib\KmsLib.h = Includes\KmsLib\KmsLib.h
+		Includes\KmsLib\MemTester.h = Includes\KmsLib\MemTester.h
 		Includes\KmsLib\RLE.h = Includes\KmsLib\RLE.h
 		Includes\KmsLib\ToolBase.h = Includes\KmsLib\ToolBase.h
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{EB8648E4-E353-45CF-982E-02296B919104}"
 	ProjectSection(SolutionItems) = preProject
+		Includes\KmsLib\Windows\ComPortHandle.h = Includes\KmsLib\Windows\ComPortHandle.h
 		Includes\KmsLib\Windows\DriverHandle.h = Includes\KmsLib\Windows\DriverHandle.h
 		Includes\KmsLib\Windows\FileHandle.h = Includes\KmsLib\Windows\FileHandle.h
 		Includes\KmsLib\Windows\RegistryKey.h = Includes\KmsLib\Windows\RegistryKey.h

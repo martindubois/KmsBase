@@ -80,6 +80,21 @@ namespace KmsLib
 			bool	DoesSubKeyExist(const char * aSubKey);
 
 			/// \cond	en
+			///	\brief	Read a string value
+			/// \param	aName	[in ]	Value name
+			/// \param	aOut	[out]	Output buffer
+			/// \param	aOutSize_byte	Output buffer size
+			/// \endcond
+			/// \cond	fr
+			/// \brief	Lire une valeur texte
+			/// \param	aName	[in ]	Nom de la valeur
+			/// \param	aOut	[out]	L'espace memoire de sortie
+			/// \param	aOutSize_byte	La taille de l'espace memoire de sortie
+			/// \endcond
+			/// \exception	Exception	CODE_REGISTRY_ERROR
+			void	GetValue(const char * aName, char * aOut, unsigned int aOutSize_byte);
+
+			/// \cond	en
 			///	\brief	Read a DWORD value
 			/// \param	aName	[in]	Value name
 			/// \param	aDefaultValue	Default value to use if the registry
@@ -205,6 +220,22 @@ namespace KmsLib
 			/// \endcond
 			/// \exception	Exception	CODE_REGISTRY_ERROR
 			void Open(HKEY aKey, const char * aSubKey);
+
+			/// \cond	en
+			///	\brief	See RegOpenKey
+			/// \param	aKey			The parent key
+			/// \param	aSubKeyIndex	The index of the sub key to open
+			/// \param	false	The index is not valid
+			/// \endcond
+			/// \cond	fr
+			/// \brief	Voir RegOpenKey
+			/// \param	aKey			La cle parent
+			/// \param	aSubKeyIndex	L'indice de la sous cle a ouvrir
+			/// \retval	false	L'indice est invalid
+			/// \endcond
+			/// \retval	true	OK
+			/// \exception	Exception	CODE_REGISTRY_ERROR
+			bool Open(HKEY aKey, unsigned int aSubKeyIndex);
 
 			/// \cond	en
 			///	\brief	Open the registry key associated to a device

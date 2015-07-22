@@ -82,6 +82,31 @@ namespace KmsLib
 			return false;
 		}
 
+		void RegistryKey::GetValue(const char * aName, char * aOut, unsigned int aOutSize_byte)
+		{
+			assert(NULL	!=	aOut			);
+			assert(0	<	aOutSize_byte	);
+
+			DWORD lSize_byte = aOutSize_byte;
+			DWORD lType;
+
+			LSTATUS lRetS = RegQueryValueEx(mKey, aName, NULL, &lType, reinterpret_cast<LPBYTE>(aOut), &lSize_byte);
+			switch (lRetS)
+			{
+			case ERROR_SUCCESS:
+				if ((REG_SZ != lType) || (aOutSize_byte < lSize_byte))
+				{
+					throw new KmsLib::Exception(KmsLib::Exception::CODE_REGISTRY_ERROR, "Invalid registry value",
+						NULL, __FILE__, __FUNCTION__, __LINE__, lType);
+				}
+				break;
+
+			default:
+				throw new KmsLib::Exception(KmsLib::Exception::CODE_REGISTRY_ERROR, "Registry error",
+					NULL, __FILE__, __FUNCTION__, __LINE__, lRetS);
+			}
+		}
+
 		DWORD RegistryKey::GetValue_DWORD(const char * aName, DWORD aDefaultValue)
 		{
 			assert(NULL != mKey);
@@ -260,6 +285,26 @@ namespace KmsLib
 			assert(NULL != mKey);
 		}
 
+		bool RegistryKey::Open(HKEY aKey, unsigned int aSubKeyIndex)
+		{
+			assert(NULL != aKey);
+
+			char lName[256];
+
+			LONG lRet = RegEnumKey(aKey, aSubKeyIndex, lName, sizeof(lName));
+			if (ERROR_SUCCESS != lRet)
+			{
+				return false;
+			}
+
+			Open(aKey, lName);
+
+			return true;
+		}
+
+		// The test of the DriverHandle class is responsible for testing this
+		// method / Le test de la class DriverHandle est responsable de
+		// tester cette methode
 		void RegistryKey::Open(HDEVINFO aDevInfoSet, PSP_DEVINFO_DATA aDevInfoData, unsigned int aFlags)
 		{
 			assert(NULL != aDevInfoSet		);

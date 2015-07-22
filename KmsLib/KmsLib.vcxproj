@@ -39,8 +39,10 @@
     <ClCompile Include="Dump.cpp" />
     <ClCompile Include="Exception.cpp" />
     <ClCompile Include="KmsLib.cpp" />
+    <ClCompile Include="MemTester.cpp" />
     <ClCompile Include="RLE.cpp" />
     <ClCompile Include="ToolBase.cpp" />
+    <ClCompile Include="Windows\ComPortHandle.cpp" />
     <ClCompile Include="Windows\DriverHandle.cpp" />
     <ClCompile Include="Windows\FileHandle.cpp" />
     <ClCompile Include="Windows\RegistryKey.cpp" />

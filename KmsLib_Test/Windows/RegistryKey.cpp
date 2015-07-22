@@ -17,111 +17,54 @@
 // Tests
 /////////////////////////////////////////////////////////////////////////////
 
+// HKEY_CURRENT_USER\Software
+//		KMS
+//			KmsLib_Test	= KmsLib_Test
+//				ValueA = 1
+//				KeyA
+//				KeyB
 KMS_TEST_BEGIN(RegistryKey_Base)
 
-	KmsLib::Windows::RegistryKey lKey0;
-	KmsLib::Windows::RegistryKey lKey1;
-	KmsLib::Windows::RegistryKey lKey2;
+	char lValueSZ[64];
 
-	lKey0.Open	(HKEY_CURRENT_USER, "Software");
+	// ----------------------------------------------------------------------
+	KmsLib::Windows::RegistryKey lKey0;
+
+	try
+	{
+		// The test program do not have access to the HKEY_LOCAL_MACHINE
+		// key / Le programme de test n'a pas la permission d'ecrire dans
+		// HKEY_LOCAL_MACHINE
+		lKey0.Create(HKEY_LOCAL_MACHINE, "KmsLib_Test");
+		KMS_TEST_ASSERT(false);
+	}
+	catch (KmsLib::Exception * eE)
+	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
+	}
+
+	try
+	{
+		// The key do not exist / La cle n'existe pas
+		lKey0.Open(HKEY_LOCAL_MACHINE, "DoNotExist");
+		KMS_TEST_ASSERT(false);
+	}
+	catch (KmsLib::Exception * eE)
+	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
+	}
+
+	lKey0.Open(HKEY_CURRENT_USER, "Software");
 
 	KMS_TEST_ASSERT(!lKey0.DoesSubKeyExist("DoesNotExist"));
 
-	lKey1.Create(lKey0, "KmsLib_Test");
-
-	KMS_TEST_ASSERT(lKey0.DoesSubKeyExist("KmsLib_Test"));
-
-	lKey1.SetDefaultValue	("KmsLib_Test");
-	lKey1.SetValue			("KmsLib_Test", 1);
-
-	KMS_TEST_ASSERT(1 == lKey1.GetValue_DWORD("KmsLib_Test"	, 0));
-	KMS_TEST_ASSERT(1 == lKey1.GetValue_DWORD("DoNotExist"	, 1));
-
 	try
 	{
-		lKey0.DoesSubKeyExist("\\NotValid\\");
-		KMS_TEST_ASSERT(false);
-	}
-	catch (KmsLib::Exception * eE)
-	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
-		KMS_TEST_ERROR_INFO;
-		eE->Write(stdout);
-	}
-
-	try
-	{
-		lKey1.GetValue_DWORD(NULL, 0);
-		KMS_TEST_ASSERT(false);
-	}
-	catch (KmsLib::Exception * eE)
-	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
-		KMS_TEST_ERROR_INFO;
-		eE->Write(stdout);
-	}
-
-	lKey1.SetDefaultValue("");
-
-	try
-	{
-		lKey1.GetValue_DWORD(NULL, 0);
-		KMS_TEST_ASSERT(false);
-	}
-	catch (KmsLib::Exception * eE)
-	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
-		KMS_TEST_ERROR_INFO;
-		eE->Write(stdout);
-	}
-
-	lKey1.DeleteValue("KmsLib_Test");
-
-	lKey2.Open	(lKey0, "KmsLib_Test"	);
-	lKey2.Open	(lKey0, "KmsLib_Test"	);
-	lKey2.Create(lKey0, "KmsLib_Test2"	);
-
-	lKey0.DeleteSubKey("KmsLib_Test"	);
-	lKey0.DeleteSubKey("KmsLib_Test2"	);
-
-	try
-	{
-		lKey2.SetValue("KmsLib_Test", 2);
-		KMS_TEST_ASSERT(false);
-	}
-	catch (KmsLib::Exception * eE)
-	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
-		KMS_TEST_ERROR_INFO;
-		eE->Write(stdout);
-	}
-
-	try
-	{
-		lKey2.Create(HKEY_LOCAL_MACHINE, "KmsLib_Test");
-		KMS_TEST_ASSERT(false);
-	}
-	catch (KmsLib::Exception * eE)
-	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
-		KMS_TEST_ERROR_INFO;
-		eE->Write(stdout);
-	}
-
-	try
-	{
-		lKey0.DeleteValue("DoNotExist");
-		KMS_TEST_ASSERT(false);
-	}
-	catch (KmsLib::Exception * eE)
-	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
-		KMS_TEST_ERROR_INFO;
-		eE->Write(stdout);
-	}
-
-	try
-	{
+		// The key do not exist / La cle n'existe pas
 		lKey0.DeleteSubKey("DoNotExist");
 		KMS_TEST_ASSERT(false);
 	}
@@ -134,7 +77,127 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 
 	try
 	{
-		lKey2.Open(HKEY_LOCAL_MACHINE, "DoNotExist");
+		// The value do not exist / La valeur n'existe pas
+		lKey0.DeleteValue("DoNotExist");
+		KMS_TEST_ASSERT(false);
+	}
+	catch (KmsLib::Exception * eE)
+	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
+	}
+
+	try
+	{
+		// The key name is not valid / Le nom de la cle n'est pas valide
+		lKey0.DoesSubKeyExist("\\NotValid\\");
+		KMS_TEST_ASSERT(false);
+	}
+	catch (KmsLib::Exception * eE)
+	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
+	}
+
+	try
+	{
+		// The value do not exist / La valeur n'existe pas
+		lKey0.GetValue("DoNotExist", lValueSZ, sizeof(lValueSZ));
+		KMS_TEST_ASSERT(false);
+	}
+	catch (KmsLib::Exception * eE)
+	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
+	}
+
+	// ----------------------------------------------------------------------
+	KmsLib::Windows::RegistryKey lKey1;
+
+	lKey1.Create(lKey0, "KMS");
+
+	KMS_TEST_ASSERT(lKey0.DoesSubKeyExist("KMS"));
+
+
+	// ----------------------------------------------------------------------
+	KmsLib::Windows::RegistryKey lKey2;
+
+	lKey2.Create(lKey1, "KmsLib_Test");
+
+	lKey2.SetDefaultValue	("DefaultValue");
+	lKey2.SetValue			("ValueA", 1);
+
+	lKey2.GetValue(NULL, lValueSZ, sizeof(lValueSZ));
+	KMS_TEST_ASSERT(0 == strcmp("DefaultValue", lValueSZ));
+
+	try
+	{
+		// ValueA is a DWORD / ValueA est un DWORD 
+		lKey2.GetValue("ValueA", lValueSZ, sizeof(lValueSZ));
+		KMS_TEST_ASSERT(false);
+	}
+	catch (KmsLib::Exception * eE)
+	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
+	}
+
+	KMS_TEST_ASSERT(1 == lKey2.GetValue_DWORD("ValueA"		, 0));
+	KMS_TEST_ASSERT(1 == lKey2.GetValue_DWORD("DoNotExist"	, 1));
+
+	try
+	{
+		// The value is larger than a DWORD / La valeur est plus grande qu'un
+		// DWORD
+		lKey2.GetValue_DWORD(NULL, 0);
+		KMS_TEST_ASSERT(false);
+	}
+	catch (KmsLib::Exception * eE)
+	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
+	}
+
+	lKey2.SetDefaultValue("");
+
+	try
+	{
+		// The default value is a SZ / La valeur par defaut est un SZ
+		lKey2.GetValue_DWORD(NULL, 0);
+		KMS_TEST_ASSERT(false);
+	}
+	catch (KmsLib::Exception * eE)
+	{
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
+		KMS_TEST_ERROR_INFO;
+		eE->Write(stdout);
+	}
+
+	lKey2.DeleteValue("ValueA");
+
+	// ----------------------------------------------------------------------
+	KmsLib::Windows::RegistryKey lKey3;
+
+	lKey3.Create	(lKey2, "KeyA"	);
+	lKey3.Open		(lKey2, "KeyA"	);
+	lKey3.Create	(lKey2, "KeyB"	);
+
+	KMS_TEST_ASSERT(	lKey3.Open(lKey2, static_cast<unsigned int>(0)	));
+	KMS_TEST_ASSERT(	lKey3.Open(lKey2, 1								));
+	KMS_TEST_ASSERT(!	lKey3.Open(lKey2, 2								));
+
+	lKey2.DeleteSubKey("KeyA"	);
+	lKey2.DeleteSubKey("KeyB"	);
+
+	try
+	{
+		// KeyB no more exist / La cle KeyB n'existe plus
+		lKey3.SetValue("KmsLib_Test", 2);
 		KMS_TEST_ASSERT(false);
 	}
 	catch (KmsLib::Exception * eE)

@@ -83,9 +83,10 @@ namespace KmsLib
 			// ----- 2.3 ----------------------------------------------------
 			CODE_ACCESS_VIOLATION		= 33,
 			CODE_INTEGER_DIVIDE_BY_ZERO	= 34,
-			CODE_STRUCTURED_EXCEPTION	= 35,
+			CODE_INVALID_COMMAND_LINE	= 35,
+			CODE_STRUCTURED_EXCEPTION	= 36,
 
-			CODE_QTY = 36
+			CODE_QTY = 37
 		}
 		Code;
 		

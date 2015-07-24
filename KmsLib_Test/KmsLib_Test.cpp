@@ -34,6 +34,7 @@ KMS_TEST_GROUP_LIST_BEGIN
 	#endif // _WINDOWS_
 KMS_TEST_GROUP_LIST_END
 
+extern int CmdLineParser_Base	();
 extern int DebugLog_Base	();
 extern int Dump_Base		();
 extern int Exception_Base	();
@@ -56,6 +57,7 @@ extern int ToolBase_Base	();
 #endif // _WINDOWS_
 
 KMS_TEST_LIST_BEGIN
+	KMS_TEST_LIST_ENTRY(CmdLineParser_Base	, "CmdLineParser - Base"	, 0, 0)
 	KMS_TEST_LIST_ENTRY(DebugLog_Base	, "DebugLog - Base"		, 0, 0	)
 	KMS_TEST_LIST_ENTRY(Dump_Base		, "Dump - Base"			, 0, 0	)
 	KMS_TEST_LIST_ENTRY(Exception_Base	, "Exception - Base"	, 0, 0	)

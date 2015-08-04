@@ -117,7 +117,7 @@ namespace KmsLib
 
 			switch (i % 8)
 			{
-			case 15: fprintf(aOut, "\n"); break;
+			case 7: fprintf(aOut, "\n"); break;
 
 			default :
 				fprintf(aOut, " ");

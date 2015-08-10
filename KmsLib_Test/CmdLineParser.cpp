@@ -76,18 +76,21 @@ KMS_TEST_BEGIN(CmdLineParser_Base)
 
 	KmsLib::CmdLineParser lCLP1("a", "bc");
 
-	const char * lVector[6];
+	const char * lVector[7];
 
 	lVector[1] = "-abc"	;
 	lVector[2] = "KmsLib_Test/CmdLineParser.cpp";
 	lVector[3] = "-"	;
 	lVector[4] = "10"	;
-	lVector[5] = "-dc"	;
+	lVector[5] = "2"	;
+	lVector[6] = "-dc"	;
 
-	lCLP1.Parse(6, lVector);
+	lCLP1.Parse(7, lVector);
 
 	KMS_TEST_ASSERT(  !	lCLP1.IsPresent(0	));
 	KMS_TEST_ASSERT(	lCLP1.IsPresent(1	));
+	KMS_TEST_ASSERT(	lCLP1.IsPresent(2	));
+	KMS_TEST_ASSERT(  !	lCLP1.IsPresent(3	));
 	KMS_TEST_ASSERT(	lCLP1.IsPresent('a'	));
 	KMS_TEST_ASSERT(	lCLP1.IsPresent('b'	));
 	KMS_TEST_ASSERT(  !	lCLP1.IsPresent('c'	));

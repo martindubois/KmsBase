@@ -196,6 +196,7 @@ namespace KmsLib
 			{
 				Map::value_type lVal(mArgCount, aVector[i]);
 				mOptions.insert(lVal);
+				mArgCount++;
 			}
 		}
 	}

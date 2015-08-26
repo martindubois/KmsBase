@@ -7,6 +7,10 @@ File / Fichier		:	_DocDev/Procedures/Build.txt
 
 ===== Internal Version ======================================================
 
+[ ] Open a command windows
+	- Navigate to the product folder;
+	- Execute "RunDoxygen.cmd";
+	- Verify that the script do not generate error message.
 [ ]	Open the solution using "Visual Studio 2013"
 	- Edit "Common/Version.h"
 		- Increment the build number;
@@ -17,8 +21,7 @@ File / Fichier		:	_DocDev/Procedures/Build.txt
 	- In the "BUILD" menu, select "Batch Build...";
 	- In the "Batch Build" dialog, click "Rebuild";
 	- In the "FILE" menu, select "Save All".
-[ ]	Open a command windows
-	- Navigate to the product folder;
+[ ]	In the command windows
 	- Execute "Test.cmd";
 	- Execute "Export.cmd Ma.Mi.Bu_Type" where
 		Ma = Major version;
@@ -40,6 +43,10 @@ File / Fichier		:	_DocDev/Procedures/Build.txt
 
 ===== Version Interne =======================================================
 
+[ ] Ouvrir une fenetre de commande
+	- Naviguer jusqu'au repertoire du produit;
+	- Entrer la commande "RunDoxygen.cmd";
+	- Verifier que le fichier de commande ne genere pas de message d'erreur.
 [ ]	Ouvrir la solution en utilisant "Visual Studio 2013"
 	- Modifier le fichier "Common/Version.h"
 		- Incrementer le numero de compilation;
@@ -51,8 +58,7 @@ File / Fichier		:	_DocDev/Procedures/Build.txt
 	- Dans le menu "BUILD", selectionner l'item "Batch Build...";
 	- Dans le dialogue "Batch Build", cliquer "Rebuild";
 	- Dans le menu "FILE", selectionner l'item "Save All".
-[ ]	Onvrir une fenetre de commande
-	- Naviguer jusqu'au repertoire du produit;
+[ ]	Dans la fenetre de commande
 	- Entrer la commande "Test.cmd";
 	- Entrer la commande "Export.cmd Ma.Mi.Bu_Type" ou
 		Ma = Numero majeur de version;

@@ -10,9 +10,9 @@
 //////////////////////////////////////////////////////////////////////////////
 
 #ifdef _WIN32
-	#define _WINDOWS_
+	#define _KMS_WINDOWS_
 #else
-	#define _LINUX_
+	#define _KMS_LINUX_
 #endif // _WIN32
 
 // Includes

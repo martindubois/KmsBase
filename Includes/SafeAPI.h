@@ -23,10 +23,10 @@
 ///			a une fonction du Windows Sage API.
 /// \endcond
 
-#ifdef _LINUX_
+#ifdef _KMS_LINUX_
 	#define SIZE_INFO(S)
-#endif // _LINUX_
+#endif // _KMS_LINUX_
 
-#ifdef _WINDOWS_
+#ifdef _KMS_WINDOWS_
 	#define SIZE_INFO(S)	, (S)
-#endif // _WINDOWS_
+#endif // _KMS_WINDOWS_

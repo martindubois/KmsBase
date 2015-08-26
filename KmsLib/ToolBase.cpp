@@ -16,9 +16,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#ifdef _WINDOWS_
+#ifdef _KMS_WINDOWS_
 	#include <io.h>
-#endif // _WINDOWS_
+#endif // _KMS_WINDOWS_
 
 // ===== Interface ==========================================================
 #include <KmsLib/Exception.h>

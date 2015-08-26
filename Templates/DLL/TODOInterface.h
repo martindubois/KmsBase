@@ -9,17 +9,17 @@
 // Macro
 /////////////////////////////////////////////////////////////////////////////
 
-#ifdef _LINUX_
+#ifdef _KMS_LINUX_
 	#define TODO_INTERFACE_API
-#endif // _LINUX_
+#endif // _KMS_LINUX_
 
-#ifdef _WINDOWS_
+#ifdef _KMS_WINDOWS_
 	#ifdef _TODO_INTERFACE_DLL_
 		#define TODO_INTERFACE_API _declspec(dllexport)
 	#else
 		#define TODO_INTERFACE_API _declspec(dllimport)
 	#endif // _TODO_INERFACE_DLL_
-#endif // _WINDOWS_
+#endif // _KMS_WINDOWS_
 
 // Class
 /////////////////////////////////////////////////////////////////////////////

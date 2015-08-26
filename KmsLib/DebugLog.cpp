@@ -11,9 +11,9 @@
 // ===== C ==================================================================
 #include <time.h>
 
-#ifdef _WINDOWS_
+#ifdef _KMS_WINDOWS_
 	#include <process.h>
-#endif // _WINDOWS_
+#endif // _KMS_WINDOWS_
 
 // ===== Includes ===========================================================
 #include <KmsLib/DebugLog.h>

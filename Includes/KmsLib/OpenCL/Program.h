@@ -91,7 +91,7 @@ namespace KmsLib
 			/// \param	aNotify		[keep,opt]
 			/// \param	aData		[keep,opt]
 			/// \exception	KmsLib::Exception	CODE_OPEN_CL_ERROR
-			void	Build(const VECTOR_CLASS<cl::Device> & aDevices, const char * aOptions = NULL, void(__stdcall * aNotify)(cl_program, void *) = NULL, void * aData = NULL) const;
+			void	Build(const VECTOR_CLASS<cl::Device> & aDevices, const char * aOptions = NULL, void (CL_CALLBACK * aNotify)(cl_program, void *) = NULL, void * aData = NULL) const;
 
 		};
 

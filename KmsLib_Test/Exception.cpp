@@ -28,6 +28,8 @@ KMS_TEST_BEGIN(Exception_Base)
 
 	void * lPrevTranslator = KmsLib::Exception::RegisterTranslator();
 
+#ifdef _KMS_WINDOWS_
+
 	try
 	{
 		*reinterpret_cast<unsigned int *>(NULL) = 0;
@@ -56,6 +58,8 @@ KMS_TEST_BEGIN(Exception_Base)
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
 	}
+
+#endif // _KMS_WINDOWS_
 
 	KmsLib::Exception::RestoreTranslator(lPrevTranslator);
 

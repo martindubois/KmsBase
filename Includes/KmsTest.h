@@ -323,7 +323,7 @@ KmsTestDescription;
 		for (i = 0; i < (sizeof(KMS_TESTS) / sizeof(KMS_TESTS[0])); i++)	\
 		{																	\
 			printf("    %2u    %2u        %s", i, KMS_TESTS[i].mGroup, KMS_TESTS[i].mName);	\
-			if (0 != (KMS_TEST_FLAG_INTERACTION_NEEDED | KMS_TESTS[i].mFlags))	\
+			if (0 != (KMS_TEST_FLAG_INTERACTION_NEEDED & KMS_TESTS[i].mFlags))	\
 			{																\
 				printf("\t- Interaction needed");							\
 			}																\

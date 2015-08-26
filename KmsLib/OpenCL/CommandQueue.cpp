@@ -6,6 +6,8 @@
 // Includes
 /////////////////////////////////////////////////////////////////////////////
 
+#include <KmsBase.h>
+
 // ===== C ==================================================================
 #include <assert.h>
 
@@ -48,8 +50,7 @@ namespace KmsLib
 			{
 				char lMsg[1024];
 
-				sprintf_s(lMsg, "cl::CommandQueue::enqueueNDRangeKernel( , , , , 0x%08x, 0x%08x ) failed returning %d",
-					reinterpret_cast<unsigned int>(aEvents), reinterpret_cast<unsigned int>(aNewEvent), lRet);
+				sprintf_s(lMsg, "cl::CommandQueue::enqueueNDRangeKernel( , , , , ,  ) failed returning %d", lRet);
 
 				throw new Exception(Exception::CODE_OPEN_CL_ERROR, "cl::CommandQueue::enqueueNDRangeKernel( , , , , ,  ) failed",
 					lMsg, __FILE__, __FUNCTION__, __LINE__, lRet);
@@ -81,9 +82,8 @@ namespace KmsLib
 			{
 				char lMsg[1024];
 
-				sprintf_s(lMsg, "cl::CommandQueue::EnqueueReadBuffer( , %s, %u bytes, %u bytes, , 0x%08x, 0x%08x ) failed returning %d",
-					aBlocking ? "CL_TRUE" : "CL_FALSE", static_cast<unsigned int>(aOffset_byte), static_cast<unsigned int>(aSize_byte),
-					reinterpret_cast<unsigned int>(aEvents), reinterpret_cast<unsigned int>(aNewEvent), lRet);
+				sprintf_s(lMsg, "cl::CommandQueue::EnqueueReadBuffer( , %s, %u bytes, %u bytes, , ,  ) failed returning %d",
+					aBlocking ? "CL_TRUE" : "CL_FALSE", static_cast<unsigned int>(aOffset_byte), static_cast<unsigned int>(aSize_byte),	lRet);
 
 				throw new Exception(Exception::CODE_OPEN_CL_ERROR, "cl::CommandQueue::EnqueueReadBuffer( , , , , , ,  ) failed",
 					lMsg, __FILE__, __FUNCTION__, __LINE__, lRet);
@@ -100,9 +100,8 @@ namespace KmsLib
 			{
 				char lMsg[1024];
 
-				sprintf_s(lMsg, "cl::CommandQueue::EnqueueWriteBuffer( , %s, %u bytes, %u bytes, , 0x%08x, 0x%08x ) failed returning %d",
-					aBlocking ? "CL_TRUE" : "CL_FALSE", static_cast<unsigned int>(aOffset_byte), static_cast<unsigned int>(aSize_byte),
-					reinterpret_cast<unsigned int>(aEvents), reinterpret_cast<unsigned int>(aNewEvent), lRet);
+				sprintf_s(lMsg, "cl::CommandQueue::EnqueueWriteBuffer( , %s, %u bytes, %u bytes, , ,  ) failed returning %d",
+					aBlocking ? "CL_TRUE" : "CL_FALSE", static_cast<unsigned int>(aOffset_byte), static_cast<unsigned int>(aSize_byte), lRet);
 
 				throw new Exception(Exception::CODE_OPEN_CL_ERROR, "cl::CommandQueue::EnqueueWriteBuffer( , , , , , ,  ) failed",
 					lMsg, __FILE__, __FUNCTION__, __LINE__, lRet);

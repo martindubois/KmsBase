@@ -44,7 +44,7 @@ namespace KmsLib
 			/// \param	aNotify		[   opt]
 			/// \param	aData		[   opt]
 			/// \exception	KmsLib::Exception	CODE_OPEN_CL_ERROR
-			Context(const VECTOR_CLASS<cl::Device> & aDevices, cl_context_properties * aProperties = NULL, void(__stdcall * aNotify)(const char *, const void *, size_t, void *) = NULL, void * aData = NULL);
+			Context(const VECTOR_CLASS<cl::Device> & aDevices, cl_context_properties * aProperties = NULL, void (CL_CALLBACK * aNotify)(const char *, const void *, size_t, void *) = NULL, void * aData = NULL);
 
 			/// \cond	en
 			/// \brief	See cl::Context::Context
@@ -58,7 +58,7 @@ namespace KmsLib
 			/// \param	aNotify		[   opt]
 			/// \param	aData		[   opt]
 			/// \exception	KmsLib::Exception	CODE_OPEN_CL_ERROR
-			Context(cl_device_type aDeviceType, cl_context_properties * aProperties = NULL, void(__stdcall * aNotify)(const char *, const void *, size_t, void *) = NULL, void * aData = NULL);
+			Context(cl_device_type aDeviceType, cl_context_properties * aProperties = NULL, void (CL_CALLBACK * aNotify)(const char *, const void *, size_t, void *) = NULL, void * aData = NULL);
 
 			/// \cond	en
 			/// \brief	See cl::Context::getInfo

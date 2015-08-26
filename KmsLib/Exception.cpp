@@ -56,9 +56,11 @@ static const char * CODE_NAMES[ KmsLib::Exception::CODE_QTY ] =
 	"CODE_SERVICE_MANAGER_ERROR"	,
 	"CODE_SYSTEM_LOG_ERROR"			,
 
-	// ----- 2.2 ----------------------------------------------------
+	// ----- 2.3 ----------------------------------------------------
 	"CODE_ACCESS_VIOLATION"			,
 	"CODE_INTEGER_DIVIDE_BY_ZERO"	,
+	"CODE_INVALID_COMMAND_LINE"		,
+	"CODE_OPEN_CL_ERROR"			,
 	"CODE_STRUCTURED_EXCEPTION"		,
 };
 
@@ -77,13 +79,21 @@ namespace KmsLib
 
 	void * Exception::RegisterTranslator()
 	{
+		#ifdef _KMS_LINUX_
+		return NULL;
+		#endif // _KMS_LINUX_
+
+		#ifdef _KMS_WINDOWS_
 		return _set_se_translator(TranslateException);
+		#endif // _KMS_WINDOWS_
 	}
 
 	void Exception::RestoreTranslator(void * aTranslator)
 	{
+		#ifdef _KMS_WINDOWS_
 		void * lTranslator = _set_se_translator(reinterpret_cast<_se_translator_function>(aTranslator));
 		assert(TranslateException == lTranslator);
+		#endif // _KMS_WINDOWS_
 	}
 
 	Exception::Exception(Code aCode, const char * aWhat, const char * aMessage, const char * aFile, const char * aFunction, unsigned int aLine, unsigned int aInfoA) :

@@ -6,6 +6,8 @@
 // Includes
 /////////////////////////////////////////////////////////////////////////////
 
+#include <KmsBase.h>
+
 // ===== C ==================================================================
 #include <assert.h>
 
@@ -167,7 +169,7 @@ namespace KmsLib
 			}
 		}
 
-		void Program::Build(const VECTOR_CLASS<cl::Device> & aDevices, const char * aOptions, void(__stdcall * aNotify)(cl_program, void *), void * aData) const
+		void Program::Build(const VECTOR_CLASS<cl::Device> & aDevices, const char * aOptions, void(CL_CALLBACK * aNotify)(cl_program, void *), void * aData) const
 		{
 			assert(NULL !=	(&aDevices)		);
 			assert(0	<	aDevices.size()	);

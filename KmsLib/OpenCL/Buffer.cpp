@@ -6,6 +6,8 @@
 // Includes
 /////////////////////////////////////////////////////////////////////////////
 
+#include <KmsBase.h>
+
 // ===== C ==================================================================
 #include <assert.h>
 
@@ -34,8 +36,8 @@ namespace KmsLib
 			{
 				char lMsg[1024];
 
-				sprintf_s(lMsg, "cl::Buffer::Buffer( , 0x%08x, %u bytes, 0x%08x,  ) failed indicating %d",
-					aFlags, static_cast<unsigned int>(aSize_byte), reinterpret_cast<unsigned int>(aHostPtr), lRet);
+				sprintf_s(lMsg, "cl::Buffer::Buffer( , 0x%08x, %u bytes, ,  ) failed indicating %d",
+					static_cast<unsigned int>(aFlags), static_cast<unsigned int>(aSize_byte), lRet);
 
 				throw new Exception(Exception::CODE_OPEN_CL_ERROR, "cl::Buffer::Buffer( , , , ,  ) failed",
 					lMsg, __FILE__, __FUNCTION__, __LINE__, lRet);

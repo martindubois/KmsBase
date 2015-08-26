@@ -5,13 +5,21 @@
 
 CFLAGS = -g
 
-INCLUDES = -I ../Includes
+INCLUDES = -I ../Includes -I /opt/AMDAPPSDK-3.0/include
 
-LIBRARIES = ../Libraries/KmsLib.a
+LIBRARIES = ../Libraries/KmsLib.a /opt/AMDAPPSDK-3.0/lib/x86_64/libOpenCL.so
 
 OUTPUT = ../Binaries/KmsLib_Test
 
-SOURCES = DebugLog.cpp KmsLib_Test.cpp ToolBase.cpp
+SOURCES =	CmdLineParser.cpp	\
+			DebugLog.cpp		\
+			Dump.cpp			\
+			Exception.cpp		\
+			KmsLib_Test.cpp		\
+			MemTester.cpp		\
+			OpenCL.cpp			\
+			RLE.cpp				\
+			ToolBase.cpp
 
 # ===== Rules / Regles =======================================================
 

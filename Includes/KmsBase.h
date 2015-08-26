@@ -25,6 +25,6 @@
 
 #include <SafeAPI.h>
 
-#ifdef _LINUX_	
+#ifdef _KMS_LINUX_	
 	#include <WindowsToLinux.h>
-#endif // _LINUX_
+#endif // _KMS_LINUX_

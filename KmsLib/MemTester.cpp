@@ -195,8 +195,8 @@ namespace KmsLib
 
 	void MemTester::Generate_KMS(unsigned char * aOut, unsigned int aOutSize_byte) const
 	{
-		assert(NULL != aOut				);
-		assert(NULL != aOutSize_byte	);
+		assert(NULL !=	aOut			);
+		assert(0	<	aOutSize_byte	);
 
 		assert(COUNT_KMS > mIndex);
 
@@ -230,8 +230,8 @@ namespace KmsLib
 
 	void MemTester::Generate_Random(unsigned char * aOut, unsigned int aOutSize_byte) const
 	{
-		assert(NULL != aOut				);
-		assert(NULL != aOutSize_byte	);
+		assert(NULL !=	aOut			);
+		assert(0	<	aOutSize_byte	);
 
 		assert(COUNT_RANDOM > mIndex);
 

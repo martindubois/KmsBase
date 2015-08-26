@@ -5,16 +5,27 @@
 
 CFLAGS = -g
 
-INCLUDES = -I ../Includes
+INCLUDES = -I ../Includes -I /opt/AMDAPPSDK-3.0/include
 
 OUTPUT = ../Libraries/KmsLib.a
 
-SOURCES = DebugLog.cpp Exception.cpp ToolBase.cpp
+SOURCES =	CmdLineParser.cpp		\
+			DebugLog.cpp			\
+			Dump.cpp				\
+			Exception.cpp			\
+			MemTester.cpp			\
+			OpenCL/Buffer.cpp		\
+			OpenCL/CommandQueue.cpp	\
+			OpenCL/Context.cpp		\
+			OpenCL/Kernel.cpp		\
+			OpenCL/Program.cpp		\
+			RLE.cpp					\
+			ToolBase.cpp
 
 # ===== Rules / Regles =======================================================
 
 .cpp.o:
-	g++ -c $(CFLAGS) $(INCLUDES) $<
+	g++ -c $(CFLAGS) -o $@ $(INCLUDES) $<
 
 # ===== Macros ===============================================================
 

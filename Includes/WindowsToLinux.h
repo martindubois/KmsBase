@@ -13,6 +13,7 @@
 
 // ===== C ===================================================================
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 // ===== sys =================================================================
@@ -109,3 +110,11 @@ typedef int	errno_t;
 /// \brief	Voir la documentation Microsoft
 /// \endcond
 #define strcpy_s(D,Si,So)	strcpy(D,So)
+
+/// \cond	en
+/// \brief	See the Microsoft documentation
+/// \endcond
+/// \cond	fr
+/// \brief	Voir la documentation Microsoft
+/// \endcond
+#define strncpy_s(D,Si,So,N)	strncpy(D,So,N)

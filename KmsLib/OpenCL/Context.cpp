@@ -6,6 +6,8 @@
 // Includes
 /////////////////////////////////////////////////////////////////////////////
 
+#include <KmsBase.h>
+
 // ===== C ==================================================================
 #include <assert.h>
 
@@ -21,7 +23,7 @@ namespace KmsLib
 		// Public
 		/////////////////////////////////////////////////////////////////////
 
-		Context::Context(const VECTOR_CLASS<cl::Device> & aDevices, cl_context_properties * aProperties, void(__stdcall * aNotify)(const char *, const void *, size_t, void *), void * aData)
+		Context::Context(const VECTOR_CLASS<cl::Device> & aDevices, cl_context_properties * aProperties, void (CL_CALLBACK * aNotify)(const char *, const void *, size_t, void *), void * aData)
 		{
 			assert(NULL != (&aDevices));
 
@@ -33,24 +35,24 @@ namespace KmsLib
 			{
 				char lMsg[1024];
 
-				sprintf_s(lMsg, "cl::Context::Context( , 0x%08x, 0x%08x, 0x%08x,  ) failed indicating %d",
-					reinterpret_cast<unsigned int>( aProperties ), reinterpret_cast<unsigned int>(aNotify), reinterpret_cast<unsigned int>(aData), lRet);
+				sprintf_s(lMsg, "cl::Context::Context( , , , ,  ) failed indicating %d", lRet);
 
 				throw new Exception(Exception::CODE_OPEN_CL_ERROR, "cl::Context::Context( , , , ,  ) failed",
 					lMsg, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 		}
 
-		Context::Context(cl_device_type aDeviceType, cl_context_properties * aProperties, void(__stdcall * aNotify)(const char *, const void *, size_t, void *), void * aData)
+		Context::Context(cl_device_type aDeviceType, cl_context_properties * aProperties, void (CL_CALLBACK * aNotify)(const char *, const void *, size_t, void *), void * aData)
 		{
 			cl_int lRet;
 
-			(* dynamic_cast<cl::Context *>(this)) = cl::Context(aDeviceType, NULL, NULL, NULL, &lRet);
+			(* dynamic_cast<cl::Context *>(this)) = cl::Context(aDeviceType, aProperties, aNotify, aData, &lRet);
 			if (CL_SUCCESS != lRet)
 			{
 				char lMsg[1024];
 
-				sprintf_s(lMsg, "cl::Context::Context( 0x%08x, , , ,  ) failed returning %d", aDeviceType, lRet);
+				sprintf_s(lMsg, "cl::Context::Context( 0x%08x, , , ,  ) failed returning %d",
+					static_cast<unsigned int>(aDeviceType), lRet);
 
 				throw new Exception(Exception::CODE_OPEN_CL_ERROR, "cl::Context::Context( , , , ,  ) failed",
 					lMsg, __FILE__, __FUNCTION__, __LINE__, lRet);

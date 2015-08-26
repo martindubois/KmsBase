@@ -225,7 +225,7 @@ namespace KmsLib
 			///	\brief	See RegOpenKey
 			/// \param	aKey			The parent key
 			/// \param	aSubKeyIndex	The index of the sub key to open
-			/// \param	false	The index is not valid
+			/// \retval	false	The index is not valid
 			/// \endcond
 			/// \cond	fr
 			/// \brief	Voir RegOpenKey
@@ -241,7 +241,7 @@ namespace KmsLib
 			///	\brief	Open the registry key associated to a device
 			/// \param	aDevInfoSet		Information set containing
 			///							information	about the device
-			/// \param	aDevIndoData	Information about the device.
+			/// \param	aDevInfoData	Information about the device.
 			/// \param	aFlags			See OPEN_FLAG_...
 			/// \endcond
 			/// \cond	fr

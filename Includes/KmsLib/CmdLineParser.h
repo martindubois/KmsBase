@@ -2,7 +2,7 @@
 // Product / Produit	:	KmsBase
 
 /// \author	KMS -	Martin Dubois, ing.
-/// \file	Includes/KmsLib/CmdLine.h
+/// \file	Includes/KmsLib/CmdLineParser.h
 
 #pragma once
 
@@ -84,7 +84,7 @@ namespace KmsLib
 		/// \endcond
 		/// \cond	fr
 		/// \brief	L'option specifie est-il present?
-		/// \param	
+		/// \param	aArgOpt	L'indice de l'argument ou la lettre de l'option
 		/// \retval	false	Non
 		/// \retval	true	Oui
 		/// \endcond
@@ -92,11 +92,11 @@ namespace KmsLib
 
 		/// \cond	en
 		/// \brief	Argument count accessor
-		/// \retour	This method return the number of argument
+		/// \return	This method return the number of argument
 		/// \endcond
 		/// \cond	fr
 		/// \brief	Accesseur pour le nombre d'argument
-		/// \retour	Cette methode retourne le nombre d'argument
+		/// \return	Cette methode retourne le nombre d'argument
 		/// \endcond
 		unsigned int GetArgumentCount() const;
 
@@ -175,11 +175,11 @@ namespace KmsLib
 
 		/// \cond	en
 		/// \brief	Error flags accessor
-		/// \retour	See ErrorFlag
+		/// \return	See ErrorFlag
 		/// \endcond
 		/// \cond	fr
 		/// \brief	Accesseur pour les drapeau d'erreur
-		/// \retour	Voir ErrorFlag
+		/// \return	Voir ErrorFlag
 		/// \endcond
 		unsigned int GetErrorFlags() const;
 

@@ -74,7 +74,7 @@ namespace KmsLib
 
 			/// \cond	en
 			/// \brief	Baud rate accessor
-			/// \param	The baud rate
+			/// \param	aBaudRate	The baud rate
 			/// \endcond
 			/// \cond	fr
 			/// \brief	Accesseur pour la vitesse de transmission

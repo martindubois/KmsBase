@@ -102,6 +102,7 @@ namespace KmsLib
 
 			/// \cond	en
 			/// \brief	See DeviceIoControl
+			/// \param	aCode
 			/// \param	aIn		[in]	Input data
 			/// \param	aInSize_byte	Size of input data
 			/// \param	aOut	[out]	Output buffer

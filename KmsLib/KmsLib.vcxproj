@@ -41,6 +41,11 @@
     <ClCompile Include="Exception.cpp" />
     <ClCompile Include="KmsLib.cpp" />
     <ClCompile Include="MemTester.cpp" />
+    <ClCompile Include="OpenCL\Buffer.cpp" />
+    <ClCompile Include="OpenCL\CommandQueue.cpp" />
+    <ClCompile Include="OpenCL\Context.cpp" />
+    <ClCompile Include="OpenCL\Kernel.cpp" />
+    <ClCompile Include="OpenCL\Program.cpp" />
     <ClCompile Include="RLE.cpp" />
     <ClCompile Include="ToolBase.cpp" />
     <ClCompile Include="Windows\ComPortHandle.cpp" />
@@ -153,7 +158,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Includes;C:\Program Files %28x86%29\AMD APP SDK\3.0-0-Beta\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
@@ -170,7 +175,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Includes;C:\Program Files %28x86%29\AMD APP SDK\3.0-0-Beta\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
@@ -187,7 +192,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Includes;C:\Program Files %28x86%29\AMD APP SDK\3.0-0-Beta\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
@@ -204,7 +209,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Includes;C:\Program Files %28x86%29\AMD APP SDK\3.0-0-Beta\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
@@ -223,7 +228,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Includes;C:\Program Files %28x86%29\AMD APP SDK\3.0-0-Beta\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
@@ -244,7 +249,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Includes;C:\Program Files %28x86%29\AMD APP SDK\3.0-0-Beta\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
@@ -265,7 +270,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Includes;C:\Program Files %28x86%29\AMD APP SDK\3.0-0-Beta\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
@@ -286,7 +291,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../Includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Includes;C:\Program Files %28x86%29\AMD APP SDK\3.0-0-Beta\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>

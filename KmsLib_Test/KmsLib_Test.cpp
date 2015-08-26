@@ -27,11 +27,11 @@
 KMS_TEST_GROUP_LIST_BEGIN
 	KMS_TEST_GROUP_LIST_ENTRY("Base"	)
 	
-	#ifdef _WINDOWS_
+	#ifdef _KMS_WINDOWS_
 		KMS_TEST_GROUP_LIST_ENTRY("Setup-A" )
 		KMS_TEST_GROUP_LIST_ENTRY("Setup-B"	)
 		KMS_TEST_GROUP_LIST_ENTRY("Setup-C"	)
-	#endif // _WINDOWS_
+	#endif // _KMS_WINDOWS_
 KMS_TEST_GROUP_LIST_END
 
 extern int CmdLineParser_Base	();
@@ -39,10 +39,11 @@ extern int DebugLog_Base	();
 extern int Dump_Base		();
 extern int Exception_Base	();
 extern int MemTester_Base	();
+extern int OpenCL_Base			();
 extern int RLE_Base			();
 extern int ToolBase_Base	();
 
-#ifdef _WINDOWS_
+#ifdef _KMS_WINDOWS_
 	extern int ComPortHandle_Base	();
 	extern int ComPortHandle_SetupA	();
 	extern int DriverHandle_Base	();
@@ -54,7 +55,7 @@ extern int ToolBase_Base	();
 	extern int Service_SetupB		();
 	extern int SystemLog_Base		();
 	extern int SystemLog_SetupB		();
-#endif // _WINDOWS_
+#endif // _KMS_WINDOWS_
 
 KMS_TEST_LIST_BEGIN
 	KMS_TEST_LIST_ENTRY(CmdLineParser_Base	, "CmdLineParser - Base"	, 0, 0)
@@ -62,10 +63,11 @@ KMS_TEST_LIST_BEGIN
 	KMS_TEST_LIST_ENTRY(Dump_Base		, "Dump - Base"			, 0, 0	)
 	KMS_TEST_LIST_ENTRY(Exception_Base	, "Exception - Base"	, 0, 0	)
 	KMS_TEST_LIST_ENTRY(MemTester_Base	, "MemTester - Base"	, 0, 0	)
+	KMS_TEST_LIST_ENTRY(OpenCL_Base			, "OpenCL - Base"			, 0, 0)
 	KMS_TEST_LIST_ENTRY(RLE_Base		, "RLE - Base"			, 0, 0	)
 	KMS_TEST_LIST_ENTRY(ToolBase_Base	, "ToolBase - Base"		, 0, 0	)
 	
-	#ifdef _WINDOWS_
+	#ifdef _KMS_WINDOWS_
 		KMS_TEST_LIST_ENTRY(ComPortHandle_Base	, "ComPortHandle - Base"	, 0, 0									)
 		KMS_TEST_LIST_ENTRY(ComPortHandle_SetupA, "ComPortHandle - SetupA"	, 1, KMS_TEST_FLAG_INTERACTION_NEEDED	)
 		KMS_TEST_LIST_ENTRY(DriverHandle_Base	, "DriverHandle - Base"		, 0, 0									)
@@ -77,7 +79,7 @@ KMS_TEST_LIST_BEGIN
 		KMS_TEST_LIST_ENTRY(Service_SetupB		, "Service - Setup B"		, 2, KMS_TEST_FLAG_INTERACTION_NEEDED	)
 		KMS_TEST_LIST_ENTRY(SystemLog_Base		, "SystemLog - Base"		, 0, 0									)
 		KMS_TEST_LIST_ENTRY(SystemLog_SetupB	, "SystemLog - SetupB"		, 2, KMS_TEST_FLAG_INTERACTION_NEEDED	)
-	#endif // _WINDOWS_
+	#endif // _KMS_WINDOWS_
 KMS_TEST_LIST_END
 
 KMS_TEST_MAIN

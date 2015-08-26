@@ -84,9 +84,10 @@ namespace KmsLib
 			CODE_ACCESS_VIOLATION		= 33,
 			CODE_INTEGER_DIVIDE_BY_ZERO	= 34,
 			CODE_INVALID_COMMAND_LINE	= 35,
-			CODE_STRUCTURED_EXCEPTION	= 36,
+			CODE_OPEN_CL_ERROR			= 36,
+			CODE_STRUCTURED_EXCEPTION	= 37,
 
-			CODE_QTY = 37
+			CODE_QTY = 38
 		}
 		Code;
 		
@@ -104,7 +105,7 @@ namespace KmsLib
 
 		/// \cond	en
 		/// \brief	Restore a structured exception handler
-		/// \param	aTranlsator	Value previously returned by RegisterTranslator
+		/// \param	aTranslator	Value previously returned by RegisterTranslator
 		/// \endcond
 		/// \cond	fr
 		/// \brief	Reactive un traducteur d'exceptions structures

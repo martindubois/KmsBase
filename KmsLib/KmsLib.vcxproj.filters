@@ -19,6 +19,9 @@
     <Filter Include="_DocDev">
       <UniqueIdentifier>{00912c96-f484-402e-94a1-2d63f7cfde58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\OpenCL">
+      <UniqueIdentifier>{60034ece-384e-47c6-8841-f19ee6e94887}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Windows\RegistryKey.cpp">
@@ -65,6 +68,21 @@
     </ClCompile>
     <ClCompile Include="CmdLineParser.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenCL\Buffer.cpp">
+      <Filter>Source Files\OpenCL</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenCL\CommandQueue.cpp">
+      <Filter>Source Files\OpenCL</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenCL\Context.cpp">
+      <Filter>Source Files\OpenCL</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenCL\Kernel.cpp">
+      <Filter>Source Files\OpenCL</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenCL\Program.cpp">
+      <Filter>Source Files\OpenCL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

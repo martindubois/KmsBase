@@ -124,6 +124,15 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Service", "Templates\Servic
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dialog_Win32", "Templates\Dialog_Win32\Dialog_Win32.vcxproj", "{852D5BBB-90C0-4E92-B360-437BBF566D69}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenCL", "OpenCL", "{F49BE6B7-3A5C-4BB6-9ACA-537A91C8740C}"
+	ProjectSection(SolutionItems) = preProject
+		Includes\KmsLib\OpenCL\Buffer.h = Includes\KmsLib\OpenCL\Buffer.h
+		Includes\KmsLib\OpenCL\CommandQueue.h = Includes\KmsLib\OpenCL\CommandQueue.h
+		Includes\KmsLib\OpenCL\Context.h = Includes\KmsLib\OpenCL\Context.h
+		Includes\KmsLib\OpenCL\Kernel.h = Includes\KmsLib\OpenCL\Kernel.h
+		Includes\KmsLib\OpenCL\Program.h = Includes\KmsLib\OpenCL\Program.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_DLL|Mixed Platforms = Debug_DLL|Mixed Platforms
@@ -814,6 +823,7 @@ Global
 		{EE152025-CE8B-4099-89C4-C60CC1B7797C} = {980DE536-B130-41B8-A65B-F1DEDC466C43}
 		{7D3197D4-C12C-4F8A-9F6C-9AE50A8BEE6C} = {980DE536-B130-41B8-A65B-F1DEDC466C43}
 		{EB8648E4-E353-45CF-982E-02296B919104} = {EE152025-CE8B-4099-89C4-C60CC1B7797C}
+		{F49BE6B7-3A5C-4BB6-9ACA-537A91C8740C} = {EE152025-CE8B-4099-89C4-C60CC1B7797C}
 		{EA71243B-5549-4F76-9D8B-547E36BE8BB4} = {00EEE413-B9A0-44E8-9AE8-8FD3EAC01E7D}
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F} = {17C49143-B3BF-492F-AA07-D08EBEE3756D}
 		{41514692-FD16-4D5E-9E69-522D6D404276} = {17C49143-B3BF-492F-AA07-D08EBEE3756D}

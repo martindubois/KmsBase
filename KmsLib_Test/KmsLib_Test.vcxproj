@@ -321,6 +321,7 @@
     <ClCompile Include="KmsLib_Test.cpp" />
     <ClCompile Include="MemTester.cpp" />
     <ClCompile Include="OpenCL.cpp" />
+    <ClCompile Include="Ring.cpp" />
     <ClCompile Include="RLE.cpp" />
     <ClCompile Include="ToolBase.cpp" />
     <ClCompile Include="Windows\ComPortHandle.cpp" />

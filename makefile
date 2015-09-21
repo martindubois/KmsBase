@@ -5,7 +5,7 @@
 
 # ===== Targers / Cible ================================================
 
-all:	Binaries/Driver_Linux.ko Binaries/KmsLib_Test Binaries/TODO.so Binaries/TODO_Test Binaries/TODO_Tool Libraries/KmsLib.a
+all:	Binaries/KmsLib_Test Binaries/TODO.so Binaries/TODO_Test Binaries/TODO_Tool Libraries/KmsLib.a
 
 clean:
 	rm Binaries/*
@@ -13,7 +13,6 @@ clean:
 	rm KmsLib_Test/*.o
 	rm Libraries/*.a
 	rm Templates/DLL/*.o
-	rm Templates/Drivers_Linux/*.o
 	rm Templates/Test/*.o
 	rm Templates/Tool/*.o
 
@@ -21,16 +20,17 @@ depend:
 	cd KmsLib; make depend
 	cd KmsLib_Test; make depend
 	cd Templates/DLL; make depend
-	cd Templates/Driver_Linux; make depend
 	cd Templates/Test; make depend
 	cd Templates/Tool; make depend
+
+prep:
+	mkdir Binaries
+	mkdir Export
+	mkdir Libraries
 
 test: Binaries/KmsLib_Test Libraries/KmsLib.a
 	Binaries/KmsLib_Test
 	
-Binaries/Driver_Linux.ko:
-	cd Templates/Driver_Linux; make
-
 Binaries/KmsLib_Test: Libraries/KmsLib.a FORCE
 	cd KmsLib_Test;	make
 	

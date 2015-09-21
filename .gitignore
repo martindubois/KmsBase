@@ -10,6 +10,7 @@
 Binaries/
 Debug/
 Debug_DLL/
+Export/
 Libraries/
 Release/
 Release_DLL/

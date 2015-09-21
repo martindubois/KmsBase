@@ -40,6 +40,7 @@ extern int Dump_Base		();
 extern int Exception_Base	();
 extern int MemTester_Base	();
 extern int OpenCL_Base			();
+extern int Ring_Base			();
 extern int RLE_Base			();
 extern int ToolBase_Base	();
 
@@ -65,6 +66,7 @@ KMS_TEST_LIST_BEGIN
 	KMS_TEST_LIST_ENTRY(MemTester_Base	, "MemTester - Base"	, 0, 0	)
 	KMS_TEST_LIST_ENTRY(OpenCL_Base			, "OpenCL - Base"			, 0, 0)
 	KMS_TEST_LIST_ENTRY(RLE_Base		, "RLE - Base"			, 0, 0	)
+	KMS_TEST_LIST_ENTRY(Ring_Base			, "Ring - Base"				, 0, 0)
 	KMS_TEST_LIST_ENTRY(ToolBase_Base	, "ToolBase - Base"		, 0, 0	)
 	
 	#ifdef _KMS_WINDOWS_

@@ -14,6 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Includes", "Includes", "{98
 	ProjectSection(SolutionItems) = preProject
 		Includes\KmsBase.h = Includes\KmsBase.h
 		Includes\KmsTest.h = Includes\KmsTest.h
+		Includes\Ring.h = Includes\Ring.h
 		Includes\SafeAPI.h = Includes\SafeAPI.h
 		Includes\WindowsToLinux.h = Includes\WindowsToLinux.h
 	EndProjectSection

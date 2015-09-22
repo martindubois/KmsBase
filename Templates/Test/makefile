@@ -29,5 +29,7 @@ depend:
 	makedepend -Y $(INCLUDES) $(SOURCES)
 # DO NOT DELETE
 
-TODO.o: ../../Includes/KmsTest.h
-TODO_Test.o: ../../Includes/KmsTest.h
+TODO.o: ../../Includes/KmsTest.h ../../Includes/KmsBase.h
+TODO.o: ../../Includes/SafeAPI.h ../../Includes/WindowsToLinux.h
+TODO_Test.o: ../../Includes/KmsTest.h ../../Includes/KmsBase.h
+TODO_Test.o: ../../Includes/SafeAPI.h ../../Includes/WindowsToLinux.h

@@ -246,7 +246,7 @@ namespace KmsLib
 	void MemTester::Generate_Simple(unsigned char * aOut, unsigned int aOutSize_byte) const
 	{
 		assert(NULL != aOut				);
-		assert(NULL != aOutSize_byte	);
+		assert(0 != aOutSize_byte	);
 
 		assert(COUNT_SIMPLE > mIndex);
 

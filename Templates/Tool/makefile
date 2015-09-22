@@ -30,3 +30,7 @@ $(OUTPUT) : $(OBJECTS) $(LIBRARIES)
 depend:
 	makedepend -Y $(INCLUDES) $(SOURCES)
 
+# DO NOT DELETE
+
+TODO_Tool.o: ../../Includes/KmsLib/ToolBase.h
+TODO_Tool.o: ../../Includes/KmsLib/Exception.h

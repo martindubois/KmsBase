@@ -9,6 +9,12 @@
 // Class
 /////////////////////////////////////////////////////////////////////////////
 
+/// \cond	en
+/// \brief	Circulare buffer
+/// \endcond
+/// \cond	fr
+/// \brief	Tampon circulaire
+/// \endcond
 template<typename T, unsigned int N>
 class Ring
 {

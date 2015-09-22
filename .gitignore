@@ -3,7 +3,7 @@
 # Projet	:	KmsBase
 # Fichier	:	.gitignore
 
-Linux_Windows_Test0.dat
+Linux_Windows_Test0.txt
 
 *~
 *.opensdf

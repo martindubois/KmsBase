@@ -19,6 +19,9 @@
     <Filter Include="Tests">
       <UniqueIdentifier>{9869c52e-4f88-4601-808c-2b1bbe9f25f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Linux">
+      <UniqueIdentifier>{cebc8ac4-0699-491b-a126-7a41e651ac2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KmsLib_Test.cpp">
@@ -68,6 +71,9 @@
     </ClCompile>
     <ClCompile Include="Ring.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Linux\Windows.cpp">
+      <Filter>Source Files\Linux</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

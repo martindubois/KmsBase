@@ -4,13 +4,13 @@
 /// \author	KMS -	Martin Dubois, ing.
 /// \file	Includes/KmsLib/Dump.h
 
+#pragma once
+
 // Includes
 /////////////////////////////////////////////////////////////////////////////
 
 // ==== C ===================================================================
 #include <stdio.h>
-
-#pragma once
 
 namespace KmsLib
 {

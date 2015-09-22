@@ -3,8 +3,7 @@
 // Produit	:	KmsBase
 // Fichier	:	Includes/Linux/Windows.h
 
-#ifndef _INCLUDES_LINUX_WINDOWS_H_
-#define	_INCLUDES_LINUX_WINDOWS_H_
+#pragma once
 
 // Constants / Constantes
 /////////////////////////////////////////////////////////////////////////////
@@ -132,6 +131,4 @@ extern BOOL		FindNextFile	( HANDLE		aHandle		, WIN32_FIND_DATA * aFindFileData )
 /// \brief	Voir la documentation Microsoft
 /// \endcond
 extern BOOL		MoveFile		( const char * aExistingFileName, const char * aNewFileName );
-
-#endif // _INCLUDES_LINUX_WINDOWS_H_
 

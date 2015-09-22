@@ -51,12 +51,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{EA71243B-5549-4F76-9D8B-547E36BE8BB4}"
 	ProjectSection(SolutionItems) = preProject
 		_DocDev\Procedures\Build.txt = _DocDev\Procedures\Build.txt
+		_DocDev\Procedures\PrepDevComputer_Linux.txt = _DocDev\Procedures\PrepDevComputer_Linux.txt
 		_DocDev\Procedures\PrepDevComputer_Windows.txt = _DocDev\Procedures\PrepDevComputer_Windows.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{F88CC9DD-1927-455C-96C7-834931B958F9}"
 	ProjectSection(SolutionItems) = preProject
 		Scripts\Install.cmd = Scripts\Install.cmd
+		Scripts\Install.sh = Scripts\Install.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EDCA233C-71A7-4C3E-9F35-105EA6BCE7CF}"
@@ -69,6 +71,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ForEachConfig.cmd = ForEachConfig.cmd
 		RunDoxygen.cmd = RunDoxygen.cmd
 		Test.cmd = Test.cmd
+		Test.sh = Test.sh
 		Test_SetupA.cmd = Test_SetupA.cmd
 		Test_SetupB.cmd = Test_SetupB.cmd
 		Test_SetupC.cmd = Test_SetupC.cmd
@@ -132,6 +135,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenCL", "OpenCL", "{F49BE6
 		Includes\KmsLib\OpenCL\Context.h = Includes\KmsLib\OpenCL\Context.h
 		Includes\KmsLib\OpenCL\Kernel.h = Includes\KmsLib\OpenCL\Kernel.h
 		Includes\KmsLib\OpenCL\Program.h = Includes\KmsLib\OpenCL\Program.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Linux", "Linux", "{3A99A792-0D5E-41AD-9EBA-3AFFC3CE6956}"
+	ProjectSection(SolutionItems) = preProject
+		Includes\KmsLib\Linux\Windows.h = Includes\KmsLib\Linux\Windows.h
 	EndProjectSection
 EndProject
 Global
@@ -825,6 +833,7 @@ Global
 		{7D3197D4-C12C-4F8A-9F6C-9AE50A8BEE6C} = {980DE536-B130-41B8-A65B-F1DEDC466C43}
 		{EB8648E4-E353-45CF-982E-02296B919104} = {EE152025-CE8B-4099-89C4-C60CC1B7797C}
 		{F49BE6B7-3A5C-4BB6-9ACA-537A91C8740C} = {EE152025-CE8B-4099-89C4-C60CC1B7797C}
+		{3A99A792-0D5E-41AD-9EBA-3AFFC3CE6956} = {EE152025-CE8B-4099-89C4-C60CC1B7797C}
 		{EA71243B-5549-4F76-9D8B-547E36BE8BB4} = {00EEE413-B9A0-44E8-9AE8-8FD3EAC01E7D}
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F} = {17C49143-B3BF-492F-AA07-D08EBEE3756D}
 		{41514692-FD16-4D5E-9E69-522D6D404276} = {17C49143-B3BF-492F-AA07-D08EBEE3756D}

@@ -4,8 +4,7 @@
 /// \author	KMS -	Martin Dubois, ing.
 /// \file	Includes/WindowsToLinux.h
 
-#ifndef _INCLUDES__WINDOWS_TO_LINUX_H_
-#define _INCLUDES__WINDOWS_TO_LINUX_H_
+#pragma once
 
 // Includes
 //////////////////////////////////////////////////////////////////////////////
@@ -127,6 +126,4 @@ typedef int	errno_t;
 /// \brief	Voir la documentation Microsoft
 /// \endcond
 #define strncpy_s			strncpy
-
-#endif // _INCLUDES__WINDOWS_TO_LINUX_H_
 

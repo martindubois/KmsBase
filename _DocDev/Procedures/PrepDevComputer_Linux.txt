@@ -8,17 +8,14 @@ TODO : Traduire
 
 /Francais/
 
-[ ]	Installer "ubunto 14.04.2";
-[ ]	Ouvrir un terminal et executer les commandes suivante en tant que
-	"root"
-	- "apt-get install dpkg-dev";	TODO : Verifier si c'est necessaire
-	- "apt-get install mesa-common-dev".
-[ ]	Installer "AMD APP SDK 3.0";
-[ ]	Ouvrir un terminal, naviguer vers un repertoire ou installer les
-	sources de Linux et executer les commandes suivante en tant
-	qu'utilisateur
-	- "apt-get source linux";	TODO : Verifier si c'est necessaire
-	- "cd linux-3.13.0";
-	- "make oldconfig";
-	- "make prepare";
-	- "make scripts".
+[ ] Installer "ubunto 14.04.2";
+[ ] Ouvrir un terminal et executer les commandes suivantes en tant que "root"
+    - "apt-get install git";
+    - "apt-get install xutils-dev";
+    - "apt-get install g++".
+[ ] Installer "AMD APP SDK 3.0"
+    - Copier le script d'installation sur le bureau a partir de
+      "K:/Logiciels/AMD-APP-SDK";
+    - Executer le script d'installation en tant que "root";
+[ ] Dans un terminal, executer les commandes suivantes en tant que "root"
+    - "apt-get install mesa-common-dev".

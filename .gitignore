@@ -3,6 +3,9 @@
 # Projet	:	KmsBase
 # Fichier	:	.gitignore
 
+Linux_Windows_Test0.dat
+
+*~
 *.opensdf
 *.sdf
 *.v12.suo

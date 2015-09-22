@@ -13,6 +13,7 @@ SOURCES =	CmdLineParser.cpp		\
 			DebugLog.cpp			\
 			Dump.cpp				\
 			Exception.cpp			\
+			Linux/Windows.cpp		\
 			MemTester.cpp			\
 			OpenCL/Buffer.cpp		\
 			OpenCL/CommandQueue.cpp	\

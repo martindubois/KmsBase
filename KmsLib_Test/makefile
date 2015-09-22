@@ -16,22 +16,23 @@ SOURCES =	CmdLineParser.cpp	\
 			Dump.cpp			\
 			Exception.cpp		\
 			KmsLib_Test.cpp		\
+			Linux/Windows.cpp	\
 			MemTester.cpp		\
 			OpenCL.cpp			\
 			Ring.cpp		\
 			RLE.cpp				\
 			ToolBase.cpp
 
-# ===== Rules / Regles =======================================================
+# ===== Rules / Regles ======================================================
 
 .cpp.o:
-	g++ -c $(CFLAGS) $(INCLUDES) $<
+	g++ -c $(CFLAGS) -o $@ $(INCLUDES) $<
 
-# ===== Macros ===============================================================
+# ===== Macros ==============================================================
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
-# ===== Targets / Cibles =====================================================
+# ===== Targets / Cibles ====================================================
 
 $(OUTPUT) : $(OBJECTS) $(LIBRARIES)
 	g++ -o $@ $^

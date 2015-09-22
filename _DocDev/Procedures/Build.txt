@@ -7,14 +7,31 @@ File / Fichier		:	_DocDev/Procedures/Build.txt
 
 ===== Internal Version ======================================================
 
+Windows Only
 [ ] Open a command windows
 	- Navigate to the product folder;
 	- Execute "RunDoxygen.cmd";
 	- Verify that the script do not generate error message.
+
+[ ] Edit "Common/Version.h"
+	- Increment the build number;
+	- Verify the "VERSION_INTERNAL" is "true"
+
+Linux Only
+[ ] Open a terminal
+	- Navigate to the product folder
+    - Execute "make clean"
+    - Execute "make"
+	- Execute "./Test.sh"
+    - Execute "./Export.sh Ma.Mi.Bu_Type" where
+		Ma = Major version;
+		Mi = Minor Version;
+		Bu = Build number;
+		Type = Internal | RC | Test
+[ ] Move exported file to the server
+
+Windows Only
 [ ]	Open the solution using "Visual Studio 2013"
-	- Edit "Common/Version.h"
-		- Increment the build number;
-		- Verify the "VERSION_INTERNAL" is "true"
 	- Edit "Script/Install.cmd" and change the version number if needed;
 	- Edit "Templates/Driver_KMDF/Driver_KMDF.inf" and increment the build
 	  number;
@@ -28,11 +45,9 @@ File / Fichier		:	_DocDev/Procedures/Build.txt
 		Mi = Minor Version;
 		Bu = Build number;
 		Type = Internal | RC | Test
-[ ]	Open "GIT GUI" on the product folder
-	- Index modified file;
-	- Commit indexed file using "Ma.Mi.Bu" as message;
-[ ] Open "GIT BASH" in the product folder
-	- Execute "git tag Ma.Mi.Bu".
+
+[ ]	Index modified files and commit them using "Ma.Mi.Bu" as message;
+[ ] Add the tag "Ma.Mi.Bu".
 [ ] Push the GIT repository on the server.
 
 ===== External Version ======================================================

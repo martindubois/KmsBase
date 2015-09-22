@@ -26,6 +26,7 @@ fi
 mkdir $DST
 mkdir $DST/Includes
 mkdir $DST/Includes/KmsLib
+mkdir $DST/Includes/KmsLib/Linux
 mkdir $DST/Includes/KmsLib/OpenCL
 mkdir $DST/Libraries
 mkdir $DST/Templates
@@ -39,6 +40,7 @@ mkdir $DST/Templates/Tool/_DocUser
 cp *.txt						 $DST
 cp Includes/*.h                  $DST/Includes
 cp Includes/KmsLib/*.h           $DST/Includes/KmsLib
+cp Includes/KmsLib/Linux/*.h	 $DST/Includes/KmsLib/Linux
 cp Includes/KmsLib/OpenCL/*.h    $DST/Includes/KmsLib/OpenCL
 cp Libraries/KmsLib.a            $DST/Libraries
 cp Scripts/Install.sh			 $DST

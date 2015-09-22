@@ -130,7 +130,7 @@ namespace KmsLib
 				// No break;
 
 			default :
-				strcpy_s(aOut, aOutSize_byte, lValue);
+				strcpy_s(aOut SIZE_INFO( aOutSize_byte ), lValue);
 				return;
 			}
 		}
@@ -172,11 +172,11 @@ namespace KmsLib
 					break;
 				}
 
-				strcpy_s(aOut, aOutSize_byte, lValue);
+				strcpy_s(aOut SIZE_INFO( aOutSize_byte ), lValue);
 				return;
 
 			default:
-				strcpy_s(aOut, aOutSize_byte, aDefault);
+				strcpy_s(aOut SIZE_INFO( aOutSize_byte ), aDefault);
 				return;
 			}
 		}

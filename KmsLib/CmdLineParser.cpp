@@ -64,11 +64,11 @@ namespace KmsLib
 					NULL, __FILE__, __FUNCTION__, __LINE__, aArgOpt);
 			}
 
-			strncpy_s(aOut, aOutSize_byte, aDefault, aOutSize_byte);
+			strncpy_s(aOut SIZE_INFO( aOutSize_byte ), aDefault, aOutSize_byte);
 		}
 		else
 		{
-			strncpy_s(aOut, aOutSize_byte, lIt->second.c_str(), aOutSize_byte);
+			strncpy_s(aOut SIZE_INFO( aOutSize_byte ), lIt->second.c_str(), aOutSize_byte);
 		}
 	}
 

@@ -1,27 +1,13 @@
 
-// Product / Produit	:	KmsBase
+// Auteur	:	KMS	-	Martin Dubois, ing.
+// Produit	:	KmsBase
+// Fichier	:	Includes/Linux/Windows.h
 
-/// \author	KMS -	Martin Dubois, ing.
-/// \file	Includes/WindowsToLinux.h
+#ifndef _INCLUDES_LINUX_WINDOWS_H_
+#define	_INCLUDES_LINUX_WINDOWS_H_
 
-#ifndef _INCLUDES__WINDOWS_TO_LINUX_H_
-#define _INCLUDES__WINDOWS_TO_LINUX_H_
-
-// Includes
-//////////////////////////////////////////////////////////////////////////////
-
-#include <KmsBase.h>
-
-// ===== C ===================================================================
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-
-// ===== sys =================================================================
-#include <sys/types.h>
-
-// Data types / Types de donnees
-//////////////////////////////////////////////////////////////////////////////
+// Constants / Constantes
+/////////////////////////////////////////////////////////////////////////////
 
 /// \cond	en
 /// \brief	See the Microsoft documentation
@@ -29,14 +15,7 @@
 /// \cond	fr
 /// \brief	Voir la documentation Microsoft
 /// \endcond
-typedef int	errno_t;
-
-// Macros
-//////////////////////////////////////////////////////////////////////////////
-
-#define __FUNCTION__	""
-
-// ===== _... ================================================================
+#define FALSE						(0)
 
 /// \cond	en
 /// \brief	See the Microsoft documentation
@@ -44,7 +23,7 @@ typedef int	errno_t;
 /// \cond	fr
 /// \brief	Voir la documentation Microsoft
 /// \endcond
-#define _access		access
+#define FILE_ATTRIBUTE_DIRECTORY	(0x00000001)
 
 /// \cond	en
 /// \brief	See the Microsoft documentation
@@ -52,7 +31,7 @@ typedef int	errno_t;
 /// \cond	fr
 /// \brief	Voir la documentation Microsoft
 /// \endcond
-#define _getpid()	getpid()
+#define INVALID_HANDLE_VALUE		reinterpret_cast< void * >(0xffffffff)
 
 /// \cond	en
 /// \brief	See the Microsoft documentation
@@ -60,7 +39,10 @@ typedef int	errno_t;
 /// \cond	fr
 /// \brief	Voir la documentation Microsoft
 /// \endcond
-#define _mkdir	mkdir
+#define TRUE						(1)
+
+// Data type / Types de donnees
+/////////////////////////////////////////////////////////////////////////////
 
 /// \cond	en
 /// \brief	See the Microsoft documentation
@@ -68,7 +50,7 @@ typedef int	errno_t;
 /// \cond	fr
 /// \brief	Voir la documentation Microsoft
 /// \endcond
-#define _stricmp	strcasecmp
+typedef bool			BOOL		;
 
 /// \cond	en
 /// \brief	See the Microsoft documentation
@@ -76,9 +58,7 @@ typedef int	errno_t;
 /// \cond	fr
 /// \brief	Voir la documentation Microsoft
 /// \endcond
-#define _strnicmp	strncasecmp
-
-// ===== ..._s ===============================================================
+typedef unsigned long	DWORD		;
 
 /// \cond	en
 /// \brief	See the Microsoft documentation
@@ -86,7 +66,7 @@ typedef int	errno_t;
 /// \cond	fr
 /// \brief	Voir la documentation Microsoft
 /// \endcond
-#define fopen_s(O,F,M)		((NULL==((*(O))=fopen(F,M)))?1:0)
+typedef time_t			FILETIME	;
 
 /// \cond	en
 /// \brief	See the Microsoft documentation
@@ -94,15 +74,7 @@ typedef int	errno_t;
 /// \cond	fr
 /// \brief	Voir la documentation Microsoft
 /// \endcond
-#define localtime_s(O,I)	(NULL==localtime_r((I),(O))?2:0)
-			
-/// \cond	en
-/// \brief	See the Microsoft documentation
-/// \endcond
-/// \cond	fr
-/// \brief	Voir la documentation Microsoft
-/// \endcond
-#define sprintf_s			sprintf
+typedef void		  * HANDLE		;
 
 /// \cond	en
 /// \brief	See the Microsoft documentation
@@ -110,7 +82,16 @@ typedef int	errno_t;
 /// \cond	fr
 /// \brief	Voir la documentation Microsoft
 /// \endcond
-#define sscanf_s			sscanf
+typedef struct
+{
+	char		cFileName[ 256 ]	;
+	DWORD		dwFileAttributes	;
+	FILETIME	ftLastWriteTime		;
+}
+WIN32_FIND_DATA;
+
+// Function declarations / Declarations des fonctions
+/////////////////////////////////////////////////////////////////////////////
 
 /// \cond	en
 /// \brief	See the Microsoft documentation
@@ -118,7 +99,7 @@ typedef int	errno_t;
 /// \cond	fr
 /// \brief	Voir la documentation Microsoft
 /// \endcond
-#define strcpy_s			strcpy
+extern BOOL		CopyFile		( const char * aExistingFileName, const char * aNewFileName, BOOL aFailIfExists );
 
 /// \cond	en
 /// \brief	See the Microsoft documentation
@@ -126,7 +107,31 @@ typedef int	errno_t;
 /// \cond	fr
 /// \brief	Voir la documentation Microsoft
 /// \endcond
-#define strncpy_s			strncpy
+extern BOOL		FindClose		( HANDLE		aHandle );
 
-#endif // _INCLUDES__WINDOWS_TO_LINUX_H_
+/// \cond	en
+/// \brief	See the Microsoft documentation
+/// \endcond
+/// \cond	fr
+/// \brief	Voir la documentation Microsoft
+/// \endcond
+extern HANDLE	FindFirstFile	( const char  * aFileName	, WIN32_FIND_DATA * aFindFileData );
+
+/// \cond	en
+/// \brief	See the Microsoft documentation
+/// \endcond
+/// \cond	fr
+/// \brief	Voir la documentation Microsoft
+/// \endcond
+extern BOOL		FindNextFile	( HANDLE		aHandle		, WIN32_FIND_DATA * aFindFileData );
+
+/// \cond	en
+/// \brief	See the Microsoft documentation
+/// \endcond
+/// \cond	fr
+/// \brief	Voir la documentation Microsoft
+/// \endcond
+extern BOOL		MoveFile		( const char * aExistingFileName, const char * aNewFileName );
+
+#endif // _INCLUDES_LINUX_WINDOWS_H_
 

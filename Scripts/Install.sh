@@ -3,12 +3,15 @@
 # Author / Auteur	:	KMS -	Martin Dubois, ing.
 # Product / Produit	:	KmsBase
 # File / Fichier	:	Install.sh
+# Usage				:	./Install.sh
+#  The script must be run from the directory where it is / Le fichier de
+#  commandes doit être execute a partir du repertoire ou il se trouve.
 
 echo  Execution de Install.sh ...
 
 # ===== Verification ========================================================
 
-DST=/Software/KmsBase_2.3
+DST=/Software/KmsBase_2.4
 
 # ===== Execution ===========================================================
 

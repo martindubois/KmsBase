@@ -1,14 +1,17 @@
 @echo off
 
-rem  Auteur		:	KMS -	Martin Dubois, ing.
-rem	 Projet		:	KmsBase
-rem  Fichier	:   Scripts/Install.cmd
+rem  Author / Auteur	:	KMS -	Martin Dubois, ing.
+rem	 Product / Produit	:	KmsBase
+rem  File / Fichier		:   Scripts/Install.cmd
+rem  Usage				:	Install.cmd
+rem  The script must be run from the directory where it is / Le fichier de
+rem  commandes doit être execute a partir du repertoire ou il se trouve.
 
 echo  Execution de Install.cmd ...
 
 rem  ===== Verification =====================================================
 
-set DST="C:\Software\KmsBase_2.3"
+set DST="C:\Software\KmsBase_2.4"
 
 rem  ===== Execution ========================================================
 
@@ -20,11 +23,11 @@ xcopy /IKQSY Libraries			%DST%\Libraries
 xcopy /IKQSY Templates			%DST%\Templates
 
 if ERRORLEVEL 1 (
-    echo  ERREUR : xcopy a indique une erreur!
+    echo  ERROR : xcopy reported an error
 	pause
 	exit /B 1
 )
 
 rem  ===== Fin ==============================================================
 
-echo  OK!
+echo  OK

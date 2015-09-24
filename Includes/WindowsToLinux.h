@@ -59,7 +59,7 @@ typedef int	errno_t;
 /// \cond	fr
 /// \brief	Voir la documentation Microsoft
 /// \endcond
-#define _mkdir	mkdir
+#define _mkdir(N)	mkdir(N, 0700)
 
 /// \cond	en
 /// \brief	See the Microsoft documentation

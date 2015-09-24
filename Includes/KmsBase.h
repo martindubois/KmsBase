@@ -9,10 +9,15 @@
 // Compilation
 //////////////////////////////////////////////////////////////////////////////
 
+
 #ifdef _WIN32
 	#define _KMS_WINDOWS_
 #else
-	#define _KMS_LINUX_
+    #ifdef __APPLE__
+        #define _KMS_OS_X_
+    #else
+        #define _KMS_LINUX_
+    #endif
 #endif // _WIN32
 
 // Includes
@@ -25,6 +30,6 @@
 
 #include <SafeAPI.h>
 
-#ifdef _KMS_LINUX_	
+#if defined( _KMS_LINUX_ ) || defined( _KMS_OS_X_ )
 	#include <WindowsToLinux.h>
-#endif // _KMS_LINUX_
+#endif // _KMS_LINUX_ || _KMS_OS_X_

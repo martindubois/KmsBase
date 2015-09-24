@@ -23,10 +23,23 @@ Windows Only
 
 Linux Only
 [ ] Open a terminal
-	- Navigate to the product folder
+    - Navigate to the product folder
     - Execute "make clean"
     - Execute "make"
-	- Execute "./Test.sh"
+    - Execute "./Test.sh"
+    - Execute "./Export.sh Ma.Mi.Bu_Type" where
+		Ma = Major version;
+		Mi = Minor Version;
+		Bu = Build number;
+		Type = Internal
+[ ] Move exported file to the server
+
+OS X Only
+[ ] Open a terminal
+    - Navigate to the product folder
+    - Execute "make -f makefile_os_x clean"
+    - Execute "make -f makefile_os_x“
+    - Execute "./Test.sh"
     - Execute "./Export.sh Ma.Mi.Bu_Type" where
 		Ma = Major version;
 		Mi = Minor Version;
@@ -47,12 +60,13 @@ Windows Only
 		Bu = Build number;
 		Type = Internal | RC | Test
 
-[ ]	Index modified files and commit them using "Ma.Mi.Bu" as message;
+[ ] Index modified files and commit them using "Ma.Mi.Bu" as message;
 [ ] Add the tag "Ma.Mi.Bu".
 [ ] Push the GIT repository on the server.
 
 ===== External Version ======================================================
 
+TODO : Traduire
 
 
 /Francais/
@@ -76,15 +90,28 @@ Windows Seulement
 	incrementer le numero de compilation;
 
 Linux Seulement
-[ ]	Ouvrir un "Terminal"
-	- Naviguer jusqu'au repertoire de produit;
-	- Executer "make clean";
-	- Executer "make";
-	- Executer "./Test.sh";
-	- Executer "./Export.sh Ma.Mi.Bu_Type" ou
+[ ] Ouvrir un "Terminal"
+    - Naviguer jusqu'au repertoire de produit;
+    - Executer "make clean";
+    - Executer "make";
+    - Executer "./Test.sh";
+    - Executer "./Export.sh Ma.Mi.Bu_Type" ou
 		Ma = Numero majeur de version;
 		Mi = Numero mineur de version;
 		Bu = Numero de compilation;
+		Type = Internal
+[ ] Deplacer les fichiers exportes vers le serveur;
+
+OS X Only
+[ ] Ouvrir un "Terminal"
+    - Naviguer jusqu'au repertoire de produit
+    - Executer "make -f makefile_os_x clean"
+    - Executer "make -f makefile_os_x“
+    - Executer "./Test.sh"
+    - Executer "./Export.sh Ma.Mi.Bu_Type" ou
+		Ma = Major version;
+		Mi = Minor Version;
+		Bu = Build number;
 		Type = Internal
 [ ] Deplacer les fichiers exportes vers le serveur;
 
@@ -134,6 +161,19 @@ Linux Seulement
 		Mi = Numero mineur de version;
 		Bu = Numero de compilation;
 		Type =  | RC | Test
+[ ] Deplacer les fichiers exportes vers le serveur;
+
+OS X Only
+[ ] Ouvrir un “Termina”
+    - Naviguer jusqu’au repertoire du produit
+    - Executer "make -f makefile_os_x clean"
+    - Executer "make -f makefile_os_x“
+    - Executer "./Test.sh"
+    - Executer "./Export.sh Ma.Mi.Bu_Type" ou
+		Ma = Major version;
+		Mi = Minor Version;
+		Bu = Build number;
+		Type = Internal
 [ ] Deplacer les fichiers exportes vers le serveur;
 
 Windows Seulement

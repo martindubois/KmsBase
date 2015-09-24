@@ -14,9 +14,9 @@
 #endif // _KMS_WINDOWS_
 
 // ===== Interface ==========================================================
-#ifdef _KMS_LINUX_
+#if defined( _KMS_LINUX_ ) || defined( _KMS_OS_X_ )
 	#include <KmsLib/Linux/Windows.h>
-#endif // _KMS_LINUX_
+#endif // _KMS_LINUX_ || _KMS_OS_X_ 
 
 #include <KmsTest.h>
 

@@ -23,9 +23,9 @@
 ///			a une fonction du Windows Sage API.
 /// \endcond
 
-#ifdef _KMS_LINUX_
+#if defined( _KMS_LINUX_ ) || defined( _KMS_OS_X_ )
 	#define SIZE_INFO(S)
-#endif // _KMS_LINUX_
+#endif // _KMS_LINUX_ || _LMS_OS_X_
 
 #ifdef _KMS_WINDOWS_
 	#define SIZE_INFO(S)	, (S)

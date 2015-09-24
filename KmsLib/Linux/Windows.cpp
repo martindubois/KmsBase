@@ -71,6 +71,8 @@ bool FindClose ( HANDLE aHandle )
 	(void)( lRetI );
 
 	delete lContext;
+    
+    return true;
 }
 
 HANDLE FindFirstFile( const char * aFileName, WIN32_FIND_DATA * aFindFileData )
@@ -81,7 +83,7 @@ HANDLE FindFirstFile( const char * aFileName, WIN32_FIND_DATA * aFindFileData )
 	FindFileContext	* lResult = new FindFileContext;
 	assert( NULL != lResult );
 
-	memset( lResult, 0, sizeof( lResult ) );
+	memset( lResult, 0, sizeof( FindFileContext ) );
 
 	strncpy( lResult->mBuffer, aFileName, sizeof( lResult->mBuffer ) - 1 );
 

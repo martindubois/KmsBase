@@ -6,7 +6,7 @@ rem  File / Fichier			:	Export.cmd
 
 echo  Execution de Export.cmd %1 ...
 
-rem  ===== Verification de l'argument =======================================
+rem  ===== Verification =====================================================
 
 if ""=="%1" (
     echo  ERREUR FATALE : Ligne de commande invalide!
@@ -14,8 +14,6 @@ if ""=="%1" (
     pause
     exit /B 1
 )
-
-rem  ====== Verification de l'environnement =================================
 
 set DST="K:\Export\KmsBase\%1"
 if exist %DST% (
@@ -54,6 +52,8 @@ mkdir "%DST%\Templates\Test\_DocUser"
 mkdir "%DST%\Templates\Tool"
 mkdir "%DST%\Templates\Tool\_DocUser"
 
+set XCOPY_OPT=/IKQS
+
 xcopy /IKQS DoxyFile_en.txt							"%DST%"
 xcopy /IKQS DoxyFile_fr.txt							"%DST%"
 xcopy /IKQS RunDoxygen.cmd							"%DST%"
@@ -72,11 +72,11 @@ xcopy /IKQS Templates\Driver_KMDF\*.cpp				"%DST%\Templates\Driver_KMDF"
 xcopy /IKQS Templates\Driver_KMDF\*.h				"%DST%\Templates\Driver_KMDF"
 xcopy /IKQS Templates\Driver_KMDF\*.inf				"%DST%\Templates\Driver_KMDF"
 xcopy /IKQS Templates\Driver_KMDF\_DocUser\*.txt	"%DST%\Templates\Driver_KMDF\_DocUser"
-xcopy /IKQS Templates\Service\.gitignore			"%DST%\Templates\Service\.gitignore"
+xcopy /IKQS Templates\Service\.gitignore			"%DST%\Templates\Service"
 xcopy /IKQS Templates\Service\*.cpp					"%DST%\Templates\Service"
 xcopy /IKQS Templates\Service\*.mc					"%DST%\Templates\Service"
 xcopy /IKQS Templates\Service\_DocUser\*.txt		"%DST%\Templates\Service\_DocUser"
-xcopy /IKQS Templates\Solution\.gitignore			"%DST%\Templates\Solution\.gitignore"
+xcopy /IKQS Templates\Solution\.gitignore			"%DST%\Templates\Solution"
 xcopy /IKQS Templates\Solution\*.cmd				"%DST%\Templates\Solution"
 xcopy /IKQS Templates\Solution\*.sh					"%DST%\Templates\Solution"
 xcopy /IKQS Templates\Solution\_DocUser\*.txt		"%DST%\Templates\Solution\_DocUser"

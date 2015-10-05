@@ -95,11 +95,11 @@ namespace KmsLib
 		Validate();
 	}
 
-	void NetworkAddress::Set(unsigned int aAddr, unsigned short aPort)
+	void NetworkAddress::Set(unsigned int aAddr, unsigned short aPortNumber)
 	{
-		assert(aPort != 0);
+		assert(aPortNumber != 0);
 
-		SetPort(aPort);
+		SetPortNumber(aPortNumber);
 
 		Set(aAddr);
 	}
@@ -116,12 +116,12 @@ namespace KmsLib
 		Validate();
 	}
 
-	void NetworkAddress::Set(const unsigned char * aAddr, unsigned short aPort)
+	void NetworkAddress::Set(const unsigned char * aAddr, unsigned short aPortNumber)
 	{
-		assert(NULL	!= aAddr);
-		assert(0	!= aPort);
+		assert(NULL	!= aAddr		);
+		assert(0	!= aPortNumber	);
 
-		SetPort(aPort);
+		SetPortNumber(aPortNumber);
 
 		Set(aAddr);
 	}
@@ -136,11 +136,11 @@ namespace KmsLib
 		Validate();
 	}
 
-	void NetworkAddress::Set(unsigned char aA, unsigned char aB, unsigned char aC, unsigned char aD, unsigned short aPort)
+	void NetworkAddress::Set(unsigned char aA, unsigned char aB, unsigned char aC, unsigned char aD, unsigned short aPortNumber)
 	{
-		assert(0 != aPort);
+		assert(0 != aPortNumber);
 
-		SetPort(aPort);
+		SetPortNumber(aPortNumber);
 
 		Set(aA, aB, aC, aD);
 	}
@@ -150,24 +150,24 @@ namespace KmsLib
 		assert(NULL != aAddr);
 
 		unsigned int	lAddr		;
-		unsigned int	lPort		;
+		unsigned int	lPortNumber	;
 		int				lRetI		;
 
 		char lMsg	[1024];
 		char lName	[1024];
 
-		lRetI = sscanf_s(aAddr, "%[^: /\\\n\r\t]:%u", lName SIZE_INFO(sizeof(lName) / sizeof(lName[0])), &lPort);
+		lRetI = sscanf_s(aAddr, "%[^: /\\\n\r\t]:%u", lName SIZE_INFO(sizeof(lName) / sizeof(lName[0])), &lPortNumber);
 		switch (lRetI)
 		{
 		case 2 :
-			if (0xffff < lPort)
+			if (0xffff < lPortNumber)
 			{
 				sprintf_s(lMsg, "%u is not a valid port number", lName, lRetI);
 
-				throw new Exception(Exception::CODE_INVALID_ARGUMENT, "Invalid port number", lMsg, __FILE__, __FUNCTION__, __LINE__, lPort);
+				throw new Exception(Exception::CODE_INVALID_ARGUMENT, "Invalid port number", lMsg, __FILE__, __FUNCTION__, __LINE__, lPortNumber);
 			}
 
-			SetPort(lPort);
+			SetPortNumber(lPortNumber);
 
 			// No break;
 
@@ -203,14 +203,14 @@ namespace KmsLib
 		}
 	}
 
-	void NetworkAddress::SetPort(unsigned short aPort)
+	void NetworkAddress::SetPortNumber(unsigned short aPortNumber)
 	{
-		if (0 == aPort)
+		if (0 == aPortNumber)
 		{
-			throw new Exception(Exception::CODE_INVALID_ARGUMENT, "Invalid port", NULL, __FILE__, __FUNCTION__, __LINE__, aPort);
+			throw new Exception(Exception::CODE_INVALID_ARGUMENT, "Invalid port", NULL, __FILE__, __FUNCTION__, __LINE__, aPortNumber);
 		}
 
-		mAddr.sin_port = htons(aPort);
+		mAddr.sin_port = htons(aPortNumber);
 	}
 
 	void NetworkAddress::ResetPort()

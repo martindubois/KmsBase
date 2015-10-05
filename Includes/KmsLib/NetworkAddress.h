@@ -8,9 +8,6 @@
 // Includes
 /////////////////////////////////////////////////////////////////////////////
 
-// ===== Windows ============================================================
-#include <WinSock2.h>
-
 namespace KmsLib
 {
 
@@ -167,18 +164,18 @@ namespace KmsLib
 
 		/// \cond	en
 		/// \brief	Address accessor
-		/// \param	aAddr	32 bits address with byte in network order
-		/// \param	aPort	16 bits port number with byte in host order
+		/// \param	aAddr		32 bits address with byte in network order
+		/// \param	aPortNumber	16 bits port number with byte in host order
 		/// \endcond
 		/// \cond	fr
 		/// \brief	Accesseur pour l'adresse
-		/// \param	aAddr	Adresse de 32 bits avec les octets en ordre
-		///					reseau
-		/// \param	aPort	Numero de port de 16 bits avec les octets en
-		///					ordre hote
+		/// \param	aAddr		Adresse de 32 bits avec les octets en ordre
+		///						reseau
+		/// \param	aPortNumber	Numero de port de 16 bits avec les octets en
+		///						ordre hote
 		/// \endcond
 		/// \exception	Exception	CODE_INVALID_ARGUMENT
-		void	Set(unsigned int aAddr, unsigned short aPort);
+		void	Set(unsigned int aAddr, unsigned short aPortNumber);
 
 		/// \cond	en
 		/// \brief	Address accessor
@@ -195,19 +192,19 @@ namespace KmsLib
 
 		/// \cond	en
 		/// \brief	Address accessor
-		/// \param	aAddr	Array containing the 32 bits address with byte in
-		///					network order.
-		/// \param	aPort	16 bits port number with byte in host order
+		/// \param	aAddr		Array containing the 32 bits address with
+		///						byte in	network order.
+		/// \param	aPortNumber	16 bits port number with byte in host order
 		/// \endcond
 		/// \cond	fr
 		/// \brief	Accesseur pour l'adresse
-		/// \param	aAddr	Vecteur contenant l'adresse de 32 bits avec les
-		///					octets dans l'ordre reseau
-		/// \param	aPort	Numero de port de 16 bits avec les octets en
-		///					ordre hote
+		/// \param	aAddr		Vecteur contenant l'adresse de 32 bits avec
+		///						les	octets dans l'ordre reseau
+		/// \param	aPortNumber	Numero de port de 16 bits avec les octets en
+		///						ordre hote
 		/// \endcond
 		/// \exception	Exception	CODE_INVALID_ARGUMENT
-		void	Set(const unsigned char * aAddr, unsigned short aPort);
+		void	Set(const unsigned char * aAddr, unsigned short aPortNumber);
 
 		/// \cond	en
 		/// \brief	Address accessor
@@ -228,23 +225,23 @@ namespace KmsLib
 
 		/// \cond	en
 		/// \brief	Address accessor
-		/// \param	aA		Byte 1
-		/// \param	aB		Byte 2
-		/// \param	aC		Byte 3
-		/// \param	aD		Byte 4
-		/// \param	aPort	16 bits port number with byte in host order
+		/// \param	aA			Byte 1
+		/// \param	aB			Byte 2
+		/// \param	aC			Byte 3
+		/// \param	aD			Byte 4
+		/// \param	aPortNumber	16 bits port number with byte in host order
 		/// \endcond
 		/// \cond	fr
 		/// \brief	Accesseur pour l'adresse
-		/// \param	aA		Octet 1
-		/// \param	aB		Octet 2
-		/// \param	aC		Octet 3
-		/// \param	aD		Octet 4
-		/// \param	aPort	Numero de port de 16 bits avec les octets en
-		///					ordre hote
+		/// \param	aA			Octet 1
+		/// \param	aB			Octet 2
+		/// \param	aC			Octet 3
+		/// \param	aD			Octet 4
+		/// \param	aPortNumber	Numero de port de 16 bits avec les octets en
+		///						ordre hote
 		/// \endcond
 		/// \exception	Exception	CODE_INVALID_ARGUMENT
-		void	Set(unsigned char aA, unsigned char aB, unsigned char aC, unsigned char aD, unsigned short aPort);
+		void	Set(unsigned char aA, unsigned char aB, unsigned char aC, unsigned char aD, unsigned short aPortNumber);
 
 		/// \cond	en
 		/// \brief	Address accessor
@@ -259,15 +256,15 @@ namespace KmsLib
 
 		/// \cond	en
 		/// \brief	Port accessor
-		/// \param	aPort	16 bits port number with bytes in host order.
+		/// \param	aPortNumber	16 bits port number with bytes in host order.
 		/// \endcond
 		/// \cond	fr
 		/// \brief	Accesseur pour le port
-		/// \param	aPort	Le numero de port de 16 bit avec les octets dans
-		///					l'ordre hote.
+		/// \param	aPortNumber	Le numero de port de 16 bit avec les octets
+		///						dans l'ordre hote.
 		/// \endcond
 		/// \exception	Exception	CODE_INVALID_ARGUMENT
-		void	SetPort(unsigned short	aPort);
+		void	SetPortNumber(unsigned short aPortNumber);
 
 		/// \cond	en
 		/// \brief	Port accessor

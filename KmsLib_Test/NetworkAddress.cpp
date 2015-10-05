@@ -8,6 +8,9 @@
 
 #include <KmsBase.h>
 
+// ===== Windows ============================================================
+#include <WinSock2.h>
+
 // ===== Interface ==========================================================
 #include <KmsLib/Exception.h>
 #include <KmsLib/NetworkAddress.h>
@@ -117,7 +120,7 @@ KMS_TEST_BEGIN(NetworkAddress_Base)
 
 	try
 	{
-		lNA0.SetPort(0);
+		lNA0.SetPortNumber(0);
 		KMS_TEST_ASSERT(false);
 	}
 	catch (KmsLib::Exception * eE)

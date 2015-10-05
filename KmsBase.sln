@@ -27,6 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KmsLib", "KmsLib", "{EE1520
 		Includes\KmsLib\Exception.h = Includes\KmsLib\Exception.h
 		Includes\KmsLib\KmsLib.h = Includes\KmsLib\KmsLib.h
 		Includes\KmsLib\MemTester.h = Includes\KmsLib\MemTester.h
+		Includes\KmsLib\NetworkAddress.h = Includes\KmsLib\NetworkAddress.h
 		Includes\KmsLib\RLE.h = Includes\KmsLib\RLE.h
 		Includes\KmsLib\ToolBase.h = Includes\KmsLib\ToolBase.h
 	EndProjectSection

@@ -22,9 +22,6 @@
     <Filter Include="Source Files\OpenCL">
       <UniqueIdentifier>{60034ece-384e-47c6-8841-f19ee6e94887}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Linux">
-      <UniqueIdentifier>{b4a2b1a1-4b73-4d7a-b3d2-76be9b0eafae}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Windows\RegistryKey.cpp">
@@ -87,8 +84,8 @@
     <ClCompile Include="OpenCL\Program.cpp">
       <Filter>Source Files\OpenCL</Filter>
     </ClCompile>
-    <ClCompile Include="Linux\Windows.cpp">
-      <Filter>Source Files\Linux</Filter>
+    <ClCompile Include="NetworkAddress.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

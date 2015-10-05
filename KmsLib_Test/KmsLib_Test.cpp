@@ -39,6 +39,7 @@ extern int DebugLog_Base	();
 extern int Dump_Base		();
 extern int Exception_Base	();
 extern int MemTester_Base	();
+extern int NetworkAddress_Base	();
 extern int OpenCL_Base			();
 extern int Ring_Base			();
 extern int RLE_Base			();
@@ -65,6 +66,7 @@ KMS_TEST_LIST_BEGIN
 	KMS_TEST_LIST_ENTRY(Dump_Base		, "Dump - Base"			, 0, 0	)
 	KMS_TEST_LIST_ENTRY(Exception_Base	, "Exception - Base"	, 0, 0	)
 	KMS_TEST_LIST_ENTRY(MemTester_Base	, "MemTester - Base"	, 0, 0	)
+	KMS_TEST_LIST_ENTRY(NetworkAddress_Base	, "NetworkAddress - Base"	, 0, 0)
 	KMS_TEST_LIST_ENTRY(OpenCL_Base			, "OpenCL - Base"			, 0, 0)
 	KMS_TEST_LIST_ENTRY(RLE_Base		, "RLE - Base"			, 0, 0	)
 	KMS_TEST_LIST_ENTRY(Ring_Base			, "Ring - Base"				, 0, 0)

@@ -71,7 +71,9 @@ static const char * CODE_NAMES[ KmsLib::Exception::CODE_QTY ] =
 
 // ===== Entry points / Points d'entres =====================================
 
-static void TranslateException(unsigned int aCode, struct _EXCEPTION_POINTERS * aStruct );
+#ifdef _KMS_WINDOWS_
+    static void TranslateException(unsigned int aCode, struct _EXCEPTION_POINTERS * aStruct );
+#endif // _KMS_WINDOWS_
 
 namespace KmsLib
 {
@@ -81,9 +83,9 @@ namespace KmsLib
 
 	void * Exception::RegisterTranslator()
 	{
-		#ifdef _KMS_LINUX_
+		#if defined( _KMS_LINUX_ ) || defined( _KMS_OS_X_ )
 		return NULL;
-		#endif // _KMS_LINUX_
+		#endif // _KMS_LINUX_ || _KMS_OS_X_
 
 		#ifdef _KMS_WINDOWS_
 		return _set_se_translator(TranslateException);
@@ -198,22 +200,26 @@ namespace KmsLib
 
 // ===== Entry points / Points d'entres =====================================
 
-void TranslateException(unsigned int aCode, struct _EXCEPTION_POINTERS * aStruct )
-{
-	assert(NULL != aStruct);
+#ifdef _KMS_WINDOWS_
 
-	KmsLib::Exception::Code	lCode	;
-	const char			  * lMsg	;
+    void TranslateException(unsigned int aCode, struct _EXCEPTION_POINTERS * aStruct )
+    {
+        assert(NULL != aStruct);
 
-	switch (aCode)
-	{
-	case 0xc0000005: lCode = KmsLib::Exception::CODE_ACCESS_VIOLATION		; lMsg = "Access violation"		; break;
-	case 0xc0000094: lCode = KmsLib::Exception::CODE_INTEGER_DIVIDE_BY_ZERO	; lMsg = "Integet divide by 0"	; break;
+        KmsLib::Exception::Code	lCode	;
+        const char			  * lMsg	;
 
-	default:
-		// NOT TESTED : Not easy to test / Pas facile a tester
-		lCode = KmsLib::Exception::CODE_STRUCTURED_EXCEPTION; lMsg = "Structured exception";
-	}
+        switch (aCode)
+        {
+            case 0xc0000005: lCode = KmsLib::Exception::CODE_ACCESS_VIOLATION		; lMsg = "Access violation"		; break;
+            case 0xc0000094: lCode = KmsLib::Exception::CODE_INTEGER_DIVIDE_BY_ZERO	; lMsg = "Integet divide by 0"	; break;
 
-	throw new KmsLib::Exception(lCode, lMsg, NULL, __FILE__, __FUNCTION__, __LINE__, aCode);
-}
+            default:
+                // NOT TESTED : Not easy to test / Pas facile a tester
+                lCode = KmsLib::Exception::CODE_STRUCTURED_EXCEPTION; lMsg = "Structured exception";
+        }
+
+        throw new KmsLib::Exception(lCode, lMsg, NULL, __FILE__, __FUNCTION__, __LINE__, aCode);
+    }
+
+#endif // _KMS_WINDOWS_

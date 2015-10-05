@@ -214,7 +214,7 @@ unsigned int ConvertToUInt(const char * aIn, int aRadix)
 
 	char * lPtr;
 
-	unsigned int lResult = strtoul(aIn, &lPtr, aRadix);
+	unsigned int lResult = static_cast< unsigned int >( strtoul(aIn, &lPtr, aRadix) );
 
 	if ('\0' != (*lPtr))
 	{

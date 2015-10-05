@@ -365,7 +365,7 @@ KmsTestDescription;
 																			\
 	int RunGroup(const char * aGroupNumber)									\
 	{																		\
-		unsigned int lGroup	= strtoul(aGroupNumber, NULL, 10);				\
+		unsigned int lGroup	= static_cast< unsigned int >( strtoul(aGroupNumber, NULL, 10) );	\
 																			\
 		printf("Executing test group %u ...\n\n", lGroup);					\
 		int	lResult = 0;													\
@@ -397,7 +397,7 @@ KmsTestDescription;
 																			\
 		while (0 < aCount)													\
 		{																	\
-			lResult += RunTest(strtoul(*aTests, NULL, 10));					\
+			lResult += RunTest( static_cast< unsigned int >( strtoul(*aTests, NULL, 10) ) );	\
 																			\
 			aCount--;														\
 			aTests++;														\

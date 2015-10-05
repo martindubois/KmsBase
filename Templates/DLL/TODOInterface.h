@@ -9,9 +9,9 @@
 // Macro
 /////////////////////////////////////////////////////////////////////////////
 
-#ifdef _KMS_LINUX_
+#if defined( _KMS_LINUX_ ) || defined( _KMS_OS_X_ )
 	#define TODO_INTERFACE_API
-#endif // _KMS_LINUX_
+#endif // _KMS_LINUX_ || _KMS_OS_X_
 
 #ifdef _KMS_WINDOWS_
 	#ifdef _TODO_INTERFACE_DLL_

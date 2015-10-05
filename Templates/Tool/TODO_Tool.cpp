@@ -1,8 +1,7 @@
 
-// Auteur	:	KMS -	Martin Dubois, ing.
-// Client	:	TODO
-// Projet	:	TODO
-// File		:	TODO_Tool/TODO_Tool.cpp
+// Author / Auteur		:	KMS -	Martin Dubois, ing.
+// Product / Produit	:	KmsBase
+// File / Fichier		:	TODO_Tool/TODO_Tool.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////

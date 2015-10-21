@@ -35,6 +35,10 @@ namespace KmsLib
 		{
 		}
 
+		// TODO : Ajouter une methode pour valider le baud rate;
+
+		// TODO : Ajouter des methode pour lire et changer le timeout;
+
 		ComPortHandle::BaudRate ComPortHandle::GetBaudRate() const
 		{
 			return mBaudRate;
@@ -45,6 +49,8 @@ namespace KmsLib
 			assert(BAUD_RATE_MAX >= aBaudRate);
 
 			assert(BAUD_RATE_MAX >= mBaudRate);
+
+			// TODO : Valider le baud rate
 
 			mBaudRate = aBaudRate;
 

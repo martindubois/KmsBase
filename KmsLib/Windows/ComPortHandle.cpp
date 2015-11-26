@@ -39,6 +39,8 @@ namespace KmsLib
 
 		// TODO : Ajouter des methode pour lire et changer le timeout;
 
+		// TODO : Ajouter des methode pour le flow control
+
 		ComPortHandle::BaudRate ComPortHandle::GetBaudRate() const
 		{
 			return mBaudRate;

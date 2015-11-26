@@ -39,6 +39,7 @@
     <ClCompile Include="DebugLog.cpp" />
     <ClCompile Include="Dump.cpp" />
     <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="IgnoreList.cpp" />
     <ClCompile Include="KmsLib.cpp" />
     <ClCompile Include="MemTester.cpp" />
     <ClCompile Include="NetworkAddress.cpp" />
@@ -48,7 +49,10 @@
     <ClCompile Include="OpenCL\Kernel.cpp" />
     <ClCompile Include="OpenCL\Program.cpp" />
     <ClCompile Include="RLE.cpp" />
+    <ClCompile Include="Socket.cpp" />
     <ClCompile Include="ToolBase.cpp" />
+    <ClCompile Include="Walker.cpp" />
+    <ClCompile Include="Walker_Smart.cpp" />
     <ClCompile Include="Windows\ComPortHandle.cpp" />
     <ClCompile Include="Windows\DriverHandle.cpp" />
     <ClCompile Include="Windows\FileHandle.cpp" />
@@ -59,10 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="_DocDev\.gitignore" />
-    <None Include="_DocDev\Classes.kdg" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="_DocDev\Requis.txt" />
+    <Text Include="_DocDev\Requirements.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{08D0977C-7912-4A9E-9937-CC0AF78956A7}</ProjectGuid>

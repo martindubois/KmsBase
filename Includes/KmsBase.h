@@ -1,5 +1,5 @@
 
-// Product / Produit	:	KmsBase
+// Product / Produit	KmsBase
 
 /// \author	KMS -	Martin Dubois, ing.
 /// \file	Includes/KmsBase.h
@@ -8,7 +8,6 @@
 
 // Compilation
 //////////////////////////////////////////////////////////////////////////////
-
 
 #ifdef _WIN32
 	#define _KMS_WINDOWS_
@@ -33,3 +32,16 @@
 #if defined( _KMS_LINUX_ ) || defined( _KMS_OS_X_ )
 	#include <WindowsToLinux.h>
 #endif // _KMS_LINUX_ || _KMS_OS_X_
+
+// Constants / Constantes
+/////////////////////////////////////////////////////////////////////////////
+
+#ifdef _KMS_WINDOWS_
+#define SLASH	"\\"
+#define SLASH_C	'\\'
+#endif // _KMS_WINDOWS_
+
+#ifdef _KMS_LINUX_
+#define SLASH	"/"
+#define SLASH_C	'/'
+#endif // _KMS_LINUX_

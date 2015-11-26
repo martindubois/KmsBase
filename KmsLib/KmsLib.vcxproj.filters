@@ -87,17 +87,26 @@
     <ClCompile Include="NetworkAddress.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="IgnoreList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Walker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Walker_Smart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Socket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="_DocDev\Classes.kdg">
-      <Filter>_DocDev</Filter>
-    </None>
     <None Include="_DocDev\.gitignore">
       <Filter>_DocDev</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="_DocDev\Requis.txt">
+    <Text Include="_DocDev\Requirements.txt">
       <Filter>_DocDev</Filter>
     </Text>
   </ItemGroup>

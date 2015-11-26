@@ -1,6 +1,6 @@
 
 Auteur	:	KMS -	Martin Dubois, ing.
-Projet	:	KmsBase
+Produit	:	KmsBase
 Fichier	:	KmsLib/_DocDev/Requirements.h
 
 
@@ -16,5 +16,21 @@ Registry.Access
 	En utilisant la librairie, une application peu acceder la base de registre
 	Windows au travers d'un interface amicale.
 
+Socket
+	En utilisant la librairie, une application peu utilier la fonctionnalite
+	de socket en utilisant une interface oriente objet qui est la meme sur
+	toutes les platefomes.
+
 Version
 	Le programme utilisant la librairie peut connaire la version de celle-ci.
+
+Walker
+	En utilisant la librairie, une application peu parcourir des repertoires
+	a la recherche de fichier
+
+Walker.Smart
+	En utilisant la librairie, une application peu parcourir des repertoires
+	a la recherche de fichier en ignorant les fichier identifier dans un
+	fichier texte.
+
+===== A venir ===============================================================

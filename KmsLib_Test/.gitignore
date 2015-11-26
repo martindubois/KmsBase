@@ -3,6 +3,8 @@
 # Project / Projet	:	KmsBase
 # File / Fichier	:	KmsLib_Test/.gitignore
 
+ForIgnoreListTest?/
+
 *.bak
 *.bin
 *.o

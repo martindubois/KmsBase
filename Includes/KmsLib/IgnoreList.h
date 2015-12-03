@@ -33,12 +33,14 @@ namespace KmsLib
 		/// \cond	en
 		/// \brief	Constructor
 		/// \param	aParent	[-K-;R--]	The parent list
+		/// \param	aPrefix	[---;R--]	The relative folder name
 		/// \endcond
 		/// \cond	fr
 		/// \brief	Constructeur
 		/// \param	aParent	[-K-;R--]	La liste parent
+		/// \param	aPrefix	[---;R--]	Le nom relatif du repetoire
 		/// \endcond
-		IgnoreList(IgnoreList * aParent);
+		IgnoreList(IgnoreList * aParent, const char * aPrefix);
 
 		/// \cond	en
 		/// \brief	Parent list accessor
@@ -81,32 +83,43 @@ namespace KmsLib
 		/// \cond	en
 		/// \brief	Read the ignore list from a file
 		/// \param	aFolderName	[---;R--]	The absolute folder name
-		/// \param	aPrefix		[---;R--]	The relative folder name
 		/// \param	aFileName	[---;R--]	The list file name
 		/// \endcond
 		/// \cond	fr
 		/// \brief	Lire la liste d'un fichier
 		/// \param	aFolderName	[---;R--]	Le nom absolue du repetoire
-		/// \param	aPrefix		[---;R--]	Le nom relatif du repetoire
 		/// \param	aFileName	[---;R--]	Le nom du fichier
 		/// \endcond
 		/// \exception	KmsLib::Exception	CODE_IO_ERROR
-		void ReadFromFile(const char * aFolderName, const char * aPrefix, const char * aFileName);
+		void ReadFromFile(const char * aFolderName, const char * aFileName);
 
 	private:
 
 		typedef struct
 		{
-			bool         mFolder;
-			bool         mPattern;
+			struct
+			{
+				unsigned	mAbsolute	: 1;
+				unsigned	mFolder		: 1;
+				unsigned	mPattern	: 1;
+
+				unsigned	mReserved : 29;
+			}
+			mFlags;
+
 			std::string  mString;
 		}
 		Entry;
 
+		bool Match(const Entry & aEntry, const char * aFileName) const;
+
+		bool MatchNameOrPattern(const Entry & aEntry, const char * aFileName) const;
+
 		typedef std::list< Entry > EntryList;
 
-		EntryList    mList;
-		IgnoreList * mParent;
+		EntryList		mList	;
+		IgnoreList	  * mParent	;
+		std::string		mPrefix	;
 
 	};
 

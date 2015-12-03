@@ -1,9 +1,12 @@
 
-# Author / Auteur	:	KMS -	Martin Dubois, ing.
-# Project / Projet	:	KmsBase
-# File / Fichier	:	KmsLib_Test/.gitignore
+# Auteur	KMS -	Martin Dubois, ing.
+# Produit	KmsBase
+# Fichier	KmsLib_Test/.gitignore
 
-ForIgnoreListTest?/
+# Les 3 lignes qui suivent servent a tester la classe IgnoreList.
+Test0?/
+/Test1/Toto
+Test2/Toto*/
 
 *.bak
 *.bin

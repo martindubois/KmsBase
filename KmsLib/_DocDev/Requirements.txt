@@ -1,36 +1,46 @@
 
-Auteur	:	KMS -	Martin Dubois, ing.
-Produit	:	KmsBase
-Fichier	:	KmsLib/_DocDev/Requirements.h
-
+Author / Auteur		KMS -	Martin Dubois, ing.
+Product / Produit	KmsBase
+File / Fichier		KmsLib/_DocDev/Requirements.h
 
 Error.Exception
-	Les condition d'erreur sont rapporte en lancant des exception de type
-	KmsLib::Exception ou de type derive de ce type.
+	The librairy report errors by trowing KmsLib::Exception instance. / La
+	librairie rapporte les erreurs en lancant des instance de
+	KmsLib::Exception.
 
 Extension.Register
-	En utilisant la librairie, une application peu s'enregistrer comme
-	application permettant d'ouvrir ou d'editer un type de fichier.
+	Using the library, an application can register itself as the application
+	able to open or	edit a file extension. / En utilisant la librairie, une
+	application peu	s'enregistrer comme	application permettant d'ouvrir ou
+	d'editer un type de fichier.
 
 Registry.Access
-	En utilisant la librairie, une application peu acceder la base de registre
-	Windows au travers d'un interface amicale.
+	Using the library, an application can access the windows' registry through
+	a friendly interface. /	En utilisant la librairie, une application peu
+	acceder la base de registre Windows au travers d'un interface amicale.
 
-Socket
-	En utilisant la librairie, une application peu utilier la fonctionnalite
-	de socket en utilisant une interface oriente objet qui est la meme sur
-	toutes les platefomes.
+Socket.TCP
+	Using the library, an application can use TCP socket through an object
+	oriented interface that does not depend on the platform. / En utilisant
+	la librairie, une application peu utilier la fonctionnalite	de socket en
+	utilisant une interface oriente objet qui est la meme sur toutes les
+	platefomes.
 
 Version
-	Le programme utilisant la librairie peut connaire la version de celle-ci.
+	The application using the library can query the library's version. / Une
+	application utilisant la librairie peut connaire la version de celle-ci.
 
 Walker
-	En utilisant la librairie, une application peu parcourir des repertoires
-	a la recherche de fichier
+	Using the library, an application can walk a forlder tree. / En utilisant
+	la librairie, une application peu parcourir un arbre de repertoires.
 
 Walker.Smart
-	En utilisant la librairie, une application peu parcourir des repertoires
-	a la recherche de fichier en ignorant les fichier identifier dans un
-	fichier texte.
+	Using the library, an application can walk a folder tree ignoring the
+	indicated files. The file used to indicate the ignored file must have
+	the same format than the ".gitignore" file. / En utilisant la librairie,
+	une application peu parcourir un arbre de repertoires en ignorant les
+	fichiers indiques. Le fichier utilise pour les fichiers ignores doit
+	respecter le format du fichier ".gitignore".
 
-===== A venir ===============================================================
+===== To come / A venir =====================================================
+

@@ -1,8 +1,17 @@
 
-Auteur	:	KMS -	Martin Dubois, ing.
-Projet	:	KmsBase
-Fichier	:	_DocDev/Requirements.txt
+Author / Auteur		KMS -	Martin Dubois, ing.
+Product / Produit	KmsBase
+File / Fichier		_DocDev/Requirements.txt
+
+Library
+	KmsBase provide a library of general fonctionnalities used by more than a
+	product. / KmsBase fournis une librairie de fonctionnalites generale
+	utilises dans plus d'un produit.
+
+Linux
+	KmsBase provide a library and template for Linux. / KmsBase fournis une
+	librairie pour Linux.
 
 Windows
-	Le logiciel doit s'installer, s'utiliser et s'executer sous Windows 7 et
-	plus recent, 32 ou 64 bits.
+	KmsBase provide a library and template for Windows 7 and highter. /
+	KmsBase fournis une	librairie pour Windows 7 et plus.

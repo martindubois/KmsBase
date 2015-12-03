@@ -1,9 +1,9 @@
 
-// Author / Auteur		:	KMS	-	Martin Dubois, ing.
-// Product / Produit	:	KmsBase
-// File / Fichier		:	KmsLib_Test/IgnoreList.cpp
+// Auteur	KMS	-	Martin Dubois, ing.
+// Produit	KmsBase
+// Fichier	KmsLib_Test/IgnoreList.cpp
 
-// Includes
+// Include
 /////////////////////////////////////////////////////////////////////////////
 
 // ===== C ==================================================================
@@ -20,13 +20,13 @@
 
 KMS_TEST_BEGIN(IgnoreList_Base)
 
-	KmsLib::IgnoreList lIL0(NULL);
+	KmsLib::IgnoreList lIL0(NULL, NULL);
 
 	KMS_TEST_ASSERT(NULL == lIL0.GetParent());
 
 	try
 	{
-		lIL0.ReadFromFile(".", NULL, "DoesNotExist.txt");
+		lIL0.ReadFromFile(".", "DoesNotExist.txt");
 		KMS_TEST_ASSERT(false);
 	}
 	catch (KmsLib::Exception * eE)
@@ -36,7 +36,7 @@ KMS_TEST_BEGIN(IgnoreList_Base)
 		eE->Write(stdout);
 	}
 	
-	lIL0.ReadFromFile(".", NULL, ".gitignore");
+	lIL0.ReadFromFile(".", ".gitignore");
 
 	KMS_TEST_ASSERT(!	lIL0.IsFileIgnored("Test.cmd"					));
 	KMS_TEST_ASSERT(	lIL0.IsFileIgnored("KmsBase.sdf"				));
@@ -45,18 +45,23 @@ KMS_TEST_BEGIN(IgnoreList_Base)
 	KMS_TEST_ASSERT(!	lIL0.IsFolderIgnored("KmsLib_Test"	));
 	KMS_TEST_ASSERT(	lIL0.IsFolderIgnored("Release"		));
 
-	KmsLib::IgnoreList lIL1(&lIL0);
+	KmsLib::IgnoreList lIL1(&lIL0, "KmsLib_Test");
 
 	KMS_TEST_ASSERT((&lIL0) == lIL1.GetParent());
 
-	lIL1.ReadFromFile("." SLASH "KmsLib_Test", "." SLASH "KmsLib_Test", ".gitignore");
+	lIL1.ReadFromFile("." SLASH "KmsLib_Test", ".gitignore");
 
 	KMS_TEST_ASSERT(!lIL1.IsFileIgnored("IgnoreList.cpp"));
 
-	KMS_TEST_ASSERT(!	lIL1.IsFolderIgnored("." SLASH "KmsLib_Test" SLASH "ForIgnoreListTest"	));
-	KMS_TEST_ASSERT(	lIL1.IsFolderIgnored("." SLASH "KmsLib_Test" SLASH "ForIgnoreListTest0"	));
+	KMS_TEST_ASSERT(!	lIL1.IsFolderIgnored("KmsLib_Test" SLASH "Test0"	));
+	KMS_TEST_ASSERT(	lIL1.IsFolderIgnored("KmsLib_Test" SLASH "Test00"	));
 
-	// TODO
-	// KMS_TEST_ASSERT(	lIL1.IsFolderIgnored("." SLASH "KmsLib_Test" SLASH "Release"			));
+	KMS_TEST_ASSERT(	lIL1.IsFolderIgnored("KmsLib_Test" SLASH "Release"				));
+
+	KMS_TEST_ASSERT(	lIL1.IsFileIgnored("KmsLib_Test" SLASH				"Test1" SLASH "Toto"	));
+	KMS_TEST_ASSERT(!	lIL1.IsFileIgnored("KmsLib_Test" SLASH "Toto" SLASH" Test1" SLASH "Toto"	));
+
+	KMS_TEST_ASSERT(	lIL1.IsFolderIgnored("KmsLib_Test" SLASH				"Test2" SLASH "TotoA"	));
+	KMS_TEST_ASSERT(	lIL1.IsFolderIgnored("KmsLib_Test" SLASH "Toto" SLASH	"Test2" SLASH "TotoB"	));
 
 KMS_TEST_END_2

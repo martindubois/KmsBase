@@ -1,8 +1,9 @@
 
-// Projet  : KmsTools
-// Fichier : Backup/Walker_Smart.cpp
+// Author / Auteur		KMS	-	Martin Dubois, ing.
+// Product / Produit	KmsBase
+// File / Fichier		KmsLib/Walker_Smart.cpp
 
-// Inclusions
+// Include
 /////////////////////////////////////////////////////////////////////////////
 
 #include <KmsBase.h>
@@ -74,11 +75,11 @@ namespace KmsLib
 
 					if (!lCreated)
 					{
-						mIgnoreList	= new IgnoreList(mIgnoreList);
+						mIgnoreList	= new IgnoreList(mIgnoreList, aFolderName);
 						lCreated	= true;
 					}
 
-					mIgnoreList->ReadFromFile(lFolderName, aFolderName, lIt->c_str());
+					mIgnoreList->ReadFromFile(lFolderName, lIt->c_str());
 				}
 			}
 

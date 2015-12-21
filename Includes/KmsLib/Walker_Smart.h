@@ -36,6 +36,14 @@ namespace KmsLib
 	public:
 
 		/// \cond	en
+		/// \brief	Constructor
+		/// \endcond
+		/// \cond	fr
+		/// \brief	Constructeur
+		/// \endcond
+		Walker_Smart::Walker_Smart();
+
+		/// \cond	en
 		/// \brief	Add a name of a file containing a list of file to ignore.
 		/// \param	aFileName	[---;R--]	The file name
 		/// \endcond
@@ -74,6 +82,10 @@ namespace KmsLib
 		virtual void OnFolder(const char * aFolder);
 
 	private:
+
+		Walker_Smart(const Walker_Smart &);
+
+		const Walker_Smart & operator = (const Walker_Smart &);
 
 		std::list< std::string > mIgnoreFiles;
 

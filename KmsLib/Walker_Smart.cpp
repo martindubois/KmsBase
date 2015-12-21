@@ -35,6 +35,10 @@ namespace KmsLib
 	// Public
 	/////////////////////////////////////////////////////////////////////////////
 
+	Walker_Smart::Walker_Smart() : mIgnoreList(NULL)
+	{
+	}
+
 	void Walker_Smart::AddIgnoreFileName(const char * aFileName)
 	{
 		assert(NULL != aFileName);

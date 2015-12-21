@@ -10,7 +10,7 @@ Class       = TODO
 ClassGuid   = {2E94C38D-3777-42A0-BBD1-3812902108F1}
 Provider    = %ManufacturerName%
 CatalogFile = TODO.cat
-DriverVer   = 2.4.8.0
+DriverVer   = 2.4.9.0
 
 ; TODO : Changer le GUID de la classe
 

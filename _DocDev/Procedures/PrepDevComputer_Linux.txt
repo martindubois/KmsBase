@@ -1,16 +1,12 @@
 
-Author / Auteur		:	KMS -	Martin Dubois, ing.
-Product / Produit	:	KmsBase
-File / Fichier		:	_DocDev/Procedures/PrepDevComputer_Linux.txt
-
-/English/
-TODO : Traduire
-
-/Francais/
+Auteur	KMS -	Martin Dubois, ing.
+Produit	KmsBase
+Fichier	_DocDev/Procedures/PrepDevComputer_Linux.txt
 
 [ ] Installer "ubunto 14.04.2";
 [ ] Ouvrir un terminal et executer les commandes suivantes en tant que "root"
     - "apt-get install git";
+    - "apt-get install git-gui";
     - "apt-get install xutils-dev";
     - "apt-get install g++".
 [ ] Installer "AMD APP SDK 3.0"

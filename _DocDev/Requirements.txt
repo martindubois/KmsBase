@@ -1,17 +1,26 @@
 
-Author / Auteur		KMS -	Martin Dubois, ing.
-Product / Produit	KmsBase
-File / Fichier		_DocDev/Requirements.txt
+Auteur	KMS -	Martin Dubois, ing.
+Produit	KmsBase
+Fichier	_DocDev/Requirements.txt
 
 Library
-	KmsBase provide a library of general fonctionnalities used by more than a
-	product. / KmsBase fournis une librairie de fonctionnalites generale
-	utilises dans plus d'un produit.
+	KmsBase fournis une librairie de fonctionnalites generale utilises dans
+	plus d'un produit.
 
 Linux
-	KmsBase provide a library and template for Linux. / KmsBase fournis une
-	librairie pour Linux.
+	KmsBase fournis une	librairie, des modeles et des outils redistribuable
+	pour Linux.
 
 Windows
-	KmsBase provide a library and template for Windows 7 and highter. /
-	KmsBase fournis une	librairie pour Windows 7 et plus.
+	KmsBase fournis une	librairie, des modeles et des outils redistribuable
+	pour Windows 7 et plus.
+
+===== Future ================================================================
+
+NET.Check
+	KmsBase fournis un outils pour verifier, a partir d'un fichier de
+	commande, la presence du framework .NET necessaire.
+
+VC.Check
+	KmsBase fournis un outils pour verifier, a partir d'un fichier de
+	commande, la presence des redistribuable Visual Studio necessaire.

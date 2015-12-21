@@ -1,0 +1,172 @@
+
+# Auteur	KMS	-	Martin Dubois, ing.
+# Produit	KmsBase
+# Fichier	Export.cmd.txt
+
+.
+	DoxyFile_en.txt
+	DoxyFile_fr.txt
+	RunDoxygen.cmd
+
+.	Binaries
+.	Libraries
+.	Templates
+
+Debug	Libraries/Debug_32
+	KmsLib.lib
+
+Debug_DLL	Binaries/Debug_32_DLL
+	DepCheck.exe
+
+Debug_DLL	Libraries/Debug_32_DLL
+	KmsLib.lib
+
+Includes
+	KmsBase.h
+	KmsTest.h
+	Ring.h
+	SafeAPI.h
+	WindowsToLinux.h
+
+Includes/KmsLib
+	CmdLineParser.h
+	DebugLog.h
+	Dump.h
+	Exception.h
+	IgnoreList.h
+	KmsLib.h
+	MemTester.h
+	NetworkAddress.h
+	RLE.h
+	Socket.h
+	ToolBase.h
+	Walker.h
+	Walker_Smart.h
+
+Includes/KmsLib/Linux
+	Windows.h
+
+Includes/KmsLib/OpenCL
+	Buffer.h
+	CommandQueue.h
+	Context.h
+	Kernel.h
+	Program.h
+
+Includes/KmsLib/Windows
+	ComPortHandle.h
+	DriverHandle.h
+	FileHandle.h
+	RegistryKey.h
+	Service.h
+	SystemLog.h
+	Windows.h
+
+Release .
+	KmsCopy.exe
+
+Release	Binaries/Release_32
+	KmsCopy.exe
+	
+Release	Libraries/Release_32
+	KmsLib.lib
+
+Release_DLL	Binaries/Release_32_DLL
+	DepCheck.exe
+
+Release_DLL	Libraries/Release_32_DLL
+	KmsLib.lib
+
+Scripts	.
+	Install.cmd
+	Install.cmd.txt
+
+Templates/Dialog_Win32
+	TODO.cpp
+
+Templates/Dialog_Win32/_DocUser
+	Use.txt
+
+Templates/DLL
+	TODO.cpp
+	TODO.h
+	TODOInterface.cpp
+	TODOInterface.h
+
+Templates/DLL/_DocUser
+	Utiliser.txt	Use.txt
+
+# TODO	Renomer le fichier Use.txt
+
+Templates/Driver_KMDF
+	Device.cpp
+	Device.h
+	Driver.cpp
+	Driver_KMDF.inf
+	Project.h
+	TodoInterface.h	TODOInterface.h
+
+# TODO	Renommer le fichier TODOInterface.h
+
+Templates/Driver_KMDF/_DocUser
+	Utiliser.txt	Use.txt
+
+# TODO	Renommer le fichier Use.txt
+
+Templates/Service
+	.gitignore
+	Messages.mc
+	Service.cpp
+
+Templates/Service/_DocUser
+	Use.txt
+
+Templates/Solution
+	.gitignore
+	ExportSources.sh
+	Test.cmd
+
+Templates/Solution/_DocUser
+	Utiliser.txt	Use.txt
+
+# TODO	Renommer le fichier Use.txt
+
+Templates/Solution/Common
+	Version.h
+	Version.rc
+
+Templates/Test
+	TODO.cpp
+	TODO_Test.cpp
+
+Templates/Test/_DocUser
+	Use.txt
+
+Templates/Tool
+	TODO_Tool.cpp
+
+Templates/Tool/_DocUser
+	Utiliser.txt	Use.txt
+
+# TODO	Renommer le fichier Use.txt
+
+x64/Debug	Libraries/Debug_64
+	KmsLib.lib
+
+x64/Debug_DLL	Binaries/Debug_64_DLL
+	DepCheck.exe
+
+x64/Debug_DLL	Libraries/Debug_64_DLL
+	KmsLib.lib
+
+x64/Release	Binaries/Release_64
+	KmsCopy.exe
+
+x64/Release	Libraries/Release_64
+	KmsLib.lib
+
+x64/Release_DLL	Binaries/Release_64_DLL
+	DepCheck.exe
+
+x64/Release_DLL	Libraries/Release_64_DLL
+	KmsLib.lib

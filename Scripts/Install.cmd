@@ -1,33 +1,43 @@
 @echo off
 
-rem  Author / Auteur	:	KMS -	Martin Dubois, ing.
-rem	 Product / Produit	:	KmsBase
-rem  File / Fichier		:   Scripts/Install.cmd
-rem  Usage				:	Install.cmd
+rem  Author / Auteur	KMS -	Martin Dubois, ing.
+rem	 Product / Produit	KmsBase
+rem  File / Fichier		Scripts/Install.cmd
+rem  Usage				Install.cmd
+rem
 rem  The script must be run from the directory where it is / Le fichier de
 rem  commandes doit être execute a partir du repertoire ou il se trouve.
 
-echo  Execution de Install.cmd ...
+echo  Executing de Install.cmd ...
 
 rem  ===== Verification =====================================================
 
 set DST="C:\Software\KmsBase_2.4"
 
-rem  ===== Execution ========================================================
-
-xcopy /IKQSY DoxyFile_en.txt	%DST%
-xcopy /IKQSY DoxyFile_fr.txt	%DST%
-xcopy /IKQSY RunDoxygen.cmd		%DST%
-xcopy /IKQSY Includes			%DST%\Includes
-xcopy /IKQSY Libraries			%DST%\Libraries
-xcopy /IKQSY Templates			%DST%\Templates
-
-if ERRORLEVEL 1 (
-    echo  ERROR : xcopy reported an error
+set INSTALL_CMD_TXT="Install.cmd.txt"
+if not exist %INSTALL_CMD_TXT% (
+	echo  FATAL ERROR : %INSTALL_CMD_TXT% does not exist
 	pause
 	exit /B 1
 )
 
-rem  ===== Fin ==============================================================
+set KMS_COPY="KmsCopy.exe"
+if not exist %KMS_COPY% (
+	echo  FATAL ERROR : %KMS_COPY% does not exist
+	pause
+	exit /B 2
+)
+
+rem  ===== Execution ========================================================
+
+%KMS_COPY% . %DST% %INSTALL_CMD_TXT%
+
+if ERRORLEVEL 1 (
+	echo  FATAL ERROR : %KMS_COPY% reported an error
+	pause
+	exit /B 3
+)
+
+rem  ===== End / Fin ========================================================
 
 echo  OK

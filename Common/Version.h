@@ -8,13 +8,13 @@
 // Constantes
 /////////////////////////////////////////////////////////////////////////////
 
-#define VERSION_RC		2,4,9,0
-#define	VERSION_STR		"2.4.9.0"
-#define	VERSION_STR0	"2.4.9.0\0"
+#define VERSION_RC		2,4,10,0
+#define	VERSION_STR		"2.4.10.0"
+#define	VERSION_STR0	"2.4.10.0\0"
 
 #define VERSION_MAJOR			(2)
 #define VERSION_MINOR			(4)
-#define VERSION_BUILD			(9)
+#define VERSION_BUILD			(10)
 
 #define VERSION_COMPATIBILITY	(0)
 

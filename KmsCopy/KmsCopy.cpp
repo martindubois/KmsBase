@@ -169,7 +169,7 @@ int Execute(FILE * aFile, const char * aSrcRoot, const char * aDstRoot)
 			char lDstFile[1024];
 			char lSrcFile[1024];
 
-			switch (sscanf_s(lLine, " %[^ \n\r\t] [%^ \n\r\t]", lSrcFile, sizeof(lSrcFile) / sizeof(lSrcFile[0]), lDstFile, sizeof(lDstFile) / sizeof(lDstFile[0])))
+			switch (sscanf_s(lLine, " %[^ \n\r\t] %[^ \n\r\t]", lSrcFile, sizeof(lSrcFile) / sizeof(lSrcFile[0]), lDstFile, sizeof(lDstFile) / sizeof(lDstFile[0])))
 			{
 			case EOF: break; // Empty line
 
@@ -206,7 +206,7 @@ int Execute(FILE * aFile, const char * aSrcRoot, const char * aDstRoot)
 			break;
 
 		default : // Folder
-			switch (sscanf_s(lLine, "%[^ \n\r\t] %s[^ \n\r\t]", lSrcFolder, sizeof(lSrcFolder) / sizeof(lSrcFolder[0]), lDstFolder, sizeof(lDstFolder) / sizeof(lDstFolder[0])))
+			switch (sscanf_s(lLine, "%[^ \n\r\t] %[^ \n\r\t]", lSrcFolder, sizeof(lSrcFolder) / sizeof(lSrcFolder[0]), lDstFolder, sizeof(lDstFolder) / sizeof(lDstFolder[0])))
 			{
 			case 1:
 				strcpy_s(lDstFolder, lSrcFolder);

@@ -114,7 +114,7 @@ Templates/DLL
 	TODOInterface.h
 
 Templates/DLL/_DocUser
-	Utiliser.txt	Use.txt
+	Use.txt
 
 Templates/Driver_KMDF
 	Device.cpp
@@ -125,7 +125,7 @@ Templates/Driver_KMDF
 	TODOInterface.h
 
 Templates/Driver_KMDF/_DocUser
-	Utiliser.txt	Use.txt
+	Use.txt
 
 Templates/Service
 	.gitignore
@@ -141,7 +141,7 @@ Templates/Solution
 	Test.cmd
 
 Templates/Solution/_DocUser
-	Utiliser.txt	Use.txt
+	Use.txt
 
 Templates/Solution/Common
 	Version.h
@@ -158,4 +158,4 @@ Templates/Tool
 	TODO_Tool.cpp
 
 Templates/Tool/_DocUser
-	Utiliser.txt	Use.txt
+	Use.txt

@@ -17,6 +17,7 @@ Debug	Libraries/Debug_32
 
 Debug_DLL	Binaries/Debug_32_DLL
 	DepCheck.exe
+	DepCheck_Net.exe
 
 Debug_DLL	Libraries/Debug_32_DLL
 	KmsLib.lib
@@ -71,8 +72,13 @@ Release	Binaries/Release_32
 Release	Libraries/Release_32
 	KmsLib.lib
 
+Release_DLL	.
+	DepCheck.exe
+	DepCheck_Net.exe
+
 Release_DLL	Binaries/Release_32_DLL
 	DepCheck.exe
+	DepCheck_Net.exe
 
 Release_DLL	Libraries/Release_32_DLL
 	KmsLib.lib
@@ -80,12 +86,7 @@ Release_DLL	Libraries/Release_32_DLL
 Scripts	.
 	Install.cmd
 	Install.cmd.txt
-
-Templates/Dialog_Win32
-	TODO.cpp
-
-Templates/Dialog_Win32/_DocUser
-	Use.txt
+	Verify.cmd
 
 Templates/DLL
 	TODO.cpp
@@ -167,6 +168,8 @@ x64/Release	Libraries/Release_64
 
 x64/Release_DLL	Binaries/Release_64_DLL
 	DepCheck.exe
+	DepCheck_Net.exe
 
 x64/Release_DLL	Libraries/Release_64_DLL
 	KmsLib.lib
+	DepCheck_Net.exe

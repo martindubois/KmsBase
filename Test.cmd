@@ -9,9 +9,9 @@ echo  Executing Test.cmd ...
 
 rem  ===== Verification =====================================================
 
-set FOR_EACH_CONFIG="ForEachConfig.cmd"
-if not exist %FOR_EACH_CONFIG% (
-    echo  FATAL ERROR : %FOR_EACH_CONFIG% does not exist
+set FOR_EACH_CONFIG_NO_DLL="ForEachConfig_NoDLL.cmd"
+if not exist %FOR_EACH_CONFIG_NO_DLL% (
+    echo  FATAL ERROR : %FOR_EACH_CONFIG_NO_DLL% does not exist
 	pause
 	exit /B 1
 )
@@ -39,11 +39,18 @@ if ERRORLEVEL 1 (
 	exit /B 4
 )
 
-call %FOR_EACH_CONFIG% KmsLib_Test.exe
+call %FOR_EACH_CONFIG_DLL% KmsLib_Test.exe
 if ERRORLEVEL 1 (
-    echo  ERROR : %FOR_EACH_CONFIG% reported an error
+    echo  ERROR : %FOR_EACH_CONFIG_DLL% reported an error - KmsLib_Test.lib - DLL
 	pause
 	exit /B 5
+)
+
+call %FOR_EACH_CONFIG_NO_DLL% KmsLib_Test.exe
+if ERRORLEVEL 1 (
+    echo  ERROR : %FOR_EACH_CONFIG_NO_DLL% reported an error - KmsLib_Test.lib - No DLL
+	pause
+	exit /B 6
 )
 
 rem  ===== Fin ==============================================================

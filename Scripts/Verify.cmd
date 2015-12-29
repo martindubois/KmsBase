@@ -8,7 +8,7 @@ rem
 rem  The script must be run from the directory where it is / Le fichier de
 rem  commandes doit être execute a partir du repertoire ou il se trouve.
 
-echo  Executing Verify.cmd
+echo  Executing Verify.cmd ...
 
 rem  ===== Verification =====================================================
 
@@ -20,7 +20,7 @@ if not exist %DEP_CHECK% (
 	exit /B 1
 )
 
-set DEP_CHECK="DepCheck_Net.exe"
+set DEP_CHECK_NET="DepCheck_Net.exe"
 if not exist %DEP_CHECK_NET% (
 	echo  FATAL ERROR : %DEP_CHECK_NET% does not exist
 	echo  The package is not complete

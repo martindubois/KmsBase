@@ -14,21 +14,25 @@
 
 Binaries/Debug_32_DLL
 	DepCheck.exe
+	DepCheck_Net.exe
 
 Binaries/Debug_64_DLL
 	DepCheck.exe
+	DepCheck_Net.exe
 
 Binaries/Release_32
 	KmsCopy.exe
 
 Binaries/Release_32_DLL
 	DepCheck.exe
+	DepCheck_Net.exe
 
 Binaries/Release_64
 	KmsCopy.exe
 
 Binaries/Release_64_DLL
 	DepCheck.exe
+	DepCheck_Net.exe
 
 # TODO	Utiliser un fichier Includes.txt a partir de Export.cmd.txt et
 #		Install.cmd.txt
@@ -100,12 +104,6 @@ Libraries/Release_64_DLL
 
 # TODO	Utiliser un fichier Templates.txt a partir de Export.cmd.txt et
 #		Install.cmd.txt
-
-Templates/Dialog_Win32
-	TODO.cpp
-
-Templates/Dialog_Win32/_DocUser
-	Use.txt
 
 Templates/DLL
 	TODO.cpp

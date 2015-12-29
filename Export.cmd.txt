@@ -156,6 +156,7 @@ x64/Debug	Libraries/Debug_64
 
 x64/Debug_DLL	Binaries/Debug_64_DLL
 	DepCheck.exe
+	DepCheck_Net.exe
 
 x64/Debug_DLL	Libraries/Debug_64_DLL
 	KmsLib.lib

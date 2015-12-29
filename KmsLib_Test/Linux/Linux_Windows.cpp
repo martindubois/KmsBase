@@ -25,9 +25,9 @@
 
 KMS_TEST_BEGIN(Linux_Windows_Base)
 
-	KMS_TEST_ASSERT( !	CopyFile( "DoNotExist"						, "Linux_Windows_Test0.txt", false	) );
-	KMS_TEST_ASSERT(	CopyFile( "KmsLib_Test/Linux/Windows.cpp"	, "Linux_Windows_Test0.txt", false	) );
-	KMS_TEST_ASSERT( !	CopyFile( "KmsLib_Test/Linux/Windows.cpp"	, "Linux_Windows_Test0.txt", true	) );
+	KMS_TEST_ASSERT( !	CopyFile( "DoNotExist"							, "Linux_Windows_Test0.txt", false	) );
+	KMS_TEST_ASSERT(	CopyFile( "KmsLib_Test/Linux/Linux_Windows.cpp"	, "Linux_Windows_Test0.txt", false	) );
+	KMS_TEST_ASSERT( !	CopyFile( "KmsLib_Test/Linux/Linux_Windows.cpp"	, "Linux_Windows_Test0.txt", true	) );
 
 	WIN32_FIND_DATA lData	;
 	HANDLE			lHandle	;
@@ -48,7 +48,7 @@ KMS_TEST_BEGIN(Linux_Windows_Base)
 	lHandle = FindFirstFile( "KmsLib_Test/Linux/?*.cpp", & lData );
 	KMS_TEST_ASSERT( INVALID_HANDLE_VALUE != lHandle );
 
-	KMS_TEST_ASSERT( 0 == strcmp( "Windows.cpp", lData.cFileName )				);
+	KMS_TEST_ASSERT( 0 == strcmp( "Linux_Windows.cpp", lData.cFileName )		);
 	KMS_TEST_ASSERT( 0 == (lData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY )	);
 
 	KMS_TEST_ASSERT( ! FindNextFile( lHandle, & lData ) );

@@ -1,75 +1,8 @@
 
-Author / Auteur		:	KMS -	Martin Dubois, ing.
-Product / Produit	:	KmsBase
-File / Fichier		:	_DocDev/Procedures/Build.txt
+Auteur	KMS -	Martin Dubois, ing.
+Produit	KmsBase
+Fichier	_DocDev/Procedures/Build.txt
 
-/English/
-
-===== Internal Version ======================================================
-
-Windows Only
-[ ] Open a command windows
-	- Navigate to the product folder;
-	- Execute "RunDoxygen.cmd";
-	- Verify that the script do not generate error message.
-
-[ ] Edit "Common/Version.h"
-	- Increment the build number;
-	- Verify the "VERSION_INTERNAL" is "true"
-[ ] Edit "Script/Install.cmd" and change the version number if needed;
-[ ] Edit "Script/Install.sh" and change the version number if needed;
-[ ] Edit "Templates/Driver_KMDF/Driver_KMDF.inf" and increment the build
-	number;
-
-Linux Only
-[ ] Open a terminal
-    - Navigate to the product folder
-    - Execute "make clean"
-    - Execute "make"
-    - Execute "./Test.sh"
-    - Execute "./Export.sh Ma.Mi.Bu_Type" where
-		Ma = Major version;
-		Mi = Minor Version;
-		Bu = Build number;
-		Type = Internal
-[ ] Move exported file to the server
-
-OS X Only
-[ ] Open a terminal
-    - Navigate to the product folder
-    - Execute "make -f makefile_os_x clean"
-    - Execute "make -f makefile_os_x“
-    - Execute "./Test.sh"
-    - Execute "./Export.sh Ma.Mi.Bu_Type" where
-		Ma = Major version;
-		Mi = Minor Version;
-		Bu = Build number;
-		Type = Internal
-[ ] Move exported file to the server
-
-Windows Only
-[ ]	Open the solution using "Visual Studio 2013"
-	- In the "BUILD" menu, select "Batch Build...";
-	- In the "Batch Build" dialog, click "Rebuild";
-	- In the "FILE" menu, select "Save All".
-[ ]	In the command windows
-	- Execute "Test.cmd";
-	- Execute "Export.cmd Ma.Mi.Bu_Type" where
-		Ma = Major version;
-		Mi = Minor Version;
-		Bu = Build number;
-		Type = Internal | RC | Test
-
-[ ] Index modified files and commit them using "Ma.Mi.Bu" as message;
-[ ] Add the tag "Ma.Mi.Bu".
-[ ] Push the GIT repository on the server.
-
-===== External Version ======================================================
-
-TODO : Traduire
-
-
-/Francais/
 
 ===== Version Interne =======================================================
 

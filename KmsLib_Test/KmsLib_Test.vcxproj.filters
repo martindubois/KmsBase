@@ -72,9 +72,6 @@
     <ClCompile Include="Ring.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Linux\Windows.cpp">
-      <Filter>Source Files\Linux</Filter>
-    </ClCompile>
     <ClCompile Include="NetworkAddress.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -89,6 +86,12 @@
     </ClCompile>
     <ClCompile Include="Socket.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Linux\Linux_Windows.cpp">
+      <Filter>Source Files\Linux</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Windows_Windows.cpp">
+      <Filter>Source Files\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

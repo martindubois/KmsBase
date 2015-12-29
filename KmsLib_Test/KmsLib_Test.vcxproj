@@ -341,7 +341,7 @@
     <ClCompile Include="Exception.cpp" />
     <ClCompile Include="IgnoreList.cpp" />
     <ClCompile Include="KmsLib_Test.cpp" />
-    <ClCompile Include="Linux\Windows.cpp" />
+    <ClCompile Include="Linux\Linux_Windows.cpp" />
     <ClCompile Include="MemTester.cpp" />
     <ClCompile Include="NetworkAddress.cpp" />
     <ClCompile Include="OpenCL.cpp" />
@@ -357,6 +357,7 @@
     <ClCompile Include="Windows\RegistryKey.cpp" />
     <ClCompile Include="Windows\Service.cpp" />
     <ClCompile Include="Windows\SystemLog.cpp" />
+    <ClCompile Include="Windows\Windows_Windows.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\Common\Version.rc" />

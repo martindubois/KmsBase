@@ -1,7 +1,7 @@
 
-// Auteur	: KMS -		Martin Dubois, ing.
-// Projet	: KmsBase
-// Fichier	: KmsLib/Windows/RegistryKey.cpp
+// Author / Auteur		KMS -	Martin Dubois, ing.
+// Product / Produit	KmsBase
+// File / Fichier		KmsLib/Windows/RegistryKey.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -54,7 +54,7 @@ namespace KmsLib
 
 			HKEY lKey;
 
-			LSTATUS lRetS = RegOpenKey(mKey, aSubKey, &lKey);
+			LSTATUS lRetS = RegOpenKeyEx(mKey, aSubKey, 0, DELETE | KEY_READ | KEY_WRITE, &lKey);
 			switch (lRetS)
 			{
 			case ERROR_SUCCESS :
@@ -207,7 +207,7 @@ namespace KmsLib
 				Close();
 			}
 
-			LSTATUS lRet = RegCreateKeyEx(aKey, aSubKey, 0, NULL, 0, KEY_READ | KEY_WRITE, NULL, &mKey, NULL);
+			LSTATUS lRet = RegCreateKeyEx(aKey, aSubKey, 0, NULL, 0, DELETE | KEY_READ | KEY_WRITE, NULL, &mKey, NULL);
 			if (ERROR_SUCCESS != lRet)
 			{
 				char lMessage[2048];
@@ -228,15 +228,15 @@ namespace KmsLib
 			
 			assert(NULL != mKey);
 
-			LSTATUS lRet = RegDeleteKey(mKey, aSubKey);
+			LSTATUS lRet = RegDeleteTree(mKey, aSubKey);
 			if (ERROR_SUCCESS != lRet)
 			{
 				char lMessage[2048];
 
-				sprintf_s(lMessage, sizeof(lMessage), "RegDeleteKey( 0x%08x, \"%s\" ) failed",
+				sprintf_s(lMessage, sizeof(lMessage), "RegDeleteTree( 0x%08x, \"%s\" ) failed",
 					reinterpret_cast<unsigned int>(mKey), aSubKey);
 
-				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegDeleteKey( ,  ) failed",
+				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegDeleteTree( ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 		}
@@ -270,7 +270,7 @@ namespace KmsLib
 				Close();
 			}
 
-			LSTATUS lRet = RegOpenKeyEx(aKey, aSubKey, 0, KEY_READ | KEY_WRITE, &mKey);
+			LSTATUS lRet = RegOpenKeyEx(aKey, aSubKey, 0, DELETE | KEY_READ | KEY_WRITE, &mKey);
 			if (ERROR_SUCCESS != lRet)
 			{
 				char lMessage[2048];

@@ -1,7 +1,7 @@
 
-// Author / Auteur		:	KMS -	Martin Dubois, ing.
-// Product / Produit	:	KmsBase
-// File / Fichier		:	KmsLib_Test/Dump.cpp
+// Auteur	KMS -	Martin Dubois, ing.
+// Produit	KmsBase
+// Fichier	KmsLib_Test/Linux_Windows_Base.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -13,7 +13,7 @@
 	#include <Windows.h>
 #endif // _KMS_WINDOWS_
 
-// ===== Interface ==========================================================
+// ===== KmsBase ============================================================
 #if defined( _KMS_LINUX_ ) || defined( _KMS_OS_X_ )
 	#include <KmsLib/Linux/Windows.h>
 #endif // _KMS_LINUX_ || _KMS_OS_X_ 
@@ -23,7 +23,7 @@
 // Tests
 /////////////////////////////////////////////////////////////////////////////
 
-KMS_TEST_BEGIN(Windows_Base)
+KMS_TEST_BEGIN(Linux_Windows_Base)
 
 	KMS_TEST_ASSERT( !	CopyFile( "DoNotExist"						, "Linux_Windows_Test0.txt", false	) );
 	KMS_TEST_ASSERT(	CopyFile( "KmsLib_Test/Linux/Windows.cpp"	, "Linux_Windows_Test0.txt", false	) );
@@ -58,4 +58,3 @@ KMS_TEST_BEGIN(Windows_Base)
 	KMS_TEST_ASSERT( !	MoveFile( "DoNotExist", "Linux_Windows_Test0.txt" ) );
 
 KMS_TEST_END
-

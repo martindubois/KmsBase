@@ -31,7 +31,7 @@ if not exist "%BIN_32_RELEASE_DLL%" (
 )
 
 set  BIN_64_DEBUG_DLL=x64\Debug_DLL
-if not exist "%BIN_64_DEBUG%" (
+if not exist "%BIN_64_DEBUG_DLL%" (
     echo  FATAL ERROR : %BIN_64_DEBUG_DLL% does not exist
 	pause
 	exit /B 4

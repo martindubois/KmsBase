@@ -72,20 +72,13 @@ KMS_TEST_END_2
 
 KMS_TEST_BEGIN(Windows_Windows_SetupB)
 
-	printf("a\n");
 	KmsLib::Windows::Extension_Unregister	(".kmslibtest", "kmslibtest", KmsLib::Windows::COMMAND_EDIT);
-	printf("b\n");
 	KmsLib::Windows::Extension_Register		(".kmslibtest", "kmslibtest", KmsLib::Windows::COMMAND_EDIT, "notepad.exe %1");
-	printf("c\n");
 	KmsLib::Windows::Extension_Unregister	(".kmslibtest", "kmslibtest", KmsLib::Windows::COMMAND_EDIT);
-	printf("d\n");
 	KmsLib::Windows::Extension_Unregister	(".kmslibtest", "kmslibtest");
 
-	printf("e\n");
 	KmsLib::Windows::ShellDirectory_Unregister	("kmslibtest");
-	printf("f\n");
 	KmsLib::Windows::ShellDirectory_Register	("kmslibtest", "kmslibtest", "notepad.exe %1");
-	printf("g\n");
 	KmsLib::Windows::ShellDirectory_Unregister	("kmslibtest");
 
 KMS_TEST_END_2

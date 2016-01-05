@@ -39,7 +39,7 @@ OS X Only
 [ ] Ouvrir un "Terminal"
     - Naviguer jusqu'au repertoire de produit
     - Executer "make -f makefile_os_x clean"
-    - Executer "make -f makefile_os_x“
+    - Executer "make -f makefile_os_x"
     - Executer "./Test.sh"
     - Executer "./Export.sh Ma.Mi.Bu_Type" ou
 		Ma = Major version;
@@ -97,10 +97,10 @@ Linux Seulement
 [ ] Deplacer les fichiers exportes vers le serveur;
 
 OS X Only
-[ ] Ouvrir un “Termina”
-    - Naviguer jusqu’au repertoire du produit
+[ ] Ouvrir un "Terminal"
+    - Naviguer jusqu'au repertoire du produit
     - Executer "make -f makefile_os_x clean"
-    - Executer "make -f makefile_os_x“
+    - Executer "make -f makefile_os_x"
     - Executer "./Test.sh"
     - Executer "./Export.sh Ma.Mi.Bu_Type" ou
 		Ma = Major version;
@@ -117,10 +117,11 @@ Windows Seulement
 [ ]	Dans la fenetre de commande
 	- Entrer la commande "Test.cmd";
 [ ] Connecter l'adaptateur RS232 ‡ USB ‡ un des ports USB de l'ordinateur;
-[ ] Dans la fenetre de commande, entrer la commande "Test_SetupA.cmd"
+[ ] Dans la fenetre de commande, entrer la commande "Test_Setup.cmd 2";
 [ ] Ouvrir une fenetre s'executant en tant qu'administrateur
-	- Entrer la commande "Test_SetupB.cmd";
-	- Entrer la commande "Test_SetupC.cmd";
+	- Entrer la commande "Test_Setup.cmd 1";
+	- Entrer la commande "Test_Setup.cmd 3";
+	- Entrer la commande "Test_Setup.cmd 4";
 	- Entrer la commande "exit", pour fermer la fenetre.
 [ ] Deconnecter l'adaptateur RS232 ‡ USB;
 [ ] Dans la fenetre de commande

@@ -172,21 +172,27 @@ namespace KmsLib
 			// No break;
 
 		case 1 :
-			lAddr = inet_addr(lName);
-			if (INADDR_NONE == lAddr)
+			if (1 != inet_pton(AF_INET, lName, &lAddr))
 			{
-				struct hostent * lInfo = gethostbyname(lName);
-				if (NULL == lInfo)
-				{
-					sprintf_s(lMsg, "gethostbyname( \"%s\" ) failed", lName);
+				ADDRINFOA	lHints	;
+				PADDRINFOA	lInfo	;
 
-					throw new Exception(Exception::CODE_NETWORK_ERROR, "Invalid name", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
+				memset(&lHints, 0, sizeof(lHints));
+
+				lHints.ai_family = AF_INET;
+
+				lRetI = getaddrinfo(lName, NULL, NULL, &lInfo);
+				if (0 != lRetI)
+				{
+					sprintf_s(lMsg, "getaddrinfo( \"%s\", , ,  ) failed returning %d", lName, lRetI);
+
+					throw new Exception(Exception::CODE_NETWORK_ERROR, "getaddrinfo( , , ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, lRetI);
 				}
 
-				assert(AF_INET	== lInfo->h_addrtype	);
-				assert(4		== lInfo->h_length		);
+				assert(AF_INET	== lInfo->ai_addr->sa_family	);
+				assert(AF_INET	== lInfo->ai_family				);
 
-				memcpy(&mAddr.sin_addr.S_un.S_addr, lInfo->h_addr_list, sizeof(mAddr.sin_addr.S_un.S_addr));
+				memcpy(&mAddr.sin_addr.S_un.S_addr, &reinterpret_cast<sockaddr_in *>(lInfo->ai_addr)->sin_addr.S_un.S_addr, sizeof(mAddr.sin_addr.S_un.S_addr));
 
 				Validate();
 			}

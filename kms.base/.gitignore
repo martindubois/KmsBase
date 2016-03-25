@@ -1,0 +1,6 @@
+
+# Auteur	KMS -	Martin Dubois, ing.
+# Produit	KmsBase
+# Fichier	kms.base/.gitignore
+
+kms.base.*.*.*.nupkg

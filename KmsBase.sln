@@ -56,6 +56,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{EA71243B-5549-4F76-9D8B-547E36BE8BB4}"
 	ProjectSection(SolutionItems) = preProject
 		_DocDev\Procedures\Build.txt = _DocDev\Procedures\Build.txt
+		_DocDev\Procedures\CreatePublicPackage.txt = _DocDev\Procedures\CreatePublicPackage.txt
 		_DocDev\Procedures\PrepDevComputer_Linux.txt = _DocDev\Procedures\PrepDevComputer_Linux.txt
 		_DocDev\Procedures\PrepDevComputer_Windows.txt = _DocDev\Procedures\PrepDevComputer_Windows.txt
 	EndProjectSection
@@ -153,6 +154,23 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KmsCopy", "KmsCopy\KmsCopy.vcxproj", "{3917AFAC-2F19-4B3A-95A9-8A2C45CFBF14}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DepCheck_Net", "DepCheck_Net\DepCheck_Net.vcxproj", "{96E3FC78-F2C1-4367-BE12-4F88CFD2238B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kms.base", "kms.base", "{782BD35A-DE78-4493-97E0-DA00FCF4567D}"
+	ProjectSection(SolutionItems) = preProject
+		kms.base\Install.cmd.txt = kms.base\Install.cmd.txt
+		kms.base\kms.base.nuspec = kms.base\kms.base.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kms.base.internal", "kms.base.internal", "{33984715-5376-4B51-BB1A-FBCC9BA6CEEE}"
+	ProjectSection(SolutionItems) = preProject
+		kms.base.internal\kms.base.internal.nuspec = kms.base.internal\kms.base.internal.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{E55F4323-A895-451B-A07E-09892D2811B0}"
+	ProjectSection(SolutionItems) = preProject
+		kms.base.internal\tools\chocolateyinstall.ps1 = kms.base.internal\tools\chocolateyinstall.ps1
+		kms.base.internal\tools\chocolateyuninstall.ps1 = kms.base.internal\tools\chocolateyuninstall.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -831,5 +849,6 @@ Global
 		{195EC26E-8CB6-4654-A00E-FC084D9691A9} = {17C49143-B3BF-492F-AA07-D08EBEE3756D}
 		{B31575E3-402F-4B1D-B5C5-6DB9F028DB12} = {41514692-FD16-4D5E-9E69-522D6D404276}
 		{723C70DB-54E9-4DBA-BAFB-886F8454952D} = {41514692-FD16-4D5E-9E69-522D6D404276}
+		{E55F4323-A895-451B-A07E-09892D2811B0} = {33984715-5376-4B51-BB1A-FBCC9BA6CEEE}
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,92 @@
+
+Auteur	KMS	-	Martin Dubois, ing.
+Produit	KmsBase
+Fichier	_DocDev/Procedures/CreatePublicPackage.txt
+
+
+[ ] Creer un dossier compresse nommee "public_kms_base_{Ma}_{Mi}_{Bu}.zip" et
+	y copier les fichiers
+	- Binaries/
+		- Debug_32_DLL/
+			- DepCheck.exe
+			- DepCheck_Net.exe
+		- Debug_64_DLL/
+			- DepCheck.exe
+			- DepCheck_Net.exe
+		- Release_32/
+			- KmsCopy.exe
+		- Release_32_DLL/
+			- DepCheck.exe
+			- DepCheck_Net.exe
+		- Release_64/
+			- KmsCopy.exe
+		- Release_64_DLL/
+			- DepCheck.exe
+			- DepCheck_Net.exe
+	- Includes/
+		- KmsLib/
+			- Linux/
+				- Windows.h
+			- Windows/
+				- ComPortHandle.h
+				- DriverHandle.h
+				- FileHandle.h
+				- RegistryKey.h
+				- Service.h
+				- SystemLog.h
+				- Windows.h
+			- CmdLineParser.h
+			- DebugLog.h
+			- Dump.h
+			- Exception.h
+			- IgnoreList.h
+			- KmsLib.h
+			- MemTester.h
+			- NetworkAddress.h
+			- RLE.h
+			- Socket.h
+			- ToolBase.h
+			- Walker.h
+			- Walker_Smart.h
+		- KmsBase.h
+		- KmsTest.h
+		- SageAPI.h
+		- WindowsToLinux.h
+	- Libraries/
+		- Debug_32/
+			- KmsLib.lib
+		- Debug_32_DLL/
+			- KmsLib.lib
+		- Debug_64/
+			- KmsLib.lib
+		- Debug_64_DLL/
+			- KmsLib.lib
+		- Release_32/
+			- KmsLib.lib
+		- Release_32_DLL/
+			- KmsLib.lib
+		- Release_64/
+			- KmsLib.lib
+		- Release_64_DLL/
+			- KmsLib.lib
+	- DepCheck.exe
+	- DepCheck_Net.exe
+	- DoxyFile_en.txt
+	- DoxyFile_fr.txt
+	- Install.cmd
+	- Install.cmd.txt
+	- KmsCopy.exe
+	- RunDoxygen.cmd
+	- Verify.cmd
+
+[ ]	Copier le fichier "{Ma}.{Mi}.{Bu}.zip" vers
+	"public_kms_base_{Ma}_{Mi}_{Bu}.zip" et dans ce nouveau dossier compresse
+	retirer les dossiers
+	- _DocDev/
+	- Includes/KmsDriversLib/
+	- Includes/KmsLib/OpenCL/
+	- KmsDriverLib/
+	- KmsLib/_DocDev/
+	- KmsLib/OpenCL/
+	- KmsLib_Test/
+	- Templates/

@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Auteur  KMS - Martin Dubois, ing.
+Produit KmsBase
+Fichier kms.base/kms.base.nuspec
+-->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>kms.base.internal</id>
+    <title>kms.base.internal</title>
+    <version>2.4.12</version>
+    <authors>KMS</authors>
+    <owners>KMS</owners>
+    <summary>KMS base library (Internal)</summary>
+    <description>KMS base library (Internal)</description>
+    <projectUrl>http://www.kms-quebec.com</projectUrl>
+    <packageSourceUrl>file://K:\Packages\kms.base.internal</packageSourceUrl>
+    <tags>kms base library</tags>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+  </metadata>
+  <files>
+    <file src="..\Debug\KmsLib.lib"                             target="content\Libraries\Debug_32"         />
+    <file src="..\Debug_DLL\DepCheck.exe"                       target="content\Binaries\Debug_32_DLL"      />
+    <file src="empty.ignore"                                    target="content\Binaries\Debug_32_DLL\DepCheck.exe.ignore" />
+    <file src="..\Debug_DLL\DepCheck_Net.exe"                   target="content\Binaries\Debug_32_DLL"      />
+    <file src="empty.ignore"                                    target="content\Binaries\Debug_32_DLL\DepCheck_Net.ext.ignore" />
+    <file src="..\Debug_DLL\KmsLib.lib"                         target="content\Libraries\Debug_32_DLL"     />
+    <file src="..\DoxyFile_en.txt"                              target="content"                            />
+    <file src="..\DoxyFile_fr.txt"                              target="content"                            />
+    <file src="..\Includes\KmsBase.h"                           target="content\Includes"                   />
+    <file src="..\Includes\KmsTest.h"                           target="content\Includes"                   />
+    <file src="..\Includes\Ring.h"                              target="content\Includes"                   />
+    <file src="..\Includes\SafeAPI.h"                           target="content\Includes"                   />
+    <file src="..\Includes\WindowsToLinux.h"                    target="content\Includes"                   />
+    <file src="..\Includes\KmsLib\CmdLineParser.h"              target="content\Includes\KmsLib"            />
+    <file src="..\Includes\KmsLib\DebugLog.h"                   target="content\Includes\KmsLib"            />
+    <file src="..\Includes\KmsLib\Dump.h"                       target="content\Includes\KmsLib"            />
+    <file src="..\Includes\KmsLib\Exception.h"                  target="content\Includes\KmsLib"            />
+    <file src="..\Includes\KmsLib\IgnoreList.h"                 target="content\Includes\KmsLib"            />
+    <file src="..\Includes\KmsLib\KmsLib.h"                     target="content\Includes\KmsLib"            />
+    <file src="..\Includes\KmsLib\MemTester.h"                  target="content\Includes\KmsLib"            />
+    <file src="..\Includes\KmsLib\NetworkAddress.h"             target="content\Includes\KmsLib"            />
+    <file src="..\Includes\KmsLib\RLE.h"                        target="content\Includes\KmsLib"            />
+    <file src="..\Includes\KmsLib\Socket.h"                     target="content\Includes\KmsLib"            />
+    <file src="..\Includes\KmsLib\ToolBase.h"                   target="content\Includes\KmsLib"            />
+    <file src="..\Includes\KmsLib\Walker.h"                     target="content\Includes\KmsLib"            />
+    <file src="..\Includes\KmsLib\Walker_Smart.h"               target="content\Includes\KmsLib"            />
+    <file src="..\Includes\KmsLib\Linux\Windows.h"              target="content\Includes\KmsLib\Linux"      />
+    <file src="..\Includes\KmsLib\Windows\ComPortHandle.h"      target="content\Includes\KmsLib\Windows"    />
+    <file src="..\Includes\KmsLib\Windows\DriverHandle.h"       target="content\Includes\KmsLib\Windows"    />
+    <file src="..\Includes\KmsLib\Windows\FileHandle.h"         target="content\Includes\KmsLib\Windows"    />
+    <file src="..\Includes\KmsLib\Windows\RegistryKey.h"        target="content\Includes\KmsLib\Windows"    />
+    <file src="..\Includes\KmsLib\Windows\Service.h"            target="content\Includes\KmsLib\Windows"    />
+    <file src="..\Includes\KmsLib\Windows\SystemLog.h"          target="content\Includes\KmsLib\Windows"    />
+    <file src="..\Includes\KmsLib\Windows\Windows.h"            target="content\Includes\KmsLib\Windows"    />
+    <file src="..\Release\KmsCopy.exe"                          target="content\"                           />
+    <file src="empty.ignore"                                    target="content\KmsCopy.exe.ignore"         />
+    <file src="..\Release\KmsCopy.exe"                          target="content\Binaries\Release_32"        />
+    <file src="empty.ignore"                                    target="content\Binaries\Release_32\KmsCopy.exe.ignore" />
+    <file src="..\Release\KmsLib.lib"                           target="content\Libraries\Release_32"       />
+    <file src="..\Release_DLL\DepCheck.exe"                     target="content"                            />
+    <file src="empty.ignore"                                    target="content\DepCheck.exe.ignore"        />
+    <file src="..\Release_DLL\DepCheck.exe"                     target="content\Binaries\Release_32_DLL"    />
+    <file src="empty.ignore"                                    target="content\Binaries\Release_32_DLL\DepCheck.exe.ignore" />
+    <file src="..\Release_DLL\DepCheck_Net.exe"                 target="content"                            />
+    <file src="empty.ignore"                                    target="content\DepCheck_Net.exe.ignore"    />
+    <file src="..\Release_DLL\DepCheck_Net.exe"                 target="content\Binaries\Release_32_DLL"    />
+    <file src="empty.ignore"                                    target="content\Binaries\Release_32_DLL\DepCheck_Net.exe.ignore" />
+    <file src="..\Release_DLL\KmsLib.lib"                       target="content\Libraries\Release_32_DLL"   />
+    <file src="..\RunDoxygen.cmd"                               target="content"                            />
+    <file src="..\Scripts\Install.cmd"                          target="content"                            />
+    <file src="..\Scripts\Verify.cmd"                           target="content"                            />
+    <file src="..\x64\Debug\KmsLib.lib"                         target="content\Libraries\Debug_64"         />
+    <file src="..\x64\Debug_DLL\DepCheck.exe"                   target="content\Binaries\Debug_64_DLL"      />
+    <file src="empty.ignore"                                    target="content\Binaries\Debug_64_DLL\DepCheck.exe.ignore" />
+    <file src="..\x64\Debug_DLL\DepCheck_Net.exe"               target="content\Binaries\Debug_64_DLL"      />
+    <file src="empty.ignore"                                    target="content\Binaries\Debug_64_DLL\DepCheck_Net.exe.ignore" />
+    <file src="..\x64\Debug_DLL\KmsLib.lib"                     target="content\Libraries\Debug_64_DLL"     />
+    <file src="..\x64\Release\KmsCopy.exe"                      target="content\Binaries\Release_64"        />
+    <file src="empty.ignore"                                    target="content\Binaries\Release_64\KmsCopy.exe.ignore" />
+    <file src="..\x64\Release\KmsLib.lib"                       target="content\Libraries\Release_64"       />
+    <file src="..\x64\Release_DLL\DepCheck.exe"                 target="content\Binaries\Release_64_DLL"    />
+    <file src="empty.ignore"                                    target="content\Binaries\Release_64_DLL\DepCheck.exe.ignore" />
+    <file src="..\x64\Release_DLL\DepCheck_Net.exe"             target="content\Binaries\Release_64_DLL"    />
+    <file src="empty.ignore"                                    target="content\Binaries\Release_64_DLL\DepCheck_Net.exe.ignore" />
+    <file src="..\x64\Release_DLL\KmsLib.lib"                   target="content\Libraries\Release_64_DLL"   />
+
+    <file src="..\Includes\KmsLib\OpenCL\Buffer.h"              target="content\Includes\KmsLib\OpenCL"     />
+    <file src="..\Includes\KmsLib\OpenCL\CommandQueue.h"        target="content\Includes\KmsLib\OpenCL"     />
+    <file src="..\Includes\KmsLib\OpenCL\Context.h"             target="content\Includes\KmsLib\OpenCL"     />
+    <file src="..\Includes\KmsLib\OpenCL\Kernel.h"              target="content\Includes\KmsLib\OpenCL"     />
+    <file src="..\Includes\KmsLib\OpenCL\Program.h"             target="content\Includes\KmsLib\OpenCL"     />
+    <file src="..\Templates\DLL\TODO.cpp"                       target="content\Templates\DLL"              />
+    <file src="..\Templates\DLL\TODO.h"                         target="content\Templates\DLL"              />
+    <file src="..\Templates\DLL\TODOInterface.cpp"              target="content\Templates\DLL"              />
+    <file src="..\Templates\DLL\TODOInterface.h"                target="content\Templates\DLL"              />
+    <file src="..\Templates\DLL\_DocUser\Utiliser.txt"          target="content\Templates\DLL\_DocUser\Use.txt" />
+    <file src="..\Templates\Driver_KMDF\Device.cpp"             target="content\Templates\Driver_KMDF"      />
+    <file src="..\Templates\Driver_KMDF\Device.h"               target="content\Templates\Driver_KMDF"      />
+    <file src="..\Templates\Driver_KMDF\Driver.cpp"             target="content\Templates\Driver_KMDF"      />
+    <file src="..\Templates\Driver_KMDF\Driver_KMDF.inf"        target="content\Templates\Driver_KMDF"      />
+    <file src="..\Templates\Driver_KMDF\Project.h"              target="content\Templates\Driver_KMDF"      />
+    <file src="..\Templates\Driver_KMDF\TodoInterface.h"        target="content\Templates\Driver_KMDF"      />
+    <file src="..\Templates\Driver_KMDF\_DocUser\Utiliser.txt"  target="content\Templates\Driver_KMDF\_DocUser\Use.txt" />
+    <file src="..\Templates\Service\.gitignore"                 target="content\Templates\Service"          />
+    <file src="..\Templates\Service\Messages.mc"                target="content\Templates\Service"          />
+    <file src="..\Templates\Service\Service.cpp"                target="content\Templates\Service"          />
+    <file src="..\Templates\Service\_DocUser\Use.txt"           target="content\Templates\Service\_DocUser" />
+    <file src="..\Templates\Solution\.gitignore"                target="content\Templates\Solution"         />
+    <file src="..\Templates\Solution\ExportSources.sh"          target="content\Templates\Solution"         />
+    <file src="..\Templates\Solution\Test.cmd"                  target="content\Templates\Solution"         />
+    <file src="..\Templates\Solution\_DocUser\Utiliser.txt"     target="content\Templates\Solution\_DocUser\Use.txt"  />
+    <file src="..\Templates\Solution\Common\Version.h"          target="content\Templates\Solution\Common"  />
+    <file src="..\Templates\Solution\Common\Version.rc"         target="content\Templates\Solution\Common"  />
+    <file src="..\Templates\Test\TODO.cpp"                      target="content\Templates\Test"             />
+    <file src="..\Templates\Test\TODO_Test.cpp"                 target="content\Templates\Test"             />
+    <file src="..\Templates\Test\_DocUser\Use.txt"              target="content\Templates\Test\_DocUser"    />
+    <file src="..\Templates\Tool\TODO_Tool.cpp"                 target="content\Templates\Tool"             />
+    <file src="..\Templates\Tool\_DocUser\Utiliser.txt"         target="content\Templates\Tool\_DocUser\Use.txt"  />
+
+    <file src="..\Scripts\Install.cmd.txt"                      target="content"                            />
+    <file src="tools\chocolateyinstall.ps1"                     target="tools"                              />
+    <file src="tools\chocolateyuninstall.ps1"                   target="tools"                              />
+  </files>
+</package>

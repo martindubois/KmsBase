@@ -2,6 +2,7 @@
 Auteur	KMS -	Martin Dubois, ing.
 Produit	KmsBase
 Fichier	_DocDev/Procedures/Build.txt
+Langue	Francais
 
 
 ===== Version Interne =======================================================
@@ -15,6 +16,8 @@ Windows Seulement
 [ ] Modifier le fichier "Common/Version.h"
 	- Incrementer le numero de compilation;
 	- Verifier que "VERSION_INTERNAL" est a "true"
+[ ] Modifier le fichier "kms.base.internal/tools/chocolateyuninstall.ps1"
+	pour incrementer le numero de version si necessaire;
 [ ] Modifier le fichier "Script/Install.cmd" pour incrementer le numero de
 	version si necessaire;
 [ ] Modifier le fichier "Script/Install.sh" pour incrementer le numero de
@@ -55,7 +58,7 @@ Windows Seulement
 	- Dans le menu "FILE", selectionner l'item "Save All".
 [ ]	Dans la fenetre de commande
 	- Entrer la commande "Test.cmd";
-	- Entrer la commande "Export.cmd Ma.Mi.Bu_Type" ou
+	- Entrer la commande "Export.cmd Ma.Mi.Bu Type" ou
 		Ma = Numero majeur de version;
 		Mi = Numero mineur de version;
 		Bu = Numero de comilation;
@@ -76,6 +79,8 @@ Windows Seulement
 [ ] Modifier le fichier "Common/Version.h"
 	- Incrementer le numero de compilation;
 	- Verifier que "VERSION_INTERNAL" est a "true"
+[ ] Modifier le fichier "kms.base.internal/tools/chocolateyuninstall.ps1"
+	pour incrementer le numero de version si necessaire;
 [ ] Modifier le fichier "Script/Install.cmd" pour incrementer le numero de
 	version si necessaire;
 [ ] Modifier le fichier "Script/Install.sh" pour incrementer le numero de
@@ -125,7 +130,7 @@ Windows Seulement
 	- Entrer la commande "exit", pour fermer la fenetre.
 [ ] Deconnecter l'adaptateur RS232 à USB;
 [ ] Dans la fenetre de commande
-	- Entrer la commande "Export.cmd Ma.Mi.Bu_Type" ou
+	- Entrer la commande "Export.cmd Ma.Mi.Bu Type" ou
 		Ma = Numero majeur de version;
 		Mi = Numero mineur de version;
 		Bu = Numero de comilation;
@@ -134,6 +139,3 @@ Windows Seulement
 [ ] Indexer les fichiers modifies et les commettre en utilisant "Ma.Mi.Bu" comme message;
 [ ] Ajouter le tag "Ma.Mi.Bu";
 [ ] Pousser le depot GIT sur le	serveur.
-
-Sur un ordinateur Windows
-[ ] Executer "./ExportSources.sh Ma.Mi.Bu_Type";

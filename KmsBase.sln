@@ -72,6 +72,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EDCA233C-71A7-4C3E-9F35-105EA6BCE7CF}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		Build.cmd = Build.cmd
 		DoxyFile_en.txt = DoxyFile_en.txt
 		DoxyFile_fr.txt = DoxyFile_fr.txt
 		Export.cmd = Export.cmd
@@ -157,12 +158,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DepCheck_Net", "DepCheck_Ne
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kms.base", "kms.base", "{782BD35A-DE78-4493-97E0-DA00FCF4567D}"
 	ProjectSection(SolutionItems) = preProject
+		kms.base\.gitignore = kms.base\.gitignore
 		kms.base\Install.cmd.txt = kms.base\Install.cmd.txt
 		kms.base\kms.base.nuspec = kms.base\kms.base.nuspec
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kms.base.internal", "kms.base.internal", "{33984715-5376-4B51-BB1A-FBCC9BA6CEEE}"
 	ProjectSection(SolutionItems) = preProject
+		kms.base.internal\.gitignore = kms.base.internal\.gitignore
 		kms.base.internal\kms.base.internal.nuspec = kms.base.internal\kms.base.internal.nuspec
 	EndProjectSection
 EndProject
@@ -338,8 +341,8 @@ Global
 		{E7A45A2C-BD9F-4BAB-83DE-0BDBA896FE64}.Win8.1 Release|Win32.Deploy.0 = Release|Win32
 		{E7A45A2C-BD9F-4BAB-83DE-0BDBA896FE64}.Win8.1 Release|x64.ActiveCfg = Release|x64
 		{E7A45A2C-BD9F-4BAB-83DE-0BDBA896FE64}.Win8.1 Release|x64.Deploy.0 = Release|x64
-		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug_DLL|Mixed Platforms.ActiveCfg = Debug_DLL|Win32
-		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug_DLL|Mixed Platforms.Build.0 = Debug_DLL|Win32
+		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug_DLL|Mixed Platforms.ActiveCfg = Win8.1 Debug|Win32
+		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug_DLL|Mixed Platforms.Build.0 = Win8.1 Debug|Win32
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug_DLL|Win32.ActiveCfg = Win7 Debug|Win32
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug_DLL|x64.ActiveCfg = Win7 Debug|x64
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug|Mixed Platforms.ActiveCfg = Win7 Debug|Win32
@@ -351,8 +354,8 @@ Global
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug|x64.ActiveCfg = Win7 Debug|x64
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug|x64.Build.0 = Win7 Debug|x64
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Debug|x64.Deploy.0 = Win7 Debug|x64
-		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Release_DLL|Mixed Platforms.ActiveCfg = Release_DLL|Win32
-		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Release_DLL|Mixed Platforms.Build.0 = Release_DLL|Win32
+		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Release_DLL|Mixed Platforms.ActiveCfg = Win8.1 Debug|Win32
+		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Release_DLL|Mixed Platforms.Build.0 = Win8.1 Debug|Win32
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Release_DLL|Win32.ActiveCfg = Win7 Release|Win32
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Release_DLL|x64.ActiveCfg = Win7 Release|x64
 		{7B7BA55F-7F9E-4FE1-B0E3-E3AAB044E08F}.Release|Mixed Platforms.ActiveCfg = Win8.1 Release|Win32
@@ -740,7 +743,6 @@ Global
 		{3917AFAC-2F19-4B3A-95A9-8A2C45CFBF14}.Release_DLL|Mixed Platforms.ActiveCfg = Release|Win32
 		{3917AFAC-2F19-4B3A-95A9-8A2C45CFBF14}.Release_DLL|Mixed Platforms.Build.0 = Release|Win32
 		{3917AFAC-2F19-4B3A-95A9-8A2C45CFBF14}.Release_DLL|Win32.ActiveCfg = Release|Win32
-		{3917AFAC-2F19-4B3A-95A9-8A2C45CFBF14}.Release_DLL|Win32.Build.0 = Release|Win32
 		{3917AFAC-2F19-4B3A-95A9-8A2C45CFBF14}.Release_DLL|x64.ActiveCfg = Release|x64
 		{3917AFAC-2F19-4B3A-95A9-8A2C45CFBF14}.Release|Mixed Platforms.ActiveCfg = Release|Win32
 		{3917AFAC-2F19-4B3A-95A9-8A2C45CFBF14}.Release|Mixed Platforms.Build.0 = Release|Win32

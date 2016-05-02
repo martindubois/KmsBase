@@ -1,8 +1,8 @@
 
-// Auteur	:	KMS -	Martin Dubois, ing.
-// Client	:	TODO
-// Projet	:	TODO
-// Fichier	:	TODO/Device.cpp
+// Auteur	KMS -	Martin Dubois, ing.
+// Client	TODO
+// Produit	TODO
+// Fichier	TODO/Device.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@ extern "C"
 //  STATUS_SUCCESS
 NTSTATUS Device_Create( PWDFDEVICE_INIT aDeviceInit )
 {
-	DbgPrint(PREFIX __FUNCTION__ "( 0x%08x )\n", reinterpret_cast< ULONG >(aDeviceInit));
+	DbgPrint(PREFIX __FUNCTION__ "(  )\n");
 
 	WDF_PNPPOWER_EVENT_CALLBACKS lPnpPower;
 
@@ -121,14 +121,14 @@ NTSTATUS Device_Create( PWDFDEVICE_INIT aDeviceInit )
 			lResult = WdfDeviceCreateDeviceInterface(lDevice, & TODO_INTERFACE, NULL);
 			if (!NT_SUCCESS(lResult))
 			{
-				DbgPrint(PREFIX __FUNCTION__ " - WdfDeviceCreateDeviceInterface( 0x%08x, ,  ) failed returning 0x%08x\n",
-					reinterpret_cast< ULONG >(lDevice), lResult);
+				DbgPrint(PREFIX __FUNCTION__ " - WdfDeviceCreateDeviceInterface( , ,  ) failed returning 0x%08x\n",
+					lResult);
 			}
 		}
 		else
 		{
-			DbgPrint(PREFIX __FUNCTION__ " - WdfQueueCreate( 0x%08x, , ,  ) failed returning 0x%08x\n",
-				reinterpret_cast< ULONG >( lDevice ), lResult);
+			DbgPrint(PREFIX __FUNCTION__ " - WdfQueueCreate( , , ,  ) failed returning 0x%08x\n",
+				lResult);
 		}
 	}
 	else
@@ -146,7 +146,7 @@ NTSTATUS Device_Create( PWDFDEVICE_INIT aDeviceInit )
 
 VOID Cleanup(WDFOBJECT aDevice)
 {
-	DbgPrint(PREFIX __FUNCTION__ "( 0x%08x )\n", reinterpret_cast< ULONG >(aDevice));
+	DbgPrint(PREFIX __FUNCTION__ "(  )\n");
 
 	(void)(aDevice);
 
@@ -155,8 +155,8 @@ VOID Cleanup(WDFOBJECT aDevice)
 
 VOID DeviceControl( WDFQUEUE aQueue, WDFREQUEST aRequest, size_t aOutSize_byte, size_t aInSize_byte, ULONG aCode )
 {
-	DbgPrint(PREFIX __FUNCTION__ "( 0x%08x, 0x%08x, %u bytes, %u bytes, 0x%08x )\n",
-		reinterpret_cast<ULONG>(aQueue), reinterpret_cast<ULONG>(aRequest), aOutSize_byte, aInSize_byte, aCode);
+	DbgPrint(PREFIX __FUNCTION__ "( , , %u bytes, %u bytes, 0x%08x )\n",
+		aOutSize_byte, aInSize_byte, aCode);
 
 	ASSERT(NULL != aQueue);
 
@@ -185,7 +185,7 @@ VOID DeviceControl( WDFQUEUE aQueue, WDFREQUEST aRequest, size_t aOutSize_byte, 
 
 NTSTATUS EnterD0( WDFDEVICE aDevice, WDF_POWER_DEVICE_STATE aPreviousState )
 {
-	DbgPrint(PREFIX __FUNCTION__ "( 0x%08x, 0x%08x )\n", reinterpret_cast<ULONG>(aDevice), aPreviousState);
+	DbgPrint(PREFIX __FUNCTION__ "( , 0x%08x )\n", aPreviousState);
 
 	ASSERT(NULL != aDevice);
 
@@ -203,7 +203,7 @@ NTSTATUS EnterD0( WDFDEVICE aDevice, WDF_POWER_DEVICE_STATE aPreviousState )
 
 NTSTATUS ExitD0( WDFDEVICE aDevice, WDF_POWER_DEVICE_STATE aTargetState )
 {
-	DbgPrint(PREFIX __FUNCTION__ "( 0x%08x, 0x%08x )\n", reinterpret_cast<ULONG>(aDevice), aTargetState);
+	DbgPrint(PREFIX __FUNCTION__ "( , 0x%08x )\n", aTargetState);
 
 	ASSERT(NULL != aDevice);
 
@@ -221,8 +221,7 @@ NTSTATUS ExitD0( WDFDEVICE aDevice, WDF_POWER_DEVICE_STATE aTargetState )
 
 NTSTATUS PrepareHardware( WDFDEVICE aDevice, WDFCMRESLIST aRessourcesRaw, WDFCMRESLIST aRessourcesTranslated )
 {
-	DbgPrint(PREFIX __FUNCTION__ "( 0x%08x, 0x%08x, 0x%08x )\n",
-		reinterpret_cast<ULONG>(aDevice), reinterpret_cast<ULONG>(aRessourcesRaw), reinterpret_cast<ULONG>(aRessourcesTranslated));
+	DbgPrint(PREFIX __FUNCTION__ "( , ,  )\n");
 
 	ASSERT(NULL != aDevice);
 
@@ -241,8 +240,7 @@ NTSTATUS PrepareHardware( WDFDEVICE aDevice, WDFCMRESLIST aRessourcesRaw, WDFCMR
 
 NTSTATUS ReleaseHardware( WDFDEVICE aDevice, WDFCMRESLIST aRessourcesTranslated )
 {
-	DbgPrint(PREFIX __FUNCTION__ "( 0x%08x, 0x%08x )\n",
-		reinterpret_cast<ULONG>(aDevice), reinterpret_cast<ULONG>(aRessourcesTranslated));
+	DbgPrint(PREFIX __FUNCTION__ "( ,  )\n");
 
 	ASSERT(NULL != aDevice);
 

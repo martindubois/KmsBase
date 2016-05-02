@@ -1,7 +1,7 @@
 
-// Author / Auteur		:	KMS	-	Martin Dubois, ing
-// Product / Produit	:	KmsBase
-// File / Fichier		:	KmsLib/NetworkAddress.cpp
+// Author / Auteur		KMS	-	Martin Dubois, ing
+// Product / Produit	KmsBase
+// File / Fichier		KmsLib/NetworkAddress.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -156,13 +156,13 @@ namespace KmsLib
 		char lMsg	[1024];
 		char lName	[1024];
 
-		lRetI = sscanf_s(aAddr, "%[^: /\\\n\r\t]:%u", lName SIZE_INFO(sizeof(lName) / sizeof(lName[0])), &lPortNumber);
+		lRetI = sscanf_s(aAddr, "%[^: /\\\n\r\t]:%u", lName SIZE_INFO(static_cast<int>(sizeof(lName) / sizeof(lName[0]))), &lPortNumber);
 		switch (lRetI)
 		{
 		case 2 :
 			if (0xffff < lPortNumber)
 			{
-				sprintf_s(lMsg, "%u is not a valid port number", lName, lRetI);
+				sprintf_s(lMsg, "%u is not a valid port number (%d)", lPortNumber, lRetI);
 
 				throw new Exception(Exception::CODE_INVALID_ARGUMENT, "Invalid port number", lMsg, __FILE__, __FUNCTION__, __LINE__, lPortNumber);
 			}

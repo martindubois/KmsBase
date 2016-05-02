@@ -168,8 +168,8 @@ namespace KmsLib
 			{
 				char lMessage[2048];
 
-				sprintf_s(lMessage, sizeof(lMessage), "RegSetValueEx( 0x%08x, \"%s\", , 0x%08x, , %u bytes ) failed\n",
-					reinterpret_cast<unsigned int>(mKey), aName, aType, aValueSize_byte);
+				sprintf_s(lMessage, sizeof(lMessage), "RegSetValueEx( , \"%s\", , 0x%08x, , %u bytes ) failed\n",
+					aName, aType, aValueSize_byte);
 
 				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegSetValueEx( , , , , ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
@@ -187,13 +187,8 @@ namespace KmsLib
 			if (ERROR_SUCCESS != lRet)
 			{
 				// NOTE TESTED : Realy not easy to test / Vraiment pas facile a tester
-				char lMessage[2048];
-
-				sprintf_s(lMessage, sizeof(lMessage), "RegCloseKey( 0x%08x ) failed",
-					reinterpret_cast<unsigned int>(mKey));
-
 				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegCloseKey(  ) failed",
-					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
+					NULL, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 		}
 
@@ -212,8 +207,8 @@ namespace KmsLib
 			{
 				char lMessage[2048];
 
-				sprintf_s(lMessage, sizeof(lMessage), "RegCreateKeyEx( 0x%08x, \"%s\", , , , , , ,  ) failed",
-					reinterpret_cast<unsigned int>(aKey), aSubKey);
+				sprintf_s(lMessage, sizeof(lMessage), "RegCreateKeyEx( , \"%s\", , , , , , ,  ) failed",
+					aSubKey);
 
 				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegCreateKeyEx( , , , , , , , ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
@@ -233,8 +228,8 @@ namespace KmsLib
 			{
 				char lMessage[2048];
 
-				sprintf_s(lMessage, sizeof(lMessage), "RegDeleteTree( 0x%08x, \"%s\" ) failed",
-					reinterpret_cast<unsigned int>(mKey), aSubKey);
+				sprintf_s(lMessage, sizeof(lMessage), "RegDeleteTree( , \"%s\" ) failed",
+					aSubKey);
 
 				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegDeleteTree( ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
@@ -252,8 +247,8 @@ namespace KmsLib
 			{
 				char lMessage[2048];
 
-				sprintf_s(lMessage, sizeof(lMessage), "RegDeleteValue( 0x%08x, \"%s\" ) failed",
-					reinterpret_cast<unsigned int>(mKey), aName);
+				sprintf_s(lMessage, sizeof(lMessage), "RegDeleteValue( , \"%s\" ) failed",
+					aName);
 
 				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegDeleteValue( ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
@@ -275,8 +270,8 @@ namespace KmsLib
 			{
 				char lMessage[2048];
 
-				sprintf_s(lMessage, sizeof(lMessage), "RegOpenKeyEx( 0x%08x, \"%s\", , ,  ) failed",
-					reinterpret_cast<unsigned int>(aKey), aSubKey);
+				sprintf_s(lMessage, sizeof(lMessage), "RegOpenKeyEx( , \"%s\", , ,  ) failed",
+					aSubKey);
 
 				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegOpenKeyEx( , , , ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);

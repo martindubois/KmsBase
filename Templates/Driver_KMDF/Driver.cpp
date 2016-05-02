@@ -1,8 +1,8 @@
 
-// Auteur	:	KMS -	Martin Dubois, ing.
-// Client	:	TODO
-// Projet	:	TODO
-// Fichier	:	TODO/Driver.cpp
+// Auteur	KMS -	Martin Dubois, ing.
+// Client	TODO
+// Produit	TODO
+// Fichier	TODO/Driver.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -35,8 +35,7 @@ NTSTATUS AddDevice( WDFDRIVER aDriver, PWDFDEVICE_INIT aDeviceInit )
 	(void)(aDriver		);
 	(void)(aDeviceInit	);
 
-	DbgPrint(PREFIX __FUNCTION__ "( 0x%08x, 0x%08x )\n",
-		reinterpret_cast< ULONG >( aDriver ), reinterpret_cast< ULONG >( aDeviceInit ) );
+	DbgPrint(PREFIX __FUNCTION__ "( ,  )\n" );
 
 	NTSTATUS lResult = Device_Create( aDeviceInit );
 
@@ -48,8 +47,8 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT aDriverObject, PUNICODE_STRING aRegistryPath
 	ASSERT(NULL != aDriverObject);
 	ASSERT(NULL != aRegistryPath);
 
-	DbgPrint(PREFIX __FUNCTION__ "( 0x%08x, \"%S\" )\n",
-		reinterpret_cast< ULONG >(aDriverObject), aRegistryPath->Buffer);
+	DbgPrint(PREFIX __FUNCTION__ "( , \"%S\" )\n",
+		aRegistryPath->Buffer);
 
 	WDF_DRIVER_CONFIG lConfig;
 

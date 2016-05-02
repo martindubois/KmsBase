@@ -1,7 +1,7 @@
 
-// Author / Auteur		:	KMS -	Martin Dubois, ing.
-// Product / Produit	:	KmsBase
-// File / Fichier		:	KmsLib/Windows/DriverHandle.cpp
+// Author / Auteur		KMS -	Martin Dubois, ing.
+// Product / Produit	KmsBase
+// File / Fichier		KmsLib/Windows/DriverHandle.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -42,12 +42,8 @@ namespace KmsLib
 
 			if (!CancelIoEx(mHandle, NULL))
 			{
-				char lMessage[2048];
-
-				sprintf_s(lMessage, sizeof(lMessage), "CancelIoEx( 0x%08x,  ) failed", reinterpret_cast<unsigned int>(mHandle));
-
 				throw new Exception(Exception::CODE_IO_ERROR, "CancelIoEx( ,  ) failed",
-					lMessage, __FILE__, __FUNCTION__, __LINE__, reinterpret_cast< unsigned int >( mHandle ) );
+					NULL, __FILE__, __FUNCTION__, __LINE__, 0 );
 			}
 
 			// NOT TESTED : Testing need multithread program / Test necessite
@@ -137,7 +133,7 @@ namespace KmsLib
 			{
 				// NOT TESTED : Not easy to test / Pas facile a tester
 				throw new Exception(Exception::CODE_SETUP_API_ERROR, "SetupDiDestroyDeviceInfoList(  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, reinterpret_cast< unsigned int >( lDevInfo ) );
+					NULL, __FILE__, __FUNCTION__, __LINE__, 0 );
 			}
 		}
 
@@ -151,8 +147,8 @@ namespace KmsLib
 			{
 				char lMessage[2048];
 
-				sprintf_s(lMessage, sizeof(lMessage), "DeviceIoControl( 0x%08x, 0x%08x, , %u bytes, , %u bytes, ,  ) failed",
-					reinterpret_cast<unsigned int>(mHandle), aCode, aInSize_byte, aOutSize_byte);
+				sprintf_s(lMessage, sizeof(lMessage), "DeviceIoControl( , 0x%08x, , %u bytes, , %u bytes, ,  ) failed",
+					aCode, aInSize_byte, aOutSize_byte);
 
 				throw new Exception(Exception::CODE_IOCTL_ERROR, "DeviceIoControl( , , , , , , ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, aCode);

@@ -52,7 +52,7 @@ OS X Only
 [ ] Deplacer les fichiers exportes vers le serveur;
 
 Windows Seulement
-[ ]	Ouvrir la solution en utilisant "Visual Studio 2013"
+[ ]	Ouvrir la solution en utilisant "Visual Studio 2015"
 	- Dans le menu "BUILD", selectionner l'item "Batch Build...";
 	- Dans le dialogue "Batch Build", cliquer "Rebuild";
 	- Dans le menu "FILE", selectionner l'item "Save All".

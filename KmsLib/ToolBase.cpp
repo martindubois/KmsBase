@@ -114,7 +114,7 @@ namespace KmsLib
 
 			memset(&lValue, 0, sizeof(lValue));
 
-			int lRetI = sscanf_s(lLine, "%[^\n\r\t]", lValue SIZE_INFO( sizeof( lValue ) - 1 ) );
+			int lRetI = sscanf_s(lLine, "%[^\n\r\t]", lValue SIZE_INFO( static_cast<int>(sizeof( lValue ) - 1 )) );
 			switch (lRetI)
 			{
 			case 1:
@@ -159,7 +159,7 @@ namespace KmsLib
 
 			memset(&lValue, 0, sizeof(lValue));
 
-			int lRetI = sscanf_s(lLine, "%[^\n\r\t]", lValue SIZE_INFO( sizeof( lValue ) - 1 ) );
+			int lRetI = sscanf_s(lLine, "%[^\n\r\t]", lValue SIZE_INFO( static_cast<int>(sizeof( lValue ) - 1 )) );
 			switch (lRetI)
 			{
 			case 1:

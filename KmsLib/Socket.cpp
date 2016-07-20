@@ -1,7 +1,7 @@
 
 // Author / Auteur		KMS	-	Martin Dubois, ing.
 // Product / Produit	KmsBase
-// File / Fichier		KmsLib/Glue.cpp
+// File / Fichier		KmsLib/Socket.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -162,7 +162,7 @@ namespace KmsLib
 		{
 			char lMsg[1024];
 
-			sprintf_s(lMsg, "accept( , ,  ) failed returning 0x%08x", lConnect);
+			sprintf_s(lMsg, "accept( , ,  ) failed returning 0x%08x", static_cast<unsigned int>(lConnect));
 
 			throw new Exception(Exception::CODE_NETWORK_ERROR, "accept( , ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
 		}

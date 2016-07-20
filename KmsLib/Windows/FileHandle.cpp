@@ -1,7 +1,7 @@
 
-// Auteur	:	KMS -	Martin Dubois, ing.
-// Projet	:	KmsBase
-// Fichier	:	KmsLib/Windows/FileHandle.cpp
+// Author / Auteur		KMS -	Martin Dubois, ing.
+// Product / Produit	KmsBase
+// File / Fichier		KmsLib/Windows/FileHandle.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -57,7 +57,7 @@ namespace KmsLib
 			{
 				// PAS TESTE : Difficile de faire echouer CloseHandle.
 				throw Exception(Exception::CODE_IO_ERROR, "CloseHandle(  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, reinterpret_cast< unsigned int >( mHandle ));
+					NULL, __FILE__, __FUNCTION__, __LINE__, 0);
 			}
 		}
 
@@ -82,7 +82,7 @@ namespace KmsLib
 					aFileName, aDesiredAccess, aSharedMode, aCreationDisposition, aFlagsAndAttributes);
 
 				throw new Exception(Exception::CODE_IO_ERROR, "CreateFile( , , , , , ,  ) failed",
-					lMessage, __FILE__, __FUNCTION__, __LINE__, reinterpret_cast< unsigned int >( aFileName ) );
+					lMessage, __FILE__, __FUNCTION__, __LINE__, 0 );
 			}
 		}
 
@@ -99,8 +99,8 @@ namespace KmsLib
 			{
 				char lMessage[2048];
 
-				sprintf_s(lMessage, sizeof(lMessage), "ReadFile( 0x%08x, , %u bytes, ,  ) failed",
-					reinterpret_cast<unsigned int>(mHandle), aOutSize_byte);
+				sprintf_s(lMessage, sizeof(lMessage), "ReadFile( , , %u bytes, ,  ) failed",
+					aOutSize_byte);
 
 				throw new Exception(Exception::CODE_IO_ERROR, "ReadFile( , , , ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, 0);
@@ -124,8 +124,8 @@ namespace KmsLib
 			{
 				char lMessage[2048];
 
-				sprintf_s(lMessage, sizeof(lMessage), "WriteFile( 0x%08x, , %u bytes, ,  ) failed",
-					reinterpret_cast<unsigned int>(mHandle), aInSize_byte);
+				sprintf_s(lMessage, sizeof(lMessage), "WriteFile( , , %u bytes, ,  ) failed",
+					aInSize_byte);
 
 				throw new Exception(Exception::CODE_IO_ERROR, "WriteFile( , , , ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, 0);
@@ -137,8 +137,8 @@ namespace KmsLib
 			{
 				char lMessage[2048];
 
-				sprintf_s(lMessage, sizeof(lMessage), "WriteFile did not write all data (Handle = 0x%08x, To write = %u byte, Written = %u byte)",
-					reinterpret_cast<unsigned int>(mHandle), aInSize_byte, lInfo_byte);
+				sprintf_s(lMessage, sizeof(lMessage), "WriteFile did not write all data (To write = %u byte, Written = %u byte)",
+					aInSize_byte, lInfo_byte);
 
 				throw new Exception(Exception::CODE_IO_ERROR, "WriteFile did not write all the data",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, lInfo_byte);

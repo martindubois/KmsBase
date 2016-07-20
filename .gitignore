@@ -1,8 +1,9 @@
 
-# Auteur	:	KMS -	Martin Dubois, ing.
-# Projet	:	KmsBase
-# Fichier	:	.gitignore
+# Author / Auteur	KMS -	Martin Dubois, ing.
+# Product / Produit	KmsBase
+# File / Fichier	.gitignore
 
+KmsBase.VC.opendb
 Linux_Windows_Test0.txt
 
 *~
@@ -10,6 +11,7 @@ Linux_Windows_Test0.txt
 *.sdf
 *.v12.suo
 
+.vs/
 Binaries/
 Debug/
 Debug_DLL/

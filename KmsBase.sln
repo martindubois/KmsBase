@@ -49,14 +49,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{EB86
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DocDev", "_DocDev", "{00EEE413-B9A0-44E8-9AE8-8FD3EAC01E7D}"
 	ProjectSection(SolutionItems) = preProject
-		_DocDev\.gitignore = _DocDev\.gitignore
+		_DocDev\Components.svg = _DocDev\Components.svg
 		_DocDev\Requirements.txt = _DocDev\Requirements.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{EA71243B-5549-4F76-9D8B-547E36BE8BB4}"
 	ProjectSection(SolutionItems) = preProject
 		_DocDev\Procedures\Build.txt = _DocDev\Procedures\Build.txt
-		_DocDev\Procedures\CreatePublicPackage.txt = _DocDev\Procedures\CreatePublicPackage.txt
 		_DocDev\Procedures\PrepDevComputer_Linux.txt = _DocDev\Procedures\PrepDevComputer_Linux.txt
 		_DocDev\Procedures\PrepDevComputer_Windows.txt = _DocDev\Procedures\PrepDevComputer_Windows.txt
 	EndProjectSection
@@ -121,14 +120,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{723C70
 	ProjectSection(SolutionItems) = preProject
 		Templates\Solution\Common\Version.h = Templates\Solution\Common\Version.h
 		Templates\Solution\Common\Version.rc = Templates\Solution\Common\Version.rc
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KmsDriverLib", "KmsDriverLib", "{7D3197D4-C12C-4F8A-9F6C-9AE50A8BEE6C}"
-	ProjectSection(SolutionItems) = preProject
-		Includes\KmsDriverLib\Device.h = Includes\KmsDriverLib\Device.h
-		Includes\KmsDriverLib\Device_PCI.h = Includes\KmsDriverLib\Device_PCI.h
-		Includes\KmsDriverLib\File.h = Includes\KmsDriverLib\File.h
-		Includes\KmsDriverLib\Object.h = Includes\KmsDriverLib\Object.h
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Service", "Templates\Service\Service.vcxproj", "{195EC26E-8CB6-4654-A00E-FC084D9691A9}"
@@ -837,7 +828,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EE152025-CE8B-4099-89C4-C60CC1B7797C} = {980DE536-B130-41B8-A65B-F1DEDC466C43}
-		{7D3197D4-C12C-4F8A-9F6C-9AE50A8BEE6C} = {980DE536-B130-41B8-A65B-F1DEDC466C43}
 		{EB8648E4-E353-45CF-982E-02296B919104} = {EE152025-CE8B-4099-89C4-C60CC1B7797C}
 		{F49BE6B7-3A5C-4BB6-9ACA-537A91C8740C} = {EE152025-CE8B-4099-89C4-C60CC1B7797C}
 		{3A99A792-0D5E-41AD-9EBA-3AFFC3CE6956} = {EE152025-CE8B-4099-89C4-C60CC1B7797C}

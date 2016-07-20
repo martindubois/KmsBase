@@ -18,4 +18,4 @@
 
 #define VERSION_COMPATIBILITY	(0)
 
-#define VERSION_INTERNAL	(false)
+#define VERSION_INTERNAL	(true)

@@ -1,6 +1,0 @@
-
-Auteur	:	KMS -	Martin Dubois, ing.
-Projet	:	KmsBase
-Fichier	:	_DocDev/TODO.txt
-
-[ ]	Distribuer les .pdb avec les librairies debug et release

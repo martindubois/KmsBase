@@ -19,6 +19,9 @@ File / Fichier    kms.base/kms.base.nuspec
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
+    <file src="..\_DocUser\KmsBase.ReadMe.txt"                target="content" />
+    <file src="..\KmsLib\_DocUser\KmsBase.KmsLib.ReadMe.txt"  target="content" />
+
     <file src="..\Debug\KmsLib.lib"                             target="content\Libraries\Debug_32"         />
     <file src="..\Debug_DLL\DepCheck.exe"                       target="content\Binaries\Debug_32_DLL"      />
     <file src="empty.ignore"                                    target="content\Binaries\Debug_32_DLL\DepCheck.exe.ignore" />

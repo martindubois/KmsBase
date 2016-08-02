@@ -1,0 +1,8 @@
+
+Author / Auteur		KMS	-	Martin Dubois, ing.
+Product / Prooduit	KmsBase
+File / Fichier		_DocUser/KmsBase.ReadMe.txt
+
+===== 2.4 ===================================================================
+- Now compile with Visual Studio 2015	- Compile maintenant avec Visual
+										  Studio 2015

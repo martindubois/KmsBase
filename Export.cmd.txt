@@ -12,6 +12,9 @@
 .	Libraries
 .	Templates
 
+_DocUser	.
+	KmsBase.ReadMe.txt
+
 Debug	Libraries/Debug_32
 	KmsLib.lib
 
@@ -63,6 +66,9 @@ Includes/KmsLib/Windows
 	SystemLog.h
 	Windows.h
 
+KmsLib/_DocUser	.
+	KmsBase.KmsLib.ReadMe.txt
+
 Release .
 	KmsCopy.exe
 
@@ -98,21 +104,6 @@ Templates/DLL/_DocUser
 	Utiliser.txt	Use.txt
 
 # TODO	Renomer le fichier Use.txt
-
-Templates/Driver_KMDF
-	Device.cpp
-	Device.h
-	Driver.cpp
-	Driver_KMDF.inf
-	Project.h
-	TodoInterface.h	TODOInterface.h
-
-# TODO	Renommer le fichier TODOInterface.h
-
-Templates/Driver_KMDF/_DocUser
-	Utiliser.txt	Use.txt
-
-# TODO	Renommer le fichier Use.txt
 
 Templates/Service
 	.gitignore

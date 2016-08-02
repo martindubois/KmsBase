@@ -22,6 +22,9 @@
     <Filter Include="Source Files\OpenCL">
       <UniqueIdentifier>{60034ece-384e-47c6-8841-f19ee6e94887}</UniqueIdentifier>
     </Filter>
+    <Filter Include="_DocUser">
+      <UniqueIdentifier>{4bcc1ca6-7f15-44a2-9867-663d6cb70d3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Windows\RegistryKey.cpp">
@@ -108,6 +111,9 @@
   <ItemGroup>
     <Text Include="_DocDev\Requirements.txt">
       <Filter>_DocDev</Filter>
+    </Text>
+    <Text Include="_DocUser\KmsBase.KmsLib.ReadMe.txt">
+      <Filter>_DocUser</Filter>
     </Text>
   </ItemGroup>
 </Project>

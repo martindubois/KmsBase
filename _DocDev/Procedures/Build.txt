@@ -19,8 +19,8 @@ Windows Seulement
 	version si necessaire;
 [ ] Modifier le fichier "Script/Install.sh" pour incrementer le numero de
 	version si necessaire;
-[ ] Modifier le fichier "Templates/Driver_KMDF/Driver_KMDF.inf" pour
-	incrementer le numero de compilation;
+[ ] Modifier le fichier "_DocUser/KmsBase.ReadMe.txt";
+[ ] Modifier le fichier "KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt";
 
 Linux Seulement
 [ ] Ouvrir un "Terminal"

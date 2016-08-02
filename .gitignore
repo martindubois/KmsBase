@@ -4,6 +4,8 @@
 # File / Fichier	.gitignore
 
 KmsBase.VC.opendb
+KmsBase.VC.db
+KmsBase.VC.VC.opendb
 Linux_Windows_Test0.txt
 
 *~

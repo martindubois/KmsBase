@@ -19,6 +19,9 @@ Fichier kms.base/kms.base.nuspec
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
+    <file src="..\_DocUser\KmsBase.ReadMe.txt"                target="content" />
+    <file src="..\KmsLib\_DocUser\KmsBase.KmsLib.ReadMe.txt"  target="content" />
+
     <file src="..\Debug\KmsLib.lib"                             target="content\Libraries\Debug_32"         />
     <file src="..\Debug_DLL\DepCheck.exe"                       target="content\Binaries\Debug_32_DLL"      />
     <file src="empty.ignore"                                    target="content\Binaries\Debug_32_DLL\DepCheck.exe.ignore" />
@@ -95,13 +98,6 @@ Fichier kms.base/kms.base.nuspec
     <file src="..\Templates\DLL\TODOInterface.cpp"              target="content\Templates\DLL"              />
     <file src="..\Templates\DLL\TODOInterface.h"                target="content\Templates\DLL"              />
     <file src="..\Templates\DLL\_DocUser\Utiliser.txt"          target="content\Templates\DLL\_DocUser\Use.txt" />
-    <file src="..\Templates\Driver_KMDF\Device.cpp"             target="content\Templates\Driver_KMDF"      />
-    <file src="..\Templates\Driver_KMDF\Device.h"               target="content\Templates\Driver_KMDF"      />
-    <file src="..\Templates\Driver_KMDF\Driver.cpp"             target="content\Templates\Driver_KMDF"      />
-    <file src="..\Templates\Driver_KMDF\Driver_KMDF.inf"        target="content\Templates\Driver_KMDF"      />
-    <file src="..\Templates\Driver_KMDF\Project.h"              target="content\Templates\Driver_KMDF"      />
-    <file src="..\Templates\Driver_KMDF\TodoInterface.h"        target="content\Templates\Driver_KMDF"      />
-    <file src="..\Templates\Driver_KMDF\_DocUser\Utiliser.txt"  target="content\Templates\Driver_KMDF\_DocUser\Use.txt" />
     <file src="..\Templates\Service\.gitignore"                 target="content\Templates\Service"          />
     <file src="..\Templates\Service\Messages.mc"                target="content\Templates\Service"          />
     <file src="..\Templates\Service\Service.cpp"                target="content\Templates\Service"          />

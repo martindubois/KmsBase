@@ -47,8 +47,8 @@ extern int ToolBase_Base		();
 extern int Walker_Base			();
 extern int Walker_Smart_Base	();
 
-#if defined( _KMS_LINUX ) || defined( _KMS_WINDOWS_ )
-    extern int OpenCL_Base			();
+#if defined( _KMS_LINUX_ ) || defined( _KMS_WINDOWS_ )
+    // extern int OpenCL_Base			();
 #endif // _KMS_LINUX_ || _KMS_WINDOWS_
 
 #ifdef _KMS_WINDOWS_
@@ -83,8 +83,8 @@ KMS_TEST_LIST_BEGIN
 	KMS_TEST_LIST_ENTRY(Walker_Base			, "Walker - Base"			, 0, 0)
 	KMS_TEST_LIST_ENTRY(Walker_Smart_Base	, "Walker_Smart - Base"		, 0, 0)
 
-    #if defined( _KMS_LINUX ) || defined( _KMS_WINDOWS_ )
-        KMS_TEST_LIST_ENTRY(OpenCL_Base			, "OpenCL - Base"			, 1, KMS_TEST_FLAG_INTERACTION_NEEDED	)
+    #if defined( _KMS_LINUX_ ) || defined( _KMS_WINDOWS_ )
+        // KMS_TEST_LIST_ENTRY(OpenCL_Base			, "OpenCL - Base"			, 1, KMS_TEST_FLAG_INTERACTION_NEEDED	)
     #endif // _KMS_LINUX_ || _KMS_WINDOWS_
 
     #ifdef _KMS_WINDOWS_

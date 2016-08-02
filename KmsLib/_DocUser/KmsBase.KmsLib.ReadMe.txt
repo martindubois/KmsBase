@@ -1,0 +1,6 @@
+
+Author / Auteur		KMS	-	Martin Dubois, ing.
+Product / Prooduit	KmsBase
+File / Fichier		KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
+
+===== 2.4 ===================================================================

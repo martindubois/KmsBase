@@ -6,6 +6,8 @@
 .
 	DoxyFile_en.txt
 	DoxyFile_fr.txt
+	KmsBase.KmsLib.ReadMe.txt
+	KmsBase.ReadMe.txt
 	RunDoxygen.cmd
 
 .	Binaries

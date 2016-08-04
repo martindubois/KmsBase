@@ -116,14 +116,6 @@ Templates/DLL
 Templates/DLL/_DocUser
 	Use.txt
 
-Templates/Driver_KMDF
-	Device.cpp
-	Device.h
-	Driver.cpp
-	Driver_KMDF.inf
-	Project.h
-	TODOInterface.h
-
 Templates/Driver_KMDF/_DocUser
 	Use.txt
 

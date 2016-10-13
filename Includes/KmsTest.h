@@ -19,6 +19,11 @@
 // ===== C++ ================================================================
 #include <exception>
 
+// ===== Windows ============================================================
+#ifdef _WIN32
+    #include "Windows.h"
+#endif // _WIN32
+
 // Constants
 /////////////////////////////////////////////////////////////////////////////
 
@@ -58,6 +63,17 @@ KmsTestDescription;
 // Macro
 /////////////////////////////////////////////////////////////////////////////
 
+#define  BLUE    (0x09)
+#define  GREEN   (0x0a)
+#define  RED     (0x0c)
+#define  WHITE   (0x07)
+
+#ifdef _WIN32
+    #define  COLOR(A)  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (A))
+#else
+    #define  COLOR(A)
+#endif // _WIN32
+
 // ===== Test ===============================================================
 
 /// \cond	en
@@ -69,7 +85,9 @@ KmsTestDescription;
 #define KMS_TEST_ASSERT(Co)																	\
 	if (!(Co))																				\
 	{																						\
+        COLOR(RED);                                                                         \
 		printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ "\n", __LINE__);	\
+        COLOR(WHITE);                                                                       \
 		return 1;																			\
 	}
 
@@ -84,7 +102,9 @@ KmsTestDescription;
 #define KMS_TEST_ASSERT_CLEANUP(Co,Cl)														\
 	if (!(Co))																				\
 	{																						\
+        COLOR(RED);                                                                         \
 		printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ "\n", __LINE__);	\
+        COLOR(WHITE);                                                                       \
 		goto Cl;																			\
 	}
 
@@ -111,12 +131,16 @@ KmsTestDescription;
 		}							\
 		catch (std::exception * eE)	\
 		{							\
+            COLOR(RED);             \
 			printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (std::exception - %s)\n", __LINE__, eE->what());	\
+            COLOR(WHITE);           \
 			return 1;				\
 		}							\
 		catch ( ... )				\
 		{							\
+            COLOR(RED);             \
 			printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (Unknown exception)\n", __LINE__);	\
+            COLOR(WHITE);           \
 			return 1;				\
 		}							\
 		return lResult;				\
@@ -135,18 +159,24 @@ KmsTestDescription;
 		}								\
 		catch (KmsLib::Exception * eE)	\
 		{								\
+            COLOR(RED);                 \
 			printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (KmsLib::Exception)\n", __LINE__);	\
+            COLOR(WHITE);               \
 			eE->Write(stdout);			\
 			return 1;					\
 		}								\
 		catch (std::exception * eE)		\
 		{								\
+            COLOR(RED);                 \
 			printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (std::exception - %s)\n", __LINE__, eE->what());	\
+            COLOR(WHITE);               \
 			return 1;					\
 		}								\
 		catch (...)						\
 		{								\
+            COLOR(RED);                 \
 			printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (Unknown exception)\n", __LINE__);	\
+            COLOR(WHITE);               \
 			return 1;					\
 		}								\
 	return lResult;						\
@@ -160,8 +190,10 @@ KmsTestDescription;
 /// \brief	Cette macro affiche un message qui indique que le message
 //			d'erreur qui suit est du a un test du code de gestion d'erreur.
 /// \endcond
-#define KMS_TEST_ERROR_INFO	\
-	printf("    ===== Information about a succesfully tested error condition =====\n")
+#define KMS_TEST_ERROR_INFO	 \
+    COLOR(BLUE);             \
+    printf("    ===== Information about a succesfully tested error condition =====\n"); \
+    COLOR(WHITE)
 
 // ===== Test group list ====================================================
 
@@ -243,7 +275,9 @@ KmsTestDescription;
 																			\
 	int main(int aCount, const char ** aVector)								\
 	{																		\
+        COLOR(BLUE);                                                        \
 		printf("Test program compiler at " __TIME__ " on " __DATE__ "\n\n");	\
+        COLOR(WHITE);                                                       \
 																			\
 		if ((1 >= aCount) || (0 == _stricmp("auto", aVector[1])))			\
 		{																	\
@@ -285,6 +319,7 @@ KmsTestDescription;
 																			\
 	void DisplayHelp(const char * aExe)										\
 	{																		\
+        COLOR(BLUE);                                                        \
 		printf(																\
 			"Usage:\n"														\
 			"    %s\n"														\
@@ -296,20 +331,32 @@ KmsTestDescription;
 			"    %s {TestNumber} [TestNumber] ...\n"						\
 			"\n",															\
 			aExe, aExe, aExe, aExe, aExe, aExe, aExe );						\
+        COLOR(WHITE);                                                       \
 	}																		\
 																			\
 	void DisplayResults(int aResult)										\
 	{																		\
 		switch (aResult)													\
 		{																	\
-		case 0	: printf("\nAll tests PASSED\n\n"			); break;		\
-		case 1	: printf("\n1 test FAILED\n\n"				); break;		\
-		default	: printf("\n%u tests FAILED\n\n", aResult	); break;		\
+		case 0:                                                             \
+            COLOR(GREEN);                                                   \
+            printf("\nAll tests PASSED\n\n"			);                      \
+            break;                                                   		\
+		case 1:                                                             \
+            COLOR(RED);                                                     \
+            printf("\n1 test FAILED\n\n"				);                  \
+            break;                                                          \
+		default	:                                                           \
+            COLOR(RED);                                                     \
+            printf("\n%u tests FAILED\n\n", aResult	);                      \
+            break;                                                          \
 		}																	\
+        COLOR(WHITE);                                                       \
 	}																		\
 																			\
 	void DisplayTests()														\
 	{																		\
+        COLOR(BLUE);                                                        \
 		unsigned int i;														\
 		printf("Groups:\n");												\
 		printf("    #      Name\n");										\
@@ -330,11 +377,14 @@ KmsTestDescription;
 			printf("\n");													\
 		}																	\
 		printf("\n");														\
+        COLOR(WHITE);                                                       \
 	}																		\
 																			\
 	int RunAll()															\
 	{																		\
+        COLOR(BLUE);                                                        \
 		printf("Executing all tests...\n\n");								\
+        COLOR(WHITE);                                                       \
 		int lResult = 0;													\
 																			\
 		for (unsigned int i = 0; i < (sizeof(KMS_TESTS) / sizeof(KMS_TESTS[0])); i++)	\
@@ -348,7 +398,9 @@ KmsTestDescription;
 																			\
 	int RunAuto()															\
 	{																		\
+        COLOR(BLUE);                                                        \
 		printf("Executing all tests that doesn't require interaction...\n\n");	\
+        COLOR(WHITE);                                                       \
 		int lResult = 0;													\
 																			\
 		for (unsigned int i = 0; i < (sizeof(KMS_TESTS) / sizeof(KMS_TESTS[0])); i++)	\
@@ -367,7 +419,9 @@ KmsTestDescription;
 	{																		\
 		unsigned int lGroup	= static_cast< unsigned int >( strtoul(aGroupNumber, NULL, 10) );	\
 																			\
+        COLOR(BLUE);                                                        \
 		printf("Executing test group %u ...\n\n", lGroup);					\
+        COLOR(WHITE);                                                       \
 		int	lResult = 0;													\
 																			\
 		for (unsigned int i = 0; i < (sizeof(KMS_TESTS) / sizeof(KMS_TESTS[0])); i++)	\
@@ -384,15 +438,21 @@ KmsTestDescription;
 																			\
 	int RunTest(unsigned int aTest)											\
 	{																		\
-		printf("Executing test %u : %s\n", aTest, KMS_TESTS[aTest].mName);		\
+        COLOR(BLUE);                                                        \
+		printf("Executing test %u : %s\n", aTest, KMS_TESTS[aTest].mName);	\
+        COLOR(WHITE);                                                       \
 		int lResult = KMS_TESTS[aTest].mFunction();							\
-		printf("Test %u : %s\n", aTest, 0 >= lResult ? "PASSED" : "FAILED");	\
+        COLOR(0 >= lResult ? GREEN : RED);                                  \
+        printf("Test %u : %s\n", aTest, 0 >= lResult ? "PASSED" : "FAILED"); \
+        COLOR(WHITE);                                                       \
 		return lResult;														\
 	}																		\
 																			\
 	int RunTests(const char ** aTests, int aCount)							\
 	{																		\
+        COLOR(BLUE);                                                        \
 		printf("Executing indicated tests...\n\n");							\
+        COLOR(WHITE);                                                       \
 		unsigned int lResult = 0;											\
 																			\
 		while (0 < aCount)													\

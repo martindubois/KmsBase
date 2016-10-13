@@ -16,6 +16,11 @@
 #include <exception>
 #include <string>
 
+// ===== Windows ============================================================
+#ifdef GetMessage
+    #undef GetMessage
+#endif // GetMessage
+
 namespace KmsLib
 {
 

@@ -56,7 +56,7 @@ namespace KmsLib
 				if (NULL != mHandle)
 				{
 					// NOT TESTED
-					// TODO : Test
+					// todo Test
 					CloseServiceHandle(mHandle);
 					mHandle = NULL;
 				}

@@ -103,7 +103,7 @@ Templates/DLL
 Templates/DLL/_DocUser
 	Utiliser.txt	Use.txt
 
-# TODO	Renomer le fichier Use.txt
+# todo	Renomer le fichier Use.txt
 
 Templates/Service
 	.gitignore
@@ -121,7 +121,7 @@ Templates/Solution
 Templates/Solution/_DocUser
 	Utiliser.txt	Use.txt
 
-# TODO	Renommer le fichier Use.txt
+# todo	Renommer le fichier Use.txt
 
 Templates/Solution/Common
 	Version.h
@@ -140,7 +140,7 @@ Templates/Tool
 Templates/Tool/_DocUser
 	Utiliser.txt	Use.txt
 
-# TODO	Renommer le fichier Use.txt
+# todo	Renommer le fichier Use.txt
 
 x64/Debug	Libraries/Debug_64
 	KmsLib.lib

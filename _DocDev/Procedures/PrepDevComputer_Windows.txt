@@ -1,14 +1,14 @@
 
-Auteur	KMS -	Martin Dubois, ing.
-Produit	KmsBase
-Fichier	_DocDev/Procedures/PrepDevComputer_Windows.txt
+Auteur    KMS - Martin Dubois, ing.
+Produit   KmsBase
+Fichier   _DocDev/Procedures/PrepDevComputer_Windows.txt
 
 
-TODO	Creer un package pour l'environnement de developpement
+todo  Creer un package pour l'environnement de developpement
 
 [ ] Installer "Chocolatey"
 [ ] Installer "Doxygen"
 [ ] Installer "GIT"
-[ ]	Installer "Visual Studio 2013";
-[ ]	Installer "WDK 8.1".
+[ ] Installer "Visual Studio 2015";
+[ ] Installer "WDK 8.1".
 [ ] Installer "AMD App Kit"

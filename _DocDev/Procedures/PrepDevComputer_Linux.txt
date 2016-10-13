@@ -1,11 +1,11 @@
 
-Auteur	KMS -	Martin Dubois, ing.
-Produit	KmsBase
-Fichier	_DocDev/Procedures/PrepDevComputer_Linux.txt
+Auteur    KMS - Martin Dubois, ing.
+Produit   KmsBase
+Fichier   _DocDev/Procedures/PrepDevComputer_Linux.txt
 
 
-TODO	Creer un package pour l'environnement de developpement et remplacer
-		la liste apt-get par un seul.
+todo   Creer un package pour l'environnement de developpement et remplacer
+       la liste apt-get par un seul.
 
 [ ] Installer "ubunto 14.04.2";
 [ ] Ouvrir un terminal et executer les commandes suivantes en tant que "root"

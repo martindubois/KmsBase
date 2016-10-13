@@ -1,10 +1,10 @@
 
-// Author / Auteur		:	KMS -	Martin Dubois, ing.
-// Product / Produit	:	KmsBase
-// File / Fichier		:	KmsLib/ToolBase.cpp
+// Author / Auteur     KMS - Martin Dubois, ing.
+// Product / Produit   KmsBase
+// File / Fichier      KmsLib/ToolBase.cpp
 
-// TODO : 	Ajouter une fonction predefinie pour repeter une commande un
-//		certain nombre de fois.
+// todo   Ajouter une fonction predefinie pour repeter une commande un
+//        certain nombre de fois.
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////

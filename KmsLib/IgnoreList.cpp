@@ -1,16 +1,16 @@
 
-// Author / Auteur		KMS -	Martin Dubois, ing.
-// Product / Produit	KmsBase
-// File / Fichier		KmsLib/IgnoreList.cpp
+// Author / Auteur     KMS - Martin Dubois, ing.
+// Product / Produit   KmsBase
+// File / Fichier      KmsLib/IgnoreList.cpp
 
-// TODO	Supporter le \ pour escape des #
-// TODO	Supporter le \ pour escape des trailling space
-// TODO Supporter le \ pour escape des !
-// TODO	Supporter le ! pour nier une exclusion
-// TODO Supporter le **/
-// TODO Supporter le /**
-// TODO Supporter le /**/
-// TODO Supporter les [] dans les pattern
+// todo   Supporter le \ pour escape des #
+// todo   Supporter le \ pour escape des trailling space
+// todo   Supporter le \ pour escape des !
+// todo   Supporter le ! pour nier une exclusion
+// todo   Supporter le **/
+// todo   Supporter le /**
+// todo   Supporter le /**/
+// todo   Supporter les [] dans les pattern
 
 // Inclusions
 /////////////////////////////////////////////////////////////////////////////

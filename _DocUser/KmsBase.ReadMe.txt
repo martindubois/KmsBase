@@ -1,8 +1,9 @@
 
-Author / Auteur		KMS	-	Martin Dubois, ing.
-Product / Prooduit	KmsBase
-File / Fichier		_DocUser/KmsBase.ReadMe.txt
+Author / Auteur      KMS - Martin Dubois, ing.
+Product / Prooduit   KmsBase
+File / Fichier       _DocUser/KmsBase.ReadMe.txt
 
-===== 2.4 ===================================================================
-- Now compile with Visual Studio 2015	- Compile maintenant avec Visual
-										  Studio 2015
+===== 2.4.17 ================================================================
+- KmsTest.h has a colored output      - KmsTest.h a une sortie couleur
+===== 2.4.16 ================================================================
+- compile with Visual Studio 2015	  - Compile avec Visual Studio 2015

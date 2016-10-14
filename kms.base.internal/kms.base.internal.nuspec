@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
-Auteur  KMS - Martin Dubois, ing.
-Produit KmsBase
-Fichier kms.base/kms.base.nuspec
+Auteur    KMS - Martin Dubois, ing.
+Produit   KmsBase
+Fichier   kms.base/kms.base.nuspec
 -->
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>kms.base.internal</id>
     <title>kms.base.internal</title>
-    <version>2.4.12</version>
+    <version>2.4.16</version>
     <authors>KMS</authors>
     <owners>KMS</owners>
     <summary>KMS base library (Internal)</summary>

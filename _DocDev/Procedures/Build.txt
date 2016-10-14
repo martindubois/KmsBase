@@ -1,7 +1,7 @@
 
-Auteur	KMS -	Martin Dubois, ing.
-Produit	KmsBase
-Fichier	_DocDev/Procedures/Build.txt
+Auteur    KMS - Martin Dubois, ing.
+Produit   KmsBase
+Fichier   _DocDev/Procedures/Build.txt
 
 
 Windows Seulement
@@ -13,6 +13,8 @@ Windows Seulement
 [ ] Modifier le fichier "Common/Version.h"
 	- Incrementer le numero de compilation;
 	- Verifier que "VERSION_INTERNAL" est a "true"
+[ ] Modifier le fichier "kms.base/tools/chocolateyuninstall.ps1" pour
+    incrementer le numero de version si necessaire;
 [ ] Modifier le fichier "kms.base.internal/tools/chocolateyuninstall.ps1"
 	pour incrementer le numero de version si necessaire;
 [ ] Modifier le fichier "Script/Install.cmd" pour incrementer le numero de

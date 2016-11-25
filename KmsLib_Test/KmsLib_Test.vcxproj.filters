@@ -93,6 +93,9 @@
     <ClCompile Include="Windows\Windows_Windows.cpp">
       <Filter>Source Files\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="HTML5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\Common\Version.rc">

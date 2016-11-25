@@ -339,6 +339,7 @@
     <ClCompile Include="DebugLog.cpp" />
     <ClCompile Include="Dump.cpp" />
     <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="HTML5.cpp" />
     <ClCompile Include="IgnoreList.cpp" />
     <ClCompile Include="KmsLib_Test.cpp" />
     <ClCompile Include="Linux\Linux_Windows.cpp" />

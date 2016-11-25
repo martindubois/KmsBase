@@ -39,6 +39,7 @@
     <ClCompile Include="DebugLog.cpp" />
     <ClCompile Include="Dump.cpp" />
     <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="HTML5.cpp" />
     <ClCompile Include="IgnoreList.cpp" />
     <ClCompile Include="KmsLib.cpp" />
     <ClCompile Include="MemTester.cpp" />

@@ -36,6 +36,7 @@ extern int CmdLineParser_Base	();
 extern int DebugLog_Base		();
 extern int Dump_Base			();
 extern int Exception_Base		();
+extern int HTML5_Base           ();
 extern int IgnoreList_Base		();
 extern int Linux_Windows_Base	();
 extern int MemTester_Base		();
@@ -73,6 +74,7 @@ KMS_TEST_LIST_BEGIN
 	KMS_TEST_LIST_ENTRY(Dump_Base			, "Dump - Base"				, 0, 0)
 	KMS_TEST_LIST_ENTRY(Exception_Base		, "Exception - Base"		, 0, 0)
 	KMS_TEST_LIST_ENTRY(IgnoreList_Base		, "IgnoreList - Base"		, 0, 0)
+    KMS_TEST_LIST_ENTRY(HTML5_Base          , "HTML5 - Base"            , 0, 0)
 	KMS_TEST_LIST_ENTRY(Linux_Windows_Base	, "Linux - Windows - Base"	, 0, 0)
 	KMS_TEST_LIST_ENTRY(MemTester_Base		, "MemTester - Base"		, 0, 0)
 	KMS_TEST_LIST_ENTRY(NetworkAddress_Base	, "NetworkAddress - Base"	, 0, 0)

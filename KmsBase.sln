@@ -25,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KmsLib", "KmsLib", "{EE1520
 		Includes\KmsLib\DebugLog.h = Includes\KmsLib\DebugLog.h
 		Includes\KmsLib\Dump.h = Includes\KmsLib\Dump.h
 		Includes\KmsLib\Exception.h = Includes\KmsLib\Exception.h
+		Includes\KmsLib\HTML5.h = Includes\KmsLib\HTML5.h
 		Includes\KmsLib\IgnoreList.h = Includes\KmsLib\IgnoreList.h
 		Includes\KmsLib\KmsLib.h = Includes\KmsLib\KmsLib.h
 		Includes\KmsLib\MemTester.h = Includes\KmsLib\MemTester.h
@@ -144,25 +145,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KmsCopy", "KmsCopy\KmsCopy.vcxproj", "{3917AFAC-2F19-4B3A-95A9-8A2C45CFBF14}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DepCheck_Net", "DepCheck_Net\DepCheck_Net.vcxproj", "{96E3FC78-F2C1-4367-BE12-4F88CFD2238B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kms.base", "kms.base", "{782BD35A-DE78-4493-97E0-DA00FCF4567D}"
-	ProjectSection(SolutionItems) = preProject
-		kms.base\.gitignore = kms.base\.gitignore
-		kms.base\Install.cmd.txt = kms.base\Install.cmd.txt
-		kms.base\kms.base.nuspec = kms.base\kms.base.nuspec
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kms.base.internal", "kms.base.internal", "{33984715-5376-4B51-BB1A-FBCC9BA6CEEE}"
-	ProjectSection(SolutionItems) = preProject
-		kms.base.internal\.gitignore = kms.base.internal\.gitignore
-		kms.base.internal\kms.base.internal.nuspec = kms.base.internal\kms.base.internal.nuspec
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{E55F4323-A895-451B-A07E-09892D2811B0}"
-	ProjectSection(SolutionItems) = preProject
-		kms.base.internal\tools\chocolateyinstall.ps1 = kms.base.internal\tools\chocolateyinstall.ps1
-		kms.base.internal\tools\chocolateyuninstall.ps1 = kms.base.internal\tools\chocolateyuninstall.ps1
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DocUser", "_DocUser", "{720F3E0F-7548-4599-AE64-A4B048B5C65C}"
 	ProjectSection(SolutionItems) = preProject
@@ -345,6 +327,5 @@ Global
 		{195EC26E-8CB6-4654-A00E-FC084D9691A9} = {17C49143-B3BF-492F-AA07-D08EBEE3756D}
 		{F49BE6B7-3A5C-4BB6-9ACA-537A91C8740C} = {EE152025-CE8B-4099-89C4-C60CC1B7797C}
 		{3A99A792-0D5E-41AD-9EBA-3AFFC3CE6956} = {EE152025-CE8B-4099-89C4-C60CC1B7797C}
-		{E55F4323-A895-451B-A07E-09892D2811B0} = {33984715-5376-4B51-BB1A-FBCC9BA6CEEE}
 	EndGlobalSection
 EndGlobal

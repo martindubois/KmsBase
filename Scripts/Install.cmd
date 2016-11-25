@@ -12,7 +12,8 @@ echo  Executing de Install.cmd ...
 
 rem  ===== Verification =====================================================
 
-set DST="C:\Software\KmsBase_2.4"
+rem  KmsVersion "C:\Software\KmsBase" "\" 2
+set DST="C:\Software\KmsBase_2.4\"
 
 set INSTALL_CMD_TXT="Install.cmd.txt"
 if not exist %INSTALL_CMD_TXT% (

@@ -1,14 +1,16 @@
 
-# Author / Auteur	KMS -	Martin Dubois, ing.
-# Product / Produit	KmsBase
-# File / Fichier	.gitignore
+# Author / Auteur     KMS - Martin Dubois, ing.
+# Product / Produit   KmsBase
+# File / Fichier      .gitignore
 
+HTML5_Base.html
 KmsBase.VC.opendb
 KmsBase.VC.db
 KmsBase.VC.VC.opendb
 Linux_Windows_Test0.txt
 
 *~
+*.bak
 *.opensdf
 *.sdf
 *.v12.suo

@@ -106,7 +106,7 @@ if ERRORLEVEL 1 (
 )
 
 %KMS_VERSION% -3q Common\Version.h > %TEMP_FILE%
-set /p VERSION= < %TEMP_TILE%
+set /p VERSION= < %TEMP_FILE%
 
 %KMS_VERSION% -Iq Common\Version.h > %TEMP_FILE%
 set /p INTERNAL= < %TEMP_FILE%

@@ -63,6 +63,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{F88CC9DD-1927-455C-96C7-834931B958F9}"
 	ProjectSection(SolutionItems) = preProject
+		Scripts\Import.cmd = Scripts\Import.cmd
+		Scripts\Import.cmd.txt = Scripts\Import.cmd.txt
 		Scripts\Install.cmd = Scripts\Install.cmd
 		Scripts\Install.cmd.txt = Scripts\Install.cmd.txt
 		Scripts\Install.sh = Scripts\Install.sh

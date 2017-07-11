@@ -1,7 +1,7 @@
 
-# Auteur	KMS	-	Martin Dubois, ing.
-# Produit	KmsBase
-# Fichier	Export.cmd.txt
+# Auteur    KMS - Martin Dubois, ing.
+# Produit   KmsBase
+# Fichier   Export.cmd.txt
 
 .
 	DoxyFile_en.txt
@@ -90,6 +90,8 @@ Release_DLL	Libraries/Release_32_DLL
 	KmsLib.lib
 
 Scripts	.
+    Import.cmd
+    Import.cmd.txt
 	Install.cmd
 	Install.cmd.txt
 	Verify.cmd

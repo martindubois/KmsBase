@@ -3,14 +3,14 @@
 // Product / Produit   KmsBase
 // File / Fichier      KmsLib/IgnoreList.cpp
 
-// todo   Supporter le \ pour escape des #
-// todo   Supporter le \ pour escape des trailling space
-// todo   Supporter le \ pour escape des !
-// todo   Supporter le ! pour nier une exclusion
-// todo   Supporter le **/
-// todo   Supporter le /**
-// todo   Supporter le /**/
-// todo   Supporter les [] dans les pattern
+// TODO  Normal  Supporter le \ pour escape des #
+// TODO  Normal  Supporter le \ pour escape des trailling space
+// TODO  Normal  Supporter le \ pour escape des !
+// TODO  Normal  Supporter le ! pour nier une exclusion
+// TODO  Normal  Supporter le **/
+// TODO  Normal  Supporter le /**
+// TODO  Normal  Supporter le /**/
+// TODO  Normal  Supporter les [] dans les pattern
 
 // Inclusions
 /////////////////////////////////////////////////////////////////////////////

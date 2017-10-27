@@ -63,7 +63,11 @@ namespace KmsLib
 				lRetS = RegCloseKey(lKey);
 				if (ERROR_SUCCESS != lRetS)
 				{
-					// NOTE TESTED : Realy not easy to test / Vraiment pas facile a tester
+					// NOTE TESTED   KmsLib.RegistryKey.ErrorHandling
+                    //               RegCloseKey fail / RegCloseKey
+                    //               echoue<br>
+                    //               Realy not easy to test / Vraiment pas
+                    //               facile a tester
 					char lMsg[2048];
 
 					sprintf_s(lMsg, "An error occured when closing the sub key %s", aSubKey);
@@ -186,7 +190,10 @@ namespace KmsLib
 
 			if (ERROR_SUCCESS != lRet)
 			{
-				// NOTE TESTED : Realy not easy to test / Vraiment pas facile a tester
+				// NOTE TESTED   KmsLib.RegistryKey.ErrorHandling
+                //               RegCloseKey fail / RegCloseKey echoue<br>
+                //               Realy not easy to test / Vraiment pas
+                //               facile a tester
 				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegCloseKey(  ) failed",
 					NULL, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
@@ -324,7 +331,11 @@ namespace KmsLib
 					throw new Exception(Exception::CODE_REGISTRY_ERROR, "CM_Open_DevNode_Key( , , , , ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, lRetCR);
 				}
 
-				// TESTED : KmsLib_Test.exe - DriverHandle - Setup C
+				// TESTED   KmsLib.RegistryKey
+                //          KmsLib_Test.exe - DriverHandle - Setup C<br>
+                //          Open the registry key associated to a device /
+                //          Ouvre la cle de registre associee a un
+                //          peripherique
 			}
 			else
 			{
@@ -333,7 +344,10 @@ namespace KmsLib
 				mKey = SetupDiOpenDevRegKey(aDevInfoSet, aDevInfoData, DICS_FLAG_GLOBAL, 0, KEY_QUERY_VALUE, lKeyType);
 				if (INVALID_HANDLE_VALUE == mKey)
 				{
-					// NOT TESTED : Not easy to test / Pas facile a tester
+					// NOT TESTED   KmsLib.RegistryKey.ErrorHandling
+                    //              SetupDiOpenDevRegKey fail /
+                    //              SetupDiOpenDevRegKey echoue<br>
+                    //              Not easy to test / Pas facile a tester
 
 					// This class use NULL, not INVALID_HANDLE_VALUE / Cette
 					// classe utilise NULL et non INVALID_HANDLE_VALUE.

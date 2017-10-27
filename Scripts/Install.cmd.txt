@@ -36,7 +36,8 @@ Binaries/Release_64_DLL
 	DepCheck.exe
 	DepCheck_Net.exe
 
-# todo	Utiliser un fichier Includes.txt a partir de Export.cmd.txt et
+# TODO  Normal
+#       Utiliser un fichier Includes.txt a partir de Export.cmd.txt et
 #		Install.cmd.txt
 
 Includes
@@ -104,8 +105,9 @@ Libraries/Release_64
 Libraries/Release_64_DLL
 	KmsLib.lib
 
-# todo	Utiliser un fichier Templates.txt a partir de Export.cmd.txt et
-#		Install.cmd.txt
+# TODO   Normal
+#        Utiliser un fichier Templates.txt a partir de Export.cmd.txt et
+#		 Install.cmd.txt
 
 Templates/DLL
 	TODO.cpp

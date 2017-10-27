@@ -3,7 +3,8 @@
 // Product / Produit   KmsBase
 // File / Fichier      KmsLib/ToolBase.cpp
 
-// todo   Ajouter une fonction predefinie pour repeter une commande un
+// TODO   Normal
+//        Ajouter une fonction predefinie pour repeter une commande un
 //        certain nombre de fois.
 
 // Includes

@@ -4,11 +4,7 @@ Produit   KmsBase
 Fichier   _DocDev/Procedures/PrepDevComputer_Windows.txt
 
 
-todo  Creer un package pour l'environnement de developpement
-
-[ ] Installer "Chocolatey"
 [ ] Installer "Doxygen"
 [ ] Installer "GIT"
 [ ] Installer "Visual Studio 2015";
 [ ] Installer "WDK 8.1".
-[ ] Installer "AMD App Kit"

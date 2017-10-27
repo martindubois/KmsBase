@@ -39,7 +39,10 @@ namespace KmsLib
 		{
 			if (NULL != mManager)
 			{
-				// TESTED : KmsLib_Test.exe - Service - Setup B
+				// TESTED   KmsLib.Service
+                //          KmsLib_Test.exe - Service - Setup B<br>
+                //          Disconnect from the service manager / Deconnecte
+                //          du gestionnaire de service
 
 				// The config can have been allocated before deleting the
 				// service / Le tampon pour la configuration peut avoir
@@ -55,8 +58,10 @@ namespace KmsLib
 
 				if (NULL != mHandle)
 				{
-					// NOT TESTED
-					// todo Test
+					// NOT TESTED   KmsLib.Service
+                    //              Disconnect from the service / Deconnecte
+                    //              du service
+					// TODO  Test
 					CloseServiceHandle(mHandle);
 					mHandle = NULL;
 				}
@@ -74,7 +79,10 @@ namespace KmsLib
 		{
 			return (SERVICE_AUTO_START == GetStartType());
 
-			// TESTED : KmsLib_Test.exe - Service - Setup B
+			// TESTED   KmsLib.Service
+            //          KmsLib_Test.exe - Service - Setup B<br>
+            //          Indicates if the service is enabled / Indique si le
+            //          service est active
 		}
 
 		bool Service::IsInstalled()

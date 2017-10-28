@@ -99,6 +99,10 @@ KMS_TEST_BEGIN(Socket_Base)
 		eE->Write(stdout);
 	}
 
+    // TODO   Normal
+    //        Placer cette partie du test dans un autre setup car il faut
+    //        qu'un utilisateur accepte l'utilisation du reseau (firewall)
+
 	KmsLib::Socket lS4;
 
 	lS4.Create();

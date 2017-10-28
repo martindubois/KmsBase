@@ -12,30 +12,37 @@ set DST=%1
 
 rem  ===== Constants ========================================================
 
-set KMS_COPY_EXE=Binaries/Release_32/KmsCopy.exe
+set KMS_COPY_EXE="Binaries\Release_32\KmsCopy.exe"
 
 set IMPORT_CMD_TXT=Import.cmd.txt
 
 rem  ===== Verification =====================================================
 
+if "" == "%1" (
+    echo  USER ERROR  Invalid command line
+    echo  Usage  Import.cmd  {Output_Folder}
+    pause
+    exit /B 1
+)
+
 if not exist %DST% (
     echo  USER ERROR  %DST% does not exist
     pause
-    exit /B 1
+    exit /B 2
 )
 
 if not exist %KMS_COPY_EXE% (
     echo  FATAL ERROR  %KMS_COPY_EXE% does not exist
     echo  The package is not complete
     pause
-    exit /B 2
+    exit /B 3
 )
 
 if not exist %IMPORT_CMD_TXT% (
     echo  FATAL ERROR  %IMPORT_CMD_TXT% does not exist
     echo  The package is not complete
     pause
-    exit /B 3
+    exit /B 4
 )
 
 rem  ===== Execution ========================================================
@@ -45,7 +52,7 @@ if ERRORLEVEL 1 (
     echo  ERROR  %KMS_COPY_EXE% . %DST% %IMPORT_CMD_TXT%  reported an error - %ERRORLEVEL%
     echo  The package is not complete
     pause
-    exit /B 4
+    exit /B 5
 )
 
 rem  ===== End ==============================================================

@@ -51,6 +51,7 @@ Includes/KmsLib
 	DebugLog.h
 	Dump.h
 	Exception.h
+    HTML5.h
 	IgnoreList.h
 	KmsLib.h
 	MemTester.h

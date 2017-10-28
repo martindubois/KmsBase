@@ -10,6 +10,9 @@
 #include <assert.h>
 #include <stdio.h>
 
+// ===== Includes ===========================================================
+#include  "../Includes/Banner.h"
+
 // ===== Common =============================================================
 #include "../Common/Version.h"
 
@@ -21,13 +24,7 @@ int main(unsigned int aCount, const char ** aVector)
 	assert(1	<=	aCount	);
 	assert(NULL	!=	aVector	);
 
-	printf("KmsBase - DepCheck\n");
-	printf("Version " VERSION_STR);
-#ifdef _DEBUG
-	printf(" (Debug)");
-#endif // _DEBUG
-	printf("\n");
-	printf("Compiled at " __TIME__ " on " __DATE__ "\n");
+    Banner("KmsBase", "DepCheck");
 
 	printf("\nNeeded DLL are correctly installed\n");
 

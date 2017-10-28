@@ -13,6 +13,9 @@
 // ===== .Net ===============================================================
 using namespace System;
 
+// ===== Includes ===========================================================
+#include  "../Includes/Banner.h"
+
 // ===== Common =============================================================
 #include "../Common/Version.h"
 
@@ -23,13 +26,7 @@ int main(array<System::String ^> ^ aArgs)
 {
 	assert(nullptr != aArgs);
 
-	printf("KmsBase - DepCheck_NET\n");
-	printf("Version " VERSION_STR);
-#ifdef _DEBUG
-	printf(" (Debug)");
-#endif // _DEBUG
-	printf("\n");
-	printf("Compiled at " __TIME__ " on " __DATE__ "\n");
+    Banner("KmsBase", "DepCheck_Net");
 
 	Console::WriteLine();
     Console::WriteLine(L"Needed DLL are correctly installed");

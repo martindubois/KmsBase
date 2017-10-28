@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{38892F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Includes", "Includes", "{980DE536-B130-41B8-A65B-F1DEDC466C43}"
 	ProjectSection(SolutionItems) = preProject
+		Includes\Banner.h = Includes\Banner.h
 		Includes\KmsBase.h = Includes\KmsBase.h
 		Includes\KmsTest.h = Includes\KmsTest.h
 		Includes\Ring.h = Includes\Ring.h

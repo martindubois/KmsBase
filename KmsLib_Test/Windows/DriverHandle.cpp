@@ -41,9 +41,9 @@ KMS_TEST_BEGIN(DriverHandle_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_IO_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_IO_CANCEL_ERROR == eE->GetCode());
 	}
 
 	// Invalid IOCTL / IOCTL invalid
@@ -82,9 +82,9 @@ KMS_TEST_BEGIN(DriverHandle_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_IO_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_CREATE_FILE_ERROR == eE->GetCode());
 	}
 
 	lDH0.mDeviceKey.Open(HKEY_CURRENT_USER, "SOFTWARE");
@@ -96,9 +96,9 @@ KMS_TEST_BEGIN(DriverHandle_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_IO_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_CREATE_FILE_ERROR == eE->GetCode());
 	}
 
 	// No permission on the device registry key / Pas de permission pour le
@@ -110,9 +110,9 @@ KMS_TEST_BEGIN(DriverHandle_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 	}
 
 KMS_TEST_END_2
@@ -140,9 +140,9 @@ KMS_TEST_BEGIN(DriverHandle_SetupA)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 	}
 
 KMS_TEST_END_2

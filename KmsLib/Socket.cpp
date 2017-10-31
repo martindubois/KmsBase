@@ -47,7 +47,7 @@ namespace KmsLib
 
 			sprintf_s(lMsg, "WSACleanup() failed returning %d", lRet);
 
-			throw new Exception(Exception::CODE_NETWORK_ERROR, "WSACleanup() failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
+			throw new Exception(Exception::CODE_WINSOCK_ERROR, "WSACleanup() failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
 		}
 	}
 
@@ -64,7 +64,7 @@ namespace KmsLib
 
 			sprintf_s(lMsg, "WSAStartup( ,  ) failed returning %d", lRet);
 
-			throw new Exception(Exception::CODE_NETWORK_ERROR, "WSACleanup() failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
+			throw new Exception(Exception::CODE_WINSOCK_ERROR, "WSACleanup() failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
 		}
 	}
 
@@ -164,7 +164,7 @@ namespace KmsLib
 
 			sprintf_s(lMsg, "accept( , ,  ) failed returning 0x%08x", static_cast<unsigned int>(lConnect));
 
-			throw new Exception(Exception::CODE_NETWORK_ERROR, "accept( , ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
+			throw new Exception(Exception::CODE_SOCKET_ERROR, "accept( , ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
 		}
 
 		// NOT TESTED :	Testing it require 2 threads and this is the
@@ -179,7 +179,7 @@ namespace KmsLib
 
 				sprintf_s(lMsg, "closesocket(  ) failed returning %d", lRetI);
 
-				throw new Exception(Exception::CODE_NETWORK_ERROR, "closesocket(  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
+				throw new Exception(Exception::CODE_SOCKET_ERROR, "closesocket(  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
 			}
 
 			return NULL;
@@ -251,7 +251,7 @@ namespace KmsLib
 		mInternal->mSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 		if (INVALID_SOCKET == mInternal->mSocket)
 		{
-			throw new Exception(Exception::CODE_NETWORK_ERROR, "socket( , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
+			throw new Exception(Exception::CODE_SOCKET_ERROR, "socket( , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
 		}
 	}
 
@@ -277,7 +277,7 @@ namespace KmsLib
 
 			sprintf_s(lMsg, "recv( , , %u bytes,  ) failed returning %d", aOutSize_byte, lResult);
 
-			throw new Exception(Exception::CODE_NETWORK_ERROR, "recv( , , ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
+			throw new Exception(Exception::CODE_SOCKET_ERROR, "recv( , , ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
 		}
 
 		// NOT TESTED :	Testing it require 2 threads and this is the
@@ -301,7 +301,7 @@ namespace KmsLib
 
 			sprintf_s(lMsg, "send( , , %u bytes,  ) failed returning %d", aInSize_byte, lRet);
 
-			throw new Exception(Exception::CODE_NETWORK_ERROR, "send( , , ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
+			throw new Exception(Exception::CODE_SOCKET_ERROR, "send( , , ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
 		}
 
 		// NOT TESTED :	Testing it require 2 threads and this is the
@@ -350,7 +350,7 @@ namespace KmsLib
 				ntohs(mInternal->mLocalAddress.sin_port),
 				lRet);
 
-			throw new Exception(Exception::CODE_NETWORK_ERROR, "bind( , ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
+			throw new Exception(Exception::CODE_SOCKET_ERROR, "bind( , ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
 		}
 	}
 
@@ -369,7 +369,7 @@ namespace KmsLib
 
 			sprintf_s(lMsg, "listen( ,  ) failed returning %d", lRet);
 
-			throw new Exception(Exception::CODE_NETWORK_ERROR, "listen( ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
+			throw new Exception(Exception::CODE_SOCKET_ERROR, "listen( ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, WSAGetLastError());
 		}
 	}
 

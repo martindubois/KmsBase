@@ -89,9 +89,9 @@ KMS_TEST_BEGIN(NetworkAddress_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_INVALID_ARGUMENT == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_INVALID_PORT_NUMBER == eE->GetCode());
 	}
 
 	try
@@ -101,9 +101,9 @@ KMS_TEST_BEGIN(NetworkAddress_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_NETWORK_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_NETWORK_ERROR == eE->GetCode());
 	}
 
 	try
@@ -113,9 +113,9 @@ KMS_TEST_BEGIN(NetworkAddress_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_INVALID_ARGUMENT == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_INVALID_ADDRESS == eE->GetCode());
 	}
 
 	try
@@ -125,9 +125,9 @@ KMS_TEST_BEGIN(NetworkAddress_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_INVALID_ARGUMENT == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_INVALID_PORT_NUMBER == eE->GetCode());
 	}
 
 	try
@@ -137,9 +137,9 @@ KMS_TEST_BEGIN(NetworkAddress_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_INVALID_ARGUMENT == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_INVALID_ADDRESS == eE->GetCode());
 	}
 
 	KMS_TEST_ASSERT(0 == WSACleanup());

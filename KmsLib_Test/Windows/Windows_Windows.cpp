@@ -26,9 +26,9 @@ KMS_TEST_BEGIN(Windows_Windows_Base)
 	}
 	catch (KmsLib::Exception * eE) 
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REG_OPEN_ERROR == eE->GetCode());
 	}
 
 	try
@@ -38,9 +38,9 @@ KMS_TEST_BEGIN(Windows_Windows_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REG_OPEN_ERROR == eE->GetCode());
 	}
 
 	try
@@ -50,9 +50,9 @@ KMS_TEST_BEGIN(Windows_Windows_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REG_OPEN_ERROR == eE->GetCode());
 	}
 
 	try
@@ -62,9 +62,9 @@ KMS_TEST_BEGIN(Windows_Windows_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REG_OPEN_ERROR == eE->GetCode());
 	}
 
 KMS_TEST_END_2

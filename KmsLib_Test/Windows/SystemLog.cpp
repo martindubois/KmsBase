@@ -32,9 +32,9 @@ KMS_TEST_BEGIN(SystemLog_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REG_OPEN_ERROR == eE->GetCode());
 	}
 
 	try
@@ -44,9 +44,9 @@ KMS_TEST_BEGIN(SystemLog_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REG_OPEN_ERROR == eE->GetCode());
 	}
 
 	try
@@ -56,9 +56,9 @@ KMS_TEST_BEGIN(SystemLog_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REG_OPEN_ERROR == eE->GetCode());
 	}
 
 	// Invalid argument / Argument invalid
@@ -69,9 +69,9 @@ KMS_TEST_BEGIN(SystemLog_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_SYSTEM_LOG_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_SYSTEM_LOG_ERROR == eE->GetCode());
 	}
 
 KMS_TEST_END_2
@@ -114,9 +114,9 @@ KMS_TEST_BEGIN(SystemLog_SetupB)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_SYSTEM_LOG_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_SYSTEM_LOG_ERROR == eE->GetCode());
 	}
 
 	printf("    Unconfiguring the event sources...\n");

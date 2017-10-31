@@ -99,9 +99,9 @@ KMS_TEST_BEGIN(ToolBase_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_USER_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_INVALID_COMMAND_LINE == eE->GetCode());
 	}
 
 	lRetB = lTB.ParseArguments(3, ARGUMENTS_C0);
@@ -156,9 +156,9 @@ KMS_TEST_BEGIN(ToolBase_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_IO_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_FILE_READ_ERROR == eE->GetCode());
 	}
 
 	int lRetI = fclose(lFile);

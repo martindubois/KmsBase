@@ -112,7 +112,7 @@ namespace KmsLib
 
                 sprintf_s(lMsg, "fopen_s( , \"%s\",  ) failed returning %d", lFileName, lRet);
 
-                throw  new  Exception(Exception::CODE_IO_ERROR, "fopen_s( , ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, lRet);
+                throw  new  Exception(Exception::CODE_FILE_OPEN_ERROR, "fopen_s( , ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, lRet);
             }
 
             assert(NULL != lResult);

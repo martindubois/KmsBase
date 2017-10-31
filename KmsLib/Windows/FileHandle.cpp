@@ -56,7 +56,7 @@ namespace KmsLib
 			if (!lRet)
 			{
 				// PAS TESTE : Difficile de faire echouer CloseHandle.
-				throw Exception(Exception::CODE_IO_ERROR, "CloseHandle(  ) failed",
+				throw Exception(Exception::CODE_CLOSE_HANDLE_ERROR, "CloseHandle(  ) failed",
 					NULL, __FILE__, __FUNCTION__, __LINE__, 0);
 			}
 		}
@@ -81,7 +81,7 @@ namespace KmsLib
 				sprintf_s(lMessage, sizeof(lMessage), "CreateFile( \"%s\", 0x%08x, 0x%08x, , 0x%08x, 0x%08x,  ) failed",
 					aFileName, aDesiredAccess, aSharedMode, aCreationDisposition, aFlagsAndAttributes);
 
-				throw new Exception(Exception::CODE_IO_ERROR, "CreateFile( , , , , , ,  ) failed",
+				throw new Exception(Exception::CODE_CREATE_FILE_ERROR, "CreateFile( , , , , , ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, 0 );
 			}
 		}
@@ -102,7 +102,7 @@ namespace KmsLib
 				sprintf_s(lMessage, sizeof(lMessage), "ReadFile( , , %u bytes, ,  ) failed",
 					aOutSize_byte);
 
-				throw new Exception(Exception::CODE_IO_ERROR, "ReadFile( , , , ,  ) failed",
+				throw new Exception(Exception::CODE_READ_FILE_ERROR, "ReadFile( , , , ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, 0);
 			}
 
@@ -127,7 +127,7 @@ namespace KmsLib
 				sprintf_s(lMessage, sizeof(lMessage), "WriteFile( , , %u bytes, ,  ) failed",
 					aInSize_byte);
 
-				throw new Exception(Exception::CODE_IO_ERROR, "WriteFile( , , , ,  ) failed",
+				throw new Exception(Exception::CODE_WRITE_FILE_ERROR, "WriteFile( , , , ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, 0);
 			}
 
@@ -140,7 +140,7 @@ namespace KmsLib
 				sprintf_s(lMessage, sizeof(lMessage), "WriteFile did not write all data (To write = %u byte, Written = %u byte)",
 					aInSize_byte, lInfo_byte);
 
-				throw new Exception(Exception::CODE_IO_ERROR, "WriteFile did not write all the data",
+				throw new Exception(Exception::CODE_WRITE_FILE_ERROR, "WriteFile did not write all the data",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, lInfo_byte);
 			}
 		}

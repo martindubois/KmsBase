@@ -42,7 +42,7 @@ namespace KmsLib
 
 			if (!CancelIoEx(mHandle, NULL))
 			{
-				throw new Exception(Exception::CODE_IO_ERROR, "CancelIoEx( ,  ) failed",
+				throw new Exception(Exception::CODE_IO_CANCEL_ERROR, "CancelIoEx( ,  ) failed",
 					NULL, __FILE__, __FUNCTION__, __LINE__, 0 );
 			}
 

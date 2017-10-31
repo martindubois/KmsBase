@@ -297,7 +297,7 @@ namespace KmsLib
 			// No break;
 
 		default :
-			throw new Exception(Exception::CODE_USER_ERROR, "Invalid command line", NULL, __FILE__, __FUNCTION__, __LINE__, aCount);
+			throw new Exception(Exception::CODE_INVALID_COMMAND_LINE, "Invalid command line", NULL, __FILE__, __FUNCTION__, __LINE__, aCount);
 		}
 
 		return false;
@@ -324,6 +324,7 @@ namespace KmsLib
 			break;
 
 		default:
+            // TODO   KmsLib   Utiliser TextFile
 			FILE * lFile;
 
 			int lRet = fopen_s(&lFile, aFileName, "r");
@@ -532,6 +533,6 @@ void ReadLine(FILE * aFile, char * aOut, unsigned int aOutSize_byte)
 
 	if (NULL == fgets(aOut, aOutSize_byte - 1, aFile))
 	{
-		throw new KmsLib::Exception(KmsLib::Exception::CODE_IO_ERROR, "fgets( , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, aOutSize_byte);
+		throw new KmsLib::Exception(KmsLib::Exception::CODE_FILE_READ_ERROR, "fgets( , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, aOutSize_byte);
 	}
 }

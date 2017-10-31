@@ -225,7 +225,7 @@ unsigned int Compress_0(const unsigned char * aIn, unsigned int aInSize_byte, un
 			case 1 :
 				if (lResult_byte + lCount > aOutSize_byte)
 				{
-					throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_BUFFER_SIZE, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
+					throw new KmsLib::Exception(KmsLib::Exception::CODE_BUFFER_TOO_SMALL, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
 				}
 
 				aOut[lResult_byte] = aIn[i];
@@ -235,7 +235,7 @@ unsigned int Compress_0(const unsigned char * aIn, unsigned int aInSize_byte, un
 			case 2:
 				if (lResult_byte + lCount > aOutSize_byte)
 				{
-					throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_BUFFER_SIZE, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
+					throw new KmsLib::Exception(KmsLib::Exception::CODE_BUFFER_TOO_SMALL, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
 				}
 
 				aOut[lResult_byte		] = aIn[i		];
@@ -246,7 +246,7 @@ unsigned int Compress_0(const unsigned char * aIn, unsigned int aInSize_byte, un
 			case 3:
 				if (lResult_byte + lCount > aOutSize_byte)
 				{
-					throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_BUFFER_SIZE, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
+					throw new KmsLib::Exception(KmsLib::Exception::CODE_BUFFER_TOO_SMALL, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
 				}
 
 				aOut[lResult_byte		] = aIn[i		];
@@ -312,7 +312,7 @@ unsigned int Compress_1(unsigned char * aInOut, unsigned int aInSize_byte, unsig
 				case 1:
 					if (lResult_byte + lCount > aOutSize_byte)
 					{
-						throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_BUFFER_SIZE, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
+						throw new KmsLib::Exception(KmsLib::Exception::CODE_BUFFER_TOO_SMALL, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
 					}
 
 					aInOut[lResult_byte] = aInOut[i];
@@ -322,7 +322,7 @@ unsigned int Compress_1(unsigned char * aInOut, unsigned int aInSize_byte, unsig
 				case 2:
 					if (lResult_byte + lCount > aOutSize_byte)
 					{
-						throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_BUFFER_SIZE, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
+						throw new KmsLib::Exception(KmsLib::Exception::CODE_BUFFER_TOO_SMALL, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
 					}
 
 					aInOut[lResult_byte] = aInOut[i];
@@ -333,7 +333,7 @@ unsigned int Compress_1(unsigned char * aInOut, unsigned int aInSize_byte, unsig
 				case 3:
 					if (lResult_byte + lCount > aOutSize_byte)
 					{
-						throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_BUFFER_SIZE, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
+						throw new KmsLib::Exception(KmsLib::Exception::CODE_BUFFER_TOO_SMALL, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
 					}
 
 					aInOut[lResult_byte] = aInOut[i];
@@ -437,7 +437,7 @@ unsigned int Uncompress(const unsigned char * aIn, unsigned int aInSize_byte, un
 
 	if (aOutSize_byte < lResult_byte)
 	{
-		throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_BUFFER_SIZE, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
+		throw new KmsLib::Exception(KmsLib::Exception::CODE_BUFFER_TOO_SMALL, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
 	}
 
 	for (unsigned int i = 0; i < lResult_byte; i++)
@@ -511,7 +511,7 @@ unsigned int Uncompress_0(const unsigned char * aIn, unsigned int aInSize_byte, 
 		{
 			if (aOutSize_byte <= lResult_byte)
 			{
-				throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_BUFFER_SIZE, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
+				throw new KmsLib::Exception(KmsLib::Exception::CODE_BUFFER_TOO_SMALL, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult_byte);
 			}
 
 			aOut[lResult_byte] = aIn[i];  lResult_byte++;
@@ -540,7 +540,7 @@ unsigned int Uncompress_1(unsigned char * aInOut, unsigned int aInSize_byte, uns
 
 	if (aOutSize_byte < lResult)
 	{
-		throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_BUFFER_SIZE, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult);
+		throw new KmsLib::Exception(KmsLib::Exception::CODE_BUFFER_TOO_SMALL, "Buffer too small", NULL, __FILE__, __FUNCTION__, __LINE__, lResult);
 	}
 
 	if (aInSize_byte > lResult)

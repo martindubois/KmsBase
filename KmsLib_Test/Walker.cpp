@@ -123,9 +123,9 @@ void Walker_Test::OnFile(const char * aFile, const FILETIME & aLastWrite)
 		}
 		catch (KmsLib::Exception * eE)
 		{
-			mTestResult[mTestIndex] = KmsLib::Exception::CODE_IO_ERROR == eE->GetCode();
 			KMS_TEST_ERROR_INFO;
 			eE->Write(stdout);
+			mTestResult[mTestIndex] = KmsLib::Exception::CODE_DIRECTORY_ERROR == eE->GetCode();
 		}
 		mTestIndex++;
 		break;
@@ -138,9 +138,9 @@ void Walker_Test::OnFile(const char * aFile, const FILETIME & aLastWrite)
 		}
 		catch (KmsLib::Exception * eE)
 		{
-			mTestResult[mTestIndex] = KmsLib::Exception::CODE_INVALID_BUFFER_SIZE == eE->GetCode();
 			KMS_TEST_ERROR_INFO;
 			eE->Write(stdout);
+			mTestResult[mTestIndex] = KmsLib::Exception::CODE_BUFFER_TOO_SMALL == eE->GetCode();
 		}
 		mTestIndex++;
 		break;

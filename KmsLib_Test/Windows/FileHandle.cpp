@@ -36,9 +36,9 @@ KMS_TEST_BEGIN(FileHandle_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_IO_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_WRITE_FILE_ERROR == eE->GetCode());
 	}
 
 	HANDLE lHandle = lFH0;
@@ -53,9 +53,9 @@ KMS_TEST_BEGIN(FileHandle_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_IO_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_READ_FILE_ERROR == eE->GetCode());
 	}
 
 	try
@@ -65,9 +65,9 @@ KMS_TEST_BEGIN(FileHandle_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_IO_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_CREATE_FILE_ERROR == eE->GetCode());
 	}
 
 KMS_TEST_END

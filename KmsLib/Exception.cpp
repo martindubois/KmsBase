@@ -64,6 +64,37 @@ static const char * CODE_NAMES[ KmsLib::Exception::CODE_QTY ] =
 	"CODE_INVALID_COMMAND_LINE"		,
 	"CODE_OPEN_CL_ERROR"			,
 	"CODE_STRUCTURED_EXCEPTION"		,
+
+    // ----- 2.6 ----------------------------------------------------
+    "CODE_CLOSE_HANDLE_ERROR"       ,
+    "CODE_BUFFER_TOO_SMALL"         ,
+    "CODE_COM_PORT_ERROR"           ,
+    "CODE_COPY_FILE_ERROR"          ,
+    "CODE_CREATE_FILE_ERROR"        ,
+    "CODE_DENIED"                   ,
+    "CODE_DIRECTORY_ERROR"          ,
+    "CODE_ERROR"                    ,
+    "CODE_FILE_OPEN_ERROR"          ,
+    "CODE_FILE_READ_ERROR"          ,
+    "CODE_FILE_WRITE_ERROR"         ,
+    "CODE_INVALID_ADDRESS"          ,
+    "CODE_INVALID_PORT_NUMBER"      ,
+    "CODE_IO_CANCEL_ERROR"          ,
+    "CODE_MOVE_FILE_ERROR"          ,
+    "CODE_NO_COM_PORT"              ,
+    "CODE_NOT_IMPLEMENTED"          ,
+    "CODE_READ_FILE_ERROR"          ,
+    "CODE_REG_CLOSE_ERROR"          ,
+    "CODE_REG_CREATE_ERROR"         ,
+    "CODE_REG_DELETE_ERROR"         ,
+    "CODE_REG_OPEN_ERROR"           ,
+    "CODE_REG_QUERY_ERROR"          ,
+    "CODE_REG_SET_ERROR"            ,
+    "CODE_SOCKET_ERROR"             ,
+    "CODE_TO_DEFINE"                ,
+    "CODE_UNSUCCESSFUL"             ,
+    "CODE_WINSOCK_ERROR"            ,
+    "CODE_WRITE_FILE_ERROR"         ,
 };
 
 // Static method declarations / Declaration des fonctions statique
@@ -99,6 +130,16 @@ namespace KmsLib
 		assert(TranslateException == lTranslator);
 		#endif // _KMS_WINDOWS_
 	}
+
+    const  char  * Exception::GetCodeName(Code  aCode)
+    {
+        if (CODE_QTY <= aCode)
+        {
+            return  NULL;
+        }
+
+        return  CODE_NAMES[aCode];
+    }
 
 	Exception::Exception(Code aCode, const char * aWhat, const char * aMessage, const char * aFile, const char * aFunction, unsigned int aLine, unsigned int aInfoA) :
 		mCode		(aCode			),

@@ -129,9 +129,9 @@ KMS_TEST_BEGIN(CmdLineParser_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_IO_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_FILE_OPEN_ERROR == eE->GetCode());
 	}
 
 	KMS_TEST_ASSERT((KmsLib::CmdLineParser::ERROR_FLAG_IGNORED_OPTIONS | KmsLib::CmdLineParser::ERROR_FLAG_INCOMPLET_OPTION | KmsLib::CmdLineParser::ERROR_FLAG_INVALID_OPTION) == lCLP1.GetErrorFlags());

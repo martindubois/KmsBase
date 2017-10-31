@@ -99,7 +99,7 @@ namespace KmsLib
 
 		if (aOutLen <= lCount)
 		{
-			throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_BUFFER_SIZE,
+			throw new KmsLib::Exception(KmsLib::Exception::CODE_BUFFER_TOO_SMALL,
 				"Buffer too short", NULL, __FILE__, __FUNCTION__, __LINE__, lCount);
 		}
 
@@ -227,7 +227,7 @@ namespace KmsLib
 
 			sprintf_s(lMessage, "mkdir( %s, ) failed", lFolder);
 
-			throw new KmsLib::Exception(KmsLib::Exception::CODE_IO_ERROR,
+			throw new KmsLib::Exception(KmsLib::Exception::CODE_DIRECTORY_ERROR,
 				"mkdir( ,  ) failed", lMessage, __FILE__, __FUNCTION__, __LINE__, 0);
 		}
 	}

@@ -40,9 +40,9 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REG_CREATE_ERROR == eE->GetCode());
 	}
 
 	try
@@ -53,9 +53,9 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REG_OPEN_ERROR == eE->GetCode());
 	}
 
 	lKey0.Open(HKEY_CURRENT_USER, "Software");
@@ -70,9 +70,9 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REG_DELETE_ERROR == eE->GetCode());
 	}
 
 	try
@@ -83,9 +83,9 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REG_DELETE_ERROR == eE->GetCode());
 	}
 
 	try
@@ -96,9 +96,9 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REG_OPEN_ERROR == eE->GetCode());
 	}
 
 	try
@@ -109,9 +109,9 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REG_QUERY_ERROR == eE->GetCode());
 	}
 
 	// ----------------------------------------------------------------------
@@ -141,9 +141,9 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 	}
 
 	KMS_TEST_ASSERT(1 == lKey2.GetValue_DWORD("ValueA"		, 0));
@@ -158,9 +158,9 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REG_QUERY_ERROR == eE->GetCode());
 	}
 
 	lKey2.SetDefaultValue("");
@@ -173,9 +173,9 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 	}
 
 	lKey2.DeleteValue("ValueA");
@@ -202,9 +202,9 @@ KMS_TEST_BEGIN(RegistryKey_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REGISTRY_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_REG_SET_ERROR == eE->GetCode());
 	}
 
 KMS_TEST_END

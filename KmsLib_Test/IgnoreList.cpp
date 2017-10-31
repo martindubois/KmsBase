@@ -31,9 +31,9 @@ KMS_TEST_BEGIN(IgnoreList_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_IO_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_FILE_OPEN_ERROR == eE->GetCode());
 	}
 	
 	lIL0.ReadFromFile(".", ".gitignore");

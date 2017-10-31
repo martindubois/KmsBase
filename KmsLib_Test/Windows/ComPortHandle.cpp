@@ -32,9 +32,9 @@ KMS_TEST_BEGIN(ComPortHandle_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_IO_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_CREATE_FILE_ERROR == eE->GetCode());
 	}
 
 	try
@@ -44,9 +44,9 @@ KMS_TEST_BEGIN(ComPortHandle_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_IO_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_CREATE_FILE_ERROR == eE->GetCode());
 	}
 
 	try
@@ -56,9 +56,9 @@ KMS_TEST_BEGIN(ComPortHandle_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_COMMUNICATION_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_COM_PORT_ERROR == eE->GetCode());
 	}
 
 KMS_TEST_END_2

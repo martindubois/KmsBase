@@ -130,7 +130,7 @@ namespace KmsLib
 
 				sprintf_s(lMsg, "Cannot open %s (%s)", lIt->second.c_str(), aMode);
 
-				throw new Exception(Exception::CODE_IO_ERROR, "Cannot open file",
+				throw new Exception(Exception::CODE_FILE_OPEN_ERROR, "Cannot open file",
 					lMsg, __FILE__, __FUNCTION__, __LINE__, aArgOpt);
 			}
 		}

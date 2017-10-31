@@ -76,14 +76,14 @@ namespace KmsLib
 				}
 				catch (Exception * eE)
 				{
-					if (Exception::CODE_IO_ERROR != eE->GetCode())
+					if (Exception::CODE_COM_PORT_ERROR != eE->GetCode())
 					{
 						throw;
 					}
 				}
 			}
 
-			throw Exception(Exception::CODE_NO_SUCH_DEVICE, "No available COM port", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
+			throw Exception(Exception::CODE_NO_COM_PORT, "No available COM port", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
 		}
 
 		void ComPortHandle::Connect(const char * aName, DWORD aDesiredAccess)
@@ -120,7 +120,7 @@ namespace KmsLib
 
 			if (!GetCommConfig(mHandle, &lCC, &lSize_byte))
 			{
-				throw new Exception(Exception::CODE_COMMUNICATION_ERROR, "GetCommConfig failed", NULL, __FILE__, __FUNCTION__, __LINE__, lSize_byte);
+				throw new Exception(Exception::CODE_COM_PORT_ERROR, "GetCommConfig failed", NULL, __FILE__, __FUNCTION__, __LINE__, lSize_byte);
 			}
 
 			lCC.dcb.BaudRate = mBaudRate;
@@ -129,7 +129,7 @@ namespace KmsLib
 			{
 				// NOT TESTED : Not easy to test because the error popup at
 				//				the beginning of the method.
-				throw new Exception(Exception::CODE_COMMUNICATION_ERROR, "SetCommConfig failed", NULL, __FILE__, __FUNCTION__, __LINE__, lSize_byte);
+				throw new Exception(Exception::CODE_COM_PORT_ERROR, "SetCommConfig failed", NULL, __FILE__, __FUNCTION__, __LINE__, lSize_byte);
 			}
 		}
 

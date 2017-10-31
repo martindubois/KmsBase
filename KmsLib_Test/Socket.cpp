@@ -34,9 +34,9 @@ KMS_TEST_BEGIN(Socket_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_NETWORK_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_SOCKET_ERROR == eE->GetCode());
 	}
 
 	KmsLib::Socket::Thread_Init();
@@ -52,9 +52,9 @@ KMS_TEST_BEGIN(Socket_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_NETWORK_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_SOCKET_ERROR == eE->GetCode());
 	}
 
 	try
@@ -64,9 +64,9 @@ KMS_TEST_BEGIN(Socket_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_NETWORK_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_SOCKET_ERROR == eE->GetCode());
 	}
 
 	try
@@ -76,9 +76,9 @@ KMS_TEST_BEGIN(Socket_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_NETWORK_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_SOCKET_ERROR == eE->GetCode());
 	}
 
 	KmsLib::Socket lS3;
@@ -94,9 +94,9 @@ KMS_TEST_BEGIN(Socket_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_NETWORK_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_SOCKET_ERROR == eE->GetCode());
 	}
 
     // TODO   Normal
@@ -121,9 +121,9 @@ KMS_TEST_BEGIN(Socket_Base)
 	}
 	catch (KmsLib::Exception * eE)
 	{
-		KMS_TEST_ASSERT(KmsLib::Exception::CODE_NETWORK_ERROR == eE->GetCode());
 		KMS_TEST_ERROR_INFO;
 		eE->Write(stdout);
+		KMS_TEST_ASSERT(KmsLib::Exception::CODE_WINSOCK_ERROR == eE->GetCode());
 	}
 
 KMS_TEST_END

@@ -68,7 +68,7 @@ namespace KmsLib
 
 					sprintf_s(lMsg, "An error occured when closing the sub key %s", aSubKey);
 
-					throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegCloseKey(  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, lRetS);
+					throw new Exception(Exception::CODE_REG_CLOSE_ERROR, "RegCloseKey(  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, lRetS);
 				}
 				return true;
 
@@ -76,7 +76,7 @@ namespace KmsLib
 				break;
 
 			default:
-				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegOpenKey( , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, lRetS);
+				throw new Exception(Exception::CODE_REG_OPEN_ERROR, "RegOpenKey( , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, lRetS);
 			}
 
 			return false;
@@ -102,7 +102,7 @@ namespace KmsLib
 				break;
 
 			default:
-				throw new KmsLib::Exception(KmsLib::Exception::CODE_REGISTRY_ERROR, "Registry error",
+				throw new KmsLib::Exception(KmsLib::Exception::CODE_REG_QUERY_ERROR, "Registry error",
 					NULL, __FILE__, __FUNCTION__, __LINE__, lRetS);
 			}
 		}
@@ -131,7 +131,7 @@ namespace KmsLib
 				break;
 
 			default :
-				throw new KmsLib::Exception(KmsLib::Exception::CODE_REGISTRY_ERROR, "Registry error",
+				throw new KmsLib::Exception(KmsLib::Exception::CODE_REG_QUERY_ERROR, "Registry error",
 					NULL, __FILE__, __FUNCTION__, __LINE__, lRetS);
 			}
 
@@ -171,7 +171,7 @@ namespace KmsLib
 				sprintf_s(lMessage, sizeof(lMessage), "RegSetValueEx( , \"%s\", , 0x%08x, , %u bytes ) failed\n",
 					aName, aType, aValueSize_byte);
 
-				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegSetValueEx( , , , , ,  ) failed",
+				throw new Exception(Exception::CODE_REG_SET_ERROR, "RegSetValueEx( , , , , ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 		}
@@ -187,7 +187,7 @@ namespace KmsLib
 			if (ERROR_SUCCESS != lRet)
 			{
 				// NOTE TESTED : Realy not easy to test / Vraiment pas facile a tester
-				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegCloseKey(  ) failed",
+				throw new Exception(Exception::CODE_REG_CLOSE_ERROR, "RegCloseKey(  ) failed",
 					NULL, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 		}
@@ -210,7 +210,7 @@ namespace KmsLib
 				sprintf_s(lMessage, sizeof(lMessage), "RegCreateKeyEx( , \"%s\", , , , , , ,  ) failed",
 					aSubKey);
 
-				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegCreateKeyEx( , , , , , , , ,  ) failed",
+				throw new Exception(Exception::CODE_REG_CREATE_ERROR, "RegCreateKeyEx( , , , , , , , ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 
@@ -231,7 +231,7 @@ namespace KmsLib
 				sprintf_s(lMessage, sizeof(lMessage), "RegDeleteTree( , \"%s\" ) failed",
 					aSubKey);
 
-				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegDeleteTree( ,  ) failed",
+				throw new Exception(Exception::CODE_REG_DELETE_ERROR, "RegDeleteTree( ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 		}
@@ -250,7 +250,7 @@ namespace KmsLib
 				sprintf_s(lMessage, sizeof(lMessage), "RegDeleteValue( , \"%s\" ) failed",
 					aName);
 
-				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegDeleteValue( ,  ) failed",
+				throw new Exception(Exception::CODE_REG_DELETE_ERROR, "RegDeleteValue( ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 		}
@@ -273,7 +273,7 @@ namespace KmsLib
 				sprintf_s(lMessage, sizeof(lMessage), "RegOpenKeyEx( , \"%s\", , ,  ) failed",
 					aSubKey);
 
-				throw new Exception(Exception::CODE_REGISTRY_ERROR, "RegOpenKeyEx( , , , ,  ) failed",
+				throw new Exception(Exception::CODE_REG_OPEN_ERROR, "RegOpenKeyEx( , , , ,  ) failed",
 					lMessage, __FILE__, __FUNCTION__, __LINE__, lRet);
 			}
 

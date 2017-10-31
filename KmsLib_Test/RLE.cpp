@@ -40,16 +40,16 @@ TestCaseOK;
 
 static const TestCaseError	TEST_CASE_ERROR[] =
 {
-	{ KmsLib::Exception::CODE_INVALID_BUFFER_SIZE	, NULL								, 1, "ab"		, 2		},
+	{ KmsLib::Exception::CODE_BUFFER_TOO_SMALL     	, NULL								, 1, "ab"		, 2		},
 	{ KmsLib::Exception::CODE_INVALID_BUFFER_SIZE	, NULL								, 1, "\377"		, 1		},
-	{ KmsLib::Exception::CODE_INVALID_BUFFER_SIZE	, NULL								, 1, "aa"		, 2		},
-	{ KmsLib::Exception::CODE_INVALID_BUFFER_SIZE	, NULL								, 1, "aaa"		, 3		},
+	{ KmsLib::Exception::CODE_BUFFER_TOO_SMALL      , NULL								, 1, "aa"		, 2		},
+	{ KmsLib::Exception::CODE_BUFFER_TOO_SMALL      , NULL								, 1, "aaa"		, 3		},
 	{ KmsLib::Exception::CODE_INVALID_BUFFER_SIZE	, NULL								, 1, "aaaa"		, 4		},
-	{ KmsLib::Exception::CODE_INVALID_BUFFER_SIZE	, "aa"								, 2, NULL		, 1		},
+	{ KmsLib::Exception::CODE_BUFFER_TOO_SMALL      , "aa"								, 2, NULL		, 1		},
 	{ KmsLib::Exception::CODE_INVALID_DATA			, "\377\002a"						, 3, NULL		, 1		},
-	{ KmsLib::Exception::CODE_INVALID_BUFFER_SIZE	, NULL								, 3, "\377ab"	, 3		},
+	{ KmsLib::Exception::CODE_BUFFER_TOO_SMALL      , NULL								, 3, "\377ab"	, 3		},
 	{ KmsLib::Exception::CODE_INVALID_DATA			, "\377"							, 1, NULL		, 1		},
-	{ KmsLib::Exception::CODE_INVALID_BUFFER_SIZE	, "\377\004a"						, 3, NULL		, 3		},
+	{ KmsLib::Exception::CODE_BUFFER_TOO_SMALL      , "\377\004a"						, 3, NULL		, 3		},
 	{ KmsLib::Exception::CODE_INVALID_DATA			, "\377\377a"						, 3, NULL		, 512	},
 	{ KmsLib::Exception::CODE_INVALID_DATA			, "\377\001\377\377\007a\377\004"	, 7, NULL		, 256	},
 	{ KmsLib::Exception::CODE_INVALID_DATA			, "\377\001"						, 2, NULL		, 256	},
@@ -122,9 +122,9 @@ KMS_TEST_BEGIN(RLE_Base)
 		}
 		catch (KmsLib::Exception * eE)
 		{
-			KMS_TEST_ASSERT(TEST_CASE_ERROR[lIndex].mCode == eE->GetCode());
 			KMS_TEST_ERROR_INFO;
 			eE->Write(stdout);
+			KMS_TEST_ASSERT(TEST_CASE_ERROR[lIndex].mCode == eE->GetCode());
 		}
 	}
 
@@ -162,9 +162,9 @@ KMS_TEST_BEGIN(RLE_Base)
 		}
 		catch (KmsLib::Exception * eE)
 		{
-			KMS_TEST_ASSERT(TEST_CASE_ERROR[lIndex].mCode == eE->GetCode());
 			KMS_TEST_ERROR_INFO;
 			eE->Write(stdout);
+			KMS_TEST_ASSERT(TEST_CASE_ERROR[lIndex].mCode == eE->GetCode());
 		}
 	}
 

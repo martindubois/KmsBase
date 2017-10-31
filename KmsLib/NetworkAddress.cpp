@@ -164,7 +164,7 @@ namespace KmsLib
 			{
 				sprintf_s(lMsg, "%u is not a valid port number (%d)", lPortNumber, lRetI);
 
-				throw new Exception(Exception::CODE_INVALID_ARGUMENT, "Invalid port number", lMsg, __FILE__, __FUNCTION__, __LINE__, lPortNumber);
+				throw new Exception(Exception::CODE_INVALID_PORT_NUMBER, "Invalid port number", lMsg, __FILE__, __FUNCTION__, __LINE__, lPortNumber);
 			}
 
 			SetPortNumber(lPortNumber);
@@ -205,7 +205,7 @@ namespace KmsLib
 		default :
 			sprintf_s(lMsg, "\"%s\" is not a valid name", aAddr);
 
-			throw new Exception(Exception::CODE_INVALID_ARGUMENT, "Invalid name", lMsg, __FILE__, __FUNCTION__, __LINE__, lRetI);
+			throw new Exception(Exception::CODE_INVALID_ADDRESS, "Invalid name", lMsg, __FILE__, __FUNCTION__, __LINE__, lRetI);
 		}
 	}
 
@@ -213,7 +213,7 @@ namespace KmsLib
 	{
 		if (0 == aPortNumber)
 		{
-			throw new Exception(Exception::CODE_INVALID_ARGUMENT, "Invalid port", NULL, __FILE__, __FUNCTION__, __LINE__, aPortNumber);
+			throw new Exception(Exception::CODE_INVALID_PORT_NUMBER, "Invalid port", NULL, __FILE__, __FUNCTION__, __LINE__, aPortNumber);
 		}
 
 		mAddr.sin_port = htons(aPortNumber);
@@ -231,7 +231,7 @@ namespace KmsLib
 	{
 		if (0 == mAddr.sin_addr.S_un.S_addr)
 		{
-			throw new Exception(Exception::CODE_INVALID_ARGUMENT, "The address is not valid", NULL, __FILE__, __FUNCTION__, __LINE__, mAddr.sin_addr.S_un.S_addr);
+			throw new Exception(Exception::CODE_INVALID_ADDRESS, "The address is not valid", NULL, __FILE__, __FUNCTION__, __LINE__, mAddr.sin_addr.S_un.S_addr);
 		}
 	}
 

@@ -14,6 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Includes", "Includes", "{98
 	ProjectSection(SolutionItems) = preProject
 		Includes\KmsBase.h = Includes\KmsBase.h
 		Includes\KmsTest.h = Includes\KmsTest.h
+		Includes\KmsTool.h = Includes\KmsTool.h
 		Includes\Ring.h = Includes\Ring.h
 		Includes\SafeAPI.h = Includes\SafeAPI.h
 		Includes\WindowsToLinux.h = Includes\WindowsToLinux.h
@@ -56,16 +57,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DocDev", "_DocDev", "{00EE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{EA71243B-5549-4F76-9D8B-547E36BE8BB4}"
 	ProjectSection(SolutionItems) = preProject
-		_DocDev\Procedures\Build.txt = _DocDev\Procedures\Build.txt
+		_DocDev\Procedures\Build_fr.txt = _DocDev\Procedures\Build_fr.txt
 		_DocDev\Procedures\PrepDevComputer_Linux.txt = _DocDev\Procedures\PrepDevComputer_Linux.txt
 		_DocDev\Procedures\PrepDevComputer_Windows.txt = _DocDev\Procedures\PrepDevComputer_Windows.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{F88CC9DD-1927-455C-96C7-834931B958F9}"
 	ProjectSection(SolutionItems) = preProject
-		Scripts\Install.cmd = Scripts\Install.cmd
-		Scripts\Install.cmd.txt = Scripts\Install.cmd.txt
-		Scripts\Install.sh = Scripts\Install.sh
 		Scripts\Verify.cmd = Scripts\Verify.cmd
 	EndProjectSection
 EndProject
@@ -80,6 +78,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ExportSources.sh = ExportSources.sh
 		ForEachConfig_DLL.cmd = ForEachConfig_DLL.cmd
 		ForEachConfig_NoDLL.cmd = ForEachConfig_NoDLL.cmd
+		Import.cmd = Import.cmd
+		Import.cmd.txt = Import.cmd.txt
+		README.md = README.md
 		RunDoxygen.cmd = RunDoxygen.cmd
 		Test.cmd = Test.cmd
 		Test.sh = Test.sh

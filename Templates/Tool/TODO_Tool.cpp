@@ -1,7 +1,7 @@
 
-// Author / Auteur		:	KMS -	Martin Dubois, ing.
-// Product / Produit	:	KmsBase
-// File / Fichier		:	TODO_Tool/TODO_Tool.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     TODO_Tool/TODO_Tool.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -10,7 +10,10 @@
 #include <assert.h>
 #include <stdio.h>
 
-// ===== KmsLib =============================================================
+// ===== KmsBase ============================================================
+#include <KmsTool.h>
+
+// ----- KmsLib -------------------------------------------------------------
 #include <KmsLib/ToolBase.h>
 
 // Declaration des fonctions statiques
@@ -45,18 +48,18 @@ static const KmsLib::ToolBase::CommandInfo COMMAND[] =
 
 int main(int aCount, const char ** aVector)
 {
-	assert(0	<	aCount		);
-	assert(NULL !=	aVector		);
-	assert(NULL !=	aVector[0]	);
+    assert(0	<  aCount    );
+    assert(NULL != aVector   );
+    assert(NULL != aVector[0]);
 
-	printf("TODO_Tool.exe - Version TODO (Compiled at " __TIME__ " on " __DATE__ ")\n" );
+    KMS_TOOL_BANNER("KmsBase", "TODO_Tool.exe", "TODO", "TODO");
 
-	KmsLib::ToolBase lToolBase(COMMAND);
+    KmsLib::ToolBase lToolBase(COMMAND);
 
-	if (!lToolBase.ParseArguments(aCount, aVector))
-	{
-		lToolBase.ParseCommands();
-	}
+    if (!lToolBase.ParseArguments(aCount, aVector))
+    {
+        lToolBase.ParseCommands();
+    }
 }
 
 // Fonctions statiques

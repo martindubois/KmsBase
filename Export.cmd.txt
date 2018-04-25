@@ -1,7 +1,7 @@
 
-# Auteur	KMS	-	Martin Dubois, ing.
-# Produit	KmsBase
-# Fichier	Export.cmd.txt
+# Auteur   KMS - Martin Dubois, ing.
+# Produit  KmsBase
+# Fichier  Export.cmd.txt
 
 .
 	DoxyFile_en.txt
@@ -28,6 +28,7 @@ Debug_DLL	Libraries/Debug_32_DLL
 Includes
 	KmsBase.h
 	KmsTest.h
+    KmsTool.h
 	Ring.h
 	SafeAPI.h
 	WindowsToLinux.h
@@ -49,13 +50,6 @@ Includes/KmsLib
 
 Includes/KmsLib/Linux
 	Windows.h
-
-Includes/KmsLib/OpenCL
-	Buffer.h
-	CommandQueue.h
-	Context.h
-	Kernel.h
-	Program.h
 
 Includes/KmsLib/Windows
 	ComPortHandle.h
@@ -164,4 +158,3 @@ x64/Release_DLL	Binaries/Release_64_DLL
 
 x64/Release_DLL	Libraries/Release_64_DLL
 	KmsLib.lib
-	DepCheck_Net.exe

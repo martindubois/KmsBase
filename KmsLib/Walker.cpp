@@ -1,7 +1,7 @@
 
-// Author / Auteur		:	KMS -	Martin Dubois, ing.
-// Product / Produit	:	KmsBase
-// File / Fichier		:	KmsLib/Walker.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     KmsLib/Walker.cpp
 
 // Inclusions
 /////////////////////////////////////////////////////////////////////////////
@@ -26,8 +26,9 @@
 	#include <Windows.h>
 #endif // _KMS_WINDOWS_
 
-// ===== KmsLib =============================================================
+// ===== Includes/KmsLib ====================================================
 #include <KmsLib/Exception.h>
+#include <KmsLib/File.h>
 
 #ifdef _KMS_LINUX_
 	#include <KmsLib/Linux/Windows.h>
@@ -83,11 +84,11 @@ namespace KmsLib
 
 	bool Walker::GetFolder(char * aOut, unsigned int aOutLen, const char * aName)
 	{
-		assert(NULL		!=	aOut		);
-		assert(0		<	aOutLen		);
-		assert(NULL		!=	aName		);
-		assert('\0'		!=	(*aName)	);
-		assert(SLASH_C	!=	(*aName)	);
+		assert(NULL    != aOut    );
+		assert(0       <  aOutLen );
+		assert(NULL    != aName   );
+		assert('\0'    != (*aName));
+		assert(SLASH_C != (*aName));
 
 		const char * lPtr = strrchr(aName, SLASH_C);
 		if (NULL == lPtr)
@@ -119,7 +120,7 @@ namespace KmsLib
 
 		GetAbsolute(lFolder, PATH_LENGTH, aRoot, aName);
 
-		return (0 == _access(lFolder, 00));
+		return KmsLib::File::Exist(lFolder);
 	}
 
 	void Walker::OnFolder(const char * aFolderName)
@@ -200,7 +201,7 @@ namespace KmsLib
 			sprintf_s(lFileName, "%s" SLASH "%s" SLASH "%s", mRoot.c_str(), aFolder, aFile);
 		}
 
-		return (0 == _access(lFileName, 04));
+		return KmsLib::File::Exist(lFileName, FILE_EXIST_FLAG_READ);
 	}
 
 	void Walker::CreateFolder(const char * aToRoot, const char * aFolder)

@@ -1,7 +1,10 @@
 
-// Author / Auteur		:	KMS -	Martin Dubois, ing.
-// Product / Produit	:	KmsBase
-// File / Fichier		:	KmsLib/DebugLog.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     KmsLib/DebugLog.cpp
+
+// Last test coverage update / Derniere mise a jour de la couverture de test
+// 2017-10-31
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -65,80 +68,65 @@ namespace KmsLib
 
 		sprintf_s(lFileName, "%s/pid_%u_log_%s_%u.txt", aFolder, _getpid(), aName, sIndex);
 
-		if (0 == fopen_s(&mFile, lFileName, "w"))
-		{
-			assert(NULL != mFile);
+        mTF.Create(lFileName, TextFile::FLAG_IGNORE_ERROR);
 
-			Log(__FILE__, __FUNCTION__, __LINE__);
-			LogTime();
-			Log("Creating log file");
-		}
-		else
-		{
-			mFile = NULL;
-		}
+        Log(__FILE__, __FUNCTION__, __LINE__);
+        LogTime();
+        Log("Creating log file");
 	}
 
 	DebugLog::~DebugLog()
 	{
-		if (NULL != mFile)
-		{
-			Log(__FILE__, __FUNCTION__, __LINE__);
-			LogTime();
-			Log("Closing log file");
-
-			int lRet = fclose(mFile);
-			assert(0 == lRet);
-
-			(void)(lRet);
-		}
+		Log(__FILE__, __FUNCTION__, __LINE__);
+		LogTime();
+		Log("Closing log file");
 	}
 
 	DebugLog::operator FILE * ()
 	{
-		return mFile;
+		return (FILE *)(mTF);
 	}
 
 	bool DebugLog::IsEnabled() const
 	{
-		return (NULL != mFile);
+		return mTF.IsOpened();
 	}
 
-	void DebugLog::Log( const Exception * aException)
+	void DebugLog::Log(const Exception * aException)
 	{
 		assert(NULL != aException);
 
-		if (NULL != mFile)
+		if (mTF.IsOpened())
 		{
-			fprintf(mFile, "EXCEPTION");
-			aException->Write(mFile);
+			fprintf(mTF, "EXCEPTION");
+			aException->Write(mTF);
 		}
 	}
 
 	void DebugLog::Log(const char * aFile, const char * aFunction, unsigned int aLine)
 	{
-		assert(NULL != aFile		);
-		assert(NULL != aFunction	);
+		assert(NULL != aFile    );
+		assert(NULL != aFunction);
 
-		if (NULL != mFile)
+		if (mTF.IsOpened())
 		{
-			fprintf(mFile, "%s (%u) - %s\n", aFile, aLine, aFunction);
+			fprintf(mTF, "%s (%u) - %s\n", aFile, aLine, aFunction);
 		}
 	}
 
-	void DebugLog::Log(const char *aMessage)
+	void  DebugLog::Log(const  char  * aMessage)
 	{
 		assert(NULL != aMessage);
 
-		if (NULL != mFile)
+		if (mTF.IsOpened())
 		{
-			fprintf(mFile, "%s\n", aMessage);
+			fprintf(mTF, "%s\n", aMessage);
 		}
 	}
 
-	void DebugLog::LogTime()
+	void  DebugLog::LogTime()
 	{
-		if (NULL != mFile)
+		if (mTF.IsOpened())
 		{
 			time_t	lTime;
 
@@ -146,17 +134,19 @@ namespace KmsLib
 
 			tm lLT;
 
-			int lRet = localtime_s(&lLT, &lTime);
+			int  lRet = localtime_s(&lLT, &lTime);
 			if (0 == lRet)
 			{
-				fprintf(mFile, "%s, %s %u %04u - %02u:%02u:%02u\n",
+				fprintf(mTF, "%s, %s %u %04u - %02u:%02u:%02u\n",
 					DAY_NAMES[lLT.tm_wday], MONTH_NAMES[lLT.tm_mon], lLT.tm_mday, lLT.tm_year + 1900,
 					lLT.tm_hour, lLT.tm_min, lLT.tm_sec);
 			}
 			else
 			{
+                // NOT TESTED   KmsLib.DebugLog.ErrorHandling
+                //              localtime_s fail / localtime_s a echoue
 				Log(__FILE__, __FUNCTION__, __LINE__);
-				fprintf(mFile, "localtime_s( , 0x%08x%08x ) failed returning %u\n",
+				fprintf(mTF, "localtime_s( , 0x%08x%08x ) failed returning %u\n",
 					static_cast<unsigned int>(lTime & 0xffffffff), static_cast<unsigned int>(lTime >> 32),
 					lRet);
 			}

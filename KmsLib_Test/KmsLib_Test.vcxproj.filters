@@ -96,6 +96,18 @@
     <ClCompile Include="HTML5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TextFileEditor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="File.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="String.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\Common\Version.rc">
@@ -110,12 +122,27 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include=".gitignore" />
+    <None Include="Tests\.gitignore">
+      <Filter>Tests</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Tests\ToolBase0.txt">
       <Filter>Tests</Filter>
     </Text>
     <Text Include="Tests\ToolBase1.txt">
+      <Filter>Tests</Filter>
+    </Text>
+    <Text Include="Tests\TextFileEditor.txt">
+      <Filter>Tests</Filter>
+    </Text>
+    <Text Include="Tests\FileA.txt">
+      <Filter>Tests</Filter>
+    </Text>
+    <Text Include="Tests\FileB.txt">
+      <Filter>Tests</Filter>
+    </Text>
+    <Text Include="Tests\FileC.txt">
       <Filter>Tests</Filter>
     </Text>
   </ItemGroup>

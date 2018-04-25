@@ -39,6 +39,7 @@
     <ClCompile Include="DebugLog.cpp" />
     <ClCompile Include="Dump.cpp" />
     <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="File.cpp" />
     <ClCompile Include="HTML5.cpp" />
     <ClCompile Include="IgnoreList.cpp" />
     <ClCompile Include="KmsLib.cpp" />
@@ -96,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="RLE.cpp" />
     <ClCompile Include="Socket.cpp" />
+    <ClCompile Include="String.cpp" />
+    <ClCompile Include="TextFile.cpp" />
+    <ClCompile Include="TextFileEditor.cpp" />
     <ClCompile Include="ToolBase.cpp" />
     <ClCompile Include="Walker.cpp" />
     <ClCompile Include="Walker_Smart.cpp" />

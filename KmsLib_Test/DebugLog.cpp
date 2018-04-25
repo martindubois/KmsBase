@@ -1,7 +1,7 @@
 
-// Author / Auteur		:	KMS -	Martin Dubois, ing.
-// Product / Produit	:	KmsBase
-// File / Fichier		:	KmsLib_Test/DebugLog.cpp
+// Author / Auteur    KMS -	Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     KmsLib_Test/DebugLog.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -36,5 +36,8 @@ KMS_TEST_BEGIN(DebugLog_Base)
 	lDL1.Log("Test");
 
 	lDL1.LogTime();
+
+    FILE * lF1 = lDL1;
+    KMS_TEST_ASSERT(NULL != lF1);
 
 KMS_TEST_END_2

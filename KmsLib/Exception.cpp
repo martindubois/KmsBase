@@ -1,7 +1,7 @@
 
-// Auteur	:	KMS -	Martin Dubois, ing.
-// Projet	:	KmsBase
-// File		:	KmsLib/Exception.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     KmsLib/Exception.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -11,7 +11,7 @@
 // ===== C ==================================================================
 #include <assert.h>
 
-// ===== Interfaces =========================================================
+// ===== Includes ===========================================================
 #include <KmsLib/Exception.h>
 
 // Constantes
@@ -71,6 +71,7 @@ static const char * CODE_NAMES[ KmsLib::Exception::CODE_QTY ] =
     "CODE_COM_PORT_ERROR"           ,
     "CODE_COPY_FILE_ERROR"          ,
     "CODE_CREATE_FILE_ERROR"        ,
+    "CODE_DELETE_FILE_ERROR"        ,
     "CODE_DENIED"                   ,
     "CODE_DIRECTORY_ERROR"          ,
     "CODE_ERROR"                    ,
@@ -78,6 +79,7 @@ static const char * CODE_NAMES[ KmsLib::Exception::CODE_QTY ] =
     "CODE_FILE_READ_ERROR"          ,
     "CODE_FILE_WRITE_ERROR"         ,
     "CODE_INVALID_ADDRESS"          ,
+    "CODE_INVALID_PARAMETER"        ,
     "CODE_INVALID_PORT_NUMBER"      ,
     "CODE_IO_CANCEL_ERROR"          ,
     "CODE_MOVE_FILE_ERROR"          ,
@@ -150,10 +152,10 @@ namespace KmsLib
 		mLine		(aLine			),
 		mWhat		(aWhat			)
 	{
-		assert(NULL !=	aFile		);
-		assert(NULL !=	aFunction	);
-		assert(0	<	aLine		);
-		assert(NULL !=  aWhat		);
+		assert(NULL != aFile    );
+		assert(NULL != aFunction);
+		assert(0	<  aLine    );
+		assert(NULL != aWhat    );
 
 		if (NULL != aMessage)
 		{
@@ -168,13 +170,11 @@ namespace KmsLib
 		return mFile;
 	}
 
-	// Retour : Le nom de la fonction
 	const char * Exception::GetFunction() const
 	{
 		return mFunction;
 	}
 
-	// Retour : Le numero de ligne dans le fichier source
 	unsigned int Exception::GetLine() const
 	{
 		return mLine;
@@ -193,7 +193,9 @@ namespace KmsLib
 		}
 		else
 		{
-			// NOT TESTED : Not easy to test / Pas facile a tester
+			// NOT TESTED  KmsLib.Exception
+            //             Invalid code / Code invalide<br>
+            //             Not easy to test / Pas facile a tester
 			fprintf(aFile, "%u (0x%08x)", mCode, mCode);
 		}
 
@@ -247,16 +249,19 @@ namespace KmsLib
     {
         assert(NULL != aStruct);
 
-        KmsLib::Exception::Code	lCode	;
-        const char			  * lMsg	;
+        KmsLib::Exception::Code   lCode ;
+        const char              * lMsg  ;
 
         switch (aCode)
         {
-            case 0xc0000005: lCode = KmsLib::Exception::CODE_ACCESS_VIOLATION		; lMsg = "Access violation"		; break;
-            case 0xc0000094: lCode = KmsLib::Exception::CODE_INTEGER_DIVIDE_BY_ZERO	; lMsg = "Integet divide by 0"	; break;
+            case 0xc0000005: lCode = KmsLib::Exception::CODE_ACCESS_VIOLATION	   ; lMsg = "Access violation"   ; break;
+            case 0xc0000094: lCode = KmsLib::Exception::CODE_INTEGER_DIVIDE_BY_ZERO; lMsg = "Integet divide by 0"; break;
 
             default:
-                // NOT TESTED : Not easy to test / Pas facile a tester
+                // NOT TESTED  KmsLib.Exception
+                //             Unexpected structured exception / Exception
+                //             structure non attendu<br>
+                //             Not easy to test / Pas facile a tester
                 lCode = KmsLib::Exception::CODE_STRUCTURED_EXCEPTION; lMsg = "Structured exception";
         }
 

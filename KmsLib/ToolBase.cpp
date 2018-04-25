@@ -1,10 +1,15 @@
 
-// Author / Auteur     KMS - Martin Dubois, ing.
-// Product / Produit   KmsBase
-// File / Fichier      KmsLib/ToolBase.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     KmsLib/ToolBase.cpp
 
-// todo   Ajouter une fonction predefinie pour repeter une commande un
-//        certain nombre de fois.
+// Last test coverage update / Derniere mise a jour de la couverture de test
+// 2017-11-12
+
+// TODO  KmsLib.ToolBase
+//       Add a predefined function to repead a command N time / Ajouter une
+//       fonction predefinie pour repeter une commande un certain nombre de
+//       fois.
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -20,8 +25,9 @@
 	#include <io.h>
 #endif // _KMS_WINDOWS_
 
-// ===== Interface ==========================================================
+// ===== Includes/KmsLib ====================================================
 #include <KmsLib/Exception.h>
+#include <KmsLib/File.h>
 
 #include <KmsLib/ToolBase.h>
 
@@ -33,9 +39,9 @@
 // Static function declarations / Declaration des fonctions statiques
 /////////////////////////////////////////////////////////////////////////////
 
-static void	DisplayHelp		(const KmsLib::ToolBase::CommandInfo * aCommandInfo);
+static void  DisplayHelp(const KmsLib::ToolBase::CommandInfo * aCommandInfo);
 
-static void ReadLine		(FILE * aFile, char * aOut, unsigned int aOutsize_byte);
+static void  ReadLine(FILE * aFile, char * aOut, unsigned int aOutsize_byte);
 
 namespace KmsLib
 {
@@ -45,19 +51,20 @@ namespace KmsLib
 
 	void ToolBase::AskUser(FILE * aFile, const char * aName, unsigned short aMin, unsigned short aMax, unsigned short aDefault, unsigned short * aOut)
 	{
-		assert(NULL !=	aFile		);
-		assert(NULL !=	aName		);
-		assert(aMin <	aMax		);
-		assert(aMin <=	aDefault	);
-		assert(aMax >=	aDefault	);
-		assert(NULL !=	aOut		);
+		assert(NULL != aFile   );
+		assert(NULL != aName   );
+		assert(aMin <  aMax    );
+		assert(aMin <= aDefault);
+		assert(aMax >= aDefault);
+		assert(NULL != aOut    );
 
 		for (;;)
 		{
 			if (stdin == aFile)
 			{
-				// NOT TESTED :	The test program use the stdin / Le programme
-				//				de test utilise l'entree standard
+                // NOT TESTED  ToolBase.Console
+                //             The test program use the stdin / Le programme
+                //             de test utilise l'entree standard
 				printf("%s\t(Range: %u to %u;\tDefault: %u) : ", aName, aMin, aMax, aDefault);
 			}
 
@@ -92,17 +99,18 @@ namespace KmsLib
 
 	void ToolBase::AskUser(FILE * aFile, const char * aName, char * aOut, unsigned int aOutSize_byte)
 	{
-		assert(NULL !=	aFile			);
-		assert(NULL !=	aName			);
-		assert(NULL !=	aOut			);
-		assert(0	<	aOutSize_byte	);
+		assert(NULL != aFile        );
+		assert(NULL != aName        );
+		assert(NULL != aOut         );
+		assert(0	<  aOutSize_byte);
 
 		for (;;)
 		{
 			if (stdin == aFile)
 			{
-				// NOT TESTED :	The test program use the stdin / Le programme
-				//				de test utilise l'entree standard
+                // NOT TESTED  ToolBase.Console
+                //             The test program use the stdin / Le programme
+                //             de test utilise l'entree standard
 				printf("%s : ", aName);
 			}
 
@@ -138,11 +146,11 @@ namespace KmsLib
 
 	void ToolBase::AskUser(FILE * aFile, const char * aName, const char * aDefault, char * aOut, unsigned int aOutSize_byte)
 	{
-		assert(NULL !=	aFile			);
-		assert(NULL !=	aName			);
-		assert(NULL !=	aDefault		);
-		assert(NULL !=	aOut			);
-		assert(0	<	aOutSize_byte	);
+		assert(NULL != aFile        );
+		assert(NULL != aName        );
+		assert(NULL != aDefault     );
+		assert(NULL != aOut         );
+		assert(0	<  aOutSize_byte);
 
 		for (;;)
 		{
@@ -184,16 +192,16 @@ namespace KmsLib
 
 	void ToolBase::AskUser_InputFileName(FILE * aFile, const char * aName, char * aOut, unsigned int aOutSize_byte)
 	{
-		assert(NULL !=	aFile			);
-		assert(NULL !=	aName			);
-		assert(NULL !=	aOut			);
-		assert(0	<	aOutSize_byte	);
+		assert(NULL != aFile        );
+		assert(NULL != aName        );
+		assert(NULL != aOut         );
+		assert(0	<  aOutSize_byte);
 
 		for (;;)
 		{
 			AskUser(aFile, aName, aOut, aOutSize_byte);
 
-			if (0 == _access(aOut, 4))
+			if (KmsLib::File::Exist(aOut, FILE_EXIST_FLAG_READ))
 			{
 				break;
 			}
@@ -204,17 +212,17 @@ namespace KmsLib
 
 	void ToolBase::AskUser_OutputFileName(FILE * aFile, const char * aName, const char * aDefault, char * aOut, unsigned int aOutSize_byte)
 	{
-		assert(NULL !=	aFile			);
-		assert(NULL !=	aName			);
-		assert(NULL !=	aDefault		);
-		assert(NULL !=	aOut			);
-		assert(0	<	aOutSize_byte	);
+		assert(NULL != aFile        );
+		assert(NULL != aName        );
+		assert(NULL != aDefault     );
+		assert(NULL != aOut         );
+		assert(0	<  aOutSize_byte);
 
 		for (;;)
 		{
 			AskUser(aFile, aName, aDefault, aOut, aOutSize_byte);
 
-			if (0 != _access(aOut, 0))
+			if (!KmsLib::File::Exist(aOut))
 			{
 				break;
 			}
@@ -269,7 +277,6 @@ namespace KmsLib
 		assert(NULL != mCommands);
 	}
 
-	// Exception : KmsLib::Exception
 	bool ToolBase::ParseArguments(int aCount, const char ** aVector)
 	{
 		size_t lLen;
@@ -305,8 +312,10 @@ namespace KmsLib
 
 	void ToolBase::ParseCommands()
 	{
-		// NOT TESTED : Conflit avec le stdin du program de test!
-		ParseCommands(stdin);
+        // NOT TESTED  KmsLib.ToolBase.Console
+        //             The test program use the stdin / Le programme
+        //             de test utilise l'entree standard
+        ParseCommands(stdin);
 	}
 
 	void ToolBase::ParseCommands(const char * aFileName)
@@ -324,8 +333,8 @@ namespace KmsLib
 			break;
 
 		default:
-            // TODO   KmsLib   Utiliser TextFile
-			FILE * lFile;
+            // TODO  KmsLib.ToolBase  Use TextFile / Utiliser TextFile
+			FILE  * lFile;
 
 			int lRet = fopen_s(&lFile, aFileName, "r");
 			if (0 == lRet)
@@ -350,16 +359,18 @@ namespace KmsLib
 
 	void ToolBase::ExecuteScript(ToolBase * aThis, const char * aArguments)
 	{
-		assert(NULL != aThis);
+		assert(NULL != aThis     );
 		assert(NULL != aArguments);
 
 		aThis->ParseCommands(aArguments);
 	}
 
-	void ToolBase::Exit(ToolBase * aThis, const char * aArguments)
+    // NOT TESTED  KmsLib.ToolBase
+    //             We don't want to exit the test program / Il ne faut pas
+    //             quitter le programme de test
+    void ToolBase::Exit(ToolBase * aThis, const char * aArguments)
 	{
-		// NOT TESTED : Il ne faut pas quitter le programme de test!
-		assert(NULL != aThis);
+		assert(NULL != aThis     );
 		assert(NULL != aArguments);
 
 		exit(atoi(aArguments));
@@ -368,7 +379,7 @@ namespace KmsLib
 	// Private
 	/////////////////////////////////////////////////////////////////////////
 
-	// aLine	: [in]
+	// aLine  [---;R--]
 	void ToolBase::ExecuteCommand(const char * aLine)
 	{
 		assert(NULL != aLine);
@@ -376,15 +387,15 @@ namespace KmsLib
 		ExecuteCommand(mCommands, aLine);
 	}
 
-	// aCommandInfo	: [in]
-	// aCommand		: [in]
+	// aCommandInfo	 [---;R--]
+	// aCommand		 [---;R--]
 	void ToolBase::ExecuteCommand(const KmsLib::ToolBase::CommandInfo * aCommands, const char * aLine)
 	{
-		assert(NULL != aCommands	);
-		assert(NULL != aLine		);
+		assert(NULL != aCommands);
+		assert(NULL != aLine    );
 
-		char lName		[LINE_LENGTH_MAX];
-		char lArguments	[LINE_LENGTH_MAX];
+		char lName     [LINE_LENGTH_MAX];
+		char lArguments[LINE_LENGTH_MAX];
 
 		bool	lFound	;
 		size_t	lLen	;
@@ -448,7 +459,7 @@ namespace KmsLib
 		}
 	}
 
-	// aFile	: [in,out]
+	// aFile  [---;RW-]
 	void ToolBase::ParseCommands(FILE * aFile)
 	{
 		assert(NULL != aFile);
@@ -457,6 +468,10 @@ namespace KmsLib
 		{
 			if (stdin == aFile)
 			{
+                // NOT TESTED  KmsLib::ToolBase::Console
+                //             The test program use the stdin / Le programme
+                //		       de test utilise l'entree standard
+
 				printf("\n> ");
 			}
 
@@ -501,7 +516,7 @@ namespace KmsLib
 // Fonction statique
 /////////////////////////////////////////////////////////////////////////////
 
-// aCommandInfo	: [in]
+// aCommandInfo  [---;R--]
 void DisplayHelp(const KmsLib::ToolBase::CommandInfo * aCommandInfo)
 {
 	assert(NULL != aCommandInfo);
@@ -521,12 +536,11 @@ void DisplayHelp(const KmsLib::ToolBase::CommandInfo * aCommandInfo)
 	printf("Help                          Display this help message\n");
 }
 
-// aFile			: [in,out]	Input stream / Fichier d'entree
-// aOut				: [   out]	Output buffer / Espace de sortie
-// aOutSize_byte	:			Output buffe size / Taille de l'espace de
-//								sortie
+// aFile  [---;RW-]  Input stream / Fichier d'entree
+// aOut   [---;-W-]  Output buffer / Espace de sortie
+// aOutSize_byte     Output buffe size / Taille de l'espace de sortie
 //
-// Exception :	KmsLib::Exception	CODE_IO_ERROR
+// Exception  KmsLib::Exception  CODE_FILE_READ_ERROR
 void ReadLine(FILE * aFile, char * aOut, unsigned int aOutSize_byte)
 {
 	memset(aOut, 0, aOutSize_byte);

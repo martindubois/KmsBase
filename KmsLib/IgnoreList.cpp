@@ -3,16 +3,20 @@
 // Product / Produit   KmsBase
 // File / Fichier      KmsLib/IgnoreList.cpp
 
-// todo   Supporter le \ pour escape des #
-// todo   Supporter le \ pour escape des trailling space
-// todo   Supporter le \ pour escape des !
-// todo   Supporter le ! pour nier une exclusion
-// todo   Supporter le **/
-// todo   Supporter le /**
-// todo   Supporter le /**/
-// todo   Supporter les [] dans les pattern
+// Last test coverage update / Derniere mise a jour de la couverture de test
+// 2017-11-10
 
-// Inclusions
+// TODO  KmsLib.IgnoreList
+//       Supporter le \ pour escape des #<br>
+//       Supporter le \ pour escape des trailling space<br>
+//       Supporter le \ pour escape des !<br>
+//       Supporter le ! pour nier une exclusion<br>
+//       Supporter le **/<br>
+//       Supporter le /**<br>
+//       Supporter le /**/<br>
+//       Supporter les [] dans les pattern
+
+// Includes
 /////////////////////////////////////////////////////////////////////////////
 
 #include <KmsBase.h>
@@ -21,20 +25,17 @@
 #include <assert.h>
 #include <stdlib.h>
 
-// ===== KmsLib =============================================================
+// ===== Includes/KmsLib ====================================================
 #include <KmsLib/Exception.h>
+#include <KmsLib/String.h>
+#include <KmsLib/TextFile.h>
 
 #include <KmsLib/IgnoreList.h>
 
-// Declaration des fonctions statiques
+// Static functions declarations / Declaration des fonctions statiques
 /////////////////////////////////////////////////////////////////////////////
 
-static bool IsPatern(const char * aLine);
-
-static bool MatchName  (const char * aName  , const char * aToMatch);
-static bool MatchPatern(const char * aPatern, const char * aToMatch);
-
-static void ReplaceSlash(char * aLine);
+static bool MatchName(const char * aName, const char * aToMatch);
 
 static bool Trim(char * aLine);
 
@@ -101,36 +102,25 @@ namespace KmsLib
 
 	void IgnoreList::ReadFromFile(const char * aFolderName, const char * aFileName)
 	{
-		assert(NULL != aFolderName	);
-		assert(NULL != aFileName	);
+		assert(NULL != aFolderName);
+		assert(NULL != aFileName  );
 
 		char lFileName[2048];
 
 		sprintf_s(lFileName, "%s" SLASH "%s", aFolderName, aFileName);
 
-		FILE * lFile;
+        TextFile  lTF;
 
-		errno_t lErrNo = fopen_s(&lFile, lFileName, "r");
-		if (0 != lErrNo)
+        lTF.Open(lFileName);
+
+		Entry  lEntry;
+
+		char  lLine[2048];
+
+		while (lTF.ReadLine(lLine, sizeof(lLine)))
 		{
-			char lMessage[2048];
-
-			sprintf_s(lMessage, "fopen_s( , %s,  ) failed", lFileName);
-
-			throw new KmsLib::Exception(KmsLib::Exception::CODE_IO_ERROR,
-				"fopen_s( , ,  ) failed", lMessage, __FILE__, __FUNCTION__, __LINE__, lErrNo);
-		}
-
-		assert(NULL != lFile);
-
-		Entry lEntry;
-
-		char lLine[2048];
-
-		while (NULL != fgets(lLine, sizeof(lLine) / sizeof(lLine[0]), lFile))
-		{
-			lEntry.mFlags.mFolder	= Trim		(lLine)	;
-			lEntry.mFlags.mPattern	= IsPatern	(lLine)	;
+			lEntry.mFlags.mFolder  =         Trim	  (lLine);
+			lEntry.mFlags.mPattern = String::IsPatern (lLine);
 
 			switch (lLine[0])
 			{
@@ -141,7 +131,7 @@ namespace KmsLib
 				break;
 
 			case '/'	: // Absolute entry / Entree absolue
-				ReplaceSlash(lLine + 1);
+				String::ReplaceSlash(lLine + 1);
 
 				lEntry.mFlags.mAbsolute = true;
 				lEntry.mString			= lLine + 1	;
@@ -149,25 +139,22 @@ namespace KmsLib
 				break;
 
 			default		: // Relativ entry / Entree relative
-				ReplaceSlash(lLine);
+				String::ReplaceSlash(lLine);
 
 				lEntry.mFlags.mAbsolute = false;
 				lEntry.mString			= lLine;
 				mList.push_back(lEntry);
 			}
 		}
-
-		lErrNo = fclose(lFile);
-		assert(0 == lErrNo);
 	}
 
 	// Private
 	/////////////////////////////////////////////////////////////////////////
 
-	// aEntry		[---;R--]
-	// aFileName	[---;R--]
+	// aEntry      [---;R--]
+	// aFileName   [---;R--]
 	//
-	// Return
+	// Return / Retour
 	//	false
 	//	true
 	bool IgnoreList::Match(const Entry & aEntry, const char * aFileName) const
@@ -215,9 +202,9 @@ namespace KmsLib
 		return lResult;
 	}
 
-	// aEntry		[---;R--]	List entry / Entree de la liste
-	// aFileName	[---;R--]	File or folder name / Nom de fichier ou de
-	//							dossier
+	// aEntry      [---;R--]  List entry / Entree de la liste
+	// aFileName   [---;R--]  File or folder name / Nom de fichier ou de
+	//                        dossier
 	//
 	// Return / Retour
 	//	false
@@ -231,11 +218,11 @@ namespace KmsLib
 
 		if (aEntry.mFlags.mPattern)
 		{
-			lResult = MatchPatern	(aEntry.mString.c_str(), aFileName);
+			lResult = String::MatchPatern (aEntry.mString.c_str(), aFileName);
 		}
 		else
 		{
-			lResult = MatchName		(aEntry.mString.c_str(), aFileName);
+			lResult =         MatchName   (aEntry.mString.c_str(), aFileName);
 		}
 
 		return lResult;
@@ -246,31 +233,8 @@ namespace KmsLib
 // Fonctions statiques
 /////////////////////////////////////////////////////////////////////////////
 
-// aPatern	[---;R--]	A pattern or a filename / Un modele ou un nom de
-//						fichier
-//
-// Return / Retour
-//  false	
-//  true
-bool IsPatern(const char * aPatern)
-{
-	assert(NULL != aPatern);
-
-	if (NULL != strchr(aPatern, '*'))
-	{
-		return true;
-	}
-
-	if (NULL != strchr(aPatern, '?'))
-	{
-		return true;
-	}
-
-	return false;
-}
-
-// aName    [---;R--]	Name to ignore / Nom a ignorer
-// aToMatch	[---;R--]	File or folder name / Nom du fichier ou du dossier
+// aName     [---;R--]  Name to ignore / Nom a ignorer
+// aToMatch  [---;R--]  File or folder name / Nom du fichier ou du dossier
 //
 // Return / Retour
 //	false
@@ -283,95 +247,11 @@ bool MatchName(const char * aName, const char * aToMatch)
 	return (0 == strcmp(aName, aToMatch));
 }
 
-// aPatern	[---;R--]	Pattern to ignore / Modele a ignorer
-// aToMatch	[---;R--]	File or folder name / Nom du fichier ou du dossier
+// aLine  [---;RW-]
 //
 // Return / Retour
-//     false
-//     true
-bool MatchPatern(const char * aPatern, const char * aToMatch)
-{
-	assert(NULL != aPatern	);
-	assert(NULL != aToMatch	);
-
-	for (;;)
-	{
-		switch (*aPatern)
-		{
-		case '\0' :
-			return ('\0' == ( * aToMatch ) );
-
-		case '?' :
-			if ('\0' == (*aToMatch))
-			{
-				return false;
-			}
-
-			aPatern		++;
-			aToMatch	++;
-			break;
-
-		case '*' :
-			if ('\0' == (*aToMatch))
-			{
-				aPatern ++;
-			}
-			else
-			{
-				if (MatchPatern(aPatern + 1, aToMatch))
-				{
-					return true;
-				}
-
-				aToMatch++;
-			}
-			break;
-
-		default :
-			if ( ( * aPatern ) != ( * aToMatch ) )
-			{
-				return false;
-			}
-
-			aPatern		++;
-			aToMatch	++;
-		}
-	}
-
-	// NOT TESTED :	This return statement is there to avoid the warning / Ce
-	//				return est seulement la pour eviter le warning.
-	return false;
-}
-
-// aLine	[---;RW-]	Replace the '/' with SLASH_C / Remplacer les '/' par
-//						SLASH_C
-void ReplaceSlash(char * aLine)
-{
-	assert(NULL != aLine);
-
-#if ( '/' != SLASH_C )
-
-	char * lPtr = aLine;
-
-	while ('\0' != (*lPtr))
-	{
-		if ('/' == (*lPtr))
-		{
-			(*lPtr) = SLASH_C;
-		}
-
-		lPtr++;
-	}
-
-#endif
-
-}
-
-// aLine	[---;RW-]
-//
-// Return / Retour
-//  false = It's a file name / C'est un nom de fichier
-//  true  = It's a folder name / C'est un nom de dossier
+//  false  It's a file name / C'est un nom de fichier
+//  true   It's a folder name / C'est un nom de dossier
 bool Trim(char * aLine)
 {
 	assert(NULL != aLine);

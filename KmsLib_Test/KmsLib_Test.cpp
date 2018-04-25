@@ -1,5 +1,5 @@
 
-// Auteur	KMS -	Martin Dubois, ing.
+// Auteur	KMS - Martin Dubois, ing.
 // Produit	KmsBase
 // Fichier	KmsLib_Test/KmsLib_Test.cpp
 
@@ -36,6 +36,7 @@ extern int CmdLineParser_Base	();
 extern int DebugLog_Base		();
 extern int Dump_Base			();
 extern int Exception_Base		();
+extern int File_Base            ();
 extern int HTML5_Base           ();
 extern int IgnoreList_Base		();
 extern int Linux_Windows_Base	();
@@ -44,6 +45,9 @@ extern int NetworkAddress_Base	();
 extern int Ring_Base			();
 extern int RLE_Base				();
 extern int Socket_Base			();
+extern int String_Base          ();
+extern int TextFile_Base        ();
+extern int TextFileEditor_Base  ();
 extern int ToolBase_Base		();
 extern int Walker_Base			();
 extern int Walker_Smart_Base	();
@@ -73,6 +77,7 @@ KMS_TEST_LIST_BEGIN
 	KMS_TEST_LIST_ENTRY(DebugLog_Base		, "DebugLog - Base"			, 0, 0)
 	KMS_TEST_LIST_ENTRY(Dump_Base			, "Dump - Base"				, 0, 0)
 	KMS_TEST_LIST_ENTRY(Exception_Base		, "Exception - Base"		, 0, 0)
+    KMS_TEST_LIST_ENTRY(File_Base           , "File - Base"             , 0, 0)
 	KMS_TEST_LIST_ENTRY(IgnoreList_Base		, "IgnoreList - Base"		, 0, 0)
     KMS_TEST_LIST_ENTRY(HTML5_Base          , "HTML5 - Base"            , 0, 0)
 	KMS_TEST_LIST_ENTRY(Linux_Windows_Base	, "Linux - Windows - Base"	, 0, 0)
@@ -81,6 +86,9 @@ KMS_TEST_LIST_BEGIN
 	KMS_TEST_LIST_ENTRY(RLE_Base			, "RLE - Base"				, 0, 0)
 	KMS_TEST_LIST_ENTRY(Ring_Base			, "Ring - Base"				, 0, 0)
 	KMS_TEST_LIST_ENTRY(Socket_Base			, "Socket - Base"			, 0, 0)
+    KMS_TEST_LIST_ENTRY(String_Base         , "String - Base"           , 0, 0)
+    KMS_TEST_LIST_ENTRY(TextFile_Base       , "TextFile - Base"         , 0, 0)
+    KMS_TEST_LIST_ENTRY(TextFileEditor_Base , "TextFileEditor - Base"   , 0, 0)
 	KMS_TEST_LIST_ENTRY(ToolBase_Base		, "ToolBase - Base"			, 0, 0)
 	KMS_TEST_LIST_ENTRY(Walker_Base			, "Walker - Base"			, 0, 0)
 	KMS_TEST_LIST_ENTRY(Walker_Smart_Base	, "Walker_Smart - Base"		, 0, 0)

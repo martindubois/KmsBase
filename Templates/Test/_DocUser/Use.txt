@@ -3,4 +3,5 @@ Author / Auteur     KMS - Martin Dubois, ing.
 Product / Produit   KmsBase
 File / Fichier      Templates/Test/_DocUser/Use.txt
 
-todo
+TODO   Normal
+       Rediger

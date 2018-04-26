@@ -1,7 +1,7 @@
 
-// Author / Auteur		KMS	-	Martin Dubois, ing.
-// Product / Produit	KmsBase
-// File / Fichier		DepCheck_Net/DepCheck_Net.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     DepCheck_Net/DepCheck_Net.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -14,7 +14,7 @@
 using namespace System;
 
 // ===== Includes ===========================================================
-#include  "../Includes/Banner.h"
+#include "../Includes/KmsTool.h"
 
 // ===== Common =============================================================
 #include "../Common/Version.h"
@@ -24,11 +24,11 @@ using namespace System;
 
 int main(array<System::String ^> ^ aArgs)
 {
-	assert(nullptr != aArgs);
+    assert(nullptr != aArgs);
 
-    Banner("KmsBase", "DepCheck_Net");
+    KMS_TOOL_BANNER("KmsBase", "DepCheck_Net", VERSION_STR, VERSION_TYPE);
 
-	Console::WriteLine();
+    Console::WriteLine();
     Console::WriteLine(L"Needed DLL are correctly installed");
 
     return 0;

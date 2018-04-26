@@ -35,11 +35,11 @@ namespace KmsLib
 		{
 		}
 
-		// todo Ajouter une methode pour valider le baud rate;
+		// TODO  Normal  Ajouter une methode pour valider le baud rate;
 
-		// todo Ajouter des methode pour lire et changer le timeout;
+		// TODO  Normal  Ajouter des methode pour lire et changer le timeout;
 
-		// todo Ajouter des methode pour le flow control
+		// TODO  Normal  Ajouter des methode pour le flow control
 
 		ComPortHandle::BaudRate ComPortHandle::GetBaudRate() const
 		{
@@ -52,7 +52,7 @@ namespace KmsLib
 
 			assert(BAUD_RATE_MAX >= mBaudRate);
 
-			// todo Valider le baud rate
+			// TODO  Normal  Valider le baud rate
 
 			mBaudRate = aBaudRate;
 
@@ -127,7 +127,9 @@ namespace KmsLib
 
 			if (!SetCommConfig(mHandle, &lCC, lSize_byte))
 			{
-				// NOT TESTED : Not easy to test because the error popup at
+				// NOT TESTED   KmsLib.ComPortHandle.ErrorHandling
+                //              SetCommConfig fail<br>
+                //              Not easy to test because the error popup at
 				//				the beginning of the method.
 				throw new Exception(Exception::CODE_COM_PORT_ERROR, "SetCommConfig failed", NULL, __FILE__, __FUNCTION__, __LINE__, lSize_byte);
 			}

@@ -104,7 +104,7 @@ namespace KmsLib
 	{
 		assert(NULL != mInternal);
 
-		// todo	Optimise - Eviter l allocation dynamique
+		// TODO  Normal  Optimise - Eviter l allocation dynamique
 
 		memset(mInternal, 0, sizeof(SocketInternal));
 
@@ -185,7 +185,7 @@ namespace KmsLib
 			return NULL;
 		}
 
-		// todo	Optimise - Eviter l'allocation dynamique
+		// TODO  Normal  Optimise - Eviter l'allocation dynamique
 		
 		SocketInternal * lResult = new SocketInternal;
 		assert(NULL != lResult);

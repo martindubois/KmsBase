@@ -1,7 +1,7 @@
 
-// Author / Auteur		KMS	-	Martin Dubois, ing.
-// Product / Produit	KmsBase
-// File / Fichier		KmsCopy/KmsCopy.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     KmsCopy/KmsCopy.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -20,8 +20,8 @@
 // ===== Windows ============================================================
 #include <Windows.h>
 
-// ===== Include ============================================================
-#include  "../Includes/Banner.h"
+// ===== Includes ===========================================================
+#include "../Includes/KmsTool.h"
 
 // ===== Common =============================================================
 #include "../Common/Version.h"
@@ -45,7 +45,7 @@ int main(int aCount, const char ** aVector)
 	assert(1	<= aCount	);
 	assert(NULL != aVector	);
 
-    Banner("KmsBase", "KmsCopy");
+    KMS_TOOL_BANNER("KMS_BASE", "KmsCopy", VERSION_STR, VERSION_TYPE);
 
 	if (4 != aCount)
 	{

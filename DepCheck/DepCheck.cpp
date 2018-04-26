@@ -1,7 +1,7 @@
 
-// Author / Auteur		KMS	-	Martin Dubois, ing.
-// Product / Produit	KmsBase
-// File / Fichier		DepCheck/DepCheck.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     DepCheck/DepCheck.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -11,7 +11,7 @@
 #include <stdio.h>
 
 // ===== Includes ===========================================================
-#include  "../Includes/Banner.h"
+#include "../Includes/KmsTool.h"
 
 // ===== Common =============================================================
 #include "../Common/Version.h"
@@ -21,12 +21,12 @@
 
 int main(unsigned int aCount, const char ** aVector)
 {
-	assert(1	<=	aCount	);
-	assert(NULL	!=	aVector	);
+    assert(1	<= aCount );
+    assert(NULL	!= aVector);
 
-    Banner("KmsBase", "DepCheck");
+    KMS_TOOL_BANNER("KmsBase", "DepCheck", VERSION_STR, VERSION_TYPE );
 
-	printf("\nNeeded DLL are correctly installed\n");
+    printf("\nNeeded DLL are correctly installed\n");
 
-	return 0;
+    return 0;
 }

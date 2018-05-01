@@ -8,6 +8,8 @@ KmsBase.VC.opendb
 KmsBase.VC.db
 KmsBase.VC.VC.opendb
 Linux_Windows_Test0.txt
+/Test1.txt
+/Test2.txt
 
 *~
 *.bak

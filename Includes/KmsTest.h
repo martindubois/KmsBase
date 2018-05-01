@@ -1,8 +1,8 @@
 
-// Product / Produit	:	KmsBase
+// Product / Produit  KmsBase
 
-/// \author	KMS - Martin Dubois, ing.
-/// \file	Includes/KmsTest.h
+/// \author  KMS - Martin Dubois, ing.
+/// \file    Includes/KmsTest.h
 
 #pragma once
 
@@ -77,19 +77,73 @@ KmsTestDescription;
 // ===== Test ===============================================================
 
 /// \cond	en
-/// \brief  This macro fail the test if the condition \a Co is false.
+/// \brief  This macro display the error and increment the error counter.
 /// \endcond
 /// \cond	fr
-/// \brief	Cette macro echoue le test si la condition \a Co est fausse.
-/// \endcond	
-#define KMS_TEST_ASSERT(Co)																	\
-	if (!(Co))																				\
-	{																						\
-        COLOR(RED);                                                                         \
-		printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ "\n", __LINE__);	\
-        COLOR(WHITE);                                                                       \
-		return 1;																			\
-	}
+/// \brief	Cette macro affiche l'erreur et incremente le compteur d'erreur.
+/// \endcond
+#define KMS_TEST_ERROR()                                                                     \
+    {                                                                                        \
+        COLOR( RED );                                                                        \
+        printf( "Test " __FUNCTION__ "failed at line %u of file " __FILE__ "\n", __LINE__ ); \
+        COLOR( WHITE );                                                                      \
+        lResult++;                                                                           \
+    }
+
+/// \cond	en
+/// \brief  This macro display the error and increment the error counter.
+/// \endcond
+/// \cond	fr
+/// \brief	Cette macro affiche l'erreur et incremente le compteur d'erreur.
+/// \endcond
+#define KMS_TEST_ERROR_1(S)                                                                         \
+    {                                                                                               \
+        COLOR( RED );                                                                               \
+        printf( "Test " __FUNCTION__ "failed at line %u of file " __FILE__ "(" S ")\n", __LINE__ ); \
+        COLOR( WHITE );                                                                             \
+        lResult++;                                                                                  \
+    }
+
+/// \cond	en
+/// \brief  This macro display the error and increment the error counter.
+/// \endcond
+/// \cond	fr
+/// \brief	Cette macro affiche l'erreur et incremente le compteur d'erreur.
+/// \endcond
+#define KMS_TEST_ERROR_2(E,G)                                                                                               \
+    {                                                                                                                       \
+        COLOR( RED );                                                                                                       \
+        printf( "Test " __FUNCTION__ "failed at line %u of file " __FILE__ "(Expected = %d, Get = %d)\n", __LINE__, E, G ); \
+        COLOR( WHITE );                                                                                                     \
+        lResult++;                                                                                                          \
+    }
+
+/// \cond	en
+/// \brief  If the condition \a Co is false, this macro count the error.
+/// \endcond
+/// \cond	fr
+/// \brief	Si la condition \a Co est fausse, cette macro compte l'erreur.
+/// \endcond
+#define KMS_TEST_ASSERT(Co)     \
+    if (!(Co))                  \
+    {                           \
+        KMS_TEST_ERROR_1( #Co ) \
+    }
+
+/// \cond	en
+/// \brief  If the condition \a Co is false, this macro count the error and
+///         execute the break instruction.
+/// \endcond
+/// \cond	fr
+/// \brief	Si la condition \a Co est fausse, cette macro compte l'erreur et
+///         execute l'instruction break.
+/// \endcond
+#define KMS_TEST_ASSERT_BREAK(Co) \
+    if (!(Co))                    \
+    {                             \
+        KMS_TEST_ERROR_1( #Co );  \
+        break;                    \
+    }
 
 /// \cond	en
 /// \brief	If the condition \a Co is false, this macro fail the test and
@@ -102,11 +156,54 @@ KmsTestDescription;
 #define KMS_TEST_ASSERT_CLEANUP(Co,Cl)														\
 	if (!(Co))																				\
 	{																						\
-        COLOR(RED);                                                                         \
-		printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ "\n", __LINE__);	\
-        COLOR(WHITE);                                                                       \
+        KMS_TEST_ERROR_1( #Co );       \
 		goto Cl;																			\
 	}
+
+/// \cond	en
+/// \brief  If the condition \a Co is false, this macro count the error and
+///         execute the continue instruction.
+/// \endcond
+/// \cond	fr
+/// \brief	Si la condition \a Co est fausse, cette macro compte l'erreur et
+///         execute l'instruction continue.
+/// \endcond
+#define KMS_TEST_ASSERT_CONTINUE(Co) \
+    if (!(Co))                       \
+    {                                \
+        KMS_TEST_ERROR_1( #Co );     \
+        continue;                    \
+    }
+
+/// \cond	en
+/// \brief  If the condition \a Co is false, this macro count the error and
+///         execute the goto instruction.
+/// \endcond
+/// \cond	fr
+/// \brief	Si la condition \a Co est fausse, cette macro compte l'erreur et
+///         execute l'instruction goto.
+/// \endcond
+#define KMS_TEST_ASSERT_GOTO(Co,To) \
+    if (!(Co))                      \
+    {                               \
+        KMS_TEST_ERROR_1( #Co );    \
+        goto To;                    \
+    }
+
+/// \cond	en
+/// \brief  If the condition \a Co is false, this macro count the error and
+///         execute the return instruction.
+/// \endcond
+/// \cond	fr
+/// \brief	Si la condition \a Co est fausse, cette macro compte l'erreur et
+///         execute l'instruction return.
+/// \endcond
+#define KMS_TEST_ASSERT_RETURN(Co) \
+    if (!(Co))                     \
+    {                              \
+        KMS_TEST_ERROR_1( #Co );   \
+        return lResult;            \
+    }
 
 /// \cond	en
 /// \brief	This macro indicates the begining of the test named \a Na.
@@ -122,6 +219,80 @@ KmsTestDescription;
 		{
 
 /// \cond	en
+/// \brief  If the expected value \a E is not equal to the get value \a G,
+///         this macro count the error.
+/// \endcond
+/// \cond	fr
+/// \brief	Si la valeur expecte \a E n'est pas egal a la valeur obtenue \a
+///         G, cette macro compte l'erreur.
+/// \endcond
+#define KMS_TEST_COMPARE(E,G)     \
+    if ( E != G )                 \
+    {                             \
+        KMS_TEST_ERROR_2( E, G ); \
+    }
+
+/// \cond	en
+/// \brief  If the expected value \a E is not equal to the get value \a G,
+///         this macro count the error and execute the break instruction.
+/// \endcond
+/// \cond	fr
+/// \brief	Si la valeur expecte \a E n'est pas egal a la valeur obtenue \a
+///         G, cette macro compte l'erreur et execute l'instruction break.
+/// \endcond
+#define KMS_TEST_COMPARE_BREAK(E,G) \
+    if ( E != G )                   \
+    {                               \
+        KMS_TEST_ERROR_2( E, G );   \
+        break;                      \
+    }
+
+/// \cond	en
+/// \brief  If the expected value \a E is not equal to the get value \a G,
+///         this macro count the error and execute the continue instruction.
+/// \endcond
+/// \cond	fr
+/// \brief	Si la valeur expecte \a E n'est pas egal a la valeur obtenue \a
+///         G, cette macro compte l'erreur et execute l'instruction continue.
+/// \endcond
+#define KMS_TEST_COMPARE_CONTINUE(E,G) \
+    if ( E != G )                      \
+    {                                  \
+        KMS_TEST_ERROR_2( E, G );      \
+        continue;                      \
+    }
+
+/// \cond	en
+/// \brief  If the expected value \a E is not equal to the get value \a G,
+///         this macro count the error and execute the goto instruction.
+/// \endcond
+/// \cond	fr
+/// \brief	Si la valeur expecte \a E n'est pas egal a la valeur obtenue \a
+///         G, cette macro compte l'erreur et execute l'instruction goto.
+/// \endcond
+#define KMS_TEST_COMPARE_GOTO(E,G,To) \
+    if ( E != G )                     \
+    {                                 \
+        KMS_TEST_ERROR_2( E, G );     \
+        goto To;                      \
+    }
+
+/// \cond	en
+/// \brief  If the expected value \a E is not equal to the get value \a G,
+///         this macro count the error and execute the return instruction.
+/// \endcond
+/// \cond	fr
+/// \brief	Si la valeur expecte \a E n'est pas egal a la valeur obtenue \a
+///         G, cette macro compte l'erreur et execute l'instruction return.
+/// \endcond
+#define KMS_TEST_COMPARE_RETURN(E,G) \
+    if ( E != G )                    \
+    {                                \
+        KMS_TEST_ERROR_2( E, G );    \
+        return lResult;              \
+    }
+
+/// \cond	en
 /// \brief	This macro indicate the end of the test.
 /// \endcond
 /// \cond	fr
@@ -131,17 +302,14 @@ KmsTestDescription;
 		}							\
 		catch (std::exception * eE)	\
 		{							\
-            COLOR(RED);             \
-			printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (std::exception - %s)\n", __LINE__, eE->what());	\
-            COLOR(WHITE);           \
-			return 1;				\
+            KMS_TEST_ERROR_1( "std::exception" ); \
+            printf( "%s\n", eE->what() );         \
+            lResult ++;                           \
 		}							\
 		catch ( ... )				\
 		{							\
-            COLOR(RED);             \
-			printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (Unknown exception)\n", __LINE__);	\
-            COLOR(WHITE);           \
-			return 1;				\
+            KMS_TEST_ERROR_1( "Unknown exception" ); \
+            lResult ++;                              \
 		}							\
 		return lResult;				\
 	}
@@ -159,25 +327,20 @@ KmsTestDescription;
 		}								\
 		catch (KmsLib::Exception * eE)	\
 		{								\
-            COLOR(RED);                 \
-			printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (KmsLib::Exception)\n", __LINE__);	\
-            COLOR(WHITE);               \
+            KMS_TEST_ERROR_1( "KmsLib::Exception" ); \
 			eE->Write(stdout);			\
-			return 1;					\
+            lResult ++;                              \
 		}								\
 		catch (std::exception * eE)		\
 		{								\
-            COLOR(RED);                 \
-			printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (std::exception - %s)\n", __LINE__, eE->what());	\
-            COLOR(WHITE);               \
-			return 1;					\
+            KMS_TEST_ERROR_1( "std::exception" ); \
+            printf( "%s\n", eE->what() );         \
+            lResult ++;                           \
 		}								\
 		catch (...)						\
 		{								\
-            COLOR(RED);                 \
-			printf("Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (Unknown exception)\n", __LINE__);	\
-            COLOR(WHITE);               \
-			return 1;					\
+            KMS_TEST_ERROR_1( "Unknown exception" ); \
+            lResult ++;                              \
 		}								\
 	return lResult;						\
 	}

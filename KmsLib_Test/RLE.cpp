@@ -1,7 +1,7 @@
 
-// Author / Auteur		:	KMS -	Martin Dubois, ing.
-// Product / Produit	:	KmsBase
-// File / Fichier		:	KmsLib_Test/RLE.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     KmsLib_Test/RLE.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -77,95 +77,95 @@ static const TestCaseOK TEST_CASE_OK[] =
 /////////////////////////////////////////////////////////////////////////////
 
 KMS_TEST_BEGIN(RLE_Base)
+{
+    unsigned char	lBuffer[512];
+    unsigned int	lIndex;
+    unsigned int	lSize_byte;
 
-	unsigned char	lBuffer[512]	;
-	unsigned int	lIndex			;
-	unsigned int	lSize_byte		;
+    // ===== Count ==========================================================
+    for (lIndex = 0; lIndex < TEST_CASE_OK_QTY; lIndex++)
+    {
+        lSize_byte = KmsLib::RLE_ComputeCompressedSize(reinterpret_cast<const unsigned char *>(TEST_CASE_OK[lIndex].mUncompressed), TEST_CASE_OK[lIndex].mUncompressedSize_byte);
+        KMS_TEST_COMPARE(TEST_CASE_OK[lIndex].mCompressedSize_byte, lSize_byte);
 
-	// ===== Count ==========================================================
-	for (lIndex = 0; lIndex < TEST_CASE_OK_QTY; lIndex++)
-	{
-		lSize_byte = KmsLib::RLE_ComputeCompressedSize(reinterpret_cast<const unsigned char *>(TEST_CASE_OK[lIndex].mUncompressed), TEST_CASE_OK[lIndex].mUncompressedSize_byte);
-		KMS_TEST_ASSERT(TEST_CASE_OK[lIndex].mCompressedSize_byte == lSize_byte);
+        lSize_byte = KmsLib::RLE_ComputeUncompressedSize(reinterpret_cast<const unsigned char *>(TEST_CASE_OK[lIndex].mCompressed), TEST_CASE_OK[lIndex].mCompressedSize_byte);
+        KMS_TEST_COMPARE(TEST_CASE_OK[lIndex].mUncompressedSize_byte, lSize_byte);
+    }
 
-		lSize_byte = KmsLib::RLE_ComputeUncompressedSize(reinterpret_cast<const unsigned char *>(TEST_CASE_OK[lIndex].mCompressed), TEST_CASE_OK[lIndex].mCompressedSize_byte);
-		KMS_TEST_ASSERT(TEST_CASE_OK[lIndex].mUncompressedSize_byte == lSize_byte);
-	}
+    // ===== OK - 2 buffers =================================================
+    for (lIndex = 0; lIndex < TEST_CASE_OK_QTY; lIndex++)
+    {
+        lSize_byte = KmsLib::RLE_Compress(reinterpret_cast<const unsigned char *>(TEST_CASE_OK[lIndex].mUncompressed), TEST_CASE_OK[lIndex].mUncompressedSize_byte, lBuffer, sizeof(lBuffer));
+        KMS_TEST_COMPARE(TEST_CASE_OK[lIndex].mCompressedSize_byte, lSize_byte);
+        KMS_TEST_COMPARE(0, memcmp(TEST_CASE_OK[lIndex].mCompressed, lBuffer, lSize_byte));
 
-	// ===== OK - 2 buffers =================================================
-	for (lIndex = 0; lIndex < TEST_CASE_OK_QTY; lIndex++)
-	{
-		lSize_byte = KmsLib::RLE_Compress(reinterpret_cast<const unsigned char *>(TEST_CASE_OK[lIndex].mUncompressed), TEST_CASE_OK[lIndex].mUncompressedSize_byte, lBuffer, sizeof(lBuffer));
-		KMS_TEST_ASSERT(TEST_CASE_OK[lIndex].mCompressedSize_byte == lSize_byte);
-		KMS_TEST_ASSERT(0 == memcmp(TEST_CASE_OK[lIndex].mCompressed, lBuffer, lSize_byte));
+        lSize_byte = KmsLib::RLE_Uncompress(reinterpret_cast<const unsigned char *>(TEST_CASE_OK[lIndex].mCompressed), TEST_CASE_OK[lIndex].mCompressedSize_byte, lBuffer, sizeof(lBuffer));
+        KMS_TEST_COMPARE(TEST_CASE_OK[lIndex].mUncompressedSize_byte, lSize_byte);
+        KMS_TEST_COMPARE(0, memcmp(TEST_CASE_OK[lIndex].mUncompressed, lBuffer, lSize_byte));
+    }
 
-		lSize_byte = KmsLib::RLE_Uncompress(reinterpret_cast<const unsigned char *>(TEST_CASE_OK[lIndex].mCompressed), TEST_CASE_OK[lIndex].mCompressedSize_byte, lBuffer, sizeof(lBuffer));
-		KMS_TEST_ASSERT(TEST_CASE_OK[lIndex].mUncompressedSize_byte == lSize_byte);
-		KMS_TEST_ASSERT(0 == memcmp(TEST_CASE_OK[lIndex].mUncompressed, lBuffer, lSize_byte));
-	}
+    // ===== Error - 2 buffer ===============================================
+    for (lIndex = 0; lIndex < TEST_CASE_ERROR_QTY; lIndex++)
+    {
+        try
+        {
+            if (NULL == TEST_CASE_ERROR[lIndex].mCompressed)
+            {
+                lSize_byte = KmsLib::RLE_Compress(reinterpret_cast<const unsigned char *>(TEST_CASE_ERROR[lIndex].mUncompressed), TEST_CASE_ERROR[lIndex].mUncompressedSize_byte, lBuffer, TEST_CASE_ERROR[lIndex].mCompressedSize_byte);
+            }
+            else
+            {
+                lSize_byte = KmsLib::RLE_Uncompress(reinterpret_cast<const unsigned char *>(TEST_CASE_ERROR[lIndex].mCompressed), TEST_CASE_ERROR[lIndex].mCompressedSize_byte, lBuffer, TEST_CASE_ERROR[lIndex].mUncompressedSize_byte);
+            }
 
-	// ===== Error - 2 buffer ===============================================
-	for (lIndex = 0; lIndex < TEST_CASE_ERROR_QTY; lIndex++)
-	{
-		try
-		{
-			if (NULL == TEST_CASE_ERROR[lIndex].mCompressed)
-			{
-				lSize_byte = KmsLib::RLE_Compress(reinterpret_cast<const unsigned char *>(TEST_CASE_ERROR[lIndex].mUncompressed), TEST_CASE_ERROR[lIndex].mUncompressedSize_byte, lBuffer, TEST_CASE_ERROR[lIndex].mCompressedSize_byte);
-			}
-			else
-			{
-				lSize_byte = KmsLib::RLE_Uncompress(reinterpret_cast<const unsigned char *>(TEST_CASE_ERROR[lIndex].mCompressed), TEST_CASE_ERROR[lIndex].mCompressedSize_byte, lBuffer, TEST_CASE_ERROR[lIndex].mUncompressedSize_byte);
-			}
+            KMS_TEST_ERROR();
+        }
+        catch (KmsLib::Exception * eE)
+        {
+            KMS_TEST_ERROR_INFO;
+            eE->Write(stdout);
+            KMS_TEST_COMPARE(TEST_CASE_ERROR[lIndex].mCode, eE->GetCode());
+        }
+    }
 
-			KMS_TEST_ASSERT(false);
-		}
-		catch (KmsLib::Exception * eE)
-		{
-			KMS_TEST_ERROR_INFO;
-			eE->Write(stdout);
-			KMS_TEST_ASSERT(TEST_CASE_ERROR[lIndex].mCode == eE->GetCode());
-		}
-	}
+    // ===== OK - 1 buffer ==================================================
+    for (lIndex = 0; lIndex < TEST_CASE_OK_QTY; lIndex++)
+    {
+        memcpy(lBuffer, TEST_CASE_OK[lIndex].mUncompressed, TEST_CASE_OK[lIndex].mUncompressedSize_byte);
+        lSize_byte = KmsLib::RLE_Compress(lBuffer, TEST_CASE_OK[lIndex].mUncompressedSize_byte, lBuffer, sizeof(lBuffer));
+        KMS_TEST_COMPARE(TEST_CASE_OK[lIndex].mCompressedSize_byte, lSize_byte);
+        KMS_TEST_COMPARE(0, memcmp(TEST_CASE_OK[lIndex].mCompressed, lBuffer, lSize_byte));
 
-	// ===== OK - 1 buffer ==================================================
-	for (lIndex = 0; lIndex < TEST_CASE_OK_QTY; lIndex++)
-	{
-		memcpy(lBuffer, TEST_CASE_OK[lIndex].mUncompressed, TEST_CASE_OK[lIndex].mUncompressedSize_byte);
-		lSize_byte = KmsLib::RLE_Compress(lBuffer, TEST_CASE_OK[lIndex].mUncompressedSize_byte, lBuffer, sizeof(lBuffer));
-		KMS_TEST_ASSERT(TEST_CASE_OK[lIndex].mCompressedSize_byte == lSize_byte);
-		KMS_TEST_ASSERT(0 == memcmp(TEST_CASE_OK[lIndex].mCompressed, lBuffer, lSize_byte));
+        memcpy(lBuffer, TEST_CASE_OK[lIndex].mCompressed, TEST_CASE_OK[lIndex].mCompressedSize_byte);
+        lSize_byte = KmsLib::RLE_Uncompress(lBuffer, TEST_CASE_OK[lIndex].mCompressedSize_byte, lBuffer, sizeof(lBuffer));
+        KMS_TEST_COMPARE(TEST_CASE_OK[lIndex].mUncompressedSize_byte, lSize_byte);
+        KMS_TEST_COMPARE(0, memcmp(TEST_CASE_OK[lIndex].mUncompressed, lBuffer, lSize_byte));
+    }
 
-		memcpy(lBuffer, TEST_CASE_OK[lIndex].mCompressed, TEST_CASE_OK[lIndex].mCompressedSize_byte);
-		lSize_byte = KmsLib::RLE_Uncompress(lBuffer, TEST_CASE_OK[lIndex].mCompressedSize_byte, lBuffer, sizeof(lBuffer));
-		KMS_TEST_ASSERT(TEST_CASE_OK[lIndex].mUncompressedSize_byte == lSize_byte);
-		KMS_TEST_ASSERT(0 == memcmp(TEST_CASE_OK[lIndex].mUncompressed, lBuffer, lSize_byte));
-	}
+    // ===== Error - 1 buffer ===============================================
+    for (lIndex = 0; lIndex < TEST_CASE_ERROR_QTY; lIndex++)
+    {
+        try
+        {
+            if (NULL == TEST_CASE_ERROR[lIndex].mCompressed)
+            {
+                memcpy(lBuffer, TEST_CASE_ERROR[lIndex].mUncompressed, TEST_CASE_ERROR[lIndex].mUncompressedSize_byte);
+                lSize_byte = KmsLib::RLE_Compress(lBuffer, TEST_CASE_ERROR[lIndex].mUncompressedSize_byte, lBuffer, TEST_CASE_ERROR[lIndex].mCompressedSize_byte);
+            }
+            else
+            {
+                memcpy(lBuffer, TEST_CASE_ERROR[lIndex].mCompressed, TEST_CASE_ERROR[lIndex].mCompressedSize_byte);
+                lSize_byte = KmsLib::RLE_Uncompress(lBuffer, TEST_CASE_ERROR[lIndex].mCompressedSize_byte, lBuffer, TEST_CASE_ERROR[lIndex].mUncompressedSize_byte);
+            }
 
-	// ===== Error - 1 buffer ===============================================
-	for (lIndex = 0; lIndex < TEST_CASE_ERROR_QTY; lIndex++)
-	{
-		try
-		{
-			if (NULL == TEST_CASE_ERROR[lIndex].mCompressed)
-			{
-				memcpy(lBuffer, TEST_CASE_ERROR[lIndex].mUncompressed, TEST_CASE_ERROR[lIndex].mUncompressedSize_byte);
-				lSize_byte = KmsLib::RLE_Compress(lBuffer, TEST_CASE_ERROR[lIndex].mUncompressedSize_byte, lBuffer, TEST_CASE_ERROR[lIndex].mCompressedSize_byte);
-			}
-			else
-			{
-				memcpy(lBuffer, TEST_CASE_ERROR[lIndex].mCompressed, TEST_CASE_ERROR[lIndex].mCompressedSize_byte);
-				lSize_byte = KmsLib::RLE_Uncompress(lBuffer, TEST_CASE_ERROR[lIndex].mCompressedSize_byte, lBuffer, TEST_CASE_ERROR[lIndex].mUncompressedSize_byte);
-			}
-
-			KMS_TEST_ASSERT(false);
-		}
-		catch (KmsLib::Exception * eE)
-		{
-			KMS_TEST_ERROR_INFO;
-			eE->Write(stdout);
-			KMS_TEST_ASSERT(TEST_CASE_ERROR[lIndex].mCode == eE->GetCode());
-		}
-	}
-
+            KMS_TEST_ERROR();
+        }
+        catch (KmsLib::Exception * eE)
+        {
+            KMS_TEST_ERROR_INFO;
+            eE->Write(stdout);
+            KMS_TEST_COMPARE(TEST_CASE_ERROR[lIndex].mCode, eE->GetCode());
+        }
+    }
+}
 KMS_TEST_END_2

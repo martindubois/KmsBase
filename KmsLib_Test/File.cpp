@@ -1,7 +1,7 @@
 
-// Auteur   KMS - Martin Dubois, ing.
-// Produit  KmsBase
-// Fichier  KmsLib_Test/File.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     KmsLib_Test/File.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -17,19 +17,19 @@
 /////////////////////////////////////////////////////////////////////////////
 
 KMS_TEST_BEGIN(File_Base)
-
+{
     // ===== Copy ===========================================================
 
     try
     {
         KmsLib::File::Copy("DoesNotExist.txt", "DoNotCare.txt");
-        KMS_TEST_ASSERT(false);
+        KMS_TEST_ERROR();
     }
     catch (KmsLib::Exception * eE)
     {
         KMS_TEST_ERROR_INFO;
         eE->Write(stdout);
-        KMS_TEST_ASSERT(KmsLib::Exception::CODE_COPY_FILE_ERROR == eE->GetCode());
+        KMS_TEST_COMPARE(KmsLib::Exception::CODE_COPY_FILE_ERROR, eE->GetCode());
     }
 
     // ===== Delete =========================================================
@@ -37,13 +37,13 @@ KMS_TEST_BEGIN(File_Base)
     try
     {
         KmsLib::File::Delete("DoesNotExist.txt");
-        KMS_TEST_ASSERT(false);
+        KMS_TEST_ERROR();
     }
     catch (KmsLib::Exception * eE)
     {
         KMS_TEST_ERROR_INFO;
         eE->Write(stdout);
-        KMS_TEST_ASSERT(KmsLib::Exception::CODE_DELETE_FILE_ERROR == eE->GetCode());
+        KMS_TEST_COMPARE(KmsLib::Exception::CODE_DELETE_FILE_ERROR, eE->GetCode());
     }
 
     // ===== IsEqual ========================================================
@@ -59,13 +59,13 @@ KMS_TEST_BEGIN(File_Base)
     try
     {
         KmsLib::File::Move("DoesNotExist.txt", "DoNotCare.txt");
-        KMS_TEST_ASSERT(false);
+        KMS_TEST_ERROR();
     }
     catch (KmsLib::Exception * eE)
     {
         KMS_TEST_ERROR_INFO;
         eE->Write(stdout);
-        KMS_TEST_ASSERT(KmsLib::Exception::CODE_MOVE_FILE_ERROR == eE->GetCode());
+        KMS_TEST_COMPARE(KmsLib::Exception::CODE_MOVE_FILE_ERROR, eE->GetCode());
     }
-
+}
 KMS_TEST_END_2

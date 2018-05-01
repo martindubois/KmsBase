@@ -1,7 +1,7 @@
 
-// Auteur   KMS - Martin Dubois, ing.
-// Produit  KmsBase
-// Fichier  KmsLib_Test/String.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     KmsLib_Test/String.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -17,14 +17,14 @@
 /////////////////////////////////////////////////////////////////////////////
 
 KMS_TEST_BEGIN(String_Base)
-
+{
     char lStr[4];
     strcpy_s(lStr, "ABC");
 
     KmsLib::String::Trunk(lStr, 'C');
-    KMS_TEST_ASSERT(0 == strcmp("AB", lStr));
+    KMS_TEST_COMPARE(0, strcmp("AB", lStr));
 
     KmsLib::String::Trunk(lStr, "B");
-    KMS_TEST_ASSERT(0 == strcmp("A", lStr));
-
+    KMS_TEST_COMPARE(0, strcmp("A", lStr));
+}
 KMS_TEST_END_2

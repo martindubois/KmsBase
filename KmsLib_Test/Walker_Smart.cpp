@@ -1,7 +1,7 @@
 
-// Author / Auteur		:	KMS	-	Martin Dubois, ing.
-// Product / Produit	:	KmsBase
-// File / Fichier		:	KmsLib_Test/Walker_Smart.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     KmsLib_Test/Walker_Smart.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -44,21 +44,21 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 
 KMS_TEST_BEGIN(Walker_Smart_Base)
+{
+    Walker_Smart_Test lWT0;
 
-	Walker_Smart_Test lWT0;
+    lWT0.mTestIndex = 0;
 
-	lWT0.mTestIndex = 0;
+    lWT0.AddIgnoreFileName(".gitignore");
 
-	lWT0.AddIgnoreFileName(".gitignore");
+    lWT0.Walk("KmsLib_Test");
 
-	lWT0.Walk("KmsLib_Test");
-
-	KMS_TEST_ASSERT((sizeof(lWT0.mTestResult) / sizeof(lWT0.mTestResult[0])) == lWT0.mTestIndex)
-	for (unsigned int i = 0; i < lWT0.mTestIndex; i++)
-	{
-		KMS_TEST_ASSERT(lWT0.mTestResult[i]);
-	}
-
+    KMS_TEST_COMPARE((sizeof(lWT0.mTestResult) / sizeof(lWT0.mTestResult[0])), lWT0.mTestIndex);
+    for (unsigned int i = 0; i < lWT0.mTestIndex; i++)
+    {
+        KMS_TEST_ASSERT(lWT0.mTestResult[i]);
+    }
+}
 KMS_TEST_END
 
 // Test class code / Code de la classe de test

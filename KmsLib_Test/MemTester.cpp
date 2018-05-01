@@ -1,7 +1,7 @@
 
-// Author / Auteur		:	KMS -	Martin Dubois, ing.
-// Product / Produit	:	KmsBase
-// File / Fichier		:	KmsLib_Test/MemTester.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     KmsLib_Test/MemTester.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -16,41 +16,40 @@
 /////////////////////////////////////////////////////////////////////////////
 
 KMS_TEST_BEGIN(MemTester_Base)
+{
+    unsigned char lData[2047];
 
-	unsigned char lData[2047];
+    KmsLib::MemTester	lMT0;
 
-	KmsLib::MemTester	lMT0;
+    KMS_TEST_COMPARE((100 + 256 + 999), lMT0.GetCount());
 
-	KMS_TEST_ASSERT((100 + 256 + 999) == lMT0.GetCount());
+    do
+    {
+        lMT0.GetIndex();
+        lMT0.GetPatternType();
 
-	do
-	{
-		lMT0.GetIndex		();
-		lMT0.GetPatternType	();
-		
-		unsigned int lProgress;
-		
-		lProgress = lMT0.GetProgress(true	);
-		KMS_TEST_ASSERT(1000 >= lProgress);
+        unsigned int lProgress;
 
-		lProgress = lMT0.GetProgress(false	);
-		KMS_TEST_ASSERT(1000 >= lProgress);
+        lProgress = lMT0.GetProgress(true);
+        KMS_TEST_ASSERT(1000 >= lProgress);
 
-		lMT0.Generate(lData, sizeof(lData));
+        lProgress = lMT0.GetProgress(false);
+        KMS_TEST_ASSERT(1000 >= lProgress);
 
-		KMS_TEST_ASSERT(0 == lMT0.Verify(lData, sizeof(lData)));
-	}
-	while (lMT0.NextIndexAndPatternType());
+        lMT0.Generate(lData, sizeof(lData));
 
-	unsigned int lOffset_byte = 0;
-	do
-	{
-		lMT0.Generate(lData, sizeof(lData));
+        KMS_TEST_COMPARE(0, lMT0.Verify(lData, sizeof(lData)));
+    } while (lMT0.NextIndexAndPatternType());
 
-		lData[lOffset_byte] ^= 0x01;
-		lOffset_byte++;
+    unsigned int lOffset_byte = 0;
+    do
+    {
+        lMT0.Generate(lData, sizeof(lData));
 
-		KMS_TEST_ASSERT(1 == lMT0.Verify(lData, sizeof(lData)));
-	} while (lMT0.NextIndexAndPatternType());
+        lData[lOffset_byte] ^= 0x01;
+        lOffset_byte++;
 
+        KMS_TEST_COMPARE(1, lMT0.Verify(lData, sizeof(lData)));
+    } while (lMT0.NextIndexAndPatternType());
+}
 KMS_TEST_END

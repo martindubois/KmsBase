@@ -1,7 +1,7 @@
 
-// Auteur   KMS - Martin Dubois, ing.
-// Projet   KmsBase
-// Fichier  KmsLib_Test/TextFile.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     KmsLib_Test/TextFile.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -23,13 +23,13 @@
 /////////////////////////////////////////////////////////////////////////////
 
 KMS_TEST_BEGIN(TextFile_Base)
-
+{
     KmsLib::TextFile lTF;
 
     // ===== FindFirstDiff ==================================================
-    KMS_TEST_ASSERT(4 == lTF.FindFirstDiff(TEST_FOLDER "\\FileA.txt", TEST_FOLDER "\\FileB.txt"));
-    KMS_TEST_ASSERT(5 == lTF.FindFirstDiff(TEST_FOLDER "\\FileA.txt", TEST_FOLDER "\\FileC.txt"));
-    KMS_TEST_ASSERT(4 == lTF.FindFirstDiff(TEST_FOLDER "\\FileC.txt", TEST_FOLDER "\\FileA.txt"));
+    KMS_TEST_COMPARE(4, lTF.FindFirstDiff(TEST_FOLDER "\\FileA.txt", TEST_FOLDER "\\FileB.txt"));
+    KMS_TEST_COMPARE(5, lTF.FindFirstDiff(TEST_FOLDER "\\FileA.txt", TEST_FOLDER "\\FileC.txt"));
+    KMS_TEST_COMPARE(4, lTF.FindFirstDiff(TEST_FOLDER "\\FileC.txt", TEST_FOLDER "\\FileA.txt"));
 
     // ===== Create =========================================================
 
@@ -44,11 +44,11 @@ KMS_TEST_BEGIN(TextFile_Base)
     {
         KMS_TEST_ERROR_INFO;
         eE->Write(stdout);
-        KMS_TEST_ASSERT(KmsLib::Exception::CODE_FILE_OPEN_ERROR == eE->GetCode());
+        KMS_TEST_COMPARE(KmsLib::Exception::CODE_FILE_OPEN_ERROR, eE->GetCode());
     }
 
     // ===== Open ===========================================================
     lTF.Open(TEST_FOLDER "\\FileA.txt");
     lTF.Open(TEST_FOLDER "\\FileB.txt");
-
+}
 KMS_TEST_END_2

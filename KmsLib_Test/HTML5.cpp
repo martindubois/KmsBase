@@ -1,7 +1,7 @@
 
-// Auteur    KMS - Martin Dubois, ing.
-// Produit   KmsBase
-// Fichier   KmsLib_Test/CmdLineParser.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     KmsLib_Test/CmdLineParser.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -21,17 +21,17 @@
 /////////////////////////////////////////////////////////////////////////////
 
 KMS_TEST_BEGIN(HTML5_Base)
-
+{
     try
     {
         KmsLib::HTML5::Open("DoesNotExist", "HTML5_Base");
-        KMS_TEST_ASSERT(false);
+        KMS_TEST_ERROR();
     }
     catch (KmsLib::Exception * eE)
     {
         KMS_TEST_ERROR_INFO;
         eE->Write(stdout);
-        KMS_TEST_ASSERT(KmsLib::Exception::CODE_FILE_OPEN_ERROR == eE->GetCode());
+        KMS_TEST_COMPARE(KmsLib::Exception::CODE_FILE_OPEN_ERROR, eE->GetCode());
     }
 
     FILE * lFile = KmsLib::HTML5::Open(".", "HTML5_Base");
@@ -40,7 +40,7 @@ KMS_TEST_BEGIN(HTML5_Base)
     KmsLib::HTML5::Close(lFile);
 
     lFile = KmsLib::HTML5::Create(".", "HTML5_Base", "HTML5 Base");
-    KMS_TEST_ASSERT(NULL != lFile);
+    KMS_TEST_ASSERT_RETURN(NULL != lFile);
 
     KmsLib::HTML5::a      (lFile, "http://www.google.ca/", "Google");
     KmsLib::HTML5::br     (lFile);
@@ -92,5 +92,5 @@ KMS_TEST_BEGIN(HTML5_Base)
     KmsLib::HTML5::Comment(lFile, "Comment");
 
     KmsLib::HTML5::Complete(lFile);
-
+}
 KMS_TEST_END_2

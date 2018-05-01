@@ -1,7 +1,7 @@
 
-// Auteur   KMS - Martin Dubois, ing.
-// Projet   KmsBase
-// Fichier  KmsLib_Test/ToolBase.cpp
+// Author / Auteur    KMS - Martin Dubois, ing.
+// Product / Produit  KmsBase
+// File / Fichier     KmsLib_Test/ToolBase.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -89,21 +89,21 @@ static const KmsLib::ToolBase::CommandInfo COMMANDS[] =
 };
 
 KMS_TEST_BEGIN(ToolBase_Base)
-
+{
     FILE * lFile;
 
     errno_t lRetE = fopen_s(&lFile, TEST_FOLDER "\\ToolBase1.txt", "r");
-    KMS_TEST_ASSERT(0 == lRetE);
+    KMS_TEST_COMPARE(0, lRetE);
 
     // ===== AskUser - unsigned short =======================================
 
-	unsigned short lValue;
+    unsigned short lValue;
 
-	KmsLib::ToolBase::AskUser(lFile, "Name", 10, 99, 54, &lValue);
-	KMS_TEST_ASSERT(54 == lValue);
+    KmsLib::ToolBase::AskUser(lFile, "Name", 10, 99, 54, &lValue);
+    KMS_TEST_COMPARE(54, lValue);
 
-	KmsLib::ToolBase::AskUser(lFile, "Name", 10, 99, 54, &lValue);
-	KMS_TEST_ASSERT(60 == lValue);
+    KmsLib::ToolBase::AskUser(lFile, "Name", 10, 99, 54, &lValue);
+    KMS_TEST_COMPARE(60, lValue);
 
     /*
     try
@@ -121,35 +121,35 @@ KMS_TEST_BEGIN(ToolBase_Base)
 
     // ===== AskUser - char * ===============================================
 
-	char lString[32];
+    char lString[32];
 
-	KmsLib::ToolBase::AskUser(lFile, "Name", lString, sizeof(lString));
-	KMS_TEST_ASSERT(0 == strcmp("Test", lString));
+    KmsLib::ToolBase::AskUser(lFile, "Name", lString, sizeof(lString));
+    KMS_TEST_COMPARE(0, strcmp("Test", lString));
 
-	KmsLib::ToolBase::AskUser(lFile, "Name", lString, sizeof(lString));
-	KMS_TEST_ASSERT(0 == strcmp("", lString));
+    KmsLib::ToolBase::AskUser(lFile, "Name", lString, sizeof(lString));
+    KMS_TEST_COMPARE(0, strcmp("", lString));
 
-	KmsLib::ToolBase::AskUser(lFile, "Name", "Default", lString, sizeof(lString));
-	KMS_TEST_ASSERT(0 == strcmp("Test", lString));
+    KmsLib::ToolBase::AskUser(lFile, "Name", "Default", lString, sizeof(lString));
+    KMS_TEST_COMPARE(0, strcmp("Test", lString));
 
-	KmsLib::ToolBase::AskUser(lFile, "Name", "Default", lString, sizeof(lString));
-	KMS_TEST_ASSERT(0 == strcmp("Default", lString));
+    KmsLib::ToolBase::AskUser(lFile, "Name", "Default", lString, sizeof(lString));
+    KMS_TEST_COMPARE(0, strcmp("Default", lString));
 
     // ===== AskUser_InputFileName ==========================================
     KmsLib::ToolBase::AskUser_InputFileName(lFile, "Name", lString, sizeof(lString));
-    KMS_TEST_ASSERT(0 == strcmp(TEST_FOLDER "\\FileA.txt", lString));
+    KMS_TEST_COMPARE(0, strcmp(TEST_FOLDER "\\FileA.txt", lString));
 
     // ===== AskUser_OutputFileName =========================================
     KmsLib::ToolBase::AskUser_OutputFileName(lFile, "Name", "Default", lString, sizeof(lString));
-    KMS_TEST_ASSERT(0 == strcmp("DoesNotExist", lString));
+    KMS_TEST_COMPARE(0, strcmp("DoesNotExist", lString));
 
-	int lRetI = fclose(lFile);
-	KMS_TEST_ASSERT(0 == lRetI);
+    int lRetI = fclose(lFile);
+    KMS_TEST_COMPARE(0, lRetI);
 
     // ===== Report =========================================================
     KmsLib::ToolBase::Report(KmsLib::ToolBase::REPORT_FATAL_ERROR);
-    KmsLib::ToolBase::Report(KmsLib::ToolBase::REPORT_OK         );
-    KmsLib::ToolBase::Report(KmsLib::ToolBase::REPORT_WARNING    );
+    KmsLib::ToolBase::Report(KmsLib::ToolBase::REPORT_OK);
+    KmsLib::ToolBase::Report(KmsLib::ToolBase::REPORT_WARNING);
 
     // ===== Report - Exception =============================================
 
@@ -172,13 +172,13 @@ KMS_TEST_BEGIN(ToolBase_Base)
     try
     {
         lRetB = lTB.ParseArguments(2, ARGUMENTS_C0);
-        KMS_TEST_ASSERT(false);
+        KMS_TEST_ERROR();
     }
     catch (KmsLib::Exception * eE)
     {
         KMS_TEST_ERROR_INFO;
         eE->Write(stdout);
-        KMS_TEST_ASSERT(KmsLib::Exception::CODE_INVALID_COMMAND_LINE == eE->GetCode());
+        KMS_TEST_COMPARE(KmsLib::Exception::CODE_INVALID_COMMAND_LINE, eE->GetCode());
     }
 
     lRetB = lTB.ParseArguments(3, ARGUMENTS_C0);
@@ -203,5 +203,5 @@ KMS_TEST_BEGIN(ToolBase_Base)
     lTB.ParseCommands("");
 
     // ===== ExecuteScript ==================================================
-
+}
 KMS_TEST_END_2

@@ -137,7 +137,7 @@ namespace KmsLib
 
         /// \cond	en
         /// \brief  Ask the user for an input file name
-        /// \paraz  aFile  [---;RW-]  The input stream
+        /// \param  aFile  [---;RW-]  The input stream
         /// \param  aName  [---;R--]  Name of the requested value
         /// \param	aOut   [---;-W-]  The value the user entered
         /// \param  aOutSize_byte     The value maximal size

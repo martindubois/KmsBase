@@ -2,7 +2,7 @@
 // Product / Produit  KmsBase
 
 /// \author  KMS - Martin Dubois, ing.
-/// \file    Includes/KmsTools
+/// \file    Includes/KmsTool.h
 
 #pragma once
 

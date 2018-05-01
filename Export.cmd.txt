@@ -87,8 +87,6 @@ Release_DLL	Libraries/Release_32_DLL
 Scripts	.
     Import.cmd
     Import.cmd.txt
-	Install.cmd
-	Install.cmd.txt
 	Verify.cmd
 
 Templates/DLL

@@ -3,9 +3,18 @@ Author / Auteur     KMS - Martin Dubois, ing.
 Product / Prooduit  KmsBase
 File / Fichier      KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
 
-===== 2.5.2 =================================================================
-- KmsLib::TextFileEditor              - KmsLib::TextFileEditor
-===== 2.4.19 ================================================================
-===== 2.4.18 ================================================================
-- KmsLib::HTML5                       - KmsLib::HTML5
-===== 2.4.18 ================================================================
+===== English ===============================================================
+
+2.5.2
+- KmsLib::TextFileEditor
+
+2.4.18
+- KmsLib::HTML5
+
+===== Francais ==============================================================
+
+2.5.2
+- KmsLib::TextFileEditor
+
+2.4.18
+- KmsLib::HTML5

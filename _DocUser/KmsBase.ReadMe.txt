@@ -3,10 +3,26 @@ Author / Auteur     KMS - Martin Dubois, ing.
 Product / Prooduit  KmsBase
 File / Fichier      _DocUser/KmsBase.ReadMe.txt
 
-===== 2.5.2 =================================================================
-===== 2.4.19 ================================================================
-- KmsTool.h                           - KmsTool.h
-===== 2.4.18 ================================================================
-===== 2.4.17 ================================================================
-- KmsTest.h has a colored output      - KmsTest.h a une sortie couleur
-- compile with Visual Studio 2015	  - Compile avec Visual Studio 2015
+===== English ===============================================================
+
+2.5.3
+- KmsTest.h has COMPARE macros
+
+2.4.19
+- KmsTool.h
+
+2.4.17
+- KmsTest.h has a colored ouptut
+- Compile with Visual Studio 2015
+
+===== Francais ==============================================================
+
+2.5.3
+- KmsTest.h a des macros COMPARE
+
+2.4.19
+- KmsTool.h
+
+2.4.17
+- KmsTest.h a une sortie couloree
+- Compile avec Visual Studio 2015

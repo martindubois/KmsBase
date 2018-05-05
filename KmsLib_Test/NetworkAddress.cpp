@@ -41,7 +41,7 @@ KMS_TEST_BEGIN(NetworkAddress_Base)
     KMS_TEST_COMPARE(0, lNA0.GetAddr());
     KMS_TEST_COMPARE(0, lNA0.GetPort());
 
-    KMS_TEST_COMPARE(sizeof(sockaddr_in), lNA0.GetSize());
+    KMS_TEST_COMPARE(static_cast< int >( sizeof(sockaddr_in) ), lNA0.GetSize());
 
     lNA0.Set(0xffffffff);
 

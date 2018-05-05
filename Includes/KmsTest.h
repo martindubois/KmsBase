@@ -85,7 +85,7 @@ KmsTestDescription;
 #define KMS_TEST_ERROR()                                                                     \
     {                                                                                        \
         COLOR( RED );                                                                        \
-        printf( "Test " __FUNCTION__ "failed at line %u of file " __FILE__ "\n", __LINE__ ); \
+        printf( "Test " __FUNCTION__ " failed at line %u of file " __FILE__ "\n", __LINE__ ); \
         COLOR( WHITE );                                                                      \
         lResult++;                                                                           \
     }
@@ -99,7 +99,7 @@ KmsTestDescription;
 #define KMS_TEST_ERROR_1(S)                                                                         \
     {                                                                                               \
         COLOR( RED );                                                                               \
-        printf( "Test " __FUNCTION__ "failed at line %u of file " __FILE__ "(" S ")\n", __LINE__ ); \
+        printf( "Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (" S ")\n", __LINE__ ); \
         COLOR( WHITE );                                                                             \
         lResult++;                                                                                  \
     }
@@ -113,7 +113,7 @@ KmsTestDescription;
 #define KMS_TEST_ERROR_2(E,G)                                                                                               \
     {                                                                                                                       \
         COLOR( RED );                                                                                                       \
-        printf( "Test " __FUNCTION__ "failed at line %u of file " __FILE__ "(Expected = %d, Get = %d)\n", __LINE__, E, G ); \
+        printf( "Test " __FUNCTION__ " failed at line %u of file " __FILE__ " (Expected = %d, Get = %d)\n", __LINE__, E, G ); \
         COLOR( WHITE );                                                                                                     \
         lResult++;                                                                                                          \
     }

@@ -107,7 +107,7 @@ KMS_TEST_BEGIN(Socket_Base)
 
     lS4.Create();
 
-    KMS_TEST_ASSERT(!lS4.Connect(0x08080808, 80));
+    KMS_TEST_ASSERT(!lS4.Connect(0x08080808, 81));
 
     // www.kms-quebec.com = 192.99.5.135
     // KMS_TEST_ASSERT(lS4.Connect(0x870563c0, 80));

@@ -52,7 +52,7 @@ KMS_TEST_BEGIN(Walker_Base)
 
     lWT0.Walk("KmsLib_Test");
 
-    KMS_TEST_COMPARE((sizeof(lWT0.mTestResult) / sizeof(lWT0.mTestResult[0])), lWT0.mTestIndex);
+    KMS_TEST_COMPARE( static_cast< unsigned int >(sizeof(lWT0.mTestResult) / sizeof(lWT0.mTestResult[0])), lWT0.mTestIndex);
     for (unsigned int i = 0; i < lWT0.mTestIndex; i++)
     {
         KMS_TEST_ASSERT(lWT0.mTestResult[i]);

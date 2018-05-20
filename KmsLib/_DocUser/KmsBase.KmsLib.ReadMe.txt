@@ -3,19 +3,8 @@ Author   KMS - Martin Dubois, ing.
 Product  KmsBase
 File     KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
 
-===== English ===============================================================
-
+2.5.5
 - KmsLib::Windows::DriverHandle::Connect - aIndex argument
-
-2.5.2
-- KmsLib::TextFileEditor
-
-2.4.18
-- KmsLib::HTML5
-
-===== Francais ==============================================================
-
-- KmsLib::Windows::DriverHandle::Connect - Argument aIndex
 
 2.5.2
 - KmsLib::TextFileEditor

@@ -3,7 +3,7 @@ Auteur   KMS - Martin Dubois, ing.
 Produit  KmsBase
 Fichier  _DocDev/Procedures/Build.txt
 
-Developpeur        __________________________________________________________
+Prenom et nom      __________________________________________________________
 
 Date et heure      20 ______ - ______ - ______                ______ : ______
 

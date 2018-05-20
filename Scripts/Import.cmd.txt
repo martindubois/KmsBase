@@ -1,7 +1,7 @@
 
-# Author / Auteur     KMS - Martin Dubois, ing.
-# Product / Produit   KmsBase
-# File / Fichier      Scripts/Import.cmd.txt
+# Author   KMS - Martin Dubois, ing.
+# Product  KmsBase
+# File     Scripts/Import.cmd.txt
 
 .
 	DoxyFile_en.txt
@@ -42,6 +42,7 @@ Binaries/Release_64_DLL
 Includes
 	KmsBase.h
 	KmsTest.h
+	KmsTool.h
 	Ring.h
 	SafeAPI.h
 	WindowsToLinux.h

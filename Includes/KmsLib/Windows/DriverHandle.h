@@ -1,8 +1,8 @@
 
-// Product / Produit	:	KmsBase
+// Product 	KmsBase
 
-/// \author	KMS -	Martin Dubois, ing.
-/// \file	Includes/KmsLib/Windows/DriverHandle.h
+/// \author  KMS - Martin Dubois, ing.
+/// \file    Includes/KmsLib/Windows/DriverHandle.h
 
 #pragma once
 
@@ -88,17 +88,19 @@ namespace KmsLib
 			/// \cond	en
 			///	\brief	Connect to the driver using an interface.
 			/// \param	aInterface		The interface's GUID
+            /// \param  aIndex          The device index
 			/// \param	aDesiredAccess	See GENERIC_...
 			/// \param	aFlags			See CONNECT_FLAG_...
 			/// \endcond
 			/// \cond	fr
 			/// \brief	Connecter au pilote en utilisant une interface
 			/// \param	aInterface		Le GUID de l'interface
+            /// \param  aIndex          L'index du peripherique
 			/// \param	aDesiredAccess	Voir GENERIC_...
 			/// \param	aFlags			Void CONNECT_FLAG_...
 			/// \endcond
 			/// \exception	Exception	CODE_REGISTRY_ERROR, CODE_SETUP_API_ERROR
-			void	Connect(const GUID & aInterface, DWORD aDesiredAccess, unsigned int aFlags);
+			void Connect(const GUID & aInterface, unsigned int aIndex, DWORD aDesiredAccess, unsigned int aFlags);
 
 			/// \cond	en
 			/// \brief	See DeviceIoControl

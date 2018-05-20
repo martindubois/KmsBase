@@ -1,9 +1,11 @@
 
-Author / Auteur     KMS - Martin Dubois, ing.
-Product / Prooduit  KmsBase
-File / Fichier      KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
+Author   KMS - Martin Dubois, ing.
+Product  KmsBase
+File     KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
 
 ===== English ===============================================================
+
+- KmsLib::Windows::DriverHandle::Connect - aIndex argument
 
 2.5.2
 - KmsLib::TextFileEditor
@@ -12,6 +14,8 @@ File / Fichier      KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
 - KmsLib::HTML5
 
 ===== Francais ==============================================================
+
+- KmsLib::Windows::DriverHandle::Connect - Argument aIndex
 
 2.5.2
 - KmsLib::TextFileEditor

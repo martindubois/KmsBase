@@ -1,7 +1,7 @@
 
-// Author / Auteur    KMS - Martin Dubois, ing.
-// Product / Produit  KmsBase
-// File / Fichier     KmsLib_Test/Windows/DriverHandle.cpp
+// Author   KMS - Martin Dubois, ing.
+// Product  KmsBase
+// File     KmsLib_Test/Windows/DriverHandle.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -64,7 +64,7 @@ KMS_TEST_BEGIN(DriverHandle_Base)
     {
         static const GUID GUID_ZERO = { 0x00000000, 0x0000, 0x0000, { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } };
 
-        lDH0.Connect(GUID_ZERO, GENERIC_READ | GENERIC_WRITE, 0);
+        lDH0.Connect(GUID_ZERO, 0, GENERIC_READ | GENERIC_WRITE, 0);
         KMS_TEST_ERROR();
     }
     catch (KmsLib::Exception * eE)
@@ -77,7 +77,7 @@ KMS_TEST_BEGIN(DriverHandle_Base)
     // No permission / Pas de permission
     try
     {
-        lDH0.Connect(GUID_INTERFACE_KEYBOARD, GENERIC_READ | GENERIC_WRITE, 0);
+        lDH0.Connect(GUID_INTERFACE_KEYBOARD, 0, GENERIC_READ | GENERIC_WRITE, 0);
         KMS_TEST_ERROR();
     }
     catch (KmsLib::Exception * eE)
@@ -91,7 +91,7 @@ KMS_TEST_BEGIN(DriverHandle_Base)
 
     try
     {
-        lDH0.Connect(GUID_INTERFACE_KEYBOARD, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY);
+        lDH0.Connect(GUID_INTERFACE_KEYBOARD, 0, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY);
         KMS_TEST_ERROR();
     }
     catch (KmsLib::Exception * eE)
@@ -105,7 +105,7 @@ KMS_TEST_BEGIN(DriverHandle_Base)
     // cle de registre du peripherique
     try
     {
-        lDH0.Connect(GUID_INTERFACE_KEYBOARD, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY | KmsLib::Windows::DriverHandle::CONNECT_FLAG_ADMINISTRATOR);
+        lDH0.Connect(GUID_INTERFACE_KEYBOARD, 0, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY | KmsLib::Windows::DriverHandle::CONNECT_FLAG_ADMINISTRATOR);
         KMS_TEST_ERROR();
     }
     catch (KmsLib::Exception * eE)
@@ -123,19 +123,19 @@ KMS_TEST_BEGIN(DriverHandle_SetupA)
     KmsLib::Windows::DriverHandle	lDH0;
 
     // Connect to RS232-USB adapted / Connexion a l'adaptateur RS232-USB
-    lDH0.Connect(GUID_DEVINTERFACE_COMPORT, GENERIC_READ | GENERIC_WRITE, 0);
+    lDH0.Connect(GUID_DEVINTERFACE_COMPORT, 0, GENERIC_READ | GENERIC_WRITE, 0);
 
     unsigned int lInfo_byte = lDH0.Control(IOCTL_SERIAL_CLEAR_STATS, NULL, 0, NULL, 0);
 
     KMS_TEST_COMPARE(0, lInfo_byte);
 
-    lDH0.Connect(GUID_DEVINTERFACE_COMPORT, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY);
+    lDH0.Connect(GUID_DEVINTERFACE_COMPORT, 0, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY);
 
     // No permission on the device registry key / Pas de permission pour le
     // cle de registre du peripherique
     try
     {
-        lDH0.Connect(GUID_DEVINTERFACE_COMPORT, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY | KmsLib::Windows::DriverHandle::CONNECT_FLAG_ADMINISTRATOR);
+        lDH0.Connect(GUID_DEVINTERFACE_COMPORT, 0, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY | KmsLib::Windows::DriverHandle::CONNECT_FLAG_ADMINISTRATOR);
         KMS_TEST_ERROR();
     }
     catch (KmsLib::Exception * eE)
@@ -153,6 +153,6 @@ KMS_TEST_BEGIN(DriverHandle_SetupC)
     KmsLib::Windows::DriverHandle	lDH0;
 
     // Connect to RS232-USB adapted / Connexion a l'adaptateur RS232-USB
-    lDH0.Connect(GUID_DEVINTERFACE_COMPORT, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY);
+    lDH0.Connect(GUID_DEVINTERFACE_COMPORT, 0, GENERIC_READ | GENERIC_WRITE, KmsLib::Windows::DriverHandle::CONNECT_FLAG_OPEN_DEVICE_KEY);
 }
 KMS_TEST_END_2

@@ -1,7 +1,7 @@
 
-// Author / Auteur		KMS -	Martin Dubois, ing.
-// Product / Produit	KmsBase
-// File / Fichier		KmsLib/Windows/DriverHandle.cpp
+// Author   KMS - Martin Dubois, ing.
+// Product  KmsBase
+// File     KmsLib/Windows/DriverHandle.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -18,6 +18,15 @@
 #include <KmsLib/Exception.h>
 
 #include <KmsLib/Windows/DriverHandle.h>
+
+// Static function declarations
+/////////////////////////////////////////////////////////////////////////////
+
+static void     DestroyDeviceInfoList   (HDEVINFO aDevInfo);
+static void     EnumDeviceInfo          (HDEVINFO aDevInfo, unsigned int aIndex, SP_DEVINFO_DATA * aDevInfoData);
+static bool     EnumDeviceInterfaces    (HDEVINFO aDevInfo, SP_DEVINFO_DATA * aDevInfoData, const GUID * aInterface, SP_DEVICE_INTERFACE_DATA * aDevIntData);
+static HDEVINFO GetClassDevs            (const GUID * aInterface);
+static void     GetDeviceInterfaceDetail(HDEVINFO aDevInfo, SP_DEVICE_INTERFACE_DATA * aDevIntData, SP_DEVICE_INTERFACE_DETAIL_DATA * aDetail, unsigned int aSize_byte);
 
 namespace KmsLib
 {
@@ -60,64 +69,43 @@ namespace KmsLib
 			Create(aLink, aDesiredAccess, 0, OPEN_EXISTING, 0);
 		}
 
-		void DriverHandle::Connect(const GUID & aInterface, DWORD aDesiredAccess, unsigned int aFlags)
+		void DriverHandle::Connect(const GUID & aInterface, unsigned int aIndex, DWORD aDesiredAccess, unsigned int aFlags)
 		{
 			assert(NULL != (&aInterface)	);
 			assert(0	!= aDesiredAccess	);
 
-			HDEVINFO lDevInfo = SetupDiGetClassDevs(&aInterface, NULL, NULL, DIGCF_DEVICEINTERFACE | DIGCF_PRESENT);
-			if (INVALID_HANDLE_VALUE == lDevInfo)
-			{
-				// NOT TESTED   KmsLib.DriverHandle.ErrorHandling
-                //              SetupDiGetClassDevs fail / SetupDiGetClassDevs echoue<br>
-                //              Not easy to test / Pas facile a tester
-				throw new Exception(Exception::CODE_SETUP_API_ERROR, "SetupDiGetClassDevs( , , ,  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, 0 );
-			}
+            HDEVINFO lDevInfo = GetClassDevs(&aInterface);
+            assert(INVALID_HANDLE_VALUE != lDevInfo);
 
 			try
 			{
+                unsigned int lIndex = 0;
+
 				for ( unsigned int i = 0;; i++ )
 				{
 					SP_DEVINFO_DATA lDevInfoData;
 
-					memset(&lDevInfoData, 0, sizeof(lDevInfoData));
-					lDevInfoData.cbSize = sizeof(lDevInfoData);
-
-					if (!SetupDiEnumDeviceInfo(lDevInfo, i, &lDevInfoData))
-					{
-						throw new Exception(Exception::CODE_NO_SUCH_DEVICE, "No such device",
-							NULL, __FILE__, __FUNCTION__, __LINE__, i);
-					}
-
-					if (0 != (aFlags & CONNECT_FLAG_OPEN_DEVICE_KEY))
-					{
-						mDeviceKey.Open(lDevInfo, &lDevInfoData, (0 != (aFlags & CONNECT_FLAG_ADMINISTRATOR)) ? RegistryKey::OPEN_FLAG_ADMINISTRATOR : 0);
-					}
+                    EnumDeviceInfo(lDevInfo, i, &lDevInfoData);
 
 					SP_DEVICE_INTERFACE_DATA lDevIntData;
 
-					memset(&lDevIntData, 0, sizeof(lDevIntData));
-					lDevIntData.cbSize = sizeof(lDevIntData);
-
-					if (SetupDiEnumDeviceInterfaces(lDevInfo, &lDevInfoData, &aInterface, 0, &lDevIntData))
+					if (EnumDeviceInterfaces(lDevInfo, &lDevInfoData, &aInterface, &lDevIntData))
 					{
-						unsigned char						lBuffer[4094];
+                        if (aIndex > lIndex)
+                        {
+                            lIndex++;
+                            continue;
+                        }
+
+                        if (0 != (aFlags & CONNECT_FLAG_OPEN_DEVICE_KEY))
+                        {
+                            mDeviceKey.Open(lDevInfo, &lDevInfoData, (0 != (aFlags & CONNECT_FLAG_ADMINISTRATOR)) ? RegistryKey::OPEN_FLAG_ADMINISTRATOR : 0);
+                        }
+
+                        unsigned char						lBuffer[4094];
 						SP_DEVICE_INTERFACE_DETAIL_DATA   * lDetail = reinterpret_cast<SP_DEVICE_INTERFACE_DETAIL_DATA *>(lBuffer);
-						DWORD								lInfo_byte;
 
-						memset(&lBuffer, 0, sizeof(lBuffer));
-						lDetail->cbSize = sizeof(SP_DEVICE_INTERFACE_DETAIL_DATA);
-
-						if (!SetupDiGetDeviceInterfaceDetail(lDevInfo, &lDevIntData, lDetail, sizeof(lBuffer), &lInfo_byte, NULL))
-						{
-							// NOT TESTED   KmsLib.DriverHandle.ErrorHandling
-                            //              SetupDiGetDeviceInterfaceDetail fail /
-                            //              SetupDiGetDeviceInterfaceDetail echoue<br>
-                            //              Not easy to test / Pas facile a tester
-							throw new Exception(Exception::CODE_SETUP_API_ERROR, "SetupDiGetDeviceInterfaceDetail( , , , , ,  ) failed",
-								NULL, __FILE__, __FUNCTION__, __LINE__, i);
-						}
+                        GetDeviceInterfaceDetail(lDevInfo, &lDevIntData, lDetail, sizeof(lBuffer));
 
 						Connect(lDetail->DevicePath, aDesiredAccess);
 
@@ -142,15 +130,7 @@ namespace KmsLib
             //          KmsLib_Test.exe - DriverHandle - Setup A<br>
             //          Connect to a device / Connect a un
             //          peripherique
-			if (!SetupDiDestroyDeviceInfoList(lDevInfo))
-			{
-				// NOT TESTED   KmsLib.DriverHandle.ErrorHandling
-                //              SetupDiDestroyDeviceInfoList fail /
-                //              SetupDiDestroyDeviceInfoList echoue<br>
-                //              Not easy to test / Pas facile a tester
-				throw new Exception(Exception::CODE_SETUP_API_ERROR, "SetupDiDestroyDeviceInfoList(  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, 0 );
-			}
+            DestroyDeviceInfoList(lDevInfo);
 		}
 
 		unsigned int DriverHandle::Control(unsigned int aCode, const void * aIn, unsigned int aInSize_byte, void * aOut, unsigned int aOutSize_byte)
@@ -194,4 +174,104 @@ namespace KmsLib
 
 	}
 
+}
+
+// Static functions
+/////////////////////////////////////////////////////////////////////////////
+
+// aDevInfo [D--;RW-]
+
+// NOT TESTED  KmsLib.DriverHandle.ErrorHandling
+//             SetupDiDestroyDeviceInfoList fail
+void DestroyDeviceInfoList(HDEVINFO aDevInfo)
+{
+    assert(INVALID_HANDLE_VALUE != aDevInfo);
+
+    if (!SetupDiDestroyDeviceInfoList(aDevInfo))
+    {
+        throw new KmsLib::Exception(KmsLib::Exception::CODE_SETUP_API_ERROR, "SetupDiDestroyDeviceInfoList(  ) failed",
+            NULL, __FILE__, __FUNCTION__, __LINE__, 0);
+    }
+}
+
+// aDevInfo     [---;RW-]
+// aIndex
+// aDevInfoData [---;-W-]
+void EnumDeviceInfo(HDEVINFO aDevInfo, unsigned int aIndex, SP_DEVINFO_DATA * aDevInfoData)
+{
+    assert(INVALID_HANDLE_VALUE != aDevInfo    );
+    assert(NULL                 != aDevInfoData);
+
+    memset(aDevInfoData, 0, sizeof(SP_DEVINFO_DATA));
+    aDevInfoData->cbSize = sizeof(SP_DEVINFO_DATA);
+
+    if (!SetupDiEnumDeviceInfo(aDevInfo, aIndex, aDevInfoData))
+    {
+        throw new KmsLib::Exception(KmsLib::Exception::CODE_NO_SUCH_DEVICE, "No such device",
+            NULL, __FILE__, __FUNCTION__, __LINE__, aIndex);
+    }
+}
+
+// aDevInfo     [---;RW-]
+// aDevInfoData [---;R--]
+// aInterface   [---;R--]
+// aDevIntData  [---;-W-]
+bool EnumDeviceInterfaces(HDEVINFO aDevInfo, SP_DEVINFO_DATA * aDevInfoData, const GUID * aInterface, SP_DEVICE_INTERFACE_DATA * aDevIntData)
+{
+    assert(INVALID_HANDLE_VALUE != aDevInfo    );
+    assert(NULL                 != aDevInfoData);
+    assert(NULL                 != aInterface  );
+    assert(NULL                 != aDevIntData );
+
+    memset(aDevIntData, 0, sizeof(SP_DEVICE_INTERFACE_DATA));
+    aDevIntData->cbSize = sizeof(SP_DEVICE_INTERFACE_DATA);
+
+    return (TRUE == SetupDiEnumDeviceInterfaces(aDevInfo, aDevInfoData, aInterface, 0, aDevIntData));
+}
+
+// aInterface [---;R--]
+
+// NOT TESTED  KmsLib.DriverHandle.ErrorHandling
+//             SetupDiGetClassDevs fail
+HDEVINFO GetClassDevs(const GUID * aInterface)
+{
+    assert(NULL != (&aInterface));
+
+    HDEVINFO lResult = SetupDiGetClassDevs(aInterface, NULL, NULL, DIGCF_DEVICEINTERFACE | DIGCF_PRESENT);
+    if (INVALID_HANDLE_VALUE == lResult)
+    {
+        throw new KmsLib::Exception(KmsLib::Exception::CODE_SETUP_API_ERROR, "SetupDiGetClassDevs( , , ,  ) failed",
+            NULL, __FILE__, __FUNCTION__, __LINE__, 0);
+    }
+
+    return lResult;
+}
+
+// aDevInfo    [---;RW-]
+// aDevIntData [---;R--]
+// aDetail     [---;-W-]
+// aSize_byte
+
+// NOT TESTED  KmsLib.DriverHandle.ErrorHandling
+//             SetupDiGetDeviceInterfaceDetail fail
+void GetDeviceInterfaceDetail(HDEVINFO aDevInfo, SP_DEVICE_INTERFACE_DATA * aDevIntData, SP_DEVICE_INTERFACE_DETAIL_DATA * aDetail, unsigned int aSize_byte)
+{
+    assert(INVALID_HANDLE_VALUE                    != aDevInfo   );
+    assert(NULL                                    != aDevIntData);
+    assert(NULL                                    != aDetail    );
+    assert(sizeof(SP_DEVICE_INTERFACE_DETAIL_DATA) <  aSize_byte );
+
+    memset(aDetail, 0, aSize_byte);
+    aDetail->cbSize = sizeof(SP_DEVICE_INTERFACE_DETAIL_DATA);
+
+    DWORD lInfo_byte;
+
+    if (!SetupDiGetDeviceInterfaceDetail(aDevInfo, aDevIntData, aDetail, aSize_byte, &lInfo_byte, NULL))
+    {
+        throw new KmsLib::Exception(KmsLib::Exception::CODE_SETUP_API_ERROR, "SetupDiGetDeviceInterfaceDetail( , , , , ,  ) failed",
+            NULL, __FILE__, __FUNCTION__, __LINE__, aSize_byte);
+    }
+
+    assert(sizeof(SP_DEVICE_INTERFACE_DETAIL_DATA) <= lInfo_byte);
+    assert(aSize_byte                              >= lInfo_byte);
 }

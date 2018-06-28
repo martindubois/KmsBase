@@ -364,6 +364,7 @@
     <ClCompile Include="TextFileEditor.cpp" />
     <ClCompile Include="TextFile.cpp" />
     <ClCompile Include="ToolBase.cpp" />
+    <ClCompile Include="ValueVector.cpp" />
     <ClCompile Include="Walker.cpp" />
     <ClCompile Include="Walker_Smart.cpp" />
     <ClCompile Include="Windows\ComPortHandle.cpp" />

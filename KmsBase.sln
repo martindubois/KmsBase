@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KmsLib", "KmsLib\KmsLib.vcxproj", "{08D0977C-7912-4A9E-9937-CC0AF78956A7}"
 EndProject
@@ -38,6 +38,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KmsLib", "KmsLib", "{EE1520
 		Includes\KmsLib\TextFile.h = Includes\KmsLib\TextFile.h
 		Includes\KmsLib\TextFileEditor.h = Includes\KmsLib\TextFileEditor.h
 		Includes\KmsLib\ToolBase.h = Includes\KmsLib\ToolBase.h
+		Includes\KmsLib\ValueVector.h = Includes\KmsLib\ValueVector.h
 		Includes\KmsLib\Walker.h = Includes\KmsLib\Walker.h
 		Includes\KmsLib\Walker_Smart.h = Includes\KmsLib\Walker_Smart.h
 	EndProjectSection
@@ -332,5 +333,8 @@ Global
 		{195EC26E-8CB6-4654-A00E-FC084D9691A9} = {17C49143-B3BF-492F-AA07-D08EBEE3756D}
 		{F49BE6B7-3A5C-4BB6-9ACA-537A91C8740C} = {EE152025-CE8B-4099-89C4-C60CC1B7797C}
 		{3A99A792-0D5E-41AD-9EBA-3AFFC3CE6956} = {EE152025-CE8B-4099-89C4-C60CC1B7797C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {22B477B9-5D9A-465A-83B5-249237BC216F}
 	EndGlobalSection
 EndGlobal

@@ -49,6 +49,7 @@ extern int String_Base          ();
 extern int TextFile_Base        ();
 extern int TextFileEditor_Base  ();
 extern int ToolBase_Base		();
+extern int ValueVector_Base     ();
 extern int Walker_Base			();
 extern int Walker_Smart_Base	();
 
@@ -90,6 +91,7 @@ KMS_TEST_LIST_BEGIN
     KMS_TEST_LIST_ENTRY(TextFile_Base       , "TextFile - Base"         , 0, 0)
     KMS_TEST_LIST_ENTRY(TextFileEditor_Base , "TextFileEditor - Base"   , 0, 0)
 	KMS_TEST_LIST_ENTRY(ToolBase_Base		, "ToolBase - Base"			, 0, 0)
+    KMS_TEST_LIST_ENTRY(ValueVector_Base    , "ValueVector - Base"      , 0, 0)
 	KMS_TEST_LIST_ENTRY(Walker_Base			, "Walker - Base"			, 0, 0)
 	KMS_TEST_LIST_ENTRY(Walker_Smart_Base	, "Walker_Smart - Base"		, 0, 0)
 

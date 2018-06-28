@@ -54,8 +54,8 @@ Version            ______ . ______ . ______ . ______ - ______________________
 
 ===== Tous les systemes d'exploitation ======================================
 [ ] Indexer les fichiers modifies et les commettre en utilisant
-    "{Major}.{Minor}.{Build}_{Windows|Linux|OSX}" comme message;
-[ ] Ajouter le tag "{Major}.{Minor}.{Build}_{Windows|Linux|OSX}".
+    "{Major}.{Minor}.{Build}_{Type}_{Windows|Linux|OSX}" comme message;
+[ ] Ajouter le tag "{Major}.{Minor}.{Build}_{Type}_{Windows|Linux|OSX}".
 [ ] Pousser le depot GIT sur le	serveur.
 
 Heure                                                         ______ : ______

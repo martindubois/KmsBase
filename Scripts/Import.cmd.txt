@@ -59,19 +59,13 @@ Includes/KmsLib
 	NetworkAddress.h
 	RLE.h
 	Socket.h
+	TextFile.h
 	ToolBase.h
 	Walker.h
 	Walker_Smart.h
 
 Includes/KmsLib/Linux
 	Windows.h
-
-Includes/KmsLib/OpenCL
-	Buffer.h
-	CommandQueue.h
-	Context.h
-	Kernel.h
-	Program.h
 
 Includes/KmsLib/Windows
 	ComPortHandle.h

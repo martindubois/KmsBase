@@ -215,8 +215,12 @@ KmsTestDescription;
 	int Na()						\
 	{								\
 		unsigned int lResult = 0;	\
+        int          lRet;          \
+        (void)(lRet);               \
 		try							\
 		{
+
+// TODO  KmsTest  Do not double evaluate G
 
 /// \cond	en
 /// \brief  If the expected value \a E is not equal to the get value \a G,
@@ -226,10 +230,11 @@ KmsTestDescription;
 /// \brief	Si la valeur expecte \a E n'est pas egal a la valeur obtenue \a
 ///         G, cette macro compte l'erreur.
 /// \endcond
-#define KMS_TEST_COMPARE(E,G)     \
-    if ( E != G )                 \
-    {                             \
-        KMS_TEST_ERROR_2( E, G ); \
+#define KMS_TEST_COMPARE(E,G)          \
+    lRet = (G);                        \
+    if ( (E) != lRet )                 \
+    {                                  \
+        KMS_TEST_ERROR_2( (E), lRet ); \
     }
 
 /// \cond	en
@@ -240,11 +245,12 @@ KmsTestDescription;
 /// \brief	Si la valeur expecte \a E n'est pas egal a la valeur obtenue \a
 ///         G, cette macro compte l'erreur et execute l'instruction break.
 /// \endcond
-#define KMS_TEST_COMPARE_BREAK(E,G) \
-    if ( E != G )                   \
-    {                               \
-        KMS_TEST_ERROR_2( E, G );   \
-        break;                      \
+#define KMS_TEST_COMPARE_BREAK(E,G)    \
+    lRet = (G);                        \
+    if ( (E) != lRet )                 \
+    {                                  \
+        KMS_TEST_ERROR_2( (E), lRet ); \
+        break;                         \
     }
 
 /// \cond	en
@@ -256,9 +262,10 @@ KmsTestDescription;
 ///         G, cette macro compte l'erreur et execute l'instruction continue.
 /// \endcond
 #define KMS_TEST_COMPARE_CONTINUE(E,G) \
-    if ( E != G )                      \
+    lRet = (G);                        \
+    if ( (E) != lRet )                 \
     {                                  \
-        KMS_TEST_ERROR_2( E, G );      \
+        KMS_TEST_ERROR_2( (E), lRet ); \
         continue;                      \
     }
 
@@ -270,11 +277,12 @@ KmsTestDescription;
 /// \brief	Si la valeur expecte \a E n'est pas egal a la valeur obtenue \a
 ///         G, cette macro compte l'erreur et execute l'instruction goto.
 /// \endcond
-#define KMS_TEST_COMPARE_GOTO(E,G,To) \
-    if ( E != G )                     \
-    {                                 \
-        KMS_TEST_ERROR_2( E, G );     \
-        goto To;                      \
+#define KMS_TEST_COMPARE_GOTO(E,G,To)  \
+    lRet = (G);                        \
+    if ( (E) != lRet )                 \
+    {                                  \
+        KMS_TEST_ERROR_2( (E), lRet ); \
+        goto To;                       \
     }
 
 /// \cond	en
@@ -285,11 +293,12 @@ KmsTestDescription;
 /// \brief	Si la valeur expecte \a E n'est pas egal a la valeur obtenue \a
 ///         G, cette macro compte l'erreur et execute l'instruction return.
 /// \endcond
-#define KMS_TEST_COMPARE_RETURN(E,G) \
-    if ( E != G )                    \
-    {                                \
-        KMS_TEST_ERROR_2( E, G );    \
-        return lResult;              \
+#define KMS_TEST_COMPARE_RETURN(E,G)   \
+    lRet = (G);                        \
+    if ( (E) != lRet )                 \
+    {                                  \
+        KMS_TEST_ERROR_2( (E), lRet ); \
+        return lResult;                \
     }
 
 /// \cond	en

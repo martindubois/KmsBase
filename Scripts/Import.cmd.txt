@@ -61,6 +61,7 @@ Includes/KmsLib
 	Socket.h
 	TextFile.h
 	ToolBase.h
+	ValueVector.h
 	Walker.h
 	Walker_Smart.h
 

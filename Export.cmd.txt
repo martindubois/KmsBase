@@ -45,7 +45,9 @@ Includes/KmsLib
 	NetworkAddress.h
 	RLE.h
 	Socket.h
+	TextFile.h
 	ToolBase.h
+	ValueVector.h
 	Walker.h
 	Walker_Smart.h
 

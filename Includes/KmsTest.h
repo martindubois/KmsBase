@@ -617,7 +617,7 @@ KmsTestDescription;
         COLOR(0 >= lResult ? GREEN : RED);                                  \
         printf("Test %u : %s\n", aTest, 0 >= lResult ? "PASSED" : "FAILED"); \
         COLOR(WHITE);                                                       \
-		return lResult;														\
+		return (0 >= lResult) ? 0 : 1;        								\
 	}																		\
 																			\
 	int RunTests(const char ** aTests, int aCount)							\

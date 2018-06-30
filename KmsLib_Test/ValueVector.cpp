@@ -22,7 +22,7 @@ static const KmsLib::ValueVector::Description DESCRIPTIONS[] =
 {
     VALUE_VECTOR_DESCRIPTION_RESERVED,
     VALUE_VECTOR_DESCRIPTION_WITH_UNIT( "Must be 1", "unit" ),
-    VALUE_VECTOR_DESCRIPTION          ( "Must be multiple of 2" ),
+    VALUE_VECTOR_DESCRIPTION_WITH_LEVEL( "Must be multiple of 2", 1 ),
 };
 
 static const KmsLib::ValueVector::Rule RULES[] =

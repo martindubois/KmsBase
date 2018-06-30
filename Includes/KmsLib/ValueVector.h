@@ -20,7 +20,7 @@
 #define VALUE_VECTOR_CONSTRAINT_RESERVED { 0, 0, 1 }
 #define VALUE_VECTOR_CONSTRAINT_ZERO     { 0, 0, 1 }
 
-#define VALUE_VECTOR_DESCRIPTION_RESERVED { NULL, NULL }
+#define VALUE_VECTOR_DESCRIPTION_RESERVED { NULL, NULL, 0 }
 
 #define VALUE_VECTOR_DISPLAY_FLAG_HIDE_ZERO   (0x00000001)
 #define VALUE_VECTOR_DISPLAY_FLAG_NO_NEW_LINE (0x00000002)
@@ -32,8 +32,11 @@
 #define VALUE_VECTOR_CONSTRAINT_MULTIPLE_OF(M)  {    0, 0xffffffff, (M) }
 #define VALUE_VECTOR_CONSTRAINT_VALUE(V)        { (V) , (V)       ,   1 }
 
-#define VALUE_VECTOR_DESCRIPTION(N)             { (N), NULL }
-#define VALUE_VECTOR_DESCRIPTION_WITH_UNIT(N,U) { (N), (U)  }
+#define VALUE_VECTOR_DESCRIPTION(N)                         { (N) , NULL,   0 }
+#define VALUE_VECTOR_DESCRIPTION_RESERVED_WITH_LEVEL(L)     { NULL, NULL, (L) }
+#define VALUE_VECTOR_DESCRIPTION_WITH_LEVEL(N,L)            { (N) , NULL, (L) }
+#define VALUE_VECTOR_DESCRIPTION_WITH_UNIT(N,U)             { (N) , (U) ,   0 }
+#define VALUE_VECTOR_DESCRIPTION_WITH_UNIT_AND_LEVEL(N,U,L) { (N) , (U) , (L) }
 
 #define VALUE_VECTOR_RULE(A,B,T) { { 1.0, 1.0 }, { (A), (B) }, (T) }
 
@@ -68,8 +71,9 @@ namespace KmsLib
         /// \endcond
         typedef struct
         {
-            const char * mName;
-            const char * mUnit;
+            const char * mName ;
+            const char * mUnit ;
+            unsigned int mLevel;
         }
         Description;
 
@@ -179,6 +183,7 @@ namespace KmsLib
         /// \param  aFlags                  See VALUE_VECTOR_DISPLAY_FLAG_...
         /// \param  aOut          [--O;RW-] The output stream
         /// \param  aDescriptions [--O;R--] The value description
+        /// \param  aMinLevel               The minimum level to be displayed
         /// \endcond
         /// \cond   fr
         /// \brief  Afficher une valeur
@@ -188,8 +193,9 @@ namespace KmsLib
         /// \param  aFlags                  Voir VALUE_VECTOR_DISPLAY_FLAGS_...
         /// \param  aOut          [--O;RW-] Le fichier de sortie
         /// \param  aDescriptions [--O;R--] Les descriptions des valeurs
+        /// \param  aMinLevel               Le niveau minimum pour etre affiche
         /// \endcond
-        extern void Display(uint32_t aValue, unsigned int aIndex, unsigned int aFlags, FILE * aOut, const Description * aDescription = NULL);
+        extern void Display(uint32_t aValue, unsigned int aIndex, unsigned int aFlags, FILE * aOut, const Description * aDescription = NULL, unsigned int aMinLevel = 0);
 
         /// \cond   en
         /// \brief  Display values
@@ -199,6 +205,7 @@ namespace KmsLib
         /// \param  aFlags                  See VALUE_VECTOR_DISPLAY_FLAG_...
         /// \param  aOut          [--O;RW-] The output stream
         /// \param  aDescriptions [--O;R--] The value description
+        /// \param  aMinLevel               The minimum level to be displayed
         /// \endcond
         /// \cond   fr
         /// \brief  Afficher des valeurs
@@ -208,8 +215,9 @@ namespace KmsLib
         /// \param  aFlags                  Voir VALUE_VECTOR_DISPLAY_FLAGS_...
         /// \param  aOut          [--O;RW-] Le fichier de sortie
         /// \param  aDescriptions [--O;R--] Les descriptions des valeurs
+        /// \param  aMinLevel               Le niveau minimum pour etre affiche
         /// \endcond
-        extern void Display(const uint32_t * aValues, unsigned int aCount, unsigned int aFlags, FILE * aOut, const Description * aDescriptions = NULL);
+        extern void Display(const uint32_t * aValues, unsigned int aCount, unsigned int aFlags, FILE * aOut, const Description * aDescriptions = NULL, unsigned int aMinLevel = 0);
 
         /// \cond   en
         /// \brief  Verify a rule

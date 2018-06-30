@@ -130,7 +130,7 @@ namespace KmsLib
             return lResult;
         }
 
-        void Display(uint32_t aValue, unsigned int aIndex, unsigned int aFlags, FILE * aOut, const Description * aDescription)
+        void Display(uint32_t aValue, unsigned int aIndex, unsigned int aFlags, FILE * aOut, const Description * aDescription, unsigned int aMinLevel)
         {
             assert(NULL != aOut);
 
@@ -145,18 +145,21 @@ namespace KmsLib
             }
             else
             {
-                if (NULL == aDescription->mName)
+                if (aMinLevel <= aDescription->mLevel)
                 {
-                    fprintf(aOut, "Reserved %u\t= %u", aIndex, aValue);
-                }
-                else
-                {
-                    fprintf(aOut, "%s\t= %u", aDescription->mName, aValue);
-                }
+                    if (NULL == aDescription->mName)
+                    {
+                        fprintf(aOut, "Reserved %u\t= %u", aIndex, aValue);
+                    }
+                    else
+                    {
+                        fprintf(aOut, "%s\t= %u", aDescription->mName, aValue);
+                    }
 
-                if (NULL != aDescription->mUnit)
-                {
-                    fprintf(aOut, " %s", aDescription->mUnit);
+                    if (NULL != aDescription->mUnit)
+                    {
+                        fprintf(aOut, " %s", aDescription->mUnit);
+                    }
                 }
             }
 
@@ -166,7 +169,7 @@ namespace KmsLib
             }
         }
 
-        void Display(const uint32_t * aValues, unsigned int aCount, unsigned int aFlags, FILE * aOut, const Description * aDescriptions)
+        void Display(const uint32_t * aValues, unsigned int aCount, unsigned int aFlags, FILE * aOut, const Description * aDescriptions, unsigned int aMinLevel)
         {
             assert(NULL != aValues);
             assert(   0 <  aCount );
@@ -174,7 +177,7 @@ namespace KmsLib
 
             for (unsigned int i = 0; i < aCount; i++)
             {
-                Display(aValues[i], i, aFlags, aOut, (NULL == aDescriptions) ? NULL : (aDescriptions + i));
+                Display(aValues[i], i, aFlags, aOut, (NULL == aDescriptions) ? NULL : (aDescriptions + i), aMinLevel);
             }
         }
 

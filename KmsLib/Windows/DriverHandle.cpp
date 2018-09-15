@@ -37,6 +37,9 @@ namespace KmsLib
 		// Public
 		/////////////////////////////////////////////////////////////////////
 
+        // TODO  KmsLib.DriverHandle
+        //       Add a copy construtor and an asign operator
+
 		DriverHandle::DriverHandle()
 		{
 		}

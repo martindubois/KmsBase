@@ -56,7 +56,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{EB86
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DocDev", "_DocDev", "{00EEE413-B9A0-44E8-9AE8-8FD3EAC01E7D}"
 	ProjectSection(SolutionItems) = preProject
-		_DocDev\Components.svg = _DocDev\Components.svg
 		_DocDev\Requirements.txt = _DocDev\Requirements.txt
 	EndProjectSection
 EndProject

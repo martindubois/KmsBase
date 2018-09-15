@@ -88,7 +88,7 @@ namespace KmsLib
                     {
                         Display(aValue, aIndex, VALUE_VECTOR_DISPLAY_FLAG_NO_NEW_LINE, aOut, aDescription);
                     }
-                    fprintf(aOut, "\t<== Below %u", aConstraint.mMax);
+                    fprintf(aOut, "\t<== Below %u", aConstraint.mMin);
                 }
                 lResult++;
             }
@@ -142,6 +142,11 @@ namespace KmsLib
             if (NULL == aDescription)
             {
                 fprintf(aOut, "Value %u\t= %u", aIndex, aValue);
+
+                if (0 == (aFlags & VALUE_VECTOR_DISPLAY_FLAG_NO_NEW_LINE))
+                {
+                    fprintf(aOut, "\n");
+                }
             }
             else
             {
@@ -160,12 +165,12 @@ namespace KmsLib
                     {
                         fprintf(aOut, " %s", aDescription->mUnit);
                     }
-                }
-            }
 
-            if (0 == (aFlags & VALUE_VECTOR_DISPLAY_FLAG_NO_NEW_LINE))
-            {
-                fprintf(aOut, "\n");
+                    if (0 == (aFlags & VALUE_VECTOR_DISPLAY_FLAG_NO_NEW_LINE))
+                    {
+                        fprintf(aOut, "\n");
+                    }
+                }
             }
         }
 

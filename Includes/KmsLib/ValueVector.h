@@ -74,6 +74,9 @@ namespace KmsLib
             const char * mName ;
             const char * mUnit ;
             unsigned int mLevel;
+
+            // TODO  KmsLib.ValueVector
+            //       Ajouter un pointeur vers une fonction ToString
         }
         Description;
 

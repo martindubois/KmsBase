@@ -3,6 +3,9 @@ Author   KMS - Martin Dubois, ing.
 Product  KmsBase
 File     _DocUser/KmsBase.ReadMe.txt
 
+2.5.9
+- Compile with Visual Studio 2017 (15.8.3)
+
 2.5.6
 - KmsTest.h don't double evaluate functions
 

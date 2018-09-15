@@ -11,7 +11,7 @@ rem ===== Initialisation ====================================================
 
 set EXPORT_CMD="Export.cmd"
 set KMS_VERSION="C:\Software\KmsTools\KmsVersion.exe"
-set MSBUILD="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\MSBuild.exe"
+set MSBUILD="C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\15.0\Bin\MSBuild.exe"
 set OPTIONS="KmsBase.sln" /target:rebuild
 set VERSION_H="Common/Version.h"
 
@@ -26,7 +26,7 @@ if not exist %KMS_VERSION% (
 
 if not exist %MSBUILD% (
 	echo FATAL ERROR  %MSBUILD%  does not exist
-    echo Install Visual Studio 2015
+    echo Install Visual Studio 2017 Professional
 	pause
 	exit /B 2
 )

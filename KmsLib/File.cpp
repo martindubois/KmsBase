@@ -1,7 +1,7 @@
 
-// Author / Auteur    KMS - Martin Dubois, ing.
-// Product / Produit  KmsBase
-// File / Fichier     KmsLib/File.cpp
+// Author   KMS - Martin Dubois, ing.
+// Product  KmsBase
+// File     KmsLib/File.cpp
 
 // Last test coverage update / Derniere mise a jour de la couverture de test
 // 2017-11-10
@@ -9,15 +9,26 @@
 // Includes
 /////////////////////////////////////////////////////////////////////////////
 
+#include <KmsBase.h>
+
 // ===== C ==================================================================
 #include <assert.h>
-#include <io.h>
 
-// ===== Windows ============================================================
-#include <Windows.h>
+#ifdef _KMS_WINDOWS_
+	#include <io.h>
+#endif
+
+#ifdef _KMS_WINDOWS_
+	// ===== Windows ========================================================
+	#include <Windows.h>
+#endif
 
 // ===== Includes ===========================================================
 #include <KmsLib/Exception.h>
+
+#ifdef _KMS_LINUX_
+	#include <WindowsToLinux.h>
+#endif
 
 #include <KmsLib/File.h>
 
@@ -29,6 +40,8 @@ namespace KmsLib
 
         // Functions / Fonctions
         /////////////////////////////////////////////////////////////////////
+
+		#ifdef _KMS_WINDOWS_
 
         void Copy(const char * aSrc, const char * aDst, unsigned int aFlags)
         {
@@ -63,6 +76,8 @@ namespace KmsLib
             }
         }
 
+        #endif
+
         bool Exist(const char * aName, unsigned int aFlags)
         {
             assert(NULL != aName);
@@ -95,6 +110,8 @@ namespace KmsLib
                     "_access( ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, aFlags);
             }
         }
+
+		#ifdef _KMS_WINDOWS
 
         bool IsEqual(const char * aA, const char * aB, unsigned int aFlags)
         {
@@ -179,6 +196,8 @@ namespace KmsLib
                     "MoveFile( ,  ) failed", lMsg, __FILE__, __FUNCTION__, __LINE__, aFlags);
             }
         }
+
+        #endif
 
     }
 

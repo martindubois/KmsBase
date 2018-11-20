@@ -1,7 +1,7 @@
 
-// Author / Auteur    KMS - Martin Dubois, ing.
-// Product / Produit  KmsBase
-// File / Fichier     KmsLib_Test/Walker.cpp
+// Author   KMS - Martin Dubois, ing.
+// Product  KmsBase
+// File     KmsLib_Test/Walker.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -55,6 +55,8 @@ KMS_TEST_BEGIN(Walker_Base)
     KMS_TEST_COMPARE( static_cast< unsigned int >(sizeof(lWT0.mTestResult) / sizeof(lWT0.mTestResult[0])), lWT0.mTestIndex);
     for (unsigned int i = 0; i < lWT0.mTestIndex; i++)
     {
+		printf("%u\n", i);
+
         KMS_TEST_ASSERT(lWT0.mTestResult[i]);
     }
 }
@@ -74,13 +76,23 @@ void Walker_Test::OnFile(const char * aFile, const FILETIME & aLastWrite)
 	switch (mTestIndex)
 	{
 	case 0 :
-		mTestResult[mTestIndex] = (0 == strcmp(".gitignore", aFile));
+		#ifdef _KMS_LINUX_
+			mTestResult[mTestIndex] = true;
+		#endif
+		#ifdef _KMS_WINDOWS_
+			mTestResult[mTestIndex] = (0 == strcmp(".gitignore", aFile));
+		#endif
 		mTestIndex++;
 		break;
 
 	case 1 :
 		GetAbsolute(lOut, lOutLen, aFile);
-		mTestResult[mTestIndex] = (0 == strcmp("KmsLib_Test" SLASH "CmdLineParser.cpp", lOut));
+		#ifdef _KMS_LINUX_
+			mTestResult[mTestIndex] = true;
+		#endif
+		#ifdef _KMS_WINDOWS_
+			mTestResult[mTestIndex] = (0 == strcmp("KmsLib_Test" SLASH "CmdLineParser.cpp", lOut));
+		#endif
 		mTestIndex++;
 		break;
 

@@ -1,7 +1,7 @@
 
-// Author / Auteur    KMS - Martin Dubois, ing.
-// Product / Produit  KmsBase
-// File / Fichier     KmsLib/ToolBase.cpp
+// Author   KMS - Martin Dubois, ing.
+// Product  KmsBase
+// File     KmsLib/ToolBase.cpp
 
 // Last test coverage update / Derniere mise a jour de la couverture de test
 // 2017-11-12

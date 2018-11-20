@@ -1,7 +1,7 @@
 
-// Author / Auteur    KMS - Martin Dubois, ing.
-// Product / Produit  KmsBase
-// File / Fichier     KmsLib_Test/DebugLog.cpp
+// Author   KMS - Martin Dubois, ing.
+// Product  KmsBase
+// File     KmsLib_Test/DebugLog.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -25,11 +25,18 @@ KMS_TEST_BEGIN(Exception_Base)
     KmsLib::Exception * lE = new KmsLib::Exception(KmsLib::Exception::CODE_UNKNOWN, "Unknown", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
     KMS_TEST_COMPARE(KmsLib::Exception::CODE_UNKNOWN, lE->GetCode());
     KMS_TEST_COMPARE(0, lE->GetInfoA    ());
-    KMS_TEST_COMPARE(0, lE->GetLastError());
-    KMS_TEST_COMPARE(__LINE__ - 4, lE->GetLine());
+    KMS_TEST_COMPARE(__LINE__ - 3, lE->GetLine());
     KMS_TEST_COMPARE(0, strcmp(__FILE__    , lE->GetFile    ()));
     KMS_TEST_COMPARE(0, strcmp(__FUNCTION__, lE->GetFunction()));
     KMS_TEST_COMPARE(0, strcmp("Unknown"   , lE->GetMessage ()));
+
+    #ifdef _KMS_LINUX_
+        KMS_TEST_COMPARE(-1, lE->GetLastError());
+    #endif
+
+    #ifdef _KMS_WINDOWS_
+        KMS_TEST_COMPARE(0, lE->GetLastError());
+    #endif
 
     void * lPrevTranslator = KmsLib::Exception::RegisterTranslator();
 

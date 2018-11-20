@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# Author / Auteur	:	KMS -	Martin Dubois, ing.
-# Product / Produit	:	KmsBase
-# File / Fichier	:	Export.sh
-# Usage			:	Export.sh {Ma.Mi.Bu_Type}
+# Author   KMS - Martin Dubois, ing.
+# Product  KmsBase
+# File     Export.sh
+# Usage    ./Export.sh {Ma.Mi.Bu_Type}
 
 echo  Executing Export.sh $1 ...
 
@@ -11,11 +11,11 @@ echo  Executing Export.sh $1 ...
 
 if [ "$1" = "" ] ; then
     echo  USER ERROR : Invalid command line
-    echo  Usage : ExportSources.sh {Ma.Mi.Bu_Type}
+    echo  Usage  ./Export.sh {Ma.Mi.Bu_Type}
     exit 1 ;
 fi
 
-DST=Export/$1
+DST=Export/$1_Linux
 if test -d $DST ; then
     echo  USER ERROR : $DST already exist
     exit 2 ;
@@ -27,7 +27,6 @@ mkdir $DST
 mkdir $DST/Includes
 mkdir $DST/Includes/KmsLib
 mkdir $DST/Includes/KmsLib/Linux
-mkdir $DST/Includes/KmsLib/OpenCL
 mkdir $DST/Libraries
 mkdir $DST/Templates
 mkdir $DST/Templates/DLL
@@ -41,9 +40,8 @@ cp *.txt						 $DST
 cp Includes/*.h                  $DST/Includes
 cp Includes/KmsLib/*.h           $DST/Includes/KmsLib
 cp Includes/KmsLib/Linux/*.h	 $DST/Includes/KmsLib/Linux
-cp Includes/KmsLib/OpenCL/*.h    $DST/Includes/KmsLib/OpenCL
 cp Libraries/KmsLib.a            $DST/Libraries
-cp Scripts/Install.sh			 $DST
+cp Scripts/Import.sh             $DST
 cp Templates/DLL/*.cpp           $DST/Templates/DLL
 cp Templates/DLL/*.h             $DST/Templates/DLL
 cp Templates/DLL/_DocUser/*.txt  $DST/Templates/DLL/_DocUser

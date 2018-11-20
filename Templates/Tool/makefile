@@ -1,7 +1,7 @@
 
-# Author / Auteur	:	KMS -	Martin Dubois, ing.
-# Product / Produit	:	KmsBase
-# File / Fichier	:	Templates/TODO_Tool/makefile
+# Author   KMS - Martin Dubois, ing.
+# Product  KmsBase
+# File     Templates/TODO_Tool/makefile
 
 CFLAGS = -g
 
@@ -32,5 +32,5 @@ depend:
 
 # DO NOT DELETE
 
-TODO_Tool.o: ../../Includes/KmsLib/ToolBase.h
+TODO_Tool.o: ../../Includes/KmsTool.h ../../Includes/KmsLib/ToolBase.h
 TODO_Tool.o: ../../Includes/KmsLib/Exception.h

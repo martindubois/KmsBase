@@ -1,7 +1,7 @@
 
-// Author / Auteur    KMS - Martin Dubois, ing.
-// Product / Produit  KmsBase
-// File / Fichier     KmsLib_Test/TextFile.cpp
+// Author   KMS - Martin Dubois, ing.
+// Product  KmsBase
+// File     KmsLib_Test/TextFile.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -17,7 +17,7 @@
 // Constants
 /////////////////////////////////////////////////////////////////////////////
 
-#define TEST_FOLDER "KmsLib_Test\\Tests"
+#define TEST_FOLDER "KmsLib_Test" SLASH "Tests"
 
 // Tests
 /////////////////////////////////////////////////////////////////////////////
@@ -27,9 +27,9 @@ KMS_TEST_BEGIN(TextFile_Base)
     KmsLib::TextFile lTF;
 
     // ===== FindFirstDiff ==================================================
-    KMS_TEST_COMPARE(4, lTF.FindFirstDiff(TEST_FOLDER "\\FileA.txt", TEST_FOLDER "\\FileB.txt"));
-    KMS_TEST_COMPARE(5, lTF.FindFirstDiff(TEST_FOLDER "\\FileA.txt", TEST_FOLDER "\\FileC.txt"));
-    KMS_TEST_COMPARE(4, lTF.FindFirstDiff(TEST_FOLDER "\\FileC.txt", TEST_FOLDER "\\FileA.txt"));
+    KMS_TEST_COMPARE(4, lTF.FindFirstDiff(TEST_FOLDER SLASH "FileA.txt", TEST_FOLDER SLASH "FileB.txt"));
+    KMS_TEST_COMPARE(5, lTF.FindFirstDiff(TEST_FOLDER SLASH "FileA.txt", TEST_FOLDER SLASH "FileC.txt"));
+    KMS_TEST_COMPARE(4, lTF.FindFirstDiff(TEST_FOLDER SLASH "FileC.txt", TEST_FOLDER SLASH "FileA.txt"));
 
     // ===== Create =========================================================
 
@@ -38,7 +38,7 @@ KMS_TEST_BEGIN(TextFile_Base)
 
     try
     {
-        lTF.Create("\\\\.txt");
+        lTF.Create( SLASH SLASH ".txt");
     }
     catch (KmsLib::Exception * eE)
     {
@@ -48,7 +48,7 @@ KMS_TEST_BEGIN(TextFile_Base)
     }
 
     // ===== Open ===========================================================
-    lTF.Open(TEST_FOLDER "\\FileA.txt");
-    lTF.Open(TEST_FOLDER "\\FileB.txt");
+    lTF.Open(TEST_FOLDER SLASH "FileA.txt");
+    lTF.Open(TEST_FOLDER SLASH "FileB.txt");
 }
 KMS_TEST_END_2

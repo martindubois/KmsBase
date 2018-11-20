@@ -1,7 +1,7 @@
 
-# Author / Auteur	:	KMS -	Martin Dubois, ing.
-# Product / Produit	:	KmsBase
-# File / Fichier	:	makefile
+# Author   KMS - Martin Dubois, ing.
+# Product  KmsBase
+# File     makefile
 
 # ===== Targers / Cible ================================================
 
@@ -12,6 +12,7 @@ clean:
 	rm KmsLib/*.o
 	rm KmsLib_Test/*.o
 	rm Libraries/*.a
+	rm Linux_Windows_Test0.txt
 	rm Templates/DLL/*.o
 	rm Templates/Test/*.o
 	rm Templates/Tool/*.o

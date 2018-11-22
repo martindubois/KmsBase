@@ -21,7 +21,7 @@ KMS_TEST_BEGIN(FileHandle_Base)
 {
     KmsLib::FileHandle	lFH0;
 
-    lFH0.Create("KmsLib_Test\\Windows\\FileHandle.cpp", GENERIC_READ, 0, OPEN_EXISTING, 0);
+    lFH0.Create("KmsLib_Test\\FileHandle.cpp", GENERIC_READ, 0, OPEN_EXISTING, 0);
 
     char         lData[1024];
     unsigned int lRet;

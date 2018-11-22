@@ -1,7 +1,7 @@
 
 // Author   KMS - Martin Dubois, ing.
 // Product  KmsBase
-// File     KmsLib/Windows/DriverHandle.cpp
+// File     KmsLib/DriverHandle.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -17,7 +17,7 @@
 // ===== Interface ==========================================================
 #include <KmsLib/Exception.h>
 
-#include <KmsLib/Windows/DriverHandle.h>
+#include <KmsLib/DriverHandle.h>
 
 // Static function declarations
 /////////////////////////////////////////////////////////////////////////////
@@ -31,150 +31,145 @@ static void     GetDeviceInterfaceDetail(HDEVINFO aDevInfo, SP_DEVICE_INTERFACE_
 namespace KmsLib
 {
 
-	namespace Windows
+	// Public
+	/////////////////////////////////////////////////////////////////////////
+
+    // TODO  KmsLib.DriverHandle
+    //       Add a copy construtor and an asign operator
+
+    DriverHandle::DriverHandle()
 	{
+	}
 
-		// Public
-		/////////////////////////////////////////////////////////////////////
+	DriverHandle::~DriverHandle()
+	{
+	}
 
-        // TODO  KmsLib.DriverHandle
-        //       Add a copy construtor and an asign operator
+	void DriverHandle::CancelAll()
+	{
+		assert(INVALID_HANDLE_VALUE != mHandle);
 
-		DriverHandle::DriverHandle()
+		if (!CancelIoEx(mHandle, NULL))
 		{
+			throw new Exception(Exception::CODE_IO_CANCEL_ERROR, "CancelIoEx( ,  ) failed",
+				NULL, __FILE__, __FUNCTION__, __LINE__, 0 );
 		}
 
-		DriverHandle::~DriverHandle()
-		{
-		}
+		// NOT TESTED   KmsLib.DriverHandle
+        //              Cancelling IO / Annuler IO<br>
+        //              Testing need multithread program / Test necessite
+	    //				un programme multi-thread
+	}
 
-		void DriverHandle::CancelAll()
-		{
-			assert(INVALID_HANDLE_VALUE != mHandle);
+	void DriverHandle::Connect(const char * aLink, DWORD aDesiredAccess)
+	{
+		assert(NULL != aLink			);
+		assert(0	!= aDesiredAccess	);
 
-			if (!CancelIoEx(mHandle, NULL))
+		Create(aLink, aDesiredAccess, 0, OPEN_EXISTING, 0);
+	}
+
+	void DriverHandle::Connect(const GUID & aInterface, unsigned int aIndex, DWORD aDesiredAccess, unsigned int aFlags)
+	{
+		assert(NULL != (&aInterface)	);
+		assert(0	!= aDesiredAccess	);
+
+        HDEVINFO lDevInfo = GetClassDevs(&aInterface);
+        assert(INVALID_HANDLE_VALUE != lDevInfo);
+
+		try
+		{
+            unsigned int lIndex = 0;
+
+			for ( unsigned int i = 0;; i++ )
 			{
-				throw new Exception(Exception::CODE_IO_CANCEL_ERROR, "CancelIoEx( ,  ) failed",
-					NULL, __FILE__, __FUNCTION__, __LINE__, 0 );
-			}
+				SP_DEVINFO_DATA lDevInfoData;
 
-			// NOT TESTED   KmsLib.DriverHandle
-            //              Cancelling IO / Annuler IO<br>
-            //              Testing need multithread program / Test necessite
-			//				un programme multi-thread
-		}
+                EnumDeviceInfo(lDevInfo, i, &lDevInfoData);
 
-		void DriverHandle::Connect(const char * aLink, DWORD aDesiredAccess)
-		{
-			assert(NULL != aLink			);
-			assert(0	!= aDesiredAccess	);
+				SP_DEVICE_INTERFACE_DATA lDevIntData;
 
-			Create(aLink, aDesiredAccess, 0, OPEN_EXISTING, 0);
-		}
-
-		void DriverHandle::Connect(const GUID & aInterface, unsigned int aIndex, DWORD aDesiredAccess, unsigned int aFlags)
-		{
-			assert(NULL != (&aInterface)	);
-			assert(0	!= aDesiredAccess	);
-
-            HDEVINFO lDevInfo = GetClassDevs(&aInterface);
-            assert(INVALID_HANDLE_VALUE != lDevInfo);
-
-			try
-			{
-                unsigned int lIndex = 0;
-
-				for ( unsigned int i = 0;; i++ )
+				if (EnumDeviceInterfaces(lDevInfo, &lDevInfoData, &aInterface, &lDevIntData))
 				{
-					SP_DEVINFO_DATA lDevInfoData;
+                    if (aIndex > lIndex)
+                    {
+                        lIndex++;
+                        continue;
+                    }
 
-                    EnumDeviceInfo(lDevInfo, i, &lDevInfoData);
+                    if (0 != (aFlags & CONNECT_FLAG_OPEN_DEVICE_KEY))
+                    {
+                        mDeviceKey.Open(lDevInfo, &lDevInfoData, (0 != (aFlags & CONNECT_FLAG_ADMINISTRATOR)) ? Windows::RegistryKey::OPEN_FLAG_ADMINISTRATOR : 0);
+                    }
 
-					SP_DEVICE_INTERFACE_DATA lDevIntData;
+                    unsigned char						lBuffer[4094];
+				    SP_DEVICE_INTERFACE_DETAIL_DATA   * lDetail = reinterpret_cast<SP_DEVICE_INTERFACE_DETAIL_DATA *>(lBuffer);
 
-					if (EnumDeviceInterfaces(lDevInfo, &lDevInfoData, &aInterface, &lDevIntData))
-					{
-                        if (aIndex > lIndex)
-                        {
-                            lIndex++;
-                            continue;
-                        }
+                    GetDeviceInterfaceDetail(lDevInfo, &lDevIntData, lDetail, sizeof(lBuffer));
 
-                        if (0 != (aFlags & CONNECT_FLAG_OPEN_DEVICE_KEY))
-                        {
-                            mDeviceKey.Open(lDevInfo, &lDevInfoData, (0 != (aFlags & CONNECT_FLAG_ADMINISTRATOR)) ? RegistryKey::OPEN_FLAG_ADMINISTRATOR : 0);
-                        }
+					Connect(lDetail->DevicePath, aDesiredAccess);
 
-                        unsigned char						lBuffer[4094];
-						SP_DEVICE_INTERFACE_DETAIL_DATA   * lDetail = reinterpret_cast<SP_DEVICE_INTERFACE_DETAIL_DATA *>(lBuffer);
-
-                        GetDeviceInterfaceDetail(lDevInfo, &lDevIntData, lDetail, sizeof(lBuffer));
-
-						Connect(lDetail->DevicePath, aDesiredAccess);
-
-						// TESTED   KmsLib::DriverHandle
-                        //          KmsLib_Test.exe - DriverHandle - Setup A<br>
-                        //          Connect to a device / Connect a un
-                        //          peripherique
-						break;
-					}
+					// TESTED   KmsLib::DriverHandle
+                    //          KmsLib_Test.exe - DriverHandle - Setup A<br>
+                    //          Connect to a device / Connect a un
+                    //          peripherique
+					break;
 				}
 			}
-			catch (...)
-			{
-				// Inutile de verifier le resultat de cette fonction car
-				// cette fonction indique deja une condition d'erreur.
-				SetupDiDestroyDeviceInfoList(lDevInfo);
-
-				throw;
-			}
-
-			// TESTED   KmsLib.DriverHandle
-            //          KmsLib_Test.exe - DriverHandle - Setup A<br>
-            //          Connect to a device / Connect a un
-            //          peripherique
-            DestroyDeviceInfoList(lDevInfo);
 		}
-
-		unsigned int DriverHandle::Control(unsigned int aCode, const void * aIn, unsigned int aInSize_byte, void * aOut, unsigned int aOutSize_byte)
+		catch (...)
 		{
-			assert(INVALID_HANDLE_VALUE != mHandle);
+			// Inutile de verifier le resultat de cette fonction car
+			// cette fonction indique deja une condition d'erreur.
+			SetupDiDestroyDeviceInfoList(lDevInfo);
 
-			DWORD lInfo_byte;
-
-			if (!DeviceIoControl(mHandle, aCode, const_cast<void *>(aIn), aInSize_byte, aOut, aOutSize_byte, &lInfo_byte, NULL))
-			{
-				char lMessage[2048];
-
-				sprintf_s(lMessage, sizeof(lMessage), "DeviceIoControl( , 0x%08x, , %u bytes, , %u bytes, ,  ) failed",
-					aCode, aInSize_byte, aOutSize_byte);
-
-				throw new Exception(Exception::CODE_IOCTL_ERROR, "DeviceIoControl( , , , , , , ,  ) failed",
-					lMessage, __FILE__, __FUNCTION__, __LINE__, aCode);
-			}
-
-			// TESTED   KmsLib.DriverHandle
-            //          KmsLib_Test.exe - DriverHandle - Setup A<br>
-            //          IOCTL / IOCTL
-			if (aOutSize_byte < lInfo_byte)
-			{
-				// NOT TESTED   KmsLib.DriverHandle.ErrorHandling
-                //              The device indicates more data than expected
-                //              / Le peripherique a indique plus de donnees
-                //              qu'attendues<br>
-                //              Not easy to test / Pas facile a tester
-				char lMessage[2048];
-
-				sprintf_s(lMessage, sizeof(lMessage), "DeviceIoControl returned too much data (Code = 0x%08x, Expected = %u bytes, Returned = %u bytes)",
-					aCode, aOutSize_byte, lInfo_byte);
-
-				throw new Exception(Exception::CODE_IOCTL_ERROR, "DeviceIoControl returned too much data",
-					lMessage, __FILE__, __FUNCTION__, __LINE__, lInfo_byte);
-			}
-
-			return lInfo_byte;
+			throw;
 		}
 
+		// TESTED   KmsLib.DriverHandle
+        //          KmsLib_Test.exe - DriverHandle - Setup A<br>
+        //          Connect to a device / Connect a un
+        //          peripherique
+        DestroyDeviceInfoList(lDevInfo);
+	}
+
+	unsigned int DriverHandle::Control(unsigned int aCode, const void * aIn, unsigned int aInSize_byte, void * aOut, unsigned int aOutSize_byte)
+	{
+		assert(INVALID_HANDLE_VALUE != mHandle);
+
+		DWORD lInfo_byte;
+
+		if (!DeviceIoControl(mHandle, aCode, const_cast<void *>(aIn), aInSize_byte, aOut, aOutSize_byte, &lInfo_byte, NULL))
+		{
+			char lMessage[2048];
+            
+            sprintf_s(lMessage, sizeof(lMessage), "DeviceIoControl( , 0x%08x, , %u bytes, , %u bytes, ,  ) failed",
+				aCode, aInSize_byte, aOutSize_byte);
+
+			throw new Exception(Exception::CODE_IOCTL_ERROR, "DeviceIoControl( , , , , , , ,  ) failed",
+				lMessage, __FILE__, __FUNCTION__, __LINE__, aCode);
+		}
+
+		// TESTED   KmsLib.DriverHandle
+        //          KmsLib_Test.exe - DriverHandle - Setup A<br>
+        //          IOCTL / IOCTL
+		if (aOutSize_byte < lInfo_byte)
+		{
+			// NOT TESTED   KmsLib.DriverHandle.ErrorHandling
+            //              The device indicates more data than expected
+            //              / Le peripherique a indique plus de donnees
+            //              qu'attendues<br>
+            //              Not easy to test / Pas facile a tester
+			char lMessage[2048];
+
+			sprintf_s(lMessage, sizeof(lMessage), "DeviceIoControl returned too much data (Code = 0x%08x, Expected = %u bytes, Returned = %u bytes)",
+				aCode, aOutSize_byte, lInfo_byte);
+
+			throw new Exception(Exception::CODE_IOCTL_ERROR, "DeviceIoControl returned too much data",
+				lMessage, __FILE__, __FUNCTION__, __LINE__, lInfo_byte);
+		}
+
+		return lInfo_byte;
 	}
 
 }

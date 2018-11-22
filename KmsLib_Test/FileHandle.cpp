@@ -1,7 +1,7 @@
 
-// Author / Auteur    KMS - Martin Dubois, ing.
-// Product / Produit  KmsBase
-// File / Fichier     KmsLib_Test/Windows/FileHandle.cpp
+// Author   KMS - Martin Dubois, ing.
+// Product  KmsBase
+// File     KmsLib_Test/FileHandle.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -11,7 +11,7 @@
 
 // ===== Interface ==========================================================
 #include <KmsLib\Exception.h>
-#include <KmsLib\Windows\FileHandle.h>
+#include <KmsLib\FileHandle.h>
 #include <KmsTest.h>
 
 // Tests
@@ -19,7 +19,7 @@
 
 KMS_TEST_BEGIN(FileHandle_Base)
 {
-    KmsLib::Windows::FileHandle	lFH0;
+    KmsLib::FileHandle	lFH0;
 
     lFH0.Create("KmsLib_Test\\Windows\\FileHandle.cpp", GENERIC_READ, 0, OPEN_EXISTING, 0);
 

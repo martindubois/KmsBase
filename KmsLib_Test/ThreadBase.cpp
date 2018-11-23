@@ -102,7 +102,7 @@ KMS_TEST_BEGIN(ThreadBase_Base)
     KmsLib::ThreadBase::Sleep_ms(1);
 
     // ===== StopAndWait ====================================================
-    lT0.StopAndWait(0, 0xffffffff);
+    KMS_TEST_ASSERT(lT0.StopAndWait(0, 0xffffffff));
 
     // ===== Sequences ======================================================
 
@@ -117,8 +117,8 @@ KMS_TEST_BEGIN(ThreadBase_Base)
     lT0.GetCurrentPriority();
 
     lT0.Stop();
-    lT0.Wait(KmsLib::ThreadBase::FLAG_TERMINATE_ON_TIMEOUT, 3000);
-    lT0.Wait();
+    KMS_TEST_ASSERT(!lT0.Wait(true, 3000));
+    KMS_TEST_ASSERT(lT0.Wait());
 
     KmsLib::ThreadBase::Sleep_ms(1);
 
@@ -130,7 +130,7 @@ KMS_TEST_BEGIN(ThreadBase_Base)
 
     lT0.GetCurrentPriority();
 
-    lT0.StopAndWait();
+    KMS_TEST_ASSERT(lT0.StopAndWait());
 
     lT0.SetMode(Test::MODE_NORMAL);
     lT0.SetPriority(KmsLib::ThreadBase::PRIORITY_CRITICAL);

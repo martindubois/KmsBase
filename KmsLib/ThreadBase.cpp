@@ -220,17 +220,21 @@ namespace KmsLib
         }
     }
 
-    void ThreadBase::StopAndWait(unsigned int aFlags, unsigned int aTimeout_ms)
+    bool ThreadBase::StopAndWait(bool aForce, unsigned int aTimeout_ms)
     {
         Stop();
-        Wait(aFlags, aTimeout_ms);
+
+       return Wait(aForce, aTimeout_ms);
     }
 
-    void ThreadBase::Wait(unsigned int aFlags, unsigned int aTimeout_ms)
+    bool ThreadBase::Wait(bool aForce, unsigned int aTimeout_ms)
     {
+        bool lResult = false;
+
         switch (mState)
         {
         case STATE_INIT :
+            lResult = true;
             break;
 
         case STATE_RUNNING        :
@@ -244,34 +248,41 @@ namespace KmsLib
             {
             case WAIT_OBJECT_0:
                 CloseThread();
+                assert(STATE_INIT == mState );
+                assert(NULL       == mThread);
+
+                lResult = true;
                 break;
 
             case WAIT_TIMEOUT:
-                if (0 != (FLAG_TERMINATE_ON_TIMEOUT & aFlags))
+                if (aForce)
                 {
                     mState = STATE_STOPPING;
 
-                    if (!TerminateThread(mThread, __LINE__))
+                    BOOL lRetB = TerminateThread(mThread, __LINE__);
+
+                    CloseThread();
+                    assert(STATE_INIT == mState );
+                    assert(NULL       == mThread);
+
+                    if (!lRetB)
                     {
                         // NOT TESTED  KmsLib::ThreadBase.ErrorHandling
                         //             TerminateThread fail
-                        CloseThread();
-                        assert(STATE_INIT == mState );
-                        assert(NULL       == mThread);
-
                         throw new Exception(Exception::CODE_THREAD_ERROR, "TerminateThread( ,  ) failed", 0, __FILE__, __FUNCTION__, __LINE__, 0);
                     }
-
-                    CloseThread();
-                    break;
                 }
+                break;
 
             default:
                 // NOT TESTED  KmsLib.ThreadBase.ErrorHandling
                 //             WaitForSingleObject fail
-                CloseThread();
-                assert(STATE_INIT == mState );
-                assert(NULL       == mThread);
+                if (aForce)
+                {
+                    CloseThread();
+                    assert(STATE_INIT == mState );
+                    assert(NULL       == mThread);
+                }
 
                 throw new Exception(Exception::CODE_THREAD_ERROR, "WaitForSingleObject( ,  ) failed", 0, __FILE__, __FUNCTION__, __LINE__, 0);
             }
@@ -280,8 +291,7 @@ namespace KmsLib
         default: assert(false);
         }
     
-        assert(STATE_INIT == mState );
-        assert(NULL       == mThread);
+        return lResult;
     }
 
     // Internal

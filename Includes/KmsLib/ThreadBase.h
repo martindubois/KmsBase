@@ -23,11 +23,6 @@ namespace KmsLib
 
     public:
 
-        enum
-        {
-            FLAG_TERMINATE_ON_TIMEOUT = 0x00000001,
-        };
-
         typedef enum
         {
             PRIORITY_UNKNOWN,
@@ -198,29 +193,35 @@ namespace KmsLib
 
         /// \cond	en
         ///	\brief	Stop the thread and wait for it to stop
-        /// \param  aFlags       See FLAG_...
+        /// \param  aForce       Force the thread end
         /// \param  aTimeout_ms  The timeout
+        /// \retval false  The thread did not stop normaly
         /// \endcond
         /// \cond	fr
         /// \brief	Arreter le thread attendre qu'il soit arreter
-        /// \param  aFlags       Void FLAG_...
+        /// \param  aForce       Force la fin d<execution du thread
         /// \param  aTimeout_ms  Le temps maximum d'attente
+        /// \retval false  Le thread ne c'est pas arreter normalement
         /// \endcond
+        /// \retval true  OK
         /// \throw  Exception  CODE_STATE_ERROR
-        void StopAndWait(unsigned int aFlags = 0, unsigned int aTimeout_ms = 0xffffffff);
+        bool StopAndWait(bool aForce = false, unsigned int aTimeout_ms = 0xffffffff);
 
         /// \cond	en
         ///	\brief	Wait for the thread to stop.
-        /// \param  aFlags       See FLAG_...
+        /// \param  aForce       Force the thread end
         /// \param  aTimeout_ms  The timeout
+        /// \retval false  The thread did not stop normaly
         /// \endcond
         /// \cond	fr
         /// \brief	Attendre que le thread soit arreter
-        /// \param  aFlags       Void FLAG_...
+        /// \param  aForce       Force la fin d<execution du thread
         /// \param  aTimeout_ms  Le temps maximum d'attente
+        /// \retval false  Le thread ne c'est pas arreter normalement
         /// \endcond
+        /// \retval true  OK
         /// \throw  Exception  CODE_THREAD_ERROR
-        void Wait(unsigned int aFlags = 0, unsigned int aTimeout_ms = 0xffffffff);
+        bool Wait(bool aForce = false, unsigned int aTimeout_ms = 0xffffffff);
 
     // internal:
 

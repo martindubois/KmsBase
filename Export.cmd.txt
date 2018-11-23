@@ -48,6 +48,7 @@ Includes/KmsLib
 	RLE.h
 	Socket.h
 	TextFile.h
+	ThreadBase.h
 	ToolBase.h
 	ValueVector.h
 	Walker.h

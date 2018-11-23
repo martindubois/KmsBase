@@ -338,9 +338,11 @@
   <ItemGroup>
     <ClCompile Include="CmdLineParser.cpp" />
     <ClCompile Include="DebugLog.cpp" />
+    <ClCompile Include="DriverHandle.cpp" />
     <ClCompile Include="Dump.cpp" />
     <ClCompile Include="Exception.cpp" />
     <ClCompile Include="File.cpp" />
+    <ClCompile Include="FileHandle.cpp" />
     <ClCompile Include="HTML5.cpp" />
     <ClCompile Include="IgnoreList.cpp" />
     <ClCompile Include="KmsLib_Test.cpp" />
@@ -363,13 +365,12 @@
     <ClCompile Include="String.cpp" />
     <ClCompile Include="TextFileEditor.cpp" />
     <ClCompile Include="TextFile.cpp" />
+    <ClCompile Include="ThreadBase.cpp" />
     <ClCompile Include="ToolBase.cpp" />
     <ClCompile Include="ValueVector.cpp" />
     <ClCompile Include="Walker.cpp" />
     <ClCompile Include="Walker_Smart.cpp" />
     <ClCompile Include="Windows\ComPortHandle.cpp" />
-    <ClCompile Include="Windows\DriverHandle.cpp" />
-    <ClCompile Include="Windows\FileHandle.cpp" />
     <ClCompile Include="Windows\RegistryKey.cpp" />
     <ClCompile Include="Windows\Service.cpp" />
     <ClCompile Include="Windows\SystemLog.cpp" />

@@ -35,7 +35,10 @@ KMS_TEST_GROUP_LIST_END
 extern int CmdLineParser_Base	();
 extern int DebugLog_Base		();
 extern int Dump_Base			();
+extern int DriverHandle_Base    ();
 extern int Exception_Base		();
+extern int File_Base            ();
+extern int FileHandle_Base      ();
 extern int IgnoreList_Base		();
 extern int Linux_Windows_Base	();
 extern int MemTester_Base		();
@@ -43,6 +46,7 @@ extern int Ring_Base			();
 extern int RLE_Base				();
 extern int String_Base          ();
 extern int TextFile_Base        ();
+extern int ThreadBase_Base      ();
 extern int ToolBase_Base		();
 extern int ValueVector_Base     ();
 extern int Walker_Base			();
@@ -54,11 +58,8 @@ extern int Walker_Base			();
 #ifdef _KMS_WINDOWS_
 	extern int ComPortHandle_Base		();
 	extern int ComPortHandle_SetupA		();
-	extern int DriverHandle_Base		();
 	extern int DriverHandle_SetupA		();
 	extern int DriverHandle_SetupC		();
-	extern int File_Base                ();
-	extern int FileHandle_Base			();
 	extern int HTML5_Base          		();
 	extern int NetworkAddress_Base      ();
 	extern int RegistryKey_Base			();
@@ -76,9 +77,12 @@ extern int Walker_Base			();
 KMS_TEST_LIST_BEGIN
 	KMS_TEST_LIST_ENTRY(CmdLineParser_Base	, "CmdLineParser - Base"	, 0, 0)
 	KMS_TEST_LIST_ENTRY(DebugLog_Base		, "DebugLog - Base"			, 0, 0)
-	KMS_TEST_LIST_ENTRY(Dump_Base			, "Dump - Base"				, 0, 0)
+    KMS_TEST_LIST_ENTRY(DriverHandle_Base   , "DriverHandle - Base"     , 0, 0)
+    KMS_TEST_LIST_ENTRY(Dump_Base			, "Dump - Base"				, 0, 0)
 	KMS_TEST_LIST_ENTRY(Exception_Base		, "Exception - Base"		, 0, 0)
-	KMS_TEST_LIST_ENTRY(IgnoreList_Base		, "IgnoreList - Base"		, 0, 0)
+    KMS_TEST_LIST_ENTRY(File_Base           , "File - Base"             , 0, 0)
+    KMS_TEST_LIST_ENTRY(FileHandle_Base     , "FileHandle - Base"       , 0, 0)
+    KMS_TEST_LIST_ENTRY(IgnoreList_Base		, "IgnoreList - Base"		, 0, 0)
 	KMS_TEST_LIST_ENTRY(Linux_Windows_Base	, "Linux - Windows - Base"	, 0, 0)
 	KMS_TEST_LIST_ENTRY(MemTester_Base		, "MemTester - Base"		, 0, 0)
 	KMS_TEST_LIST_ENTRY(RLE_Base			, "RLE - Base"				, 0, 0)
@@ -86,6 +90,7 @@ KMS_TEST_LIST_BEGIN
     KMS_TEST_LIST_ENTRY(String_Base         , "String - Base"           , 0, 0)
     KMS_TEST_LIST_ENTRY(TextFile_Base       , "TextFile - Base"         , 0, 0)
 	KMS_TEST_LIST_ENTRY(ToolBase_Base		, "ToolBase - Base"			, 0, 0)
+    KMS_TEST_LIST_ENTRY(ThreadBase_Base     , "ThreadBase - Base"       , 0, 0)
     KMS_TEST_LIST_ENTRY(ValueVector_Base    , "ValueVector - Base"      , 0, 0)
 	KMS_TEST_LIST_ENTRY(Walker_Base			, "Walker - Base"			, 0, 0)
 
@@ -96,11 +101,8 @@ KMS_TEST_LIST_BEGIN
     #ifdef _KMS_WINDOWS_
 		KMS_TEST_LIST_ENTRY(ComPortHandle_Base		, "ComPortHandle - Base"		, 0, 0									)
 		KMS_TEST_LIST_ENTRY(ComPortHandle_SetupA	, "ComPortHandle - SetupA"		, 2, KMS_TEST_FLAG_INTERACTION_NEEDED	)
-		KMS_TEST_LIST_ENTRY(DriverHandle_Base		, "DriverHandle - Base"			, 0, 0									)
 		KMS_TEST_LIST_ENTRY(DriverHandle_SetupA		, "DriverHandle - Setup A"		, 2, KMS_TEST_FLAG_INTERACTION_NEEDED	)
 		KMS_TEST_LIST_ENTRY(DriverHandle_SetupC		, "DriverHandle - Setup C"		, 4, KMS_TEST_FLAG_INTERACTION_NEEDED	)
-		KMS_TEST_LIST_ENTRY(File_Base               , "File - Base"                 , 0, 0                                  )
-		KMS_TEST_LIST_ENTRY(FileHandle_Base			, "FileHandle - Base"			, 0, 0									)
 		KMS_TEST_LIST_ENTRY(HTML5_Base              , "HTML5 - Base"                , 0, 0                                  )
 		KMS_TEST_LIST_ENTRY(NetworkAddress_Base     , "NetworkAddress - Base"       , 0, 0                                  )
 		KMS_TEST_LIST_ENTRY(RegistryKey_Base		, "RegistryKey - Base"			, 0, 0									)

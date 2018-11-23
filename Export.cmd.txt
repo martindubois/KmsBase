@@ -36,8 +36,10 @@ Includes
 Includes/KmsLib
 	CmdLineParser.h
 	DebugLog.h
+	DriverHandle.h
 	Dump.h
 	Exception.h
+	FileHandle.h
     HTML5.h
 	IgnoreList.h
 	KmsLib.h
@@ -46,6 +48,7 @@ Includes/KmsLib
 	RLE.h
 	Socket.h
 	TextFile.h
+	ThreadBase.h
 	ToolBase.h
 	ValueVector.h
 	Walker.h
@@ -56,8 +59,6 @@ Includes/KmsLib/Linux
 
 Includes/KmsLib/Windows
 	ComPortHandle.h
-	DriverHandle.h
-	FileHandle.h
 	RegistryKey.h
 	Service.h
 	SystemLog.h

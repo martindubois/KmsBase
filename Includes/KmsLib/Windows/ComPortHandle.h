@@ -1,7 +1,7 @@
 
-// Product / Produit	:	KmsBase
+// Product  KmsBase
 
-/// \author	KMS	-	Martin Dubois, ing.
+/// \author	KMS	- Martin Dubois, ing.
 /// \file	Includes/KmsLib/Windows/ComPortHandle.h
 
 #pragma once
@@ -10,7 +10,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 // ===== Includes ===========================================================
-#include <KmsLib/Windows/FileHandle.h>
+#include <KmsLib/FileHandle.h>
 
 namespace KmsLib
 {

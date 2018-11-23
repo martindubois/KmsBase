@@ -5,16 +5,16 @@
 
 #pragma  once
 
-// Constants / Constantes
+// Constants
 /////////////////////////////////////////////////////////////////////////////
 
-#define  VERSION_MAJOR          (2)
-#define  VERSION_MINOR          (5)
-#define  VERSION_BUILD          (10)
+#define  VERSION_MAJOR          (3)
+#define  VERSION_MINOR          (0)
+#define  VERSION_BUILD          (1)
 #define  VERSION_COMPATIBILITY  (0)
 
-#define  VERSION_RC    2,5,10,0
-#define	 VERSION_STR   "2.5.10.0"
-#define	 VERSION_STR0  "2.5.10.0\0"
+#define  VERSION_RC    3,0,1,0
+#define	 VERSION_STR   "3.0.1.0"
+#define	 VERSION_STR0  "3.0.1.0\0"
 
 #define  VERSION_TYPE  "KI"

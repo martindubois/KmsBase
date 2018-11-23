@@ -17,9 +17,9 @@ if ""=="%1" (
 )
 
 if ""=="%2" (
-	set DST="K:\Export\KmsBase\%1"
+	set DST="K:\Export\KmsBase\%1_Windows"
 ) else (
-	set DST="K:\Export\KmsBase\%1_%2"
+	set DST="K:\Export\KmsBase\%1_%2_Windows"
 )
 
 if exist %DST% (

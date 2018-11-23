@@ -1,7 +1,7 @@
 
-// Author / Auteur	:	KMS -	Martin Dubois, ing.
-// Project / Projet :	KmsBase
-// File / Fichier	:	KmsLib/Windows/Service.cpp
+// Author   KMS - Martin Dubois, ing.
+// Product  KmsBase
+// File     KmsLib/Windows/Service.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -14,6 +14,7 @@
 
 // ===== Includes ===========================================================
 #include <KmsLib/Exception.h>
+#include <KmsLib/ThreadBase.h>
 
 #include <KmsLib/Windows/Service.h>
 
@@ -374,7 +375,7 @@ namespace KmsLib
 
 			for (unsigned int lRetry = 0; lRetry < 30; lRetry++)
 			{
-				Sleep(500); // 0.5 s
+				ThreadBase::Sleep_ms(500); // 0.5 s
 
 				UpdateStatus();
 				if (aPending != mStatus.dwCurrentState)

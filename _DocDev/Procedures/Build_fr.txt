@@ -22,14 +22,9 @@ Version            ______ . ______ . ______ . ______ - ______________________
 [ ] Modifier le fichier "KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt";
 
 ===== Linux Seulement =======================================================
-[ ] Modifier le fichier "Script/Install.sh" pour incrementer le numero de
-	version si necessaire;
 [ ] Ouvrir un "Terminal"
     - Naviguer jusqu'au repertoire de produit;
-    - Executer "make clean";
-    - Executer "make";
-    - Executer "./Test.sh";
-    - Executer "./Export.sh {Major}.{Minor}.{Build}_{Type}"
+    - Executer "./Build.sh {Major.Minor.Build_Type}";
 [ ] Deplacer les fichiers exportes vers le serveur;
 
 ===== OS X Only =============================================================
@@ -38,7 +33,7 @@ Version            ______ . ______ . ______ . ______ - ______________________
     - Executer "make -f makefile_os_x clean"
     - Executer "make -f makefile_os_x"
     - Executer "./Test.sh"
-    - Executer "./Export.sh {Major}.{Minor}.{Build}_{Type}"
+    - Executer "./Export.sh {Major.Minor.Build_Type}"
 [ ] Deplacer les fichiers exportes vers le serveur;
 
 ===== Windows Seulement =====================================================
@@ -54,8 +49,8 @@ Version            ______ . ______ . ______ . ______ - ______________________
 
 ===== Tous les systemes d'exploitation ======================================
 [ ] Indexer les fichiers modifies et les commettre en utilisant
-    "{Major}.{Minor}.{Build}_{Type}_{Windows|Linux|OSX}" comme message;
-[ ] Ajouter le tag "{Major}.{Minor}.{Build}_{Type}_{Windows|Linux|OSX}".
+    "{Major.Minor.Build_Type_Windows|Linux|OSX}" comme message;
+[ ] Ajouter le tag "{Major.Minor.Build_Type_Windows|Linux|OSX}".
 [ ] Pousser le depot GIT sur le	serveur.
 
 Heure                                                         ______ : ______

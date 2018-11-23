@@ -8,14 +8,14 @@
 all:	Binaries/KmsLib_Test Binaries/TODO.so Binaries/TODO_Test Binaries/TODO_Tool Libraries/KmsLib.a
 
 clean:
-	rm Binaries/*
-	rm KmsLib/*.o
-	rm KmsLib_Test/*.o
-	rm Libraries/*.a
-	rm Linux_Windows_Test0.txt
-	rm Templates/DLL/*.o
-	rm Templates/Test/*.o
-	rm Templates/Tool/*.o
+	rm -f Binaries/*
+	rm -f KmsLib/*.o
+	rm -f KmsLib_Test/*.o
+	rm -f Libraries/*.a
+	rm -f Linux_Windows_Test0.txt
+	rm -f Templates/DLL/*.o
+	rm -f Templates/Test/*.o
+	rm -f Templates/Tool/*.o
 
 depend:
 	cd KmsLib; make depend

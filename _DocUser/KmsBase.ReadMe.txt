@@ -3,7 +3,8 @@ Author   KMS - Martin Dubois, ing.
 Product  KmsBase
 File     _DocUser/KmsBase.ReadMe.txt
 
-2.5.9
+2.5.10
+- Compile on Ubuntu 18.04.1
 - Compile with Visual Studio 2017 (15.8.3)
 
 2.5.6

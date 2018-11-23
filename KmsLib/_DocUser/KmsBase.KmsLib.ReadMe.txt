@@ -3,7 +3,7 @@ Author   KMS - Martin Dubois, ing.
 Product  KmsBase
 File     KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
 
-2.5.7
+2.5.10
 - KmsLib::ValueVector
 
 2.5.5

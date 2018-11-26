@@ -6,13 +6,35 @@
 // Includes
 /////////////////////////////////////////////////////////////////////////////
 
-// ===== Windows ============================================================
-#include <Windows.h>
+#include <KmsBase.h>
+
+// ===== C ===================================================================
+#include <fcntl.h>
+
+#ifdef _KMS_WINDOWS_
+    // ===== Windows ============================================================
+    #include <Windows.h>
+#endif
 
 // ===== Interface ==========================================================
-#include <KmsLib\Exception.h>
-#include <KmsLib\FileHandle.h>
+#include <KmsLib/Exception.h>
+#include <KmsLib/FileHandle.h>
 #include <KmsTest.h>
+
+// Constants
+/////////////////////////////////////////////////////////////////////////////
+
+#ifdef _KMS_LINUX_
+
+    #define OPEN_EXISTING   0
+    #define GENERIC_READ    O_RDONLY
+    #define GENERIC_WRITE   O_WRONLY
+
+#endif
+
+#ifdef _KMS_WINDOWS_
+
+#endif
 
 // Tests
 /////////////////////////////////////////////////////////////////////////////
@@ -21,7 +43,7 @@ KMS_TEST_BEGIN(FileHandle_Base)
 {
     KmsLib::FileHandle	lFH0;
 
-    lFH0.Create("KmsLib_Test\\FileHandle.cpp", GENERIC_READ, 0, OPEN_EXISTING, 0);
+    lFH0.Create("KmsLib_Test" SLASH "FileHandle.cpp", GENERIC_READ, 0, OPEN_EXISTING, 0);
 
     char         lData[1024];
     unsigned int lRet;
@@ -41,8 +63,10 @@ KMS_TEST_BEGIN(FileHandle_Base)
         KMS_TEST_COMPARE(KmsLib::Exception::CODE_WRITE_FILE_ERROR, eE->GetCode());
     }
 
-    HANDLE lHandle = lFH0;
-    KMS_TEST_ASSERT(INVALID_HANDLE_VALUE != lHandle);
+    #ifdef _KMS_WINDOWS_
+        HANDLE lHandle = lFH0;
+        KMS_TEST_ASSERT(INVALID_HANDLE_VALUE != lHandle);
+    #endif
 
     lFH0.Create(".gitignore", GENERIC_WRITE, 0, OPEN_EXISTING, 0);
 

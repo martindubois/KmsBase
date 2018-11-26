@@ -13,8 +13,11 @@ OUTPUT = ../Binaries/KmsLib_Test
 
 SOURCES =	CmdLineParser.cpp	\
 			DebugLog.cpp		\
+			DriverHandle.cpp    \
 			Dump.cpp			\
 			Exception.cpp		\
+			File.cpp			\
+			FileHandle.cpp      \
 			IgnoreList.cpp      \
 			KmsLib_Test.cpp		\
 			Linux/Linux_Windows.cpp	\
@@ -24,6 +27,7 @@ SOURCES =	CmdLineParser.cpp	\
 			String.cpp			\
 			TextFile.cpp		\
 			ToolBase.cpp		\
+			ThreadBase.cpp      \
 			ValueVector.cpp		\
 			Walker.cpp
 
@@ -39,7 +43,7 @@ OBJECTS = $(SOURCES:.cpp=.o)
 # ===== Targets / Cibles ====================================================
 
 $(OUTPUT) : $(OBJECTS) $(LIBRARIES)
-	g++ -o $@ $^
+	g++ -pthread -o $@ $^
 
 depend:
 	makedepend -Y $(INCLUDES) $(SOURCES)

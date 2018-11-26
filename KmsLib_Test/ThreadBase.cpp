@@ -11,6 +11,9 @@
 // ===== C ==================================================================
 #include <assert.h>
 
+// ===== C++ ================================================================
+#include <exception>
+
 // ===== Includes ===========================================================
 #include <KmsTest.h>
 
@@ -106,21 +109,25 @@ KMS_TEST_BEGIN(ThreadBase_Base)
 
     // ===== Sequences ======================================================
 
-    lT0.SetMode(Test::MODE_HANG);
-    lT0.SetPriority(KmsLib::ThreadBase::PRIORITY_LOW);
-    lT0.Start();
+    #ifdef _KMS_WINDOWS_
 
-    KmsLib::ThreadBase::Sleep_ms(2);
+        lT0.SetMode(Test::MODE_HANG);
+        lT0.SetPriority(KmsLib::ThreadBase::PRIORITY_LOW);
+        lT0.Start();
 
-    lT0.GetCurrentPriority();
-    lT0.SetPriority(KmsLib::ThreadBase::PRIORITY_NORMAL);
-    lT0.GetCurrentPriority();
+        KmsLib::ThreadBase::Sleep_ms(2);
 
-    lT0.Stop();
-    KMS_TEST_ASSERT(!lT0.Wait(true, 3000));
-    KMS_TEST_ASSERT(lT0.Wait());
+        lT0.GetCurrentPriority();
+        lT0.SetPriority(KmsLib::ThreadBase::PRIORITY_NORMAL);
+        lT0.GetCurrentPriority();
 
-    KmsLib::ThreadBase::Sleep_ms(1);
+        lT0.Stop();
+        KMS_TEST_ASSERT(!lT0.Wait(true, 3000));
+        KMS_TEST_ASSERT(lT0.Wait());
+
+        KmsLib::ThreadBase::Sleep_ms(1);
+
+    #endif
 
     lT0.SetMode(Test::MODE_EXCEPTION);
     lT0.SetPriority(KmsLib::ThreadBase::PRIORITY_HIGH);
@@ -170,7 +177,7 @@ unsigned int Test::Run()
     switch (mMode)
     {
     case MODE_EXCEPTION:
-        throw std::exception("Test");
+        throw std::exception();
 
     case MODE_HANG:
         for (;;)

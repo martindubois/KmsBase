@@ -41,14 +41,6 @@ namespace KmsLib
         virtual ~FileHandle();
 
         /// \cond	en
-        ///	\brief	Cast operator
-        /// \endcond
-        /// \cond	fr
-        /// \brief	Operateur de conversion
-        /// \endcond
-        operator HANDLE ();
-
-        /// \cond	en
         ///	\brief	Is the HANDLE open?
         /// \retval	false  The HANDLE is closed.
         /// \retval	true   The HANDLE is opened.
@@ -72,7 +64,7 @@ namespace KmsLib
         /// \cond	en
         ///	\brief	See CreateFile
         /// \param	aFileName		      Name of the file
-        /// \param	aDesiredAccess		  See GENERIC_...
+        /// \param	aDesiredAccess		  See GENERIC_... or O_...
         /// \param	aSharedMode			  See ...
         /// \param	aCreationDisposition  See ...
         /// \param	aFlagsAndAttributes	  See ...
@@ -80,13 +72,13 @@ namespace KmsLib
         /// \cond	fr
         /// \brief	Voir CreateFileN		
         /// \param	aFileName		      Nom du fichier
-        /// \param	aDesiredAccess		  Voir GENERIC_...
+        /// \param	aDesiredAccess		  Voir GENERIC_... ou O_...
         /// \param	aSharedMode			  Voir ...
         /// \param	aCreationDisposition  Voir ...
         /// \param	aFlagsAndAttributes	  Voir ...
         /// \endcond
         /// \exception	Exception  CODE_IO_ERROR
-        void Create(const char * aFileName, DWORD aDesiredAccess, DWORD aSharedMode, DWORD aCreationDisposition, DWORD aFlagsAndAttributes);
+        void Create(const char * aFileName, unsigned int aDesiredAccess, unsigned int aSharedMode, unsigned int aCreationDisposition, unsigned int aFlagsAndAttributes);
 
         /// \cond	en
         /// \brief	See ReadFile
@@ -116,9 +108,39 @@ namespace KmsLib
         /// \exception	Exception	CODE_IO_ERROR
         void Write(const void * aIn, unsigned int aInSize_byte);
 
+        #ifdef _KMS_LINUX_
+
+            /// \cond	en
+            ///	\brief	Cast operator
+            /// \endcond
+            /// \cond	fr
+            /// \brief	Operateur de conversion
+            /// \endcond
+            operator int ();
+
+        #endif
+
+        #ifdef _KMS_WINDOWS_
+
+            /// \cond	en
+            ///	\brief	Cast operator
+            /// \endcond
+            /// \cond	fr
+            /// \brief	Operateur de conversion
+            /// \endcond
+            operator HANDLE ();
+
+        #endif
+
     protected:
 
-        HANDLE mHandle;
+        #ifdef _KMS_LINUX_
+            int mHandle;
+        #endif
+
+        #ifdef _KMS_WINDOWS_
+            HANDLE mHandle;
+        #endif
         
     private:
 
@@ -133,7 +155,13 @@ namespace KmsLib
 
     inline bool FileHandle::IsOpen() const
     {
-        return (INVALID_HANDLE_VALUE != mHandle);
+        #ifdef _KMS_LINUX_
+            return ((-1) != mHandle);
+        #endif
+
+        #ifdef _KMS_WINDOWS_
+            return (INVALID_HANDLE_VALUE != mHandle);
+        #endif
     }
 
 }

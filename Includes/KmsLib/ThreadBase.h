@@ -249,11 +249,21 @@ namespace KmsLib
 
         void ApplyPriority();
         void CloseThread  ();
+        void Terminate    ();
+
+        unsigned int Wait_Internal(unsigned int aTimeout_ms);
 
         Priority mPriority;
         State    mState   ;
-        HANDLE   mThread  ;
-        DWORD    mThreadId;
+
+        #ifdef _KMS_LINUX_
+            pthread_t mThread;
+        #endif
+
+        #ifdef _KMS_WINDOWS_
+            HANDLE mThread  ;
+            DWORD  mThreadId;
+        #endif
 
     };
 

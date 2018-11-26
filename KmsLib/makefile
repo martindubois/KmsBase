@@ -11,15 +11,18 @@ OUTPUT = ../Libraries/KmsLib.a
 
 SOURCES =	CmdLineParser.cpp		\
 			DebugLog.cpp			\
+			DriverHandle.cpp        \
 			Dump.cpp				\
 			Exception.cpp			\
 			File.cpp		        \
+			FileHandle.cpp          \
 			IgnoreList.cpp			\
 			Linux/Windows.cpp		\
 			MemTester.cpp			\
 			RLE.cpp					\
 			String.cpp		        \
 			TextFile.cpp			\
+			ThreadBase.cpp          \
 			ToolBase.cpp			\
 			ValueVector.cpp			\
 			Walker.cpp

@@ -6,16 +6,32 @@
 // Includes
 /////////////////////////////////////////////////////////////////////////////
 
+#include <KmsBase.h>
+
 // ===== C ==================================================================
 #include <assert.h>
 
-// ===== Windows ============================================================
-#include <Windows.h>
+#ifdef _KMS_LINUX_
+    // ===== System =========================================================
+    #include <sys/fcntl.h>
+#endif
+
+#ifdef _KMS_WINDOWS_
+    // ===== Windows ========================================================
+    #include <Windows.h>
+#endif
 
 // ===== Interface ==========================================================
 #include <KmsLib/Exception.h>
 
 #include <KmsLib/FileHandle.h>
+
+// Constants
+/////////////////////////////////////////////////////////////////////////////
+
+#ifdef _KMS_LINUX_
+    #define INVALID_HANDLE_VALUE (-1)
+#endif
 
 namespace KmsLib
 {
@@ -35,52 +51,72 @@ namespace KmsLib
 		}
 	}
 
-	FileHandle::operator HANDLE ()
-	{
-		assert(INVALID_HANDLE_VALUE != mHandle);
-
-		return mHandle;
-	}
-
 	void FileHandle::Close()
 	{
 		assert(INVALID_HANDLE_VALUE != mHandle);
 
-		BOOL lRet = ::CloseHandle(mHandle);
+        #ifdef _KMS_LINUX_
 
-		mHandle = INVALID_HANDLE_VALUE;
+            close(mHandle);
 
-		if (!lRet)
-		{
-			// PAS TESTE : Difficile de faire echouer CloseHandle.
-			throw Exception(Exception::CODE_CLOSE_HANDLE_ERROR, "CloseHandle(  ) failed",
-				NULL, __FILE__, __FUNCTION__, __LINE__, 0);
-		}
+        #endif
+
+        #ifdef _KMS_WINDOWS_
+
+            BOOL lRet = ::CloseHandle(mHandle);
+
+            if (!lRet)
+            {
+                // PAS TESTE : Difficile de faire echouer CloseHandle.
+                    throw Exception(Exception::CODE_CLOSE_HANDLE_ERROR, "CloseHandle(  ) failed",
+                    NULL, __FILE__, __FUNCTION__, __LINE__, 0);
+            }
+
+        #endif
+
+        mHandle = INVALID_HANDLE_VALUE;
 	}
 
-	void FileHandle::Create(const char * aFileName, DWORD aDesiredAccess, DWORD aSharedMode, DWORD aCreationDisposition, DWORD aFlagsAndAttributes)
+	void FileHandle::Create(const char * aFileName, unsigned int aDesiredAccess, unsigned int aSharedMode, unsigned int aCreationDisposition, unsigned int aFlagsAndAttributes)
 	{
 		assert(NULL != aFileName);
-		assert(0 != aDesiredAccess);
 
-		if (INVALID_HANDLE_VALUE != mHandle)
+        if (INVALID_HANDLE_VALUE != mHandle)
 		{
 			Close();
 		}
 
-		assert(INVALID_HANDLE_VALUE == mHandle);
+        assert(INVALID_HANDLE_VALUE == mHandle);
 
-		mHandle = CreateFile(aFileName, aDesiredAccess, aSharedMode, NULL, aCreationDisposition, aFlagsAndAttributes, NULL);
-		if (INVALID_HANDLE_VALUE == mHandle)
-		{
-			char lMessage[2048];
+        char lMessage[2048];
 
-			sprintf_s(lMessage, sizeof(lMessage), "CreateFile( \"%s\", 0x%08x, 0x%08x, , 0x%08x, 0x%08x,  ) failed",
-				aFileName, aDesiredAccess, aSharedMode, aCreationDisposition, aFlagsAndAttributes);
+        #ifdef _KMS_LINUX_
 
-			throw new Exception(Exception::CODE_CREATE_FILE_ERROR, "CreateFile( , , , , , ,  ) failed",
-				lMessage, __FILE__, __FUNCTION__, __LINE__, 0 );
-		}
+            mHandle = open( aFileName, aDesiredAccess | aSharedMode | aCreationDisposition | aFlagsAndAttributes );
+            if (INVALID_HANDLE_VALUE == mHandle)
+            {
+                sprintf_s(lMessage SIZE_INFO(sizeof(lMessage)), "open( \"%s\", 0x%08x ) failed",
+                    aFileName, aDesiredAccess | aSharedMode | aCreationDisposition | aFlagsAndAttributes);
+
+                throw new Exception(Exception::CODE_CREATE_FILE_ERROR, "open( ,  ) failed",
+                    lMessage, __FILE__, __FUNCTION__, __LINE__, 0 );
+            }
+
+        #endif
+
+        #ifdef _KMS_WINDOWS_
+
+            mHandle = CreateFile(aFileName, aDesiredAccess, aSharedMode, NULL, aCreationDisposition, aFlagsAndAttributes, NULL);
+            if (INVALID_HANDLE_VALUE == mHandle)
+            {
+                sprintf_s(lMessage, sizeof(lMessage), "CreateFile( \"%s\", 0x%08x, 0x%08x, , 0x%08x, 0x%08x,  ) failed",
+                    aFileName, aDesiredAccess, aSharedMode, aCreationDisposition, aFlagsAndAttributes);
+
+                throw new Exception(Exception::CODE_CREATE_FILE_ERROR, "CreateFile( , , , , , ,  ) failed",
+                    lMessage, __FILE__, __FUNCTION__, __LINE__, 0 );
+            }
+
+        #endif
 	}
 
 	unsigned int FileHandle::Read(void * aOut, unsigned int aOutSize_byte)
@@ -90,56 +126,104 @@ namespace KmsLib
 
         assert(INVALID_HANDLE_VALUE != mHandle);
 
-		DWORD lInfo_byte;
+        char lMessage[2048];
 
-		if (!ReadFile(mHandle, aOut, aOutSize_byte, &lInfo_byte, NULL))
-		{
-			char lMessage[2048];
+        unsigned int lResult_byte;
 
-			sprintf_s(lMessage, sizeof(lMessage), "ReadFile( , , %u bytes, ,  ) failed",
-				aOutSize_byte);
+        #ifdef _KMS_LINUX_
 
-			throw new Exception(Exception::CODE_READ_FILE_ERROR, "ReadFile( , , , ,  ) failed",
-				lMessage, __FILE__, __FUNCTION__, __LINE__, 0);
-		}
+            int lRet = read(mHandle, aOut, aOutSize_byte);
+            if (0 > lRet)
+            {
+                sprintf_s(lMessage SIZE_INFO(sizeof(lMessage)), "read( %d, , %u bytes ) failed",
+                    mHandle, aOutSize_byte);
 
-		assert(aOutSize_byte >= lInfo_byte);
+                throw new Exception(Exception::CODE_READ_FILE_ERROR, "read( , ,  ) failed",
+                    lMessage, __FILE__, __FUNCTION__, __LINE__, 0);
+            }
 
-		return lInfo_byte;
+            lResult_byte = lRet;
+
+        #endif
+
+        #ifdef _KMS_WINDOWS_
+
+            if (!ReadFile(mHandle, aOut, aOutSize_byte, &lResult_byte, NULL))
+            {
+                sprintf_s(lMessage, sizeof(lMessage), "ReadFile( , , %u bytes, ,  ) failed",
+                    aOutSize_byte);
+
+                throw new Exception(Exception::CODE_READ_FILE_ERROR, "ReadFile( , , , ,  ) failed",
+                    lMessage, __FILE__, __FUNCTION__, __LINE__, 0);
+            }
+
+        #endif
+
+        assert(aOutSize_byte >= lResult_byte);
+
+        return lResult_byte;
 	}
 
 	void FileHandle::Write(const void * aIn, unsigned int aInSize_byte)
 	{
 		assert(NULL != aIn);
-		assert(NULL != aInSize_byte);
+		assert(0    <  aInSize_byte);
 
-		assert(INVALID_HANDLE_VALUE != mHandle);
+        assert(INVALID_HANDLE_VALUE != mHandle);
+
+        unsigned int lInfo_byte;
+        char         lMessage[2048];
         
-        DWORD lInfo_byte;
+        #ifdef _KMS_LINUX_
 
-		if (!WriteFile(mHandle, aIn, aInSize_byte, &lInfo_byte, NULL))
-		{
-			char lMessage[2048];
+            int lRet = write(mHandle, aIn, aInSize_byte);
+            if (0 > lRet)
+            {
+                sprintf_s(lMessage, "write( %d, , %u bytes ) failed",
+                    mHandle, aInSize_byte);
 
-			sprintf_s(lMessage, sizeof(lMessage), "WriteFile( , , %u bytes, ,  ) failed",
-				aInSize_byte);
+                throw new Exception(Exception::CODE_WRITE_FILE_ERROR, "write( , ,  ) failed",
+                    lMessage, __FILE__, __FUNCTION__, __LINE__, 0);
+            }
 
-			throw new Exception(Exception::CODE_WRITE_FILE_ERROR, "WriteFile( , , , ,  ) failed",
-				lMessage, __FILE__, __FUNCTION__, __LINE__, 0);
-		}
+            lInfo_byte = lRet;
+
+        #endif
+
+        #ifdef _KMS_WINDOWS_
+
+            if (!WriteFile(mHandle, aIn, aInSize_byte, &lInfo_byte, NULL))
+            {
+                sprintf_s(lMessage, sizeof(lMessage), "WriteFile( , , %u bytes, ,  ) failed",
+                    aInSize_byte);
+
+                throw new Exception(Exception::CODE_WRITE_FILE_ERROR, "WriteFile( , , , ,  ) failed",
+                    lMessage, __FILE__, __FUNCTION__, __LINE__, 0);
+            }
+
+        #endif
 
 		// PAS TESTE : Modifier un fichier complexifierait le test.
 
         if (aInSize_byte != lInfo_byte)
 		{
-			char lMessage[2048];
-
-			sprintf_s(lMessage, sizeof(lMessage), "WriteFile did not write all data (To write = %u byte, Written = %u byte)",
+			sprintf_s(lMessage SIZE_INFO(sizeof(lMessage)), "WriteFile did not write all data (To write = %u byte, Written = %u byte)",
 				aInSize_byte, lInfo_byte);
 
 			throw new Exception(Exception::CODE_WRITE_FILE_ERROR, "WriteFile did not write all the data",
 				lMessage, __FILE__, __FUNCTION__, __LINE__, lInfo_byte);
 		}
 	}
+
+    #ifdef _KMS_WINDOWS_
+
+        FileHandle::operator HANDLE ()
+        {
+            assert(INVALID_HANDLE_VALUE != mHandle);
+
+            return mHandle;
+        }
+
+    #endif
 
 }

@@ -11,7 +11,10 @@
 
 // ===== Interface ==========================================================
 #include <KmsLib/FileHandle.h>
-#include <KmsLib/Windows/RegistryKey.h>
+
+#ifdef _KMS_WINDOWS_
+    #include <KmsLib/Windows/RegistryKey.h>
+#endif
 
 namespace KmsLib
 {
@@ -70,34 +73,17 @@ namespace KmsLib
 		void	CancelAll();
 
         /// \cond	en
-		///	\brief	Connect to the driver using a symbolic link.
-		/// \param	aLink	[in]	The symbolic link
-		/// \param	aDesiredAccess	See GENERIC_...
-		/// \endcond
-		/// \cond	fr
-		/// \brief	Connecter au pilote en utilisant un lien symbolique
-		/// \param	aLink	[in]	Le lien symbolique
-		/// \param	aDesiredAccess	Voir GENERIC_...
-		/// \endcond
-		/// \exception	Exception	CODE_IO_ERROR
-		void	Connect(const char * aLink		, DWORD aDesiredAccess						);
-
-		/// \cond	en
-		///	\brief	Connect to the driver using an interface.
-		/// \param	aInterface		The interface's GUID
-        /// \param  aIndex          The device index
-		/// \param	aDesiredAccess	See GENERIC_...
-		/// \param	aFlags			See CONNECT_FLAG_...
-		/// \endcond
-		/// \cond	fr
-		/// \brief	Connecter au pilote en utilisant une interface
-		/// \param	aInterface		Le GUID de l'interface
-        /// \param  aIndex          L'index du peripherique
-		/// \param	aDesiredAccess	Voir GENERIC_...
-		/// \param	aFlags			Void CONNECT_FLAG_...
-		/// \endcond
-		/// \exception	Exception	CODE_REGISTRY_ERROR, CODE_SETUP_API_ERROR
-		void Connect(const GUID & aInterface, unsigned int aIndex, DWORD aDesiredAccess, unsigned int aFlags);
+        ///	\brief	Connect to the driver using a symbolic link.
+        /// \param	aLink	[in]	The symbolic link
+        /// \param	aDesiredAccess	See GENERIC_... or O_...
+        /// \endcond
+        /// \cond	fr
+        /// \brief	Connecter au pilote en utilisant un lien symbolique
+        /// \param	aLink	[in]	Le lien symbolique
+        /// \param	aDesiredAccess	Voir GENERIC_... ou O_...
+        /// \endcond
+        /// \exception	Exception	CODE_IO_ERROR
+        void	Connect(const char * aLink, unsigned int aDesiredAccess);
 
 		/// \cond	en
 		/// \brief	See DeviceIoControl
@@ -122,13 +108,51 @@ namespace KmsLib
 		/// \exception	Exception	CODE_IOCTL_ERROR
 		unsigned int	Control(unsigned int aCode, const void * aIn, unsigned int aInSize_byte, void * aOut, unsigned int aOutSize_byte);
 
-		/// \cond	en
-		/// \brief	See CONNECT_FLAG_OPEN_DEVICE_KEY
-		/// \endcond
-		/// \cond	fr
-		/// \brief	Voir CONNECT_FLAG_OPEN_DEVICE_KEY
-		/// \endcond
-		Windows::RegistryKey  mDeviceKey;
+        #ifdef _KMS_WINDOWS_
+
+            /// \cond	en
+            ///	\brief	Connect to the driver using an interface.
+            /// \param	aInterface		The interface's GUID
+            /// \param  aIndex          The device index
+            /// \param	aDesiredAccess	See GENERIC_...
+            /// \param	aFlags			See CONNECT_FLAG_...
+            /// \endcond
+            /// \cond	fr
+            /// \brief	Connecter au pilote en utilisant une interface
+            /// \param	aInterface		Le GUID de l'interface
+            /// \param  aIndex          L'index du peripherique
+            /// \param	aDesiredAccess	Voir GENERIC_...
+            /// \param	aFlags			Void CONNECT_FLAG_...
+            /// \endcond
+            /// \exception	Exception	CODE_REGISTRY_ERROR, CODE_SETUP_API_ERROR
+            void Connect(const GUID & aInterface, unsigned int aIndex, DWORD aDesiredAccess, unsigned int aFlags);
+
+            /// \cond	en
+            ///	\brief	Connect to the driver using an interface.
+            /// \param	aInterface		The interface's GUID
+            /// \param  aIndex          The device index
+            /// \param	aDesiredAccess	See GENERIC_...
+            /// \param	aFlags			See CONNECT_FLAG_...
+            /// \endcond
+            /// \cond	fr
+            /// \brief	Connecter au pilote en utilisant une interface
+            /// \param	aInterface		Le GUID de l'interface
+            /// \param  aIndex          L'index du peripherique
+            /// \param	aDesiredAccess	Voir GENERIC_...
+            /// \param	aFlags			Void CONNECT_FLAG_...
+            /// \endcond
+            /// \exception	Exception	CODE_REGISTRY_ERROR, CODE_SETUP_API_ERROR
+            void Connect(const GUID & aInterface, unsigned int aIndex, DWORD aDesiredAccess, unsigned int aFlags);
+
+            /// \cond	en
+            /// \brief	See CONNECT_FLAG_OPEN_DEVICE_KEY
+            /// \endcond
+            /// \cond	fr
+            /// \brief	Voir CONNECT_FLAG_OPEN_DEVICE_KEY
+            /// \endcond
+            Windows::RegistryKey  mDeviceKey;
+
+        #endif
 
 	private:
 

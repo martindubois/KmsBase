@@ -3,7 +3,7 @@ Author   KMS - Martin Dubois, ing.
 Product  KmsBase
 File     KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
 
-3.0.1
+3.0.2
 - KmsLib::DriverHandle replace KmsLib::Windows::DriverHandle
 - KmsLib::FileHandle replace KmsLib::Windows::FileHandle
 - KmsLib::ThreadBase

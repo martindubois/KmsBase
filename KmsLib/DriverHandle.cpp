@@ -249,7 +249,7 @@ namespace KmsLib
             lInOut = lBuffer;
         }
 
-        bool lResult = (0 == ioctl(aHandle, aCode, lBuffer));
+        bool lResult = (0 == ioctl(aHandle, aCode, lInOut));
         if (lResult)
         {
             if (NULL != lBuffer)

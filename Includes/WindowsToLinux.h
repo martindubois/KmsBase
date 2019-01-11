@@ -117,6 +117,14 @@ typedef int	errno_t;
 /// \cond	fr
 /// \brief	Voir la documentation Microsoft
 /// \endcond
+#define strcat_s            strcat
+
+/// \cond	en
+/// \brief	See the Microsoft documentation
+/// \endcond
+/// \cond	fr
+/// \brief	Voir la documentation Microsoft
+/// \endcond
 #define strcpy_s			strcpy
 
 /// \cond	en

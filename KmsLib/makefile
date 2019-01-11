@@ -3,7 +3,7 @@
 # Product  KmsBase
 # File     KmsLib/makefile
 
-CFLAGS = -g
+CFLAGS = -fpic -g
 
 INCLUDES = -I ../Includes
 

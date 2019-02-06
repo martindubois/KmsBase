@@ -434,8 +434,6 @@ namespace KmsLib
     // Exception  Exception  CODE_THREAD_ERROR
     void ThreadBase::Terminate()
     {
-        assert(STATE_INIT == mState);
-
         #ifdef _KMS_LINUX_
 
             int lRet = pthread_kill(mThread, SIGKILL);

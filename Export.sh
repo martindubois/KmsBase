@@ -15,7 +15,7 @@ if [ "$1" = "" ] ; then
     exit 1 ;
 fi
 
-DST=Export/$1_Linux
+DST=~/Export/KmsBase/$1_Linux
 if test -d $DST ; then
     echo  USER ERROR : $DST already exist
     exit 2 ;

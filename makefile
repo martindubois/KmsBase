@@ -26,7 +26,6 @@ depend:
 
 prep:
 	mkdir Binaries
-	mkdir Export
 	mkdir Libraries
 
 test: Binaries/KmsLib_Test Libraries/KmsLib.a

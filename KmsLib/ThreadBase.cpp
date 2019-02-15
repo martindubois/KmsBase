@@ -29,9 +29,10 @@
 // Constants
 /////////////////////////////////////////////////////////////////////////////
 
-#define WAIT_RESULT_OK      (0)
-#define WAIT_RESULT_TIMEOUT (1)
-#define WAIT_RESULT_ERROR   (2)
+#define WAIT_RESULT_OK             (0)
+#define WAIT_RESULT_TIMEOUT        (1)
+#define WAIT_RESULT_ERROR          (2)
+#define WAIT_RESULT_CRITICAL_ERROR (3)
 
 #ifdef _KMS_WINDOWS_
     static const int PRIORITIES[KmsLib::ThreadBase::PRIORITY_QTY] =
@@ -75,7 +76,7 @@ namespace KmsLib
 
     void ThreadBase::Sleep_s(unsigned int aDelay_s)
     {
-        #ifdef _KMS_LINUX
+        #ifdef _KMS_LINUX_
             sleep(aDelay_s);
         #endif
 
@@ -320,10 +321,14 @@ namespace KmsLib
                 {
                     Terminate();
                 }
+                throw new Exception(Exception::CODE_THREAD_ERROR, "Wait_Internal(  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
 
+            case WAIT_RESULT_CRITICAL_ERROR :
+                CloseThread();
                 throw new Exception(Exception::CODE_THREAD_ERROR, "Wait_Internal(  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
 
             case WAIT_RESULT_OK:
+                CloseThread();
                 lResult = true;
                 break;
 
@@ -484,7 +489,24 @@ namespace KmsLib
 
         #ifdef _KMS_LINUX_
 
-            lResult = (0 == pthread_join(mThread, NULL)) ? WAIT_RESULT_OK : WAIT_RESULT_ERROR;
+            switch ( pthread_join(mThread, NULL) )
+            {
+            case 0     :
+            case ESRCH :
+                lResult = WAIT_RESULT_OK;
+                break;
+
+            case EDEADLK :
+                lResult = WAIT_RESULT_ERROR;
+                break;
+
+            default :
+                assert( false );
+                // No break;
+
+            case EINVAL :
+                lResult = WAIT_RESULT_CRITICAL_ERROR;
+            }
 
         #endif
 

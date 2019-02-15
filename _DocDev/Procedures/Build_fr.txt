@@ -7,6 +7,8 @@ Prenom et nom      __________________________________________________________
 
 Date et heure      20 ______ - ______ - ______                ______ : ______
 
+Plateforme         [ ] OSX            [ ] Ubuntu 18.04            [ ] Windows
+
 ===== Windows Seulement =====================================================
 [ ] Ouvrir une fenetre de commande
 	- Naviguer jusqu'au repertoire du produit;

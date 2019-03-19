@@ -94,7 +94,15 @@ typedef int	errno_t;
 /// \brief	Voir la documentation Microsoft
 /// \endcond
 #define localtime_s(O,I)	(NULL==localtime_r((I),(O))?2:0)
-			
+
+/// \cond	en
+/// \brief	See the Microsoft documentation
+/// \endcond
+/// \cond	fr
+/// \brief	Voir la documentation Microsoft
+/// \endcond
+#define scanf_s             scanf
+
 /// \cond	en
 /// \brief	See the Microsoft documentation
 /// \endcond

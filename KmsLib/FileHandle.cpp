@@ -215,6 +215,17 @@ namespace KmsLib
 		}
 	}
 
+    #ifdef _KMS_LINUX_
+
+        FileHandle::operator int ()
+        {
+            assert(INVALID_HANDLE_VALUE != mHandle);
+
+            return mHandle;
+        }
+
+    #endif
+
     #ifdef _KMS_WINDOWS_
 
         FileHandle::operator HANDLE ()

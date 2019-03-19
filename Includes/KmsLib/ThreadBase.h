@@ -267,4 +267,22 @@ namespace KmsLib
 
     };
 
+    // Public
+    /////////////////////////////////////////////////////////////////////////
+
+    inline ThreadBase::State ThreadBase::GetState() const
+    {
+        return mState;
+    }
+
+    inline bool ThreadBase::IsRunning() const
+    {
+        return (STATE_RUNNING == mState);
+    }
+
+    inline bool ThreadBase::IsStopped() const
+    {
+        return (STATE_INIT == mState);
+    }
+
 }

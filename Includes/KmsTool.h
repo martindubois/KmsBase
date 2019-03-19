@@ -18,9 +18,9 @@
 
 #else
 
-    #define KMS_TOOL_BANNER(P,C,V,T)              \
-        printf( P " - " C "\n" );                 \
-        printf( "Version " V " " T "(Debug)\n" ); \
+    #define KMS_TOOL_BANNER(P,C,V,T)               \
+        printf( P " - " C "\n" );                  \
+        printf( "Version " V " " T " (Debug)\n" ); \
         printf( "Compiled at " __TIME__ " on " __DATE__ "\n" );
 
 #endif // _DEBUG

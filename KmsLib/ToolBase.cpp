@@ -344,6 +344,9 @@ namespace KmsLib
 
 				ParseCommands(lFile);
 
+				lRet = fclose(lFile);
+				assert( 0 == lRet );
+
 				Report(REPORT_INFO);
 				printf("End of file %s\n", aFileName);
 			}

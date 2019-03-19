@@ -610,6 +610,13 @@ KmsTestDescription;
 																			\
 	int RunTest(unsigned int aTest)											\
 	{																		\
+	    if ((sizeof(KMS_TESTS) / sizeof(KMS_TESTS[0])) <= aTest)            \
+		{                                                                   \
+			COLOR(RED);                                                     \
+			printf("%u is not a valid test number\n", aTest);               \
+			COLOR(WHITE);                                                   \
+			return 1;                                                       \
+		}                                                                   \
         COLOR(BLUE);                                                        \
 		printf("Executing test %u : %s\n", aTest, KMS_TESTS[aTest].mName);	\
         COLOR(WHITE);                                                       \

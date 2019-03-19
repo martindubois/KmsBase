@@ -158,27 +158,6 @@ namespace KmsLib
         return mPriority;
     }
 
-    ThreadBase::State ThreadBase::GetState() const
-    {
-        assert(STATE_QTY > mState);
-
-        return mState;
-    }
-
-    bool ThreadBase::IsRunning() const
-    {
-        assert(STATE_QTY > mState);
-
-        return (STATE_RUNNING == mState);
-    }
-
-    bool ThreadBase::IsStopped() const
-    {
-        assert(STATE_QTY > mState);
-
-        return (STATE_INIT == mState);
-    }
-
     bool ThreadBase::IsStopping() const
     {
         switch (mState)

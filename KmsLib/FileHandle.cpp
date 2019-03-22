@@ -148,7 +148,7 @@ namespace KmsLib
 
         #ifdef _KMS_WINDOWS_
 
-            if (!ReadFile(mHandle, aOut, aOutSize_byte, &lResult_byte, NULL))
+            if (!ReadFile(mHandle, aOut, aOutSize_byte, reinterpret_cast<LPDWORD>(&lResult_byte), NULL))
             {
                 sprintf_s(lMessage, sizeof(lMessage), "ReadFile( , , %u bytes, ,  ) failed",
                     aOutSize_byte);
@@ -192,7 +192,7 @@ namespace KmsLib
 
         #ifdef _KMS_WINDOWS_
 
-            if (!WriteFile(mHandle, aIn, aInSize_byte, &lInfo_byte, NULL))
+            if (!WriteFile(mHandle, aIn, aInSize_byte, reinterpret_cast<LPDWORD>(&lInfo_byte), NULL))
             {
                 sprintf_s(lMessage, sizeof(lMessage), "WriteFile( , , %u bytes, ,  ) failed",
                     aInSize_byte);

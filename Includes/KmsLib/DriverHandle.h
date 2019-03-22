@@ -43,6 +43,7 @@ namespace KmsLib
 		{
 			CONNECT_FLAG_ADMINISTRATOR		= 0x00000001,
 			CONNECT_FLAG_OPEN_DEVICE_KEY	= 0x00000002,
+            CONNECT_FLAG_OVERLAPPED         = 0x00000004,
 		};
 
 		/// \cond	en
@@ -74,16 +75,20 @@ namespace KmsLib
 
         /// \cond	en
         ///	\brief	Connect to the driver using a symbolic link.
-        /// \param	aLink	[in]	The symbolic link
-        /// \param	aDesiredAccess	See GENERIC_... or O_...
+        /// \param	aLink	             The symbolic link
+        /// \param	aDesiredAccess	     See GENERIC_... or O_...
+        /// \param  aFlagsAndAttributes  See FILE_ATTRIBUTE_... and
+        ///                              FILE_FLAG_...
         /// \endcond
         /// \cond	fr
         /// \brief	Connecter au pilote en utilisant un lien symbolique
-        /// \param	aLink	[in]	Le lien symbolique
-        /// \param	aDesiredAccess	Voir GENERIC_... ou O_...
+        /// \param	aLink	          	 Le lien symbolique
+        /// \param	aDesiredAccess	     Voir GENERIC_... ou O_...
+        /// \param  aFlagsAndAttributes  Voir FILE_ATTRIBUTES_... and
+        ///                              FILE_FLAG_...
         /// \endcond
         /// \exception	Exception	CODE_IO_ERROR
-        void	Connect(const char * aLink, unsigned int aDesiredAccess);
+        void	Connect(const char * aLink, unsigned int aDesiredAccess, unsigned int aFlagsAndAttributes);
 
 		/// \cond	en
 		/// \brief	See DeviceIoControl
@@ -109,23 +114,6 @@ namespace KmsLib
 		unsigned int	Control(unsigned int aCode, const void * aIn, unsigned int aInSize_byte, void * aOut, unsigned int aOutSize_byte);
 
         #ifdef _KMS_WINDOWS_
-
-            /// \cond	en
-            ///	\brief	Connect to the driver using an interface.
-            /// \param	aInterface		The interface's GUID
-            /// \param  aIndex          The device index
-            /// \param	aDesiredAccess	See GENERIC_...
-            /// \param	aFlags			See CONNECT_FLAG_...
-            /// \endcond
-            /// \cond	fr
-            /// \brief	Connecter au pilote en utilisant une interface
-            /// \param	aInterface		Le GUID de l'interface
-            /// \param  aIndex          L'index du peripherique
-            /// \param	aDesiredAccess	Voir GENERIC_...
-            /// \param	aFlags			Void CONNECT_FLAG_...
-            /// \endcond
-            /// \exception	Exception	CODE_REGISTRY_ERROR, CODE_SETUP_API_ERROR
-            void Connect(const GUID & aInterface, unsigned int aIndex, DWORD aDesiredAccess, unsigned int aFlags);
 
             /// \cond	en
             ///	\brief	Connect to the driver using an interface.

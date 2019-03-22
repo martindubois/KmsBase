@@ -38,6 +38,8 @@
     #define INVALID_HANDLE_VALUE (-1)
     #define OPEN_EXISTING        ( 0)
 
+    #define LPDWORD unsigned int *
+
 #endif
 
 // Static function declarations
@@ -92,12 +94,12 @@ namespace KmsLib
         #endif
 	}
 
-	void DriverHandle::Connect(const char * aLink, unsigned int aDesiredAccess)
+	void DriverHandle::Connect(const char * aLink, unsigned int aDesiredAccess, unsigned int aFlagsAndAttributes)
 	{
 		assert(NULL != aLink			);
 		assert(0	!= aDesiredAccess	);
 
-		Create(aLink, aDesiredAccess, 0, OPEN_EXISTING, 0);
+		Create(aLink, aDesiredAccess, 0, OPEN_EXISTING, aFlagsAndAttributes);
 	}
 
 	unsigned int DriverHandle::Control(unsigned int aCode, const void * aIn, unsigned int aInSize_byte, void * aOut, unsigned int aOutSize_byte)
@@ -108,7 +110,7 @@ namespace KmsLib
 
         unsigned int lResult;
 
-        if (!DeviceIoControl(mHandle, aCode, const_cast<void *>(aIn), aInSize_byte, aOut, aOutSize_byte, &lResult, NULL))
+        if (!DeviceIoControl(mHandle, aCode, const_cast<void *>(aIn), aInSize_byte, aOut, aOutSize_byte, reinterpret_cast<LPDWORD>(&lResult), NULL))
         {
             sprintf_s(lMessage SIZE_INFO(sizeof(lMessage)), "DeviceIoControl( , 0x%08x, , %u bytes, , %u bytes, ,  ) failed",
                 aCode, aInSize_byte, aOutSize_byte);
@@ -177,7 +179,14 @@ namespace KmsLib
 
                         GetDeviceInterfaceDetail(lDevInfo, &lDevIntData, lDetail, sizeof(lBuffer));
 
-                        Connect(lDetail->DevicePath, aDesiredAccess);
+                        unsigned int lFlags = 0;
+
+                        if (0 != (aFlags & CONNECT_FLAG_OVERLAPPED))
+                        {
+                            lFlags |= FILE_FLAG_OVERLAPPED;
+                        }
+
+                        Connect(lDetail->DevicePath, aDesiredAccess, lFlags);
 
                         // TESTED   KmsLib::DriverHandle
                         //          KmsLib_Test.exe - DriverHandle - Setup A<br>

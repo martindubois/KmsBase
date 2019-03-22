@@ -101,7 +101,7 @@ namespace KmsLib
         #ifdef _KMS_WINDOWS_
             if (NULL != mThread)
             {
-                BOOL lRetB = CloseHandle(mThread);
+                bool lRetB = Wait(true, 10000);
                 assert(lRetB);
             }
         #endif

@@ -52,7 +52,7 @@ KMS_TEST_BEGIN(DriverHandle_Base)
 
     // Always possible to open the NUL device / Toujours possible d'ouvrir
     // le peripherique NUL.
-    lDH0.Connect(NULL_DEVICE, READ_AND_WRITE);
+    lDH0.Connect(NULL_DEVICE, READ_AND_WRITE, 0);
 
     #ifdef _KMS_WINDOWS_
     

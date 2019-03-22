@@ -111,7 +111,7 @@ namespace KmsLib
             }
         }
 
-		#ifdef _KMS_WINDOWS
+		#ifdef _KMS_WINDOWS_
 
         bool IsEqual(const char * aA, const char * aB, unsigned int aFlags)
         {

@@ -258,15 +258,23 @@ namespace KmsLib
             lInOut = lBuffer;
         }
 
-        bool lResult = (0 == ioctl(aHandle, aCode, lInOut));
-        if (lResult)
+        bool lResult;
+
+        int lRet = ioctl(aHandle, aCode, lInOut);
+        if ( 0 <= lRet )
         {
-            if (NULL != lBuffer)
+            ( * aInfo_byte ) = lRet;
+
+            if ( 0 < lRet )
             {
-                memcpy(aOut, lBuffer, aOutSize_byte);
+                memcpy( aOut, lBuffer, ( aOutSize_byte < lRet ) ? aOutSize_byte : lRet );
             }
 
-            (*aInfo_byte) = aOutSize_byte;
+            lResult = true;
+        }
+        else
+        {
+            lResult = false;
         }
 
         if (NULL != lBuffer)

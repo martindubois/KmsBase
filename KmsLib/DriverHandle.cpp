@@ -265,7 +265,7 @@ namespace KmsLib
         {
             ( * aInfo_byte ) = lRet;
 
-            if ( 0 < lRet )
+            if ( ( 0 < lRet ) && ( NULL != lBuffer ) )
             {
                 memcpy( aOut, lBuffer, ( aOutSize_byte < lRet ) ? aOutSize_byte : lRet );
             }

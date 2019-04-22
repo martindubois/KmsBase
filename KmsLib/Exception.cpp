@@ -11,6 +11,11 @@
 // ===== C ==================================================================
 #include <assert.h>
 
+#ifdef _KMS_WINDOWS_
+    // ===== Windows ========================================================
+    #include <Windows.h>
+#endif
+
 // ===== Includes ===========================================================
 #include <KmsLib/Exception.h>
 
@@ -148,7 +153,7 @@ namespace KmsLib
 		mFile		(aFile			),
 		mFunction	(aFunction		),
 		mInfoA		(aInfoA			),
-		mLastError	(GetLastError()	),
+		mLastError	(::GetLastError()),
 		mLine		(aLine			),
 		mWhat		(aWhat			)
 	{

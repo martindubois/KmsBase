@@ -1,8 +1,10 @@
 
-// Product / Produit	:	KmsBase
+// Product  KmsBase
 
-/// \author	KMS -	Martin Dubois, ing.
+/// \author	KMS - Martin Dubois, ing.
 /// \file	Includes/KmsLib/KmsLib.h
+
+// CODE REVIEW  2019-07-19  KMS - Martin Dubois, ing.
 
 #pragma once
 
@@ -16,7 +18,7 @@ namespace KmsLib
 	/// \brief	The library version
 	/// \endcond
 	/// \cond	fr
-	/// \brie	La version de la librairie
+	/// \brief	La version de la librairie
 	/// \endcond
 	extern const char * VERSION;
 

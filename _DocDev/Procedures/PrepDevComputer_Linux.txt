@@ -1,22 +1,17 @@
 
-Auteur    KMS - Martin Dubois, ing.
-Produit   KmsBase
-Fichier   _DocDev/Procedures/PrepDevComputer_Linux.txt
+Author    KMS - Martin Dubois, ing.
+Product   KmsBase
+File      _DocDev/Procedures/PrepDevComputer_Linux.txt
 
-
-TODO   Normal
-       Creer un package pour l'environnement de developpement et remplacer la
-       liste apt-get par un seul.
-
-[ ] Installer "ubunto 14.04.2";
-[ ] Ouvrir un terminal et executer les commandes suivantes en tant que "root"
-    - "apt-get install git";
-    - "apt-get install git-gui";
-    - "apt-get install xutils-dev";
-    - "apt-get install g++".
-[ ] Installer "AMD APP SDK 3.0"
-    - Copier le script d'installation sur le bureau a partir de
-      "K:/Logiciels/AMD-APP-SDK";
-    - Executer le script d'installation en tant que "root";
-[ ] Dans un terminal, executer les commandes suivantes en tant que "root"
-    - "apt-get install mesa-common-dev".
+[ ] Install "Ubunto 18.04.2";
+[ ] Tool "Terminal" - Running as "root"
+        apt-get install doxygen
+        apt-get install git
+        apt-get install git-gui
+        apt-get install xutils-dev
+        apt-get install g++
+[ ] Install "AMD APP SDK 3.0"
+    - Copy the installation script from "K:/Logiciels/AMD-APP-SDK";
+    - Execut the installation script as "root"
+[ ] Tool "Terminal" - Running as "root"
+        apt-get install mesa-common-dev

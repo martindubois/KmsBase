@@ -1,0 +1,56 @@
+
+Author   KMS - Martin Dubois, ing.
+Product  KmsBase
+File     _DocDev/Procedures/Build.txt
+
+CODE REVIEW  2019-07-19  KMS - Martin Dubois, ing.
+
+Name               __________________________________________________________
+
+Date and time      20 ______ - ______ - ______                ______ : ______
+
+Operating system   [ ] OSX           [ ] Ubuntu 18.04          [ ] Windows 10
+
+[ ] File "Common/Version.h" - Edit the version number
+    
+Version            ______ . ______ . ______ . ______ - ______________________
+
+[ ] File "_DocUser/KmsBase.ReadMe.txt"
+[ ] File "KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt"
+
+===== Linux Only ============================================================
+[ ] Tool "Terminal" - In the product folder
+        ./Build.sh {Major.Minor.Build_Type}
+[ ] Copy the exported files to the server
+
+===== OS X Only =============================================================
+[ ] Tools "Termina" - In the product folder
+        make -f makefile_os_x clean
+        make -f makefile_os_x
+        ./Test.sh
+        ./Export.sh {Major.Minor.Build_Type}
+[ ] Copy the exported files to the server
+
+===== Windows Seulement =====================================================
+[ ] Tool "Command Windows" - In the product folder
+        .\RunDoxygen.cmd
+        .\Build.cmd
+[ ] Connect the RS232 to USB adapter to a USB port of the computer
+[ ] Tool "Command Windows" - Already open
+        .\Test_Setup.cmd 2
+[ ] Tool "Command Windows" - In the product folder - Running as administrator
+	    .\Test_Setup.cmd 1
+	    .\Test_Setup.cmd 3
+	    .\Test_Setup.cmd 4
+	    exit
+[ ] Disconnect the RS232 to USB adapter
+
+[ ] Tool "GIT"
+    - Index the modified files and commit them using
+    "{Major.Minor.Build_Type_Windows|Linux|OSX}" as message
+    - Add the tag "{Major.Minor.Build_Type_Windows|Linux|OSX}"
+    - Push the repository to the servers
+
+Time and duration  ______ : ______              ______ heures, ______ minutes
+
+Signature          __________________________________________________________

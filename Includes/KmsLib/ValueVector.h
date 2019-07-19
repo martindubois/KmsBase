@@ -145,7 +145,7 @@ namespace KmsLib
         ///                                 vector
         /// \param  aConstraint   [---;R--] The constraint
         /// \param  aOut          [--O;RW-] The output stream
-        /// \param  aDescriptions [--O;R--] The value description
+        /// \param  aDescription  [--O;R--] The value description
         /// \endcond
         /// \cond   fr
         /// \brief  Verifier une contrainte
@@ -154,7 +154,7 @@ namespace KmsLib
         ///                                 vecteur
         /// \param  aConstraint   [---;R--] La contrainte
         /// \param  aOut          [--O;RW-] Le fichier de sortie
-        /// \param  aDescriptions [--O;R--] La description de la valeur
+        /// \param  aDescription  [--O;R--] La description de la valeur
         /// \endcond
         extern unsigned int Constraint_Verify(uint32_t aValue, unsigned int aIndex, const Constraint_UInt32 & aConstraint, FILE * aOut = NULL, const Description * aDescription = NULL);
 
@@ -172,7 +172,7 @@ namespace KmsLib
         /// \param  aValues                 Les valeurs
         /// \param  aCount                  Le nombre de valeurs et de
         ///                                 contraintes
-        /// \param  aConstraint   [---;R--] Les constraintes
+        /// \param  aConstraints  [---;R--] Les constraintes
         /// \param  aOut          [--O;RW-] Le fichier de sortie
         /// \param  aDescriptions [--O;R--] Les descriptions des valeurs
         /// \endcond
@@ -198,7 +198,7 @@ namespace KmsLib
         /// \param  aDescriptions [--O;R--] Les descriptions des valeurs
         /// \param  aMinLevel               Le niveau minimum pour etre affiche
         /// \endcond
-        extern void Display(uint32_t aValue, unsigned int aIndex, unsigned int aFlags, FILE * aOut, const Description * aDescription = NULL, unsigned int aMinLevel = 0);
+        extern void Display(uint32_t aValue, unsigned int aIndex, unsigned int aFlags, FILE * aOut, const Description * aDescriptions = NULL, unsigned int aMinLevel = 0);
 
         /// \cond   en
         /// \brief  Display values

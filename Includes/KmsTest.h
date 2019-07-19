@@ -220,8 +220,6 @@ KmsTestDescription;
 		try							\
 		{
 
-// TODO  KmsTest  Do not double evaluate G
-
 /// \cond	en
 /// \brief  If the expected value \a E is not equal to the get value \a G,
 ///         this macro count the error.

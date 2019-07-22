@@ -3,48 +3,45 @@
 # Author   KMS - Martin Dubois, ing.
 # Product  KmsBase
 # File     Export.sh
-# Usage    ./Export.sh {Ma.Mi.Bu_Type}
 
 # CODE REVIEW  2019-07-22  KMS - Martin Dubois, ing.
 
 echo  Executing Export.sh $1 ...
 
+# ===== Initialisation ======================================================
+
+DST=~/Export/KmsBase/$1_Linux
+
+KMS_COPY=Binaries/KmsCopy
+
 # ===== Verification ========================================================
 
 if [ "$1" = "" ] ; then
-    echo  USER ERROR : Invalid command line
+    echo  USER ERROR  Invalid command line
     echo  Usage  ./Export.sh {Ma.Mi.Bu_Type}
-    exit 1 ;
+    exit 10
 fi
 
-DST=~/Export/KmsBase/$1_Linux
 if test -d $DST ; then
-    echo  USER ERROR : $DST already exist
-    exit 2 ;
+    echo  USER ERROR  $DST  already exist
+    exit 20
+fi
+
+if [ ! -x $KMS_COPY ] ; then
+    echo  FATAL ERROR  $KMS_COPY  does not exist
+    echo  Compile the project
+    exit 30
 fi
 
 # ===== Execution ===========================================================
 
-mkdir $DST
-mkdir $DST/Binaries
-mkdir $DST/Includes
-mkdir $DST/Includes/KmsLib
-mkdir $DST/Includes/KmsLib/Linux
-mkdir $DST/Libraries
-mkdir $DST/Tests
+$KMS_COPY . $DST Export.sh.txt
+if [ 0 != $? ] ; then
+    echo ERROR  $KMS_COPY . $DST Export.sh.txt  failed
+    exit 40
+fi
 
-cp DoxyFile_en.txt				 $DST
-cp DoxyFile_fr.txt	    		 $DST
-
-cp Binaries/KmsCopy              $DST/Binaries
-cp Binaries/KmsLib_Test          $DST/Tests
-cp Includes/*.h                  $DST/Includes
-cp Includes/KmsLib/*.h           $DST/Includes/KmsLib
-cp Includes/KmsLib/Linux/*.h	 $DST/Includes/KmsLib/Linux
-cp Libraries/KmsLib.a            $DST/Libraries
-cp Scripts/Import.sh             $DST
-
-# ===== Fin =================================================================
+# ===== End =================================================================
 
 echo  OK!
 

@@ -1,0 +1,57 @@
+
+# Author   KMS - Martin Dubois, ing.
+# Product  KmsBase
+# File     Scripts/Import.sh.txt
+
+# CODE REVIEW  2019-07-22  KMS - Martin Dubois, ing.
+
+.
+    DoxyFile_en.txt
+    DoxyFile_fr.txt
+    KmsBase.KmsLib.ReadMe.txt
+    KmsBase.ReadMe.txt
+    RunDoxygen.cmd
+
+Binaries
+    KmsCopy
+
+Includes
+    KmsBase.h
+    KmsTest.h
+    KmsTool.h
+    Ring.h
+    SafeAPI.h
+    WindowsToLinux.h
+
+Includes/KmsLib
+    CmdLineParser.h
+    DebugLog.h
+    DriverHandle.h
+    Dump.h
+    Exception.h
+    File.h
+    FileHandle.h
+    HTML5.h
+    IgnoreList.h
+    KmsLib.h
+    MemTester.h
+    NetworkAddress.h
+    RLE.h
+    Socket.h
+    String.h
+    TextFile.h
+    TextFileEditor.h
+    ThreadBase.h
+    ToolBase.h
+    ValueVector.h
+    Walker.h
+    Walker_Smart.h
+
+Includes/KmsLib/Linux
+    Windows.h
+
+Libraries
+    KmsLib.a
+
+Tests
+    KmsLib_Test

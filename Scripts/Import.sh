@@ -9,27 +9,25 @@
 
 echo Executing  Import.sh $1  ...
 
+# ===== Initialisation =======================================================
+
+KMS_COPY=Binaries/KmsCopy
+
 # ===== Verification =========================================================
 
 if [ ! -d $1 ]
 then
     echo ERROR  $1  does not exist
-    exit 1
+    exit 10
 fi
 
 # ===== Execution ============================================================
 
-mkdir $1/Binaries
-mkdir $1/Includes
-mkdir $1/Includes/KmsLib
-mkdir $1/Includes/KmsLib/Linux
-mkdir $1/Libraries
-
-cp Binaries/*                $1/Binaries
-cp Includes/*.h              $1/Includes
-cp Includes/KmsLib/*.h       $1/Includes/KmsLib
-cp Includes/KmsLib/Linux/*.h $1/Includes/KmsLib/Linux
-cp Libraries/*.a             $1/Libraries
+$KMS_COPY . $1 Import.sh.txt
+if [ 0 != $? ] ; then
+    echo ERROR  $KMS_COPY . $1 Import.sh.txt  failed
+    exit 20
+fi
 
 # ===== End ==================================================================
 

@@ -1,7 +1,7 @@
 
-// Author / Auteur    KMS - Martin Dubois, ing.
-// Product / Produit  KmsBase
-// File / Fichier     KmsLib/Exception.cpp
+// Author   KMS - Martin Dubois, ing.
+// Product  KmsBase
+// File     KmsLib/Exception.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -153,9 +153,13 @@ namespace KmsLib
 		mFile		(aFile			),
 		mFunction	(aFunction		),
 		mInfoA		(aInfoA			),
-		mLastError	(::GetLastError()),
 		mLine		(aLine			),
-		mWhat		(aWhat			)
+		mWhat		(aWhat			),
+        #ifdef _KMS_WINDOWS_
+            mLastError( ::GetLastError() )
+        #else
+            mLastError( errno )
+        #endif
 	{
 		assert(NULL != aFile    );
 		assert(NULL != aFunction);

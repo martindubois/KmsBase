@@ -2,26 +2,18 @@
 
 # Author   KMS - Martin Dubois, ing.
 # Product  KmsBase
-# File     Clean.sh
+# File     KmsCopy/Clean.sh
 # Usage    ./Clean.sh
 
 # CODE REVIEW  2019-07-22  KMS - Martin Dubois, ing.
 
-echo Executing  Clean.sh  ...
+echo Executing  KmsCopy/Clean.sh  ...
 
 # ===== Execution ===========================================================
 
-cd KmsLib
-./Clean.sh
-cd ..
+rm -f ../Binaries/KmsCopy
 
-cd KmsCopy
-./Clean.sh
-cd ..
-
-cd KmsLib_Test
-./Clean.sh
-cd ..
+rm -f *.o
 
 # ===== End =================================================================
 

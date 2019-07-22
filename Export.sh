@@ -5,6 +5,8 @@
 # File     Export.sh
 # Usage    ./Export.sh {Ma.Mi.Bu_Type}
 
+# CODE REVIEW  2019-07-22  KMS - Martin Dubois, ing.
+
 echo  Executing Export.sh $1 ...
 
 # ===== Verification ========================================================
@@ -24,31 +26,23 @@ fi
 # ===== Execution ===========================================================
 
 mkdir $DST
+mkdir $DST/Binaries
 mkdir $DST/Includes
 mkdir $DST/Includes/KmsLib
 mkdir $DST/Includes/KmsLib/Linux
 mkdir $DST/Libraries
-mkdir $DST/Templates
-mkdir $DST/Templates/DLL
-mkdir $DST/Templates/DLL/_DocUser
-mkdir $DST/Templates/Test
-mkdir $DST/Templates/Test/_DocUser
-mkdir $DST/Templates/Tool
-mkdir $DST/Templates/Tool/_DocUser
+mkdir $DST/Tests
 
-cp *.txt						 $DST
+cp DoxyFile_en.txt				 $DST
+cp DoxyFile_fr.txt	    		 $DST
+
+cp Binaries/KmsCopy              $DST/Binaries
+cp Binaries/KmsLib_Test          $DST/Tests
 cp Includes/*.h                  $DST/Includes
 cp Includes/KmsLib/*.h           $DST/Includes/KmsLib
 cp Includes/KmsLib/Linux/*.h	 $DST/Includes/KmsLib/Linux
 cp Libraries/KmsLib.a            $DST/Libraries
 cp Scripts/Import.sh             $DST
-cp Templates/DLL/*.cpp           $DST/Templates/DLL
-cp Templates/DLL/*.h             $DST/Templates/DLL
-cp Templates/DLL/_DocUser/*.txt  $DST/Templates/DLL/_DocUser
-cp Templates/Test/*.cpp          $DST/Templates/Test
-cp Templates/Test/_DocUser/*.txt $DST/Templates/Test/_DocUser
-cp Templates/Tool/*.cpp          $DST/Templates/Tool
-cp Templates/Tool/_DocUser/*.txt $DST/Templates/Tool/_DocUser
 
 # ===== Fin =================================================================
 

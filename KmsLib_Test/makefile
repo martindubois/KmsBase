@@ -3,9 +3,7 @@
 # Product  KmsBase
 # File     KmsLib_Test/makefile
 
-CFLAGS = -g
-
-INCLUDES = -I ../Includes
+include ../User.mk
 
 LIBRARIES = ../Libraries/KmsLib.a
 

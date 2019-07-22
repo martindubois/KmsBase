@@ -5,6 +5,8 @@
 # File     UpdateDepend.sh
 # Usage    ./UpdateDepend.sh
 
+# CODE REVIEW  2019-07-22  KMS - Martin Dubois, ing.
+
 echo Executing  UpdateDepend.sh  ....
 
 # ===== Execution ===========================================================
@@ -15,6 +17,15 @@ make depend
 if [ 0 != $? ] ; then
     echo ERROR  KmsLib - make depend  failed
     exit 10
+fi
+cd ..
+
+echo Updating dependencies for KmsCopy
+cd KmsCopy
+make depend
+if [ 0 != $? ] ; then
+    echo ERROR  KmsCopy - make depend  failed
+    exit 15
 fi
 cd ..
 

@@ -15,6 +15,7 @@ Linux_Windows_Test0.txt
 
 *~
 *.bak
+*.o
 *.opensdf
 *.sdf
 *.v12.suo

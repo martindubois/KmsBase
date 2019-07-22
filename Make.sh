@@ -5,7 +5,7 @@
 # File     Make.sh
 # Usage    ./Make.sh
 
-# CODE REVIEW  2019-07-19  KMS - Martin Dubois, ing.
+# CODE REVIEW  2019-07-22  KMS - Martin Dubois, ing.
 
 echo Executing  Make.sh  ....
 
@@ -17,6 +17,15 @@ make
 if [ 0 != $? ] ; then
     echo ERROR  KmsLib - make  failed
     exit 10
+fi
+cd ..
+
+echo Building KmsCopy
+cd KmsCopy
+make
+if [ 0 != $? ] ; then
+    echo ERROR  KmsCopy - make  failed
+    exit 15
 fi
 cd ..
 

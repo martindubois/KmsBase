@@ -1,7 +1,7 @@
 
-// Author / Auteur		:	KMS	-	Martin Dubois, ing.
-// Product / Produit	:	KmsBase
-// File / Fichier		:	KmsLib/Linux/Windows.cpp
+// Author   KMS - Martin Dubois, ing.
+// Product  KmsBase
+// File     KmsLib/Linux/Windows.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -126,13 +126,12 @@ bool FindNextFile( HANDLE aHandle, WIN32_FIND_DATA * aFindFileData )
 
 	FindFileContext * lContext = reinterpret_cast< FindFileContext * >( aHandle );
 
-	struct dirent	lBuffer	;
 	struct dirent * lEntry	;
 
 	do
 	{
-		int lRetI = readdir_r( lContext->mFolder, & lBuffer, & lEntry );
-		if ( ( 0 != lRetI ) || ( NULL == lEntry ) )
+		lEntry = readdir( lContext->mFolder );
+		if ( NULL == lEntry )
 		{
 			return false;
 		}

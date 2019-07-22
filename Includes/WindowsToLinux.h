@@ -43,6 +43,14 @@ typedef int	errno_t;
 /// \cond	fr
 /// \brief	Voir la documentation Microsoft
 /// \endcond
+#define _S_IFDIR S_IFDIR
+
+/// \cond	en
+/// \brief	See the Microsoft documentation
+/// \endcond
+/// \cond	fr
+/// \brief	Voir la documentation Microsoft
+/// \endcond
 #define _access		access
 
 /// \cond	en

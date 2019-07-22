@@ -1,7 +1,7 @@
 
-// Author / Auteur    KMS - Martin Dubois, ing.
-// Product / Produit  KmsBase
-// File / Fichier     KmsCopy/KmsCopy.cpp
+// Author   KMS - Martin Dubois, ing.
+// Product  KmsBase
+// File     KmsCopy/KmsCopy.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -10,18 +10,27 @@
 
 // ===== C ==================================================================
 #include <assert.h>
-#include <direct.h>
 #include <stdio.h>
 #include <string.h>
+
+#ifdef _KMS_WINDOWS_
+    #include <direct.h>
+#endif
 
 // ===== System =============================================================
 #include <sys/stat.h>
 
-// ===== Windows ============================================================
-#include <Windows.h>
+#ifdef _KMS_WINDOWS_
+    // ===== Windows ============================================================
+    #include <Windows.h>
+#endif
 
 // ===== Includes ===========================================================
 #include "../Includes/KmsTool.h"
+
+#ifdef _KMS_LINUX_
+    #include "../Includes/KmsLib/Linux/Windows.h"
+#endif
 
 // ===== Common =============================================================
 #include "../Common/Version.h"
@@ -166,7 +175,7 @@ int Execute(FILE * aFile, const char * aSrcRoot, const char * aDstRoot)
 			char lDstFile[1024];
 			char lSrcFile[1024];
 
-			switch (sscanf_s(lLine, " %[^ \n\r\t] %[^ \n\r\t]", lSrcFile, static_cast<int>(sizeof(lSrcFile) / sizeof(lSrcFile[0])), lDstFile, static_cast<int>(sizeof(lDstFile) / sizeof(lDstFile[0]))))
+			switch (sscanf_s(lLine, " %[^ \n\r\t] %[^ \n\r\t]", lSrcFile SIZE_INFO( static_cast<int>(sizeof(lSrcFile) / sizeof(lSrcFile[0])) ), lDstFile SIZE_INFO( static_cast<int>(sizeof(lDstFile) / sizeof(lDstFile[0])) ) ))
 			{
 			case EOF: break; // Empty line
 
@@ -203,7 +212,7 @@ int Execute(FILE * aFile, const char * aSrcRoot, const char * aDstRoot)
 			break;
 
 		default : // Folder
-			switch (sscanf_s(lLine, "%[^ \n\r\t] %[^ \n\r\t]", lSrcFolder, static_cast<int>(sizeof(lSrcFolder) / sizeof(lSrcFolder[0])), lDstFolder, static_cast<int>(sizeof(lDstFolder) / sizeof(lDstFolder[0]))))
+			switch (sscanf_s(lLine, "%[^ \n\r\t] %[^ \n\r\t]", lSrcFolder SIZE_INFO( static_cast<int>(sizeof(lSrcFolder) / sizeof(lSrcFolder[0])) ), lDstFolder SIZE_INFO( static_cast<int>(sizeof(lDstFolder) / sizeof(lDstFolder[0])) ) ))
 			{
 			case 1:
 				strcpy_s(lDstFolder, lSrcFolder);

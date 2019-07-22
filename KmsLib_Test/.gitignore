@@ -8,9 +8,7 @@ Test0?/
 /Test1/Toto
 Test2/Toto*/
 
-*.bak
 *.bin
-*.o
 
 Messages.h
 Messages.rc

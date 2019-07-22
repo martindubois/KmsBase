@@ -3,7 +3,8 @@ Author   KMS - Martin Dubois, ing.
 Product  KmsBase
 File     _DocUser/KmsBase.ReadMe.txt
 
-
+3.0.14
+- KmsCopy for Linux
 - KMS_TOOL_BANNER fixed for Linux
 
 3.0.13

@@ -31,7 +31,7 @@ KMS_TEST_BEGIN(Exception_Base)
     KMS_TEST_COMPARE(0, strcmp("Unknown"   , lE->GetMessage ()));
 
     #ifdef _KMS_LINUX_
-        KMS_TEST_COMPARE(-1, lE->GetLastError());
+        KMS_TEST_COMPARE( 25, lE->GetLastError());
     #endif
 
     #ifdef _KMS_WINDOWS_

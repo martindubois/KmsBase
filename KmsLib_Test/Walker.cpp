@@ -91,7 +91,7 @@ void Walker_Test::OnFile(const char * aFile, const FILETIME & aLastWrite)
 			mTestResult[mTestIndex] = true;
 		#endif
 		#ifdef _KMS_WINDOWS_
-			mTestResult[mTestIndex] = (0 == strcmp("KmsLib_Test" SLASH "CmdLineParser.cpp", lOut));
+			mTestResult[mTestIndex] = (0 == strcmp("KmsLib_Test" SLASH "Clean.sh", lOut));
 		#endif
 		mTestIndex++;
 		break;

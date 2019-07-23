@@ -3,6 +3,9 @@ Author   KMS - Martin Dubois, ing.
 Product  KmsBase
 File     KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
 
+3.0.15
+- KmsLib::Exception - User defined code
+
 3.0.14
 
 3.0.13

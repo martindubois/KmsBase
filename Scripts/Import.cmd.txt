@@ -110,44 +110,10 @@ Libraries/Release_64_DLL
 #       Normal (Cleanup) - Utiliser un fichier Templates.txt a partir de
 #       Export.cmd.txt et Install.cmd.txt
 
-Templates/DLL
-	TODO.cpp
-	TODO.h
-	TODOInterface.cpp
-	TODOInterface.h
-
-Templates/DLL/_DocUser
-	Use.txt
-
 Templates/Service
 	.gitignore
 	Messages.mc
 	Service.cpp
 
 Templates/Service/_DocUser
-	Use.txt
-
-Templates/Solution
-	.gitignore
-	ExportSources.sh
-	Test.cmd
-
-Templates/Solution/_DocUser
-	Use.txt
-
-Templates/Solution/Common
-	Version.h
-	Version.rc
-
-Templates/Test
-	TODO.cpp
-	TODO_Test.cpp
-
-Templates/Test/_DocUser
-	Use.txt
-
-Templates/Tool
-	TODO_Tool.cpp
-
-Templates/Tool/_DocUser
 	Use.txt

@@ -1,9 +1,0 @@
-
-Auteur	:	KMS -	Martin Dubois, ing.
-Projet	:	KmsBase
-Fichier	:	Templates/Solution/_DocUser/Utiliser.txt
-
-[ ]	Lancer "Visual Studio 2013" et créer une solution vide;
-[ ]	Copier les fichiers du template vers le repertoire principale de la
-	nouvelle solution;
-[ ]	Rechercher les "TODO" dans les fichiers copies et les adresser un par un.

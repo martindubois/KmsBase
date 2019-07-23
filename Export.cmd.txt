@@ -95,18 +95,6 @@ Scripts	.
     Import.cmd.txt
 	Verify.cmd
 
-Templates/DLL
-	TODO.cpp
-	TODO.h
-	TODOInterface.cpp
-	TODOInterface.h
-
-Templates/DLL/_DocUser
-	Utiliser.txt	Use.txt
-
-# TODO  Export
-#       Normal (Cleanup) - Renomer le fichier Use.txt
-
 Templates/Service
 	.gitignore
 	Messages.mc
@@ -114,34 +102,6 @@ Templates/Service
 
 Templates/Service/_DocUser
 	Use.txt
-
-Templates/Solution
-	.gitignore
-	ExportSources.sh
-	Test.cmd
-
-Templates/Solution/_DocUser
-	Utiliser.txt	Use.txt
-
-# TODO  Export
-#       Normal (Cleanup) - Renommer le fichier Use.txt
-
-Templates/Solution/Common
-	Version.h
-	Version.rc
-
-Templates/Test
-	TODO.cpp
-	TODO_Test.cpp
-
-Templates/Test/_DocUser
-	Use.txt
-
-Templates/Tool
-	TODO_Tool.cpp
-
-Templates/Tool/_DocUser
-	Utiliser.txt	Use.txt
 
 # TODO  Export
 #       Normal (Cleanup) - Renommer le fichier Use.txt

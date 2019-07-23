@@ -62,7 +62,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DocDev", "_DocDev", "{00EE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{EA71243B-5549-4F76-9D8B-547E36BE8BB4}"
 	ProjectSection(SolutionItems) = preProject
-		_DocDev\Procedures\Build_fr.txt = _DocDev\Procedures\Build_fr.txt
+		_DocDev\Procedures\Build.txt = _DocDev\Procedures\Build.txt
 		_DocDev\Procedures\PrepDevComputer_Linux.txt = _DocDev\Procedures\PrepDevComputer_Linux.txt
 		_DocDev\Procedures\PrepDevComputer_Windows.txt = _DocDev\Procedures\PrepDevComputer_Windows.txt
 	EndProjectSection
@@ -82,7 +82,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		DoxyFile_fr.txt = DoxyFile_fr.txt
 		Export.cmd = Export.cmd
 		Export.cmd.txt = Export.cmd.txt
-		ExportSources.sh = ExportSources.sh
 		ForEachConfig_DLL.cmd = ForEachConfig_DLL.cmd
 		ForEachConfig_NoDLL.cmd = ForEachConfig_NoDLL.cmd
 		README.md = README.md
@@ -100,32 +99,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KmsLib_Test", "KmsLib_Test\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{17C49143-B3BF-492F-AA07-D08EBEE3756D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{41514692-FD16-4D5E-9E69-522D6D404276}"
-	ProjectSection(SolutionItems) = preProject
-		Templates\Solution\.gitignore = Templates\Solution\.gitignore
-		Templates\Solution\Export.cmd = Templates\Solution\Export.cmd
-		Templates\Solution\ExportSources.sh = Templates\Solution\ExportSources.sh
-		Templates\Solution\Test.cmd = Templates\Solution\Test.cmd
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DocUser", "_DocUser", "{B31575E3-402F-4B1D-B5C5-6DB9F028DB12}"
-	ProjectSection(SolutionItems) = preProject
-		Templates\Solution\_DocUser\Utiliser.txt = Templates\Solution\_DocUser\Utiliser.txt
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Templates\Test\Test.vcxproj", "{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tool", "Templates\Tool\Tool.vcxproj", "{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DLL", "Templates\DLL\DLL.vcxproj", "{81BED578-900A-47A0-9CBD-C7D07EBFF37C}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dialog", "Templates\Dialog\Dialog.vcxproj", "{DD5E6A78-6F66-4DC8-B886-1DE03865D0E7}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{723C70DB-54E9-4DBA-BAFB-886F8454952D}"
-	ProjectSection(SolutionItems) = preProject
-		Templates\Solution\Common\Version.h = Templates\Solution\Common\Version.h
-		Templates\Solution\Common\Version.rc = Templates\Solution\Common\Version.rc
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Service", "Templates\Service\Service.vcxproj", "{195EC26E-8CB6-4654-A00E-FC084D9691A9}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -201,58 +175,6 @@ Global
 		{E7A45A2C-BD9F-4BAB-83DE-0BDBA896FE64}.Release|Win32.Build.0 = Release|Win32
 		{E7A45A2C-BD9F-4BAB-83DE-0BDBA896FE64}.Release|x64.ActiveCfg = Release|x64
 		{E7A45A2C-BD9F-4BAB-83DE-0BDBA896FE64}.Release|x64.Build.0 = Release|x64
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Debug_DLL|Win32.ActiveCfg = Debug_DLL|Win32
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Debug_DLL|Win32.Build.0 = Debug_DLL|Win32
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Debug_DLL|x64.ActiveCfg = Debug_DLL|x64
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Debug_DLL|x64.Build.0 = Debug_DLL|x64
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Debug|Win32.ActiveCfg = Debug|Win32
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Debug|Win32.Build.0 = Debug|Win32
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Debug|Win32.Deploy.0 = Debug|Win32
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Debug|x64.ActiveCfg = Debug|x64
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Debug|x64.Build.0 = Debug|x64
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Release_DLL|Win32.ActiveCfg = Release_DLL|Win32
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Release_DLL|Win32.Build.0 = Release_DLL|Win32
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Release_DLL|x64.ActiveCfg = Release_DLL|x64
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Release_DLL|x64.Build.0 = Release_DLL|x64
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Release|Win32.ActiveCfg = Release|Win32
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Release|Win32.Build.0 = Release|Win32
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Release|Win32.Deploy.0 = Release|Win32
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Release|x64.ActiveCfg = Release|x64
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E}.Release|x64.Build.0 = Release|x64
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Debug_DLL|Win32.ActiveCfg = Debug_DLL|Win32
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Debug_DLL|Win32.Build.0 = Debug_DLL|Win32
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Debug_DLL|x64.ActiveCfg = Debug_DLL|x64
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Debug_DLL|x64.Build.0 = Debug_DLL|x64
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Debug|Win32.ActiveCfg = Debug|Win32
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Debug|Win32.Build.0 = Debug|Win32
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Debug|Win32.Deploy.0 = Debug|Win32
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Debug|x64.ActiveCfg = Debug|x64
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Debug|x64.Build.0 = Debug|x64
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Release_DLL|Win32.ActiveCfg = Release_DLL|Win32
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Release_DLL|Win32.Build.0 = Release_DLL|Win32
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Release_DLL|x64.ActiveCfg = Release_DLL|x64
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Release_DLL|x64.Build.0 = Release_DLL|x64
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Release|Win32.ActiveCfg = Release|Win32
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Release|Win32.Build.0 = Release|Win32
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Release|Win32.Deploy.0 = Release|Win32
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Release|x64.ActiveCfg = Release|x64
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017}.Release|x64.Build.0 = Release|x64
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Debug_DLL|Win32.ActiveCfg = Debug_DLL|Win32
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Debug_DLL|Win32.Build.0 = Debug_DLL|Win32
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Debug_DLL|x64.ActiveCfg = Debug_DLL|x64
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Debug_DLL|x64.Build.0 = Debug_DLL|x64
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Debug|Win32.ActiveCfg = Debug|Win32
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Debug|Win32.Build.0 = Debug|Win32
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Debug|x64.ActiveCfg = Debug|x64
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Debug|x64.Build.0 = Debug|x64
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Release_DLL|Win32.ActiveCfg = Release_DLL|Win32
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Release_DLL|Win32.Build.0 = Release_DLL|Win32
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Release_DLL|x64.ActiveCfg = Release_DLL|x64
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Release_DLL|x64.Build.0 = Release_DLL|x64
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Release|Win32.ActiveCfg = Release|Win32
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Release|Win32.Build.0 = Release|Win32
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Release|x64.ActiveCfg = Release|x64
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C}.Release|x64.Build.0 = Release|x64
 		{DD5E6A78-6F66-4DC8-B886-1DE03865D0E7}.Debug_DLL|Win32.ActiveCfg = Debug|Win32
 		{DD5E6A78-6F66-4DC8-B886-1DE03865D0E7}.Debug_DLL|x64.ActiveCfg = Debug|x64
 		{DD5E6A78-6F66-4DC8-B886-1DE03865D0E7}.Debug|Win32.ActiveCfg = Debug|Win32
@@ -323,13 +245,7 @@ Global
 		{EE152025-CE8B-4099-89C4-C60CC1B7797C} = {980DE536-B130-41B8-A65B-F1DEDC466C43}
 		{EB8648E4-E353-45CF-982E-02296B919104} = {EE152025-CE8B-4099-89C4-C60CC1B7797C}
 		{EA71243B-5549-4F76-9D8B-547E36BE8BB4} = {00EEE413-B9A0-44E8-9AE8-8FD3EAC01E7D}
-		{41514692-FD16-4D5E-9E69-522D6D404276} = {17C49143-B3BF-492F-AA07-D08EBEE3756D}
-		{B31575E3-402F-4B1D-B5C5-6DB9F028DB12} = {41514692-FD16-4D5E-9E69-522D6D404276}
-		{6905EAFB-91CB-4CBC-BD00-EB7BF8F9386E} = {17C49143-B3BF-492F-AA07-D08EBEE3756D}
-		{23A9F715-A58F-43E6-9EE1-D5DB2A54F017} = {17C49143-B3BF-492F-AA07-D08EBEE3756D}
-		{81BED578-900A-47A0-9CBD-C7D07EBFF37C} = {17C49143-B3BF-492F-AA07-D08EBEE3756D}
 		{DD5E6A78-6F66-4DC8-B886-1DE03865D0E7} = {17C49143-B3BF-492F-AA07-D08EBEE3756D}
-		{723C70DB-54E9-4DBA-BAFB-886F8454952D} = {41514692-FD16-4D5E-9E69-522D6D404276}
 		{195EC26E-8CB6-4654-A00E-FC084D9691A9} = {17C49143-B3BF-492F-AA07-D08EBEE3756D}
 		{F49BE6B7-3A5C-4BB6-9ACA-537A91C8740C} = {EE152025-CE8B-4099-89C4-C60CC1B7797C}
 		{3A99A792-0D5E-41AD-9EBA-3AFFC3CE6956} = {EE152025-CE8B-4099-89C4-C60CC1B7797C}

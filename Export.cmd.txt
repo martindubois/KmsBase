@@ -3,128 +3,79 @@
 # Produit  KmsBase
 # Fichier  Export.cmd.txt
 
+# CODE REVIEW  2019-07-26  KMS - Martin Dubois, ing.
 .
-	DoxyFile_en.txt
-	DoxyFile_fr.txt
-	RunDoxygen.cmd
+    RunDoxygen.cmd
 
 .	Binaries
 .	Libraries
 .	Templates
 
-_DocUser	.
-	KmsBase.ReadMe.txt
-
 Debug	Libraries/Debug_32
-	KmsLib.lib
+    KmsLib.lib
 
 Debug_DLL	Binaries/Debug_32_DLL
-	DepCheck.exe
-	DepCheck_Net.exe
+    DepCheck.exe
+    DepCheck_Net.exe
 
 Debug_DLL	Libraries/Debug_32_DLL
-	KmsLib.lib
-
-Includes
-	KmsBase.h
-	KmsTest.h
-    KmsTool.h
-	Ring.h
-	SafeAPI.h
-	WindowsToLinux.h
-
-Includes/KmsLib
-	CmdLineParser.h
-	DebugLog.h
-	DriverHandle.h
-	Dump.h
-	Exception.h
-	File.h
-	FileHandle.h
-    HTML5.h
-	IgnoreList.h
-	KmsLib.h
-	MemTester.h
-	NetworkAddress.h
-	RLE.h
-	Socket.h
-	String.h
-	TextFile.h
-	TextFileEditor.h
-	ThreadBase.h
-	ToolBase.h
-	ValueVector.h
-	Walker.h
-	Walker_Smart.h
-
-Includes/KmsLib/Linux
-	Windows.h
-
-Includes/KmsLib/Windows
-	ComPortHandle.h
-	RegistryKey.h
-	Service.h
-	SystemLog.h
-	Windows.h
-
-KmsLib/_DocUser	.
-	KmsBase.KmsLib.ReadMe.txt
+    KmsLib.lib
 
 Release .
-	KmsCopy.exe
+    KmsCopy.exe
 
 Release	Binaries/Release_32
-	KmsCopy.exe
-	
+    KmsCopy.exe
+
 Release	Libraries/Release_32
-	KmsLib.lib
+    KmsLib.lib
 
 Release_DLL	.
-	DepCheck.exe
-	DepCheck_Net.exe
+    DepCheck.exe
+    DepCheck_Net.exe
 
 Release_DLL	Binaries/Release_32_DLL
-	DepCheck.exe
-	DepCheck_Net.exe
+    DepCheck.exe
+    DepCheck_Net.exe
 
 Release_DLL	Libraries/Release_32_DLL
-	KmsLib.lib
+    KmsLib.lib
 
 Scripts	.
     Import.cmd
     Import.cmd.txt
-	Verify.cmd
+    Verify.cmd
 
 Templates/Service
-	.gitignore
-	Messages.mc
-	Service.cpp
+    .gitignore
+    Messages.mc
+    Service.cpp
 
 Templates/Service/_DocUser
-	Use.txt
+    Use.txt
 
 # TODO  Export
 #       Normal (Cleanup) - Renommer le fichier Use.txt
 
 x64/Debug	Libraries/Debug_64
-	KmsLib.lib
+    KmsLib.lib
 
 x64/Debug_DLL	Binaries/Debug_64_DLL
-	DepCheck.exe
-	DepCheck_Net.exe
+    DepCheck.exe
+    DepCheck_Net.exe
 
 x64/Debug_DLL	Libraries/Debug_64_DLL
-	KmsLib.lib
+    KmsLib.lib
 
 x64/Release	Binaries/Release_64
-	KmsCopy.exe
+    KmsCopy.exe
 
 x64/Release	Libraries/Release_64
-	KmsLib.lib
+    KmsLib.lib
 
 x64/Release_DLL	Binaries/Release_64_DLL
-	DepCheck.exe
-	DepCheck_Net.exe
+    DepCheck.exe
+    DepCheck_Net.exe
 
 x64/Release_DLL	Libraries/Release_64_DLL
-	KmsLib.lib
+    KmsLib.lib

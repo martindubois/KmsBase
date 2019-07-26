@@ -3,12 +3,7 @@
 # Product  KmsBase
 # File     Scripts/Import.cmd.txt
 
-.
-	DoxyFile_en.txt
-	DoxyFile_fr.txt
-	KmsBase.KmsLib.ReadMe.txt
-	KmsBase.ReadMe.txt
-	RunDoxygen.cmd
+# CODE REVIEW  2019-07-26  KMS - Martin Dubois, ing.
 
 .	Binaries
 .	Libraries
@@ -39,48 +34,6 @@ Binaries/Release_64_DLL
 # TODO  Importation
 #       Normal (Cleanup) - Utiliser un fichier Includes.txt a partir de
 #       Export.cmd.txt et Install.cmd.txt
-
-Includes
-	KmsBase.h
-	KmsTest.h
-	KmsTool.h
-	Ring.h
-	SafeAPI.h
-	WindowsToLinux.h
-
-Includes/KmsLib
-	CmdLineParser.h
-	DebugLog.h
-	DriverHandle.h
-	Dump.h
-	Exception.h
-	File.h
-	FileHandle.h
-    HTML5.h
-	IgnoreList.h
-	KmsLib.h
-	MemTester.h
-	NetworkAddress.h
-	RLE.h
-	Socket.h
-	String.h
-	TextFile.h
-	TextFileEditor.h
-	ThreadBase.h
-	ToolBase.h
-	ValueVector.h
-	Walker.h
-	Walker_Smart.h
-
-Includes/KmsLib/Linux
-	Windows.h
-
-Includes/KmsLib/Windows
-	ComPortHandle.h
-	RegistryKey.h
-	Service.h
-	SystemLog.h
-	Windows.h
 
 Libraries/Debug_32
 	KmsLib.lib

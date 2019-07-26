@@ -4,7 +4,7 @@
 # Product  KmsBase
 # File     Export.sh
 
-# CODE REVIEW  2019-07-22  KMS - Martin Dubois, ing.
+# CODE REVIEW  2019-07-26  KMS - Martin Dubois, ing.
 
 echo  Executing Export.sh $1 ...
 
@@ -29,16 +29,22 @@ fi
 
 if [ ! -x $KMS_COPY ] ; then
     echo  FATAL ERROR  $KMS_COPY  does not exist
-    echo  Compile the project
+    echo  Compile before exporting
     exit 30
 fi
 
 # ===== Execution ===========================================================
 
+$KMS_COPY . $DST Export.txt
+if [ 0 != $? ] ; then
+    echo ERROR  $KMS_COPY . $DST Export.txt  failed
+    exit 40
+fi
+
 $KMS_COPY . $DST Export.sh.txt
 if [ 0 != $? ] ; then
     echo ERROR  $KMS_COPY . $DST Export.sh.txt  failed
-    exit 40
+    exit 50
 fi
 
 # ===== End =================================================================

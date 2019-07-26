@@ -71,6 +71,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{F88C
 	ProjectSection(SolutionItems) = preProject
 		Scripts\Import.cmd = Scripts\Import.cmd
 		Scripts\Import.cmd.txt = Scripts\Import.cmd.txt
+		Scripts\Import.sh = Scripts\Import.sh
+		Scripts\Import.sh.txt = Scripts\Import.sh.txt
+		Scripts\Import.txt = Scripts\Import.txt
 		Scripts\Verify.cmd = Scripts\Verify.cmd
 	EndProjectSection
 EndProject
@@ -82,6 +85,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		DoxyFile_fr.txt = DoxyFile_fr.txt
 		Export.cmd = Export.cmd
 		Export.cmd.txt = Export.cmd.txt
+		Export.sh = Export.sh
+		Export.sh.txt = Export.sh.txt
+		Export.txt = Export.txt
 		ForEachConfig_DLL.cmd = ForEachConfig_DLL.cmd
 		ForEachConfig_NoDLL.cmd = ForEachConfig_NoDLL.cmd
 		README.md = README.md

@@ -1,0 +1,61 @@
+
+# Auteur   KMS - Martin Dubois, ing.
+# Produit  KmsBase
+# Fichier  Export.txt
+
+# CODE REVIEW  2019-07-26  KMS - Martin Dubois, ing.
+
+.
+    DoxyFile_en.txt
+    DoxyFile_fr.txt
+
+_DocUser	.
+    KmsBase.ReadMe.txt
+
+Includes
+    KmsBase.h
+    KmsTest.h
+    KmsTool.h
+    Ring.h
+    SafeAPI.h
+    WindowsToLinux.h
+
+Includes/KmsLib
+    CmdLineParser.h
+    DebugLog.h
+    DriverHandle.h
+    Dump.h
+    Exception.h
+    File.h
+    FileHandle.h
+    HTML5.h
+    IgnoreList.h
+    KmsLib.h
+    MemTester.h
+    NetworkAddress.h
+    RLE.h
+    Socket.h
+    String.h
+    TextFile.h
+    TextFileEditor.h
+    ThreadBase.h
+    ToolBase.h
+    ValueVector.h
+    Walker.h
+    Walker_Smart.h
+
+Includes/KmsLib/Linux
+    Windows.h
+
+Includes/KmsLib/Windows
+    ComPortHandle.h
+    RegistryKey.h
+    Service.h
+    SystemLog.h
+    Windows.h
+
+KmsLib/_DocUser	.
+    KmsBase.KmsLib.ReadMe.txt
+
+Scripts	.
+    Import.txt

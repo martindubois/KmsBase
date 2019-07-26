@@ -5,7 +5,7 @@
 # File     Import.sh
 # Usage    ./Import.sh {Destination}
 
-# CODE REVIEW  2019-07-22  KMS - Martin Dubois, ing.
+# CODE REVIEW  2019-07-26  KMS - Martin Dubois, ing.
 
 echo Executing  Import.sh $1  ...
 
@@ -23,10 +23,16 @@ fi
 
 # ===== Execution ============================================================
 
+$KMS_COPY . $1 Import.txt
+if [ 0 != $? ] ; then
+    echo ERROR  $KMS_COPY . $1 Import.txt  failed
+    exit 20
+fi
+
 $KMS_COPY . $1 Import.sh.txt
 if [ 0 != $? ] ; then
     echo ERROR  $KMS_COPY . $1 Import.sh.txt  failed
-    exit 20
+    exit 30
 fi
 
 # ===== End ==================================================================

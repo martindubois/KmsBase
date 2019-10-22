@@ -120,6 +120,9 @@
     <Text Include="_DocDev\Requirements.txt" />
     <Text Include="_DocUser\KmsBase.KmsLib.ReadMe.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Component.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{08D0977C-7912-4A9E-9937-CC0AF78956A7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

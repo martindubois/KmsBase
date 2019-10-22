@@ -3,22 +3,26 @@ Author   KMS - Martin Dubois, ing.
 Product  KmsBase
 File     KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
 
+- ToolBase
+	- Predefined commands : Abort, Delay, Echo, Error, Pause and Repeat
+	- Fix ToolBase::Exit to exit the ParseCommand method
+
 3.0.15
-- KmsLib::Exception - User defined code
+- Exception - User defined code
 
 3.0.14
 
 3.0.13
-- KmsLib::DriverHandle replace KmsLib::Windows::DriverHandle
-- KmsLib::FileHandle replace KmsLib::Windows::FileHandle
-- KmsLib::ThreadBase
-- KmsLib::ValueVector
+- DriverHandle - Replace Windows::DriverHandle
+- FileHandle - Replace Windows::FileHandle
+- ThreadBase
+- ValueVector
 
 2.5.5
-- KmsLib::Windows::DriverHandle::Connect - aIndex argument
+- Windows::DriverHandle::Connect - aIndex argument
 
 2.5.2
-- KmsLib::TextFileEditor
+- TextFileEditor - New class
 
 2.4.18
-- KmsLib::HTML5
+- HTML5 - New class

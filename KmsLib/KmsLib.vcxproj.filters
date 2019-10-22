@@ -137,4 +137,9 @@
       <Filter>_DocUser</Filter>
     </Text>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

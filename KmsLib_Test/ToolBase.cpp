@@ -88,8 +88,8 @@ static const KmsLib::ToolBase::CommandInfo COMMANDS_A[] =
 static const KmsLib::ToolBase::CommandInfo COMMANDS[] =
 {
 	{ "A"				, NULL								, "A {...}                       A"							, COMMANDS_A	},
-	{ "ExecuteScript"	, KmsLib::ToolBase::ExecuteScript	, "ExecuteScript {FileName}      Execute the named script"	, NULL			},
-	{ "Exit"			, KmsLib::ToolBase::Exit			, "Exit {Code}                   Exit returning Code"		, NULL			},
+
+    KMS_LIB_TOOL_BASE_FUNCTIONS
 
 	{ NULL, NULL, NULL, NULL }
 };
@@ -111,20 +111,6 @@ KMS_TEST_BEGIN(ToolBase_Base)
     KmsLib::ToolBase::AskUser(lFile, "Name", 10, 99, 54, &lValue);
     KMS_TEST_COMPARE(60, lValue);
 
-    /*
-    try
-    {
-        KmsLib::ToolBase::AskUser(lFile, "Name", 10, 99, 54, &lValue);
-        KMS_TEST_ASSERT(false);
-    }
-    catch (KmsLib::Exception * eE)
-    {
-        KMS_TEST_ERROR_INFO;
-        eE->Write(stdout);
-        KMS_TEST_ASSERT(KmsLib::Exception::CODE_FILE_READ_ERROR == eE->GetCode());
-    }
-    */
-
     // ===== AskUser - char * ===============================================
 
     char lString[32];
@@ -135,33 +121,26 @@ KMS_TEST_BEGIN(ToolBase_Base)
     KmsLib::ToolBase::AskUser(lFile, "Name", lString, sizeof(lString));
     KMS_TEST_COMPARE(0, strcmp("", lString));
 
+    // ===== AskUser - char * - With default ================================
+
     KmsLib::ToolBase::AskUser(lFile, "Name", "Default", lString, sizeof(lString));
     KMS_TEST_COMPARE(0, strcmp("Test", lString));
 
     KmsLib::ToolBase::AskUser(lFile, "Name", "Default", lString, sizeof(lString));
     KMS_TEST_COMPARE(0, strcmp("Default", lString));
-/*
+
     // ===== AskUser_InputFileName ==========================================
-    KmsLib::ToolBase::AskUser_InputFileName(lFile, "Name", lString, sizeof(lString));
-    KMS_TEST_COMPARE(0, strcmp(TEST_FOLDER
-		#ifdef _KMS_LINUX_
-			"/FileA.txt"
-		#endif
-		#ifdef _KMS_WINDOWS_
-			"\\FileA.txt"
-		#endif
-			, lString));
+
+    // TODO
 
     // ===== AskUser_OutputFileName =========================================
-    KmsLib::ToolBase::AskUser_OutputFileName(lFile, "Name", "Default", lString, sizeof(lString));
-    KMS_TEST_COMPARE(0, strcmp("DoesNotExist", lString));
-*/
+
+    // TODO
+
     int lRetI = fclose(lFile);
     KMS_TEST_COMPARE(0, lRetI);
 
     // ===== Report =========================================================
-    KmsLib::ToolBase::Report(KmsLib::ToolBase::REPORT_FATAL_ERROR);
-    KmsLib::ToolBase::Report(KmsLib::ToolBase::REPORT_OK);
     KmsLib::ToolBase::Report(KmsLib::ToolBase::REPORT_WARNING);
 
     // ===== Report - Exception =============================================
@@ -171,20 +150,102 @@ KMS_TEST_BEGIN(ToolBase_Base)
     KmsLib::ToolBase::Report(KmsLib::ToolBase::REPORT_ERROR, &lE);
 
     // ===== Report - const  char  * ========================================
-    // Already tested / Deja teste
+    KmsLib::ToolBase::Report(KmsLib::ToolBase::REPORT_OK, "OK");
 
-    KmsLib::ToolBase lTB(COMMANDS);
+    KmsLib::ToolBase lTB0(COMMANDS);
+
+    // ===== Abort ==========================================================
+    KmsLib::ToolBase::Abort(&lTB0, "Invalid");
+    KMS_TEST_COMPARE(-3, lTB0.GetErrorCode());
+
+    // ===== Delay ==========================================================
+
+    KmsLib::ToolBase::Delay(&lTB0, "");
+
+    lTB0.ClearError();
+    KmsLib::ToolBase::Delay(&lTB0, "Invalid");
+    KMS_TEST_COMPARE(-4, lTB0.GetErrorCode());
+
+    // ===== Echo ===========================================================
+    KmsLib::ToolBase::Echo(&lTB0, "");
+
+    // ===== Error_Abort ====================================================
+
+    lTB0.ClearError();
+    KmsLib::ToolBase::Error_Abort(&lTB0, "");
+
+    // ===== Error_Clear ====================================================
+    KmsLib::ToolBase::Error_Clear(&lTB0, "");
+
+    // ===== Error_Display ==================================================
+
+    KmsLib::ToolBase::Error_Display(&lTB0, "");
+
+    lTB0.SetError(1, "Test", KmsLib::ToolBase::REPORT_FATAL_ERROR);
+    KmsLib::ToolBase::Error_Display(&lTB0, "");
+
+    // ===== Error_Exit =====================================================
+
+    KmsLib::ToolBase::Error_Exit(&lTB0, "");
+
+    lTB0.ClearError();
+    KmsLib::ToolBase::Error_Exit(&lTB0, "");
+
+    // ===== ExecuteScript ==================================================
+    KmsLib::ToolBase::ExecuteScript(&lTB0, "DoesNotExist.txt");
+    KMS_TEST_COMPARE(-2, lTB0.GetErrorCode());
+
+    // ===== Exit ===========================================================
+
+    KmsLib::ToolBase::Exit(&lTB0, "" );
+    KmsLib::ToolBase::Exit(&lTB0, "0");
+    KmsLib::ToolBase::Exit(&lTB0, "1");
+
+    lTB0.ClearError();
+    KmsLib::ToolBase::Exit(&lTB0, "Invalid");
+    KMS_TEST_COMPARE(-7, lTB0.GetErrorCode());
+
+    // ===== Pause ==========================================================
+    // Require interaction
+
+    // ===== Repeat =========================================================
+
+    // We use a new ToolBase instance, because previous test set mExit in TB0
+    KmsLib::ToolBase lTB1(COMMANDS);
+
+    KmsLib::ToolBase::Repeat(&lTB1, "2 Echo Repeat");
+    KmsLib::ToolBase::Repeat(&lTB1, "Invalid");
+    KMS_TEST_COMPARE(-8, lTB1.GetErrorCode());
+
+    // ===== ToolBase =======================================================
+    // Already tested
+
+    // ===== ClearError =====================================================
+    lTB0.ClearError();
+
+    // ===== GetErrorCode ===================================================
+    KMS_TEST_COMPARE(0, lTB0.GetErrorCode());
+
+    // ===== SetError =======================================================
+    lTB0.SetError(0, "", KmsLib::ToolBase::REPORT_OK);
+    KMS_TEST_COMPARE(0, lTB0.GetErrorCode());
+    lTB0.SetError(1, "Test");
+    KMS_TEST_COMPARE(1, lTB0.GetErrorCode());
+    lTB0.SetError(0, "", KmsLib::ToolBase::REPORT_OK);
+    KMS_TEST_COMPARE(1, lTB0.GetErrorCode());
+    lTB0.SetError(2, "Test", KmsLib::ToolBase::REPORT_ERROR);
+    KMS_TEST_COMPARE(1, lTB0.GetErrorCode());
 
     // ===== ParseArguments =================================================
 
     bool lRetB;
 
-    lRetB = lTB.ParseArguments(1, ARGUMENTS_C0);
+    lRetB = lTB0.ParseArguments(1, ARGUMENTS_C0);
     KMS_TEST_ASSERT(!lRetB);
 
     try
     {
-        lRetB = lTB.ParseArguments(2, ARGUMENTS_C0);
+        lRetB = lTB0.ParseArguments(2, ARGUMENTS_C0);
         KMS_TEST_ERROR();
     }
     catch (KmsLib::Exception * eE)
@@ -194,27 +255,34 @@ KMS_TEST_BEGIN(ToolBase_Base)
         KMS_TEST_COMPARE(KmsLib::Exception::CODE_INVALID_COMMAND_LINE, eE->GetCode());
     }
 
-    lRetB = lTB.ParseArguments(3, ARGUMENTS_C0);
+    lTB0.ClearError();
+    lRetB = lTB0.ParseArguments(3, ARGUMENTS_C0);
+    KMS_TEST_ASSERT(lRetB);
+    KMS_TEST_COMPARE(-5, lTB0.GetErrorCode());
+
+    lRetB = lTB0.ParseArguments(3, ARGUMENTS_C1);
     KMS_TEST_ASSERT(lRetB);
 
-    lRetB = lTB.ParseArguments(3, ARGUMENTS_C1);
+    lTB0.ClearError();
+    lRetB = lTB0.ParseArguments(3, ARGUMENTS_C2);
+    KMS_TEST_ASSERT(lRetB);
+    KMS_TEST_COMPARE(-6, lTB0.GetErrorCode());
+
+    lRetB = lTB0.ParseArguments(3, ARGUMENTS_C3);
     KMS_TEST_ASSERT(lRetB);
 
-    lRetB = lTB.ParseArguments(3, ARGUMENTS_C2);
+    lRetB = lTB0.ParseArguments(3, ARGUMENTS_F0);
     KMS_TEST_ASSERT(lRetB);
 
-    lRetB = lTB.ParseArguments(3, ARGUMENTS_C3);
-    KMS_TEST_ASSERT(lRetB);
-
-    lRetB = lTB.ParseArguments(3, ARGUMENTS_F0);
-    KMS_TEST_ASSERT(lRetB);
-
-    lRetB = lTB.ParseArguments(3, ARGUMENTS_F1);
+    lRetB = lTB0.ParseArguments(3, ARGUMENTS_F1);
     KMS_TEST_ASSERT(lRetB);
 
     // ===== ParseCommands ==================================================
-    lTB.ParseCommands("");
+    // Require interaction
 
-    // ===== ExecuteScript ==================================================
+    // ===== ParseCommands - With file name =================================
+    lTB0.ClearError();
+    lTB0.ParseCommands("");
+    KMS_TEST_COMPARE(-1, lTB0.GetErrorCode());
 }
 KMS_TEST_END_2

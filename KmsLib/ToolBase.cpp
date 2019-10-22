@@ -3,40 +3,56 @@
 // Product  KmsBase
 // File     KmsLib/ToolBase.cpp
 
-// Last test coverage update / Derniere mise a jour de la couverture de test
-// 2017-11-12
+// CODE REVIEW    2019-10-21  KMS - Martin Dubois, ing.
 
-// TODO  KmsLib.ToolBase
-//       Add a predefined function to repead a command N time / Ajouter une
-//       fonction predefinie pour repeter une commande un certain nombre de
-//       fois.
+// TEST COVERAGE  2019-10-21  KMS - Martin Dubois, ing.
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
 
-#include <KmsBase.h>
+#include "Component.h"
 
 // ===== C ==================================================================
-#include <assert.h>
 #include <stdio.h>
 #include <string.h>
 
 #ifdef _KMS_WINDOWS_
+
 	#include <io.h>
+
+    // ===== Windows ========================================================
+    #include <windows.h>
+
 #endif // _KMS_WINDOWS_
 
-// ===== Includes/KmsLib ====================================================
+// ===== Includes ===========================================================
 #include <KmsLib/Exception.h>
 #include <KmsLib/File.h>
+#include <KmsLib/ThreadBase.h>
 
 #include <KmsLib/ToolBase.h>
 
-// Constants / Constantes
+// Constants
 /////////////////////////////////////////////////////////////////////////////
 
 #define LINE_LENGTH_MAX	(1024)
 
-// Static function declarations / Declaration des fonctions statiques
+// Macro
+/////////////////////////////////////////////////////////////////////////////
+
+#define  BLUE    (0x09)
+#define  GREEN   (0x0a)
+#define  RED     (0x0c)
+#define  WHITE   (0x07)
+#define  YELLOW  (0x0e)
+
+#ifdef _KMS_WINDOWS_
+    #define  COLOR(A)  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (A))
+#else
+    #define  COLOR(A)
+#endif
+
+// Static function declarations
 /////////////////////////////////////////////////////////////////////////////
 
 static void  DisplayHelp(const KmsLib::ToolBase::CommandInfo * aCommandInfo);
@@ -49,6 +65,9 @@ namespace KmsLib
 	// Public
 	/////////////////////////////////////////////////////////////////////////
 
+    // aFile [---;RW-]
+    // aName [---;R--]
+    // aOut  [---;-W-]
 	void ToolBase::AskUser(FILE * aFile, const char * aName, unsigned short aMin, unsigned short aMax, unsigned short aDefault, unsigned short * aOut)
 	{
 		assert(NULL != aFile   );
@@ -62,13 +81,12 @@ namespace KmsLib
 		{
 			if (stdin == aFile)
 			{
-                // NOT TESTED  ToolBase.Console
-                //             The test program use the stdin / Le programme
-                //             de test utilise l'entree standard
+                // NOT TESTED  KmsLib.ToolBase.Console
+                //             Ask a question on the stdin
 				printf("%s\t(Range: %u to %u;\tDefault: %u) : ", aName, aMin, aMax, aDefault);
 			}
 
-			char lLine[2048];
+			char lLine[LINE_LENGTH_MAX];
 
 			ReadLine(aFile, lLine, sizeof(lLine));
 
@@ -87,7 +105,6 @@ namespace KmsLib
 					(*aOut) = lValue;
 					return;
 				}
-
 				// No break;
 
 			default:
@@ -97,6 +114,9 @@ namespace KmsLib
 		}
 	}
 
+    // aFile [---;RW-]
+    // aName [---;R--]
+    // aOut  [---;-W-]
 	void ToolBase::AskUser(FILE * aFile, const char * aName, char * aOut, unsigned int aOutSize_byte)
 	{
 		assert(NULL != aFile        );
@@ -108,13 +128,12 @@ namespace KmsLib
 		{
 			if (stdin == aFile)
 			{
-                // NOT TESTED  ToolBase.Console
-                //             The test program use the stdin / Le programme
-                //             de test utilise l'entree standard
+                // NOT TESTED  KmsLib.ToolBase.Console
+                //             Ask a question on the stdin
 				printf("%s : ", aName);
 			}
 
-			char lLine[2048];
+			char lLine[LINE_LENGTH_MAX];
 
 			ReadLine(aFile, lLine, sizeof(lLine));
 
@@ -144,6 +163,10 @@ namespace KmsLib
 		}
 	}
 
+    // aFile    [---;RW-]
+    // aName    [---;R--]
+    // aDefault [---;R--]
+    // aOut     [---;-W-]
 	void ToolBase::AskUser(FILE * aFile, const char * aName, const char * aDefault, char * aOut, unsigned int aOutSize_byte)
 	{
 		assert(NULL != aFile        );
@@ -156,10 +179,12 @@ namespace KmsLib
 		{
 			if (stdin == aFile)
 			{
-				printf("%s\t(Default: \"%s\") : ", aName, aDefault);
+                // NOT TESTED  KmsLib.ToolBase.Console
+                //             Ask a question on the stdin
+                printf("%s\t(Default: \"%s\") : ", aName, aDefault);
 			}
 
-			char lLine[2048];
+			char lLine[LINE_LENGTH_MAX];
 
 			ReadLine(aFile, lLine, sizeof(lLine));
 
@@ -190,6 +215,12 @@ namespace KmsLib
 		}
 	}
 
+    // aFile [---;RW-]
+    // aName [---;R--]
+    // aOut  [---;-W-]
+
+    // NOT TESTED  KmsLib.ToolBase.AskUser_InputFileName
+    //             Asking a input file name to the user
 	void ToolBase::AskUser_InputFileName(FILE * aFile, const char * aName, char * aOut, unsigned int aOutSize_byte)
 	{
 		assert(NULL != aFile        );
@@ -210,7 +241,14 @@ namespace KmsLib
 		}
 	}
 
-	void ToolBase::AskUser_OutputFileName(FILE * aFile, const char * aName, const char * aDefault, char * aOut, unsigned int aOutSize_byte)
+    // aFile    [---;RW-]
+    // aName    [---;R--]
+    // aDefault [---;R--]
+    // aOut     [---;-W-]
+
+    // NOT TESTED  KmsLib.ToolBase.AskUser_OutputFileName
+    //             Asking a output file name to the user
+    void ToolBase::AskUser_OutputFileName(FILE * aFile, const char * aName, const char * aDefault, char * aOut, unsigned int aOutSize_byte)
 	{
 		assert(NULL != aFile        );
 		assert(NULL != aName        );
@@ -233,25 +271,27 @@ namespace KmsLib
 
 	void ToolBase::Report(ReportType aType)
 	{
-		const char * lTypeName = NULL;
-		// Initialized in order to avoir the compilation warning / Initialise
-		// pour eviter le message a la compilation
+        unsigned short lColor;
+        const char   * lTypeName = NULL; // Avoid warning
 
 		switch (aType)
 		{
-		case REPORT_ERROR		: lTypeName = "ERROR"		; break;
-		case REPORT_FATAL_ERROR	: lTypeName = "FATAL ERROR"	; break;
-		case REPORT_INFO		: lTypeName = "INFO"		; break;
-		case REPORT_OK			: lTypeName = "OK"			; break;
-		case REPORT_USER_ERROR	: lTypeName = "USER ERROR"	; break;
-		case REPORT_WARNING		: lTypeName = "WARNING"		; break;
+		case REPORT_ERROR		: lColor = RED   ; lTypeName = "ERROR"		; break;
+		case REPORT_FATAL_ERROR	: lColor = RED   ; lTypeName = "FATAL ERROR"; break;
+        case REPORT_INFO		: lColor = BLUE  ; lTypeName = "INFO"		; break;
+		case REPORT_OK			: lColor = GREEN ; lTypeName = "OK"			; break;
+		case REPORT_USER_ERROR	: lColor = RED   ; lTypeName = "USER ERROR"	; break;
+		case REPORT_WARNING		: lColor = YELLOW; lTypeName = "WARNING"	; break;
 
 		default: assert(false);
 		}
 
+        COLOR(lColor);
 		printf("\n%s : ", lTypeName);
+        COLOR(WHITE);
 	}
 
+    // aException [---;R--]
 	void ToolBase::Report(ReportType aType, const KmsLib::Exception * aException)
 	{
 		assert(NULL != aException);
@@ -263,6 +303,7 @@ namespace KmsLib
 		aException->Write(stdout);
 	}
 
+    // aMessage [---;R--]
 	void ToolBase::Report(ReportType aType, const char * aMessage)
 	{
 		assert(NULL != aMessage);
@@ -272,13 +313,176 @@ namespace KmsLib
 		printf("%s\n", aMessage);
 	}
 
-	ToolBase::ToolBase(const CommandInfo * aCommands) : mCommands(aCommands)
+    // ===== Function =======================================================
+
+    const ToolBase::CommandInfo ToolBase::ERROR_COMMANDS[] =
+    {
+        { "Abort"  , ToolBase::Error_Abort  , "Abort"  , NULL },
+        { "Clear"  , ToolBase::Error_Clear  , "Close"  , NULL },
+        { "Display", ToolBase::Error_Display, "Display", NULL },
+        { "Exit"   , ToolBase::Error_Exit   , "Exit"   , NULL },
+
+        { NULL, NULL, NULL, NULL }
+    };
+
+    // aThis [---;RW-]
+    // aArgs [---;R--]
+
+    // NOT TESTED  KmsLib::ToolBase.Abort
+    //             Aborting execution
+    void ToolBase::Abort(ToolBase * aThis, const char * aArgs)
+    {
+        assert(NULL != aThis);
+        assert(NULL != aArgs);
+
+        aThis->Abort(aArgs);
+    }
+
+    // aThis [---;RW-]
+    // aArgs [---;R--]
+    void ToolBase::Delay(ToolBase * aThis, const char * aArgs)
+    {
+        assert(NULL != aThis);
+        assert(NULL != aArgs);
+
+        aThis->Delay(aArgs);
+    }
+
+    // aThis [---;RW-]
+    // aArg  [---;R--]
+    void ToolBase::Echo(ToolBase * aThis, const char * aArgs)
+    {
+        assert(NULL != aArgs);
+
+        printf("%s\n", aArgs);
+    }
+
+    // aThis [---;RW-]
+    // aArg  [---;---]
+    void ToolBase::Error_Abort(ToolBase * aThis, const char * aArgs)
+    {
+        assert(NULL != aThis);
+
+        aThis->Error_Abort();
+    }
+
+    // aThis [---;RW-]
+    // aArg  [---;---]
+    void ToolBase::Error_Clear(ToolBase * aThis, const char * aArg)
+    {
+        assert(NULL != aThis);
+
+        aThis->ClearError();
+    }
+
+    // aThis [---;RW-]
+    // aArg  [---;---]
+    void ToolBase::Error_Display(ToolBase * aThis, const char * aArg)
+    {
+        assert(NULL != aThis);
+
+        aThis->Error_Display();
+    }
+
+    // aThis [---;RW-]
+    // aArg  [---;---] 
+    void ToolBase::Error_Exit(ToolBase * aThis, const char * aArg)
+    {
+        assert(NULL != aThis);
+
+        aThis->Error_Exit();
+    }
+
+    // aThis [---;RW-]
+    // aArgs [---;R--] Format : {FileName}
+    void ToolBase::ExecuteScript(ToolBase * aThis, const char * aArgs)
+    {
+        assert(NULL != aThis);
+        assert(NULL != aArgs);
+
+        aThis->ParseCommands(aArgs);
+    }
+
+    // aThis [---;RW-]
+    // aArgs [---;RW-]
+    void ToolBase::Exit(ToolBase * aThis, const char * aArgs)
+    {
+        assert(NULL != aThis);
+        assert(NULL != aArgs);
+
+        aThis->Exit(aArgs);
+    }
+
+    // aThis [---;RW-]
+    // aArg  [---;R--]
+
+    // NOT TESTED  KmsLib::ToolBase.Pause
+    //             Pause command
+    void ToolBase::Pause(ToolBase * aThis, const char * aArg)
+    {
+        assert(NULL != aThis);
+        assert(NULL != aArg );
+
+        printf("%s\n", aArg);
+        printf("Press ENTER to continue\n");
+
+        char lLine[2048];
+
+        ReadLine(stdin, lLine, sizeof(lLine));
+    }
+
+    // aThis [---;RW-]
+    // aArgs [---;R--]
+    void ToolBase::Repeat(ToolBase * aThis, const char * aArgs)
+    {
+        assert(NULL != aThis);
+        assert(NULL != aArgs);
+
+        aThis->Repeat(aArgs);
+    }
+
+    // aCommands [-K-;R--]
+    ToolBase::ToolBase(const CommandInfo * aCommands) : mCommands(aCommands)
 	{
 		assert(NULL != mCommands);
 	}
 
+    void ToolBase::ClearError()
+    {
+        mError_Code = 0;
+    }
+
+    int ToolBase::GetErrorCode()
+    {
+        return mError_Code;
+    }
+
+    // aDesc [---;R--]
+    int ToolBase::SetError(int aCode, const char * aDesc, ReportType aType)
+    {
+        assert(NULL       != aDesc);
+        assert(REPORT_QTY >  aType);
+
+        if (0 != aCode)
+        {
+            Report(aType);
+            printf("%d - %s\n", aCode, aDesc);
+
+            if (0 == mError_Code)
+            {
+                mError_Code = aCode;
+                mError_Desc = aDesc;
+            }
+        }
+
+        return mError_Code;
+    }
+
+    // aVector [---;R--]
 	bool ToolBase::ParseArguments(int aCount, const char ** aVector)
 	{
+        assert(NULL != aVector);
+
 		size_t lLen;
 
 		switch (aCount)
@@ -310,17 +514,20 @@ namespace KmsLib
 		return false;
 	}
 
-	void ToolBase::ParseCommands()
+    // NOT TESTED  KmsLib.ToolBase.ParseCommands
+    //             Reading command from stdin
+    int ToolBase::ParseCommands()
 	{
-        // NOT TESTED  KmsLib.ToolBase.Console
-        //             The test program use the stdin / Le programme
-        //             de test utilise l'entree standard
-        ParseCommands(stdin);
+        return ParseCommands(stdin);
 	}
 
-	void ToolBase::ParseCommands(const char * aFileName)
+    // aFileName [---;R--]
+	int ToolBase::ParseCommands(const char * aFileName)
 	{
 		assert(NULL != aFileName);
+
+        char lMsg[LINE_LENGTH_MAX];
+        int  lResult;
 
 		switch (aFileName[0])
 		{
@@ -328,12 +535,13 @@ namespace KmsLib
 		case '\n':
 		case '\r':
 		case '\t':
-			Report(REPORT_USER_ERROR);
-			printf("The filename is not valid (%s)\n", aFileName);
-			break;
+            sprintf_s(lMsg, "The file name is not valid (%s)\n", aFileName);
+            lResult = SetError(-1, lMsg, REPORT_USER_ERROR);
+            break;
 
 		default:
-            // TODO  KmsLib.ToolBase  Use TextFile / Utiliser TextFile
+            // TODO  KmsLib.ToolBase
+            //       Low (Cleanup) Use TextFile
 			FILE  * lFile;
 
 			int lRet = fopen_s(&lFile, aFileName, "r");
@@ -342,7 +550,7 @@ namespace KmsLib
 				Report(REPORT_INFO);
 				printf("Executing commands from file %s ...\n", aFileName);
 
-				ParseCommands(lFile);
+				lResult = ParseCommands(lFile);
 
 				lRet = fclose(lFile);
 				assert( 0 == lRet );
@@ -352,37 +560,90 @@ namespace KmsLib
 			}
 			else
 			{
-				Report(REPORT_ERROR);
-				printf("Cannot open file %s\n", aFileName);
+                sprintf_s(lMsg, "Cannot open file %s\n", aFileName);
+                lResult = SetError(-2, lMsg, REPORT_ERROR);
 			}
 		}
-	}
 
-	// ===== Function =======================================================
-
-	void ToolBase::ExecuteScript(ToolBase * aThis, const char * aArguments)
-	{
-		assert(NULL != aThis     );
-		assert(NULL != aArguments);
-
-		aThis->ParseCommands(aArguments);
-	}
-
-    // NOT TESTED  KmsLib.ToolBase
-    //             We don't want to exit the test program / Il ne faut pas
-    //             quitter le programme de test
-    void ToolBase::Exit(ToolBase * aThis, const char * aArguments)
-	{
-		assert(NULL != aThis     );
-		assert(NULL != aArguments);
-
-		exit(atoi(aArguments));
+        return lResult;
 	}
 
 	// Private
 	/////////////////////////////////////////////////////////////////////////
 
-	// aLine  [---;R--]
+    // aArgs [---;RW-] Format : [ErrorCode] [ErrorDescription]
+    void ToolBase::Abort(const char * aArgs)
+    {
+        assert(NULL != aArgs);
+
+        int  lCode;
+        char lDesc[LINE_LENGTH_MAX];
+
+        switch (sscanf_s(aArgs, "%d %[^\n\r]", &lCode, lDesc, static_cast<unsigned int>(sizeof(lDesc))))
+        {
+        // NOT TESTED  KmsLib::ToolBase.Abort
+        //             Aborting execution
+        case EOF: exit(0);
+        case 1  : exit(SetError(lCode, "Abort", REPORT_FATAL_ERROR));
+        case 2  : exit(SetError(lCode, lDesc  , REPORT_FATAL_ERROR));
+
+        default:
+            SetError(-3, "Invalid argument", REPORT_USER_ERROR);
+        }
+    }
+
+    // aArgs [---;R--] Format : [Delay]
+    void ToolBase::Delay(const char * aArgs)
+    {
+        assert(NULL != aArgs);
+
+        unsigned int lDelay_ms;
+
+        switch (sscanf_s(aArgs, "%u", &lDelay_ms))
+        {
+        case EOF:
+            lDelay_ms = 3000;
+            // No break;
+        case 1:
+            KmsLib::ThreadBase::Sleep_ms(lDelay_ms);
+            break;
+
+        default:
+            SetError(-4, "Invalid argument", REPORT_USER_ERROR);
+        }
+    }
+
+    void ToolBase::Error_Abort()
+    {
+        if (0 != mError_Code)
+        {
+            // NOT TESTED  KmsLib::ToolBase::Error_Abort
+            //             Aborting execution
+            exit(mError_Code);
+        }
+    }
+
+    void ToolBase::Error_Display()
+    {
+        if (0 == mError_Code)
+        {
+            printf("No error\n");
+        }
+        else
+        {
+            printf("Error %d - %s\n", mError_Code, mError_Desc.c_str());
+        }
+    }
+
+    void ToolBase::Error_Exit()
+    {
+        if (0 != mError_Code)
+        {
+            mExit = true;
+        }
+    }
+
+	// aLine [---;R--] Format : {Command} [Arguments]
 	void ToolBase::ExecuteCommand(const char * aLine)
 	{
 		assert(NULL != aLine);
@@ -390,8 +651,8 @@ namespace KmsLib
 		ExecuteCommand(mCommands, aLine);
 	}
 
-	// aCommandInfo	 [---;R--]
-	// aCommand		 [---;R--]
+	// aCommands [---;R--]
+	// aLine     [---;R--] Format : {Command} [Arguments]
 	void ToolBase::ExecuteCommand(const KmsLib::ToolBase::CommandInfo * aCommands, const char * aLine)
 	{
 		assert(NULL != aCommands);
@@ -399,6 +660,7 @@ namespace KmsLib
 
 		char lName     [LINE_LENGTH_MAX];
 		char lArguments[LINE_LENGTH_MAX];
+        char lMsg      [LINE_LENGTH_MAX];
 
 		bool	lFound	;
 		size_t	lLen	;
@@ -449,32 +711,67 @@ namespace KmsLib
 				}
 				else
 				{
-					Report(REPORT_USER_ERROR);
-					printf("Invalid command (%s)\n", lName);
+                    sprintf_s(lMsg, "Invalid command (%s)\n", lName);
+                    SetError(-5, lMsg, REPORT_USER_ERROR);
 				}
 			}
 
 			break;
 
 		default:
-			Report(REPORT_USER_ERROR);
-			printf("Invalid command line (%s)\n", aLine);
+			sprintf_s(lMsg, "Invalid command line (%s)\n", aLine);
+            SetError(-6, lMsg, REPORT_USER_ERROR);
 		}
 	}
 
+    // aArgs [---;R--] Format : [ExitCode] [ErrorDescription]
+    void ToolBase::Exit(const char * aArgs)
+    {
+        assert(NULL != aArgs);
+
+        int  lCode;
+        char lDesc[LINE_LENGTH_MAX];
+
+        switch (sscanf_s(aArgs, "%d %[^\n\r]", &lCode, lDesc, static_cast<unsigned int>(sizeof(lDesc))))
+        {
+        case EOF:
+            mExit = true;
+            break;
+
+        case 1:
+            strcpy_s(lDesc, "Exit");
+            // No break;
+
+        case 2:
+            if (0 == lCode)
+            {
+                ClearError();
+            }
+            else
+            {
+                SetError(lCode, lDesc, REPORT_ERROR);
+            }
+            mExit = true;
+            break;
+
+        default:
+            SetError(-7, "Invalid arguments", REPORT_USER_ERROR);
+        }
+    }
+
 	// aFile  [---;RW-]
-	void ToolBase::ParseCommands(FILE * aFile)
+	int ToolBase::ParseCommands(FILE * aFile)
 	{
 		assert(NULL != aFile);
 
-		for (;;)
+        mExit = false;
+
+		while ( ! mExit )
 		{
 			if (stdin == aFile)
 			{
                 // NOT TESTED  KmsLib::ToolBase::Console
-                //             The test program use the stdin / Le programme
-                //		       de test utilise l'entree standard
-
+                //             Parse command from the stdin
 				printf("\n> ");
 			}
 
@@ -512,7 +809,31 @@ namespace KmsLib
 				}
 			}
 		}
+
+        return mError_Code;
 	}
+
+    // aArgs [---;R--] Format : {Count} {Command}
+    void ToolBase::Repeat(const char * aArgs)
+    {
+        assert(NULL != aArgs);
+
+        char         lCommand[LINE_LENGTH_MAX];
+        unsigned int lCount;
+
+        switch (sscanf_s(aArgs, "%u %[^\n\r]", &lCount, lCommand, static_cast<unsigned int>(sizeof(lCommand))))
+        {
+        case 2:
+            for (unsigned int i = 0; (! mExit) && ( i < lCount); i++)
+            {
+                ExecuteCommand(lCommand);
+            }
+            break;
+
+        default:
+            SetError(-8, "Invalid argument", REPORT_USER_ERROR);
+        }
+    }
 
 };
 
@@ -526,22 +847,16 @@ void DisplayHelp(const KmsLib::ToolBase::CommandInfo * aCommandInfo)
 
 	printf("\n");
 
-	for (unsigned int i = 0;; i++)
+	for (unsigned int i = 0; NULL != aCommandInfo[i].mName; i++)
 	{
-		if (NULL == aCommandInfo[i].mName)
-		{
-			break;
-		}
-
 		printf("%s\n", aCommandInfo[i].mHelpLine);
 	}
 
 	printf("Help                          Display this help message\n");
 }
 
-// aFile  [---;RW-]  Input stream / Fichier d'entree
-// aOut   [---;-W-]  Output buffer / Espace de sortie
-// aOutSize_byte     Output buffe size / Taille de l'espace de sortie
+// aFile [---;RW-]
+// aOut  [---;-W-]
 //
 // Exception  KmsLib::Exception  CODE_FILE_READ_ERROR
 void ReadLine(FILE * aFile, char * aOut, unsigned int aOutSize_byte)
@@ -550,6 +865,8 @@ void ReadLine(FILE * aFile, char * aOut, unsigned int aOutSize_byte)
 
 	if (NULL == fgets(aOut, aOutSize_byte - 1, aFile))
 	{
+        // NOT TESTED  KmsLib.ToolBase.ReadLine
+        //             Cannot read input line
 		throw new KmsLib::Exception(KmsLib::Exception::CODE_FILE_READ_ERROR, "fgets( , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, aOutSize_byte);
 	}
 }

@@ -1,8 +1,11 @@
 
-// Product / Produit  KmsBase
+// Product  KmsBase
 
 /// \author  KMS - Martin Dubois, ing.
 /// \file    Includes/KmsLib/ToolBase.h
+/// \brief   ToolBase
+
+// CODE REVIEW  2019-10-20  KMS - Martin Dubois, ing.
 
 #pragma once
 
@@ -12,21 +15,30 @@
 // ===== KmsBase =============================================================
 #include <KmsLib/Exception.h>
 
+// Macro
+/////////////////////////////////////////////////////////////////////////////
+
+#define KMS_LIB_TOOL_BASE_FUNCTIONS                                                                                       \
+    { "Abort"        , KmsLib::ToolBase::Abort        , "Abort {Code} [Desc]"       , NULL                             }, \
+    { "Delay"        , KmsLib::ToolBase::Delay        , "Delay [Delay_ms]"          , NULL                             }, \
+    { "Echo"         , KmsLib::ToolBase::Echo         , "Echo {Message}"            , NULL                             }, \
+    { "Error"        , NULL                           , "Error ..."                 , KmsLib::ToolBase::ERROR_COMMANDS }, \
+    { "ExecuteScript", KmsLib::ToolBase::ExecuteScript, "ExecuteScript {ScriptName}", NULL                             }, \
+    { "Exit"         , KmsLib::ToolBase::Exit         , "Exit {Code} [Desc]"        , NULL                             }, \
+    { "Pause"        , KmsLib::ToolBase::Pause        , "Pause {Message}"           , NULL                             }, \
+    { "Repeat"       , KmsLib::ToolBase::Repeat       , "Repeat {Count} {Command}"  , NULL                             },
+
 namespace KmsLib
 {
 
-    // Class / Classe
+    // Class
     /////////////////////////////////////////////////////////////////////////
 
     /// \cond   en
     /// \brief  Command line tools base
-    /// \todo   AskUser - Make it non static method. If the aFile is NULL,
-    ///         use the current input file.
     /// \endcond
     /// \cond   fr
     /// \brief  Base d'un outil en ligne de commande
-    /// \todo   AskUser - En faire des method non statique. Si le aFile est
-    ///         NULL, utiliser le fichier d'entree courrant.
     /// \endcond
     class ToolBase
     {
@@ -37,7 +49,7 @@ namespace KmsLib
         /// \brief  Type of reported information
         /// \endcond
         /// \cond   fr
-        /// \brief  Type des informations raportees
+        /// \brief  Type des informations raport&eacute;es
         /// \endcond
         typedef enum
         {
@@ -75,139 +87,277 @@ namespace KmsLib
         }
         CommandInfo;
 
+        // TODO KmsLib.ToolBase
+        //      Low (Feature) - Make AskUser normal method and use the
+        //      current stream for input.
+
         /// \cond   en
         /// \brief  Ask the user for a unsigned short value
-        /// \param  aFile  [---;RW-]  The input stream
-        /// \param  aName  [---;R--]  Name of the requested value
-        /// \param  aMin              Minimal value
-        /// \param  aMax              Maximal value
-        /// \param  aDefault          Default value
-        /// \param  aOut   [---;-W-]  The value the user entered
+        /// \param  aFile     The input stream
+        /// \param  aName     Name of the requested value
+        /// \param  aMin      Minimal value
+        /// \param  aMax      Maximal value
+        /// \param  aDefault  Default value
+        /// \param  aOut     The value the user entered
         /// \endcond
         /// \cond   fr
-        /// \brief  Demande une valeur unsigned short a l'utilisateur
-        /// \param  aFile  [---;RW-]  Le fichier d'entree
-        /// \param  aName  [---;R--]  Nom de la valeur demandee
-        /// \param  aMin              Valeur minimale
-        /// \param  aMax              Valeur maximale
-        /// \param  aDefault          Valeur par defaut
-        /// \param  aOut   [---;-W-]  La valeur que l'utilisateur a entree
+        /// \brief  Demander une valeur unsigned short &agrave; l'utilisateur
+        /// \param  aFile     Le fichier d'entr&eacute;e
+        /// \param  aName     Nom de la valeur demand&eacute;e
+        /// \param  aMin      Valeur minimale
+        /// \param  aMax      Valeur maximale
+        /// \param  aDefault  Valeur par d&eacute;faut
+        /// \param  aOut      La valeur que l'utilisateur &agrave;
+        ///                   entr&eacute;e
         /// \endcond
         /// \exception  Exception  CODE_FILE_READ_ERROR
         static void AskUser(FILE * aFile, const char * aName, unsigned short aMin, unsigned short aMax, unsigned short aDefault, unsigned short * aOut);
 
         /// \cond   en
         /// \brief  Ask the user for a string value
-        /// \param  aFile  [---;RW-]  The input stream
-        /// \param  aName  [---;R--]  Name of the requested value
-        /// \param  aOut   [---;-W-]  The value the user entered
-        /// \param  aOutSize_byte     The value maximal size
+        /// \param  aFile          The input stream
+        /// \param  aName          Name of the requested value
+        /// \param  aOut           The value the user entered
+        /// \param  aOutSize_byte  The value maximal size
         /// \endcond
         /// \cond   fr
-        /// \brief  Demande une chaine de caractere a l'utilisateur
-        /// \param  aFile  [---;RW-]  Le fichier d'entree
-        /// \param  aName  [---;R--]  Nom de la valeur demandee
-        /// \param  aOut   [---;-W-]  La valeur que l'utilisateur a
-        ///                           entree
-        /// \param  aOutSize_byte     La taille maximale de la valeur
+        /// \brief  Demander une chaine de caracteres &agrave; l'utilisateur
+        /// \param  aFile          Le fichier d'entr&eacute;e
+        /// \param  aName          Nom de la valeur demand&eacute;e
+        /// \param  aOut           La valeur que l'utilisateur &agrave;
+        ///                        entr&eacute;e
+        /// \param  aOutSize_byte  La taille maximale de la valeur
         /// \endcond
         /// \exception  Exception  CODE_FILE_READ_ERROR
         static void AskUser(FILE * aFile, const char * aName, char * aOut, unsigned int aOutSize_byte);
 
         /// \cond	en
         /// \brief  Ask the user for a string value
-        /// \param  aFile     [---;RW-]  The input stream
-        /// \param  aName     [---;R--]  Name of the requested value
-        /// \param  aDefault  [---;R--]  Default value
-        /// \param  aOut      [---;-W-]  The value the user entered
-        /// \param	aOutSize_byte        The value maximal size
+        /// \param  aFile          The input stream
+        /// \param  aName          Name of the requested value
+        /// \param  aDefault       Default value
+        /// \param  aOut           The value the user entered
+        /// \param	aOutSize_byte  The value maximal size
         /// \endcond
         /// \cond   fr
-        /// \brief  Demande une chaine de caractere a l'utilisateur
-        /// \param	aFile     [---;RW-]  Le fichier d'entree
-        /// \param  aName     [---;R--]  Nom de la valeur demandee
-        /// \param  aDefault  [---;R--]  Valeur par defaut
-        /// \param  aOut      [---;-W-]  La valeur que l'utilisateur a
-        ///                              entree
-        /// \param	aOutSize_byte        La taille maximale de la
-        ///                              valeur
+        /// \brief  Demander une chaine de caracteres &agrave; l'utilisateur
+        /// \param	aFile          Le fichier d'entr&eacute;e
+        /// \param  aName          Nom de la valeur demand&eacute;e
+        /// \param  aDefault       Valeur par d&eacute;faut
+        /// \param  aOut           La valeur que l'utilisateur &agrave;
+        ///                        entr&eacute;e
+        /// \param	aOutSize_byte  La taille maximale de la valeur
         /// \endcond
         /// \exception  Exception  CODE_FILE_READ_ERROR
         static void AskUser(FILE * aFile, const char * aName, const char * aDefault, char * aOut, unsigned int aOutSize_byte);
 
         /// \cond	en
         /// \brief  Ask the user for an input file name
-        /// \param  aFile  [---;RW-]  The input stream
-        /// \param  aName  [---;R--]  Name of the requested value
-        /// \param	aOut   [---;-W-]  The value the user entered
-        /// \param  aOutSize_byte     The value maximal size
+        /// \param  aFile          The input stream
+        /// \param  aName          Name of the requested value
+        /// \param	aOut           The value the user entered
+        /// \param  aOutSize_byte  The value maximal size
         /// \endcond
         /// \cond   fr
-        /// \brief  Demande a l'utilisateur le nom d'un fichier d'entree
-        /// \param  aFile  [---;RW-]  Le fichier d'entree
-        /// \param  aName  [---;R--]  Nom de la valeur demandee
-        /// \param  aOut   [---;-W-]  La valeur que l'utilisateur a
-        ///                           entree
-        /// \param aOutSize_byte      La taille maximale de la valeur
+        /// \brief  Demander le nom d'un fichier d'entree &agrave; utilisateur
+        /// \param  aFile         Le fichier d'entr&eacute;e
+        /// \param  aName         Nom de la valeur demand&eacute;e
+        /// \param  aOut          La valeur que l'utilisateur &agrave;
+        ///                       entr&eacute;e
+        /// \param aOutSize_byte  La taille maximale de la valeur
         /// \endcond
         /// \exception  Exception  CODE_FILE_READ_ERROR
         static void AskUser_InputFileName(FILE * aFile, const char * aName, char * aOut, unsigned int  aOutSize_byte);
 
         /// \cond   en
         /// \brief  Ask the user for an output file name
-        /// \param  aFile     [---;RW-]  The input stream
-        /// \param  aName     [---;R--]  Name of the requested value
-        /// \param  aDefault  [---;R--]  Default value
-        /// \param  aOut      [---;-W-]  The value the user entered
-        /// \param  aOutSize_byte        The value maximal size
+        /// \param  aFile          The input stream
+        /// \param  aName          Name of the requested value
+        /// \param  aDefault       Default value
+        /// \param  aOut           The value the user entered
+        /// \param  aOutSize_byte  The value maximal size
         /// \endcond
         /// \cond   fr
-        /// \brief  Demande a l'utilisateur le nom d'un fichier de
-        ///         sortie
-        /// \param  aFile     [---;RW-]  Le fichier d'entree
-        /// \param  aName     [---;R--]  Nom de la valeur demandee
-        /// \param  aDefault  [---;R--]  Valeur par defaut
-        /// \param  aOut      [---;-W-]  La valeur que l'utilisateur a
-        ///                              entree
-        /// \param  aOutSize_byte        La taille maximale de la
-        ///                              valeur
+        /// \brief  Demander le nom d'un fichier de sortie &agrave;
+        ///         l'utilisateur
+        /// \param  aFile          Le fichier d'entr&eacute;e
+        /// \param  aName          Nom de la valeur demand&eacute;e
+        /// \param  aDefault       Valeur par d&eacute;faut
+        /// \param  aOut           La valeur que l'utilisateur &agrave;
+        ///                        entr&eacute;e
+        /// \param  aOutSize_byte  La taille maximale de la valeur
         /// \endcond
         /// \exception  Exception  CODE_FILE_READ_ERROR
         static void AskUser_OutputFileName(FILE * aFile, const char * aName, const char * aDefault, char * aOut, unsigned int aOutSize_byte);
 
         /// \cond   en
         /// \brief  Report a result
-        /// \param  aType  See ReportType
+        /// \param  aType  The report type
         /// \endcond
         /// \cond   fr
-        /// \brief  Affiche un resultat
-        /// \param  aType  Voir ReportType
+        /// \brief  Afficher un resultat
+        /// \param  aType  Le type de rapport
         /// \endcond
         static void Report(ReportType aType);
 
         /// \cond   en
         /// \brief  Report an exception
-        /// \param  aType                  See ReportType
-        /// \param  aException  [---;R--]  See KmsLib::Exception
+        /// \param  aType       The report type
+        /// \param  aException  The exception
         /// \endcond
         /// \cond   fr
-        /// \brief  Affiche une exception
-        /// \param  aType                  Voir ReportType
-        /// \param  aException  [---;R--]  Voir KmsLib::Exception
+        /// \brief  Afficher une exception
+        /// \param  aType       Le type de rapport
+        /// \param  aException  L'exception
         /// \endcond
         static void Report(ReportType aType, const KmsLib::Exception * aException);
 
         /// \cond   en
         /// \brief  Report an error
-        /// \param  aType                See ReportType
-        /// \param  aMessage  [---;R--]  A simple message
+        /// \param  aType     The report type
+        /// \param  aMessage  A simple message
         /// \endcond
         /// \cond   fr
-        /// \brief  Affiche une erreur
-        /// \param  aType                Voir ReportType
-        /// \param  aMessage  [---;R--]  Un message simple
+        /// \brief  Afficher une erreur
+        /// \param  aType     Le type de rapport
+        /// \param  aMessage  Un message simple
         /// \endcond
         static void Report(ReportType aType, const char * aMessage);
+
+        // ===== Function ===================================================
+
+        static const CommandInfo ERROR_COMMANDS[];
+
+        /// \cond   en
+        /// \brief  Abort
+        /// \param  aToolBase  A ToolBase instance
+        /// \param  aArg       Format : [ErrorCode] [ErrorDescription]
+        /// \endcond
+        /// \cond   fr
+        /// \brief  Terminer l'execution de l'outil
+        /// \param  aToolBase  Une instance de ToolBase
+        /// \param  aArg       Format : [CodeErreur] [DescriptionErreur]
+        /// \endcond
+        static void Abort(ToolBase * aToolBase, const char * aArg);
+
+        /// \cond   en
+        /// \brief  Sleep
+        /// \param  aToolBase  A ToolBase instance
+        /// \param  aArg       Format : [Delay_ms]
+        /// \endcond
+        /// \cond   fr
+        /// \brief  Dormir
+        /// \param  aToolBase  Une instance de ToolBase
+        /// \param  aArg       Format : [Temps_ms]
+        /// \endcond
+        static void Delay(ToolBase * aToolBase, const char * aArg);
+
+        /// \cond   en
+        /// \brief  Display a message
+        /// \param  aToolBase  A ToolBase instance
+        /// \endcond
+        /// \cond   fr
+        /// \brief  Afficher un message
+        /// \param  aToolBase  Une instance de ToolBase
+        /// \endcond
+        /// \param  aArg       Format : {Message}
+        static void Echo(ToolBase * aToolBase, const char * aArg);
+
+        /// \cond   en
+        /// \brief  Abort if an error happened
+        /// \param  aToolBase  A ToolBase instance
+        /// \param  aArg       Not used
+        /// \endcond
+        /// \cond   fr
+        /// \brief  Terminer l'execution si une erreur est survenue
+        /// \param  aToolBase  Une instance de ToolBase
+        /// \param  aArg       Pas utilis&eacute;  
+        /// \endcond
+        static void Error_Abort(ToolBase * aToolBase, const char * aArg);
+
+        /// \cond   en
+        /// \brief  Clear error status
+        /// \param  aToolBase  A ToolBase instance
+        /// \param  aArg       Not used
+        /// \endcond
+        /// \cond   fr
+        /// \brief  Effacer l'information d'erreur
+        /// \param  aToolBase  Une instance de ToolBase
+        /// \param  aArg       Pas utilis&eacute;
+        /// \endcond
+        static void Error_Clear(ToolBase * aToolBase, const char * aArg);
+
+        /// \cond   en
+        /// \brief  Display the error information
+        /// \param  aToolBase  A ToolBase instance
+        /// \param  aArg       Not used
+        /// \endcond
+        /// \cond   fr
+        /// \brief  Effacer l'information d'erreur
+        /// \param  aToolBase  Une instance de ToolBase
+        /// \param  aArg       Pas utilis&eacute;
+        /// \endcond
+        static void Error_Display(ToolBase * aToolBase, const char * aArg);
+
+        /// \cond   en
+        /// \brief  Exit if an error happened
+        /// \param  aToolBase  A ToolBase instance
+        /// \param  aArg       Not used
+        /// \endcond
+        /// \cond   fr
+        /// \brief  Sortir si une erreur est survenue
+        /// \param  aToolBase  Une instance de ToolBase
+        /// \param  aArg       Pas utilis&eacute;
+        /// \endcond
+        static void Error_Exit(ToolBase * aToolBase, const char * aArg);
+
+        /// \cond   en
+        /// \brief  Execute a script
+        /// \param  aToolBase  A ToolBase instance
+        /// \param  aArg       Format : {FileName}
+        /// \endcond
+        /// \cond   fr
+        /// \brief  Execute un fichier de commande
+        /// \param  aToolBase  Une instance de ToolBase
+        /// \param  aArg       Format : {NomFichier}
+        /// \endcond
+        static void ExecuteScript(ToolBase * aToolBase, const char * aArg);
+
+        /// \cond   en
+        /// \brief  Exit
+        /// \param  aToolBase  A ToolBase instance
+        /// \param  aArg       Format : [ErrorCode] [ErrorDescription]
+        /// \endcond
+        /// \cond   fr
+        /// \brief  Sortir
+        /// \param  aToolBase  Une instance de ToolBase
+        /// \param  aArg       Format : [CodeErreur] [DescriptionErreur]
+        /// \endcond
+        static void	Exit(ToolBase * aToolBase, const char * aArg);
+
+        /// \cond   en
+        /// \brief  Wait for user input
+        /// \param  aToolBase  A ToolBase instance
+        /// \endcond
+        /// \cond   fr
+        /// \brief  Attendre un signal de l'utilisateur
+        /// \param  aToolBase  Une instance de ToolBase
+        /// \endcond
+        /// \param  aArg       Format : {Message}
+        static void Pause(ToolBase * aToolBase, const char * aArg);
+
+        /// \cond   en
+        /// \brief  Repeate a command
+        /// \param  aToolBase  A ToolBase instance
+        /// \param  aArg       Format : {RepeatCount} {Command}
+        /// \endcond
+        /// \cond   fr
+        /// \brief  Repeter une commande
+        /// \param  aToolBase  Une instance de ToolBase
+        /// \param  aArg       Format : {NombreRepetition} {Commande}
+        ///                               commande
+        /// \endcond
+        static void Repeat(ToolBase * aToolBase, const char * aArg);
 
         /// \cond   en
         /// \brief  Constructor
@@ -220,6 +370,40 @@ namespace KmsLib
         ///                               commandes
         /// \endcond
         ToolBase(const CommandInfo * aCommands);
+
+        /// \cond   en
+        /// \brief  Clear the error code
+        /// \endcond
+        /// \cond   fr
+        /// \brief  Effacer le code d'erreur
+        /// \endcond
+        void ClearError();
+
+        /// \cond   en
+        /// \brief  Retrieve the error code
+        /// \return This method returns the error code
+        /// \endcond
+        /// \cond   fr
+        /// \brief  Acceder le code d'erreur
+        /// \return Cette m&eacute;thode retourne le code d'erreur
+        /// \endcond
+        int GetErrorCode();
+
+        /// \cond   en
+        /// \brief  Set the error if not already set
+        /// \param  aCode  The error code
+        /// \param  aDesc  The error description
+        /// \param  aType  The report type
+        /// \retval This method returns the real error code
+        /// \endcond
+        /// \cond   fr
+        /// \brief  Initialiser le code d'erreur s'il n'est pas
+        ///         initialis&eacute;
+        ///	\param  aCode  Le code d'erreur
+        /// \param  aDesc  La description de l'erreur
+        /// \param  aType  Le type de rapport
+        /// \endcond
+        int SetError(int aCode, const char * aDesc, ReportType aType = REPORT_ERROR);
 
         /// \cond    en
         /// \brief   Parse the arguments the user passed to the tools
@@ -245,8 +429,9 @@ namespace KmsLib
         /// \cond   fr
         /// \brief  Interprete les commandes lues de l'entree standard
         /// \endcond
+        /// \retval 0 OK
         /// \exception  Exception  CODE_...
-        void ParseCommands();
+        int ParseCommands();
 
         /// \cond   en
         /// \brief  Parse the commands read from a file
@@ -256,42 +441,34 @@ namespace KmsLib
         /// \brief  Interprete les commandes lues d'un fichier
         /// \param  aFileName  [---;R--]  Nom du fichier
         /// \endcond
-        void ParseCommands(const char * aFileName);
-
-        // ===== Function ===================================================
-
-        /// \cond   en
-        /// \brief  Execute a script
-        /// \param  aToolBase  [---;RW-]  A ToolBase instance
-        /// \param  aArg       [---;R--]  Name of the script
-        /// \endcond
-        /// \cond   fr
-        /// \brief  Execute un fichier de commande
-        /// \param  aToolBase  [---;RW-]  Une instance de ToolBase
-        /// \param  aArg       [---;R--]  Nom du fichier de commandes
-        /// \endcond
-        static void ExecuteScript(ToolBase * aToolBase, const char * aArg);
-
-        /// \cond   en
-        /// \brief  Exit
-        /// \param  aToolBase  [---;RW-]  A ToolBase instance
-        /// \param  aArg       [---;R--]  The exit value
-        /// \endcond
-        /// \cond   fr
-        /// \brief  Sortir
-        /// \param  aToolBase  [---;RW-]  Une instance de ToolBase
-        /// \param  aArg       [---;R--]  La valeur a retourner
-        /// \endcond
-        static void	Exit(ToolBase * aToolBase, const char * aArg);
+        /// \retval 0 OK
+        int ParseCommands(const char * aFileName);
 
     private:
+
+        void Abort(const char * aArgs);
+        void Delay(const char * aArgs);
+
+        void Error_Abort  ();
+        void Error_Display();
+        void Error_Exit   ();
 
         void ExecuteCommand(                                                 const char * aLine);
         void ExecuteCommand(const KmsLib::ToolBase::CommandInfo * aCommands, const char * aLine);
 
-        void ParseCommands(FILE * aFile);
+        void Exit(const char * aArgs);
+        void Exit(int aCode, const char * aDesc);
+
+        int ParseCommands(FILE * aFile);
+
+        void Repeat(const char * aArgs);
 
         const CommandInfo * mCommands;
+
+        int         mError_Code;
+        std::string mError_Desc;
+
+        bool mExit;
 
     };
 

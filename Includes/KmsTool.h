@@ -11,7 +11,7 @@
 // Macros
 /////////////////////////////////////////////////////////////////////////////
 
-#if defined( _DEBUG ) || defined( NDEBUG )
+#if ( ! defined( _DEBUG ) ) || defined( NDEBUG )
 
     #define KMS_TOOL_BANNER(P,C,V,T)       \
         printf( P " - " C "\n" );          \

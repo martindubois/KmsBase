@@ -3,6 +3,8 @@ Author   KMS - Martin Dubois, ing.
 Product  KmsBase
 File     KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
 
+
+- KMS_TOOL_BANNER - Fix _DEBUG inversion on Windows
 - ToolBase
 	- Predefined commands : Abort, Delay, Echo, Error, Pause and Repeat
 	- Fix ToolBase::Exit to exit the ParseCommand method

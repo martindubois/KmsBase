@@ -10,11 +10,11 @@
 
 #define  VERSION_MAJOR          ( 3)
 #define  VERSION_MINOR          ( 0)
-#define  VERSION_BUILD          (15)
+#define  VERSION_BUILD          (16)
 #define  VERSION_COMPATIBILITY  ( 0)
 
-#define  VERSION_RC    3,0,15,0
-#define	 VERSION_STR   "3.0.15.0"
-#define	 VERSION_STR0  "3.0.15.0\0"
+#define  VERSION_RC    3,0,16,0
+#define	 VERSION_STR   "3.0.16.0"
+#define	 VERSION_STR0  "3.0.16.0\0"
 
 #define  VERSION_TYPE  ""

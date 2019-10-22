@@ -131,11 +131,11 @@ KMS_TEST_BEGIN(ToolBase_Base)
 
     // ===== AskUser_InputFileName ==========================================
 
-    // TODO
+    // TODO  KmsLib.ToolBase  Test AskUser_InputFileName
 
     // ===== AskUser_OutputFileName =========================================
 
-    // TODO
+    // TODO  KmsLib.ToolBase  Test AskUser_OutputFileName
 
     int lRetI = fclose(lFile);
     KMS_TEST_COMPARE(0, lRetI);

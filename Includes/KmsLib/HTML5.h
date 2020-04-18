@@ -1,5 +1,5 @@
 
-// Product / Produit  KmsBase
+// Product  KmsBase
 
 /// \author	  KMS - Martin Dubois, ing.
 /// \file     Includes/KmsLib/HTML5.h
@@ -97,8 +97,8 @@ namespace KmsLib
         void  dfn_Begin (FILE * aFile);
         void  dfn_End   (FILE * aFile);
 
-        void  dir_Begin (FILE * aFile);
-        void  dir_End   (FILE * aFile);
+        void  div_Begin (FILE * aFile);
+        void  div_End   (FILE * aFile);
 
         void  dl_Begin (FILE * aFile);
         void  dl_End   (FILE * aFile);
@@ -119,7 +119,6 @@ namespace KmsLib
         void  h_Begin (FILE * aFile, unsigned int aH);
         void  h_End   (FILE * aFile, unsigned int aH);
 
-        void  head       (FILE * aFile, const char * aTitle);
         void  head_Begin (FILE * aFile);
         void  head_End   (FILE * aFile);
 

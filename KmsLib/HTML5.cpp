@@ -1,7 +1,9 @@
 
-// Auteur    KMS - Martin Dubois, ing.
-// Produit   KmsBase
-// Fichier   KmsLib/HTML.cpp
+// Author   KMS - Martin Dubois, P.Eng.
+// Product  KmsBase
+// File     KmsLib/HTML.cpp
+
+// TEST COVERAGE 2020-04-18 KMS - Martin Dubois, P.Eng.
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -88,7 +90,9 @@ namespace KmsLib
 
             DOCTYPE    (lResult);
             html_Begin (lResult);
-            head       (lResult, aTitle);
+            head_Begin (lResult);
+                title  (lResult, aTitle);
+            head_End   (lResult);
             body_Begin (lResult);
 
             return lResult;
@@ -141,7 +145,7 @@ namespace KmsLib
         TAG_CBE (del     )
         TAG_BE  (details )
         TAG_CBE (dfn     )
-        TAG_BE  (dir     )
+        TAG_BE  (div     )
         TAG_BE  (dl      )
         TAG_CBE (dt      )
 
@@ -173,7 +177,7 @@ namespace KmsLib
             fprintf(aFile, "</h%u>", aH);
         }
 
-        TAG_CBE (head )
+        TAG_BE  (head )
         TAG_C   (hr   )
         TAG_BE  (html )
 
@@ -190,11 +194,11 @@ namespace KmsLib
         TAG_BE(nav)
 
         TAG_BE(ol       )
-        TAG_BE(optgroup )
+        // TODO HTML5.optgroup TAG_BE(optgroup )
 
         TAG_CBE (p        )
         TAG_CBE (pre      )
-        TAG_C   (progress )
+        // TODO HTML5.progress TAG_C   (progress )
 
         TAG_CBE(q)
 
@@ -251,6 +255,7 @@ namespace KmsLib
             fprintf(aFile, " -->");
         }
 
+        // NOT TESTED HTML5
         void  Tag(FILE * aFile, const char * aTag)
         {
             Tag_Begin_Begin (aFile, aTag);
@@ -273,6 +278,7 @@ namespace KmsLib
             Tag_Begin_End   (aFile);
         }
 
+        // NOT TESTED HTML5
         void  Tag_Begin(FILE * aFile, const char * aTag, const char * aAttr)
         {
             assert(NULL != aFile );

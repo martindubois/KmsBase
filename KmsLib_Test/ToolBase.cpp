@@ -32,44 +32,39 @@
 
 static const char * ARGUMENTS_C0[] =
 {
-	"KmsLib_Test.exe"	,
-	"Command"			,
-	"Invalid"			,
+	"KmsLib_Test.exe",
+	"Command=Invalid",
 };
 
 static const char * ARGUMENTS_C1[] =
 {
-	"KmsLib_Test.exe",
-	"Command",
-	"ExecuteScript DoNotExist",
+	"KmsLib_Test.exe"                   ,
+	"Command=ExecuteScript DoesNotExist",
 };
 
 static const char * ARGUMENTS_C2[] =
 {
-	"KmsLib_Test.exe"	,
-	"Command"			,
-	"A"					,
+	"KmsLib_Test.exe",
+	"Command=A"		 ,
 };
 
 static const char * ARGUMENTS_C3[] =
 {
 	"KmsLib_Test.exe",
-	"Command",
-	"Help",
+	"Command=Help"   ,
 };
 
-static const char * ARGUMENTS_F0[] =
+static const char * ARGUMENTS_C5[] =
 {
-	"KmsLib_Test.exe"	,
-	"File"				,
-	"DoNotExist"		,
+	"KmsLib_Test.exe"		                                  ,
+	"Command=ExecuteScript " TEST_FOLDER SLASH "ToolBase0.txt",
 };
 
-static const char * ARGUMENTS_F1[] =
+static const char * ARGUMENTS_C6[] =
 {
-	"KmsLib_Test.exe"			,
-	"File"						,
-	TEST_FOLDER SLASH "ToolBase0.txt"  ,
+    "KmsLib_Test.exe"		             ,
+    "Execute=ChangeDir " TEST_FOLDER     ,
+    "Command=ExecuteScript ToolBase0.txt",
 };
 
 static void A(KmsLib::ToolBase * aThis, const char * aArguments)
@@ -158,6 +153,11 @@ KMS_TEST_BEGIN(ToolBase_Base)
     KmsLib::ToolBase::Abort(&lTB0, "Invalid");
     KMS_TEST_COMPARE(-3, lTB0.GetErrorCode());
 
+    // ===== ChangeDir ======================================================
+    lTB0.ClearError();
+    KmsLib::ToolBase::ChangeDir(&lTB0, "");
+    KMS_TEST_COMPARE(-592, lTB0.GetErrorCode());
+
     // ===== Delay ==========================================================
 
     KmsLib::ToolBase::Delay(&lTB0, "");
@@ -240,42 +240,40 @@ KMS_TEST_BEGIN(ToolBase_Base)
 
     bool lRetB;
 
+    lTB0.ClearError();
     lRetB = lTB0.ParseArguments(1, ARGUMENTS_C0);
     KMS_TEST_ASSERT(!lRetB);
-
-    try
-    {
-        lRetB = lTB0.ParseArguments(2, ARGUMENTS_C0);
-        KMS_TEST_ERROR();
-    }
-    catch (KmsLib::Exception * eE)
-    {
-        KMS_TEST_ERROR_INFO;
-        eE->Write(stdout);
-        KMS_TEST_COMPARE(KmsLib::Exception::CODE_INVALID_COMMAND_LINE, eE->GetCode());
-    }
+    KMS_TEST_COMPARE(0, lTB0.GetErrorCode());
 
     lTB0.ClearError();
-    lRetB = lTB0.ParseArguments(3, ARGUMENTS_C0);
+    lRetB = lTB0.ParseArguments(2, ARGUMENTS_C0);
     KMS_TEST_ASSERT(lRetB);
     KMS_TEST_COMPARE(-5, lTB0.GetErrorCode());
 
-    lRetB = lTB0.ParseArguments(3, ARGUMENTS_C1);
+    lTB0.ClearError();
+    lRetB = lTB0.ParseArguments(2, ARGUMENTS_C1);
     KMS_TEST_ASSERT(lRetB);
+    KMS_TEST_COMPARE(-2, lTB0.GetErrorCode());
 
     lTB0.ClearError();
-    lRetB = lTB0.ParseArguments(3, ARGUMENTS_C2);
+    lRetB = lTB0.ParseArguments(2, ARGUMENTS_C2);
     KMS_TEST_ASSERT(lRetB);
     KMS_TEST_COMPARE(-6, lTB0.GetErrorCode());
 
-    lRetB = lTB0.ParseArguments(3, ARGUMENTS_C3);
+    lTB0.ClearError();
+    lRetB = lTB0.ParseArguments(2, ARGUMENTS_C3);
     KMS_TEST_ASSERT(lRetB);
+    KMS_TEST_COMPARE(0, lTB0.GetErrorCode());
 
-    lRetB = lTB0.ParseArguments(3, ARGUMENTS_F0);
+    lTB0.ClearError();
+    lRetB = lTB0.ParseArguments(2, ARGUMENTS_C5);
     KMS_TEST_ASSERT(lRetB);
+    KMS_TEST_COMPARE(0, lTB0.GetErrorCode());
 
-    lRetB = lTB0.ParseArguments(3, ARGUMENTS_F1);
+    lTB0.ClearError();
+    lRetB = lTB0.ParseArguments(3, ARGUMENTS_C6);
     KMS_TEST_ASSERT(lRetB);
+    KMS_TEST_COMPARE(0, lTB0.GetErrorCode());
 
     // ===== ParseCommands ==================================================
     // Require interaction

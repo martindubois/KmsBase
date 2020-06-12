@@ -1,14 +1,13 @@
 
-// Author   KMS - Martin Dubois, ing.
-// Product  KmsBase
-// File     KmsLib/ToolBase.cpp
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2020 KMS. All rights reserved.
+// License   http ://www.apache.org/licenses/LICENSE-2.0
+// Product   KmsBase
+// File      KmsLib/ToolBase.cpp
 
-// CODE REVIEW    2019-10-21  KMS - Martin Dubois, ing.
+// CODE REVIEW 2020-06-12 KMS - Martin Dubois, P.Eng.
 
-// TEST COVERAGE  2019-10-21  KMS - Martin Dubois, ing.
-
-// Includes
-/////////////////////////////////////////////////////////////////////////////
+// TEST COVERAGE 2020-06-12 KMS - Martin Dubois, P.Eng.
 
 #include "Component.h"
 
@@ -65,8 +64,9 @@ namespace KmsLib
 	// Public
 	/////////////////////////////////////////////////////////////////////////
 
-    // aFile [---;RW-]
-    // aName [---;R--]
+    // NOT TESTED  KmsLib.ToolBase.Console
+    //             Ask a question on the stdin
+
     // aOut  [---;-W-]
 	void ToolBase::AskUser(FILE * aFile, const char * aName, unsigned short aMin, unsigned short aMax, unsigned short aDefault, unsigned short * aOut)
 	{
@@ -81,8 +81,6 @@ namespace KmsLib
 		{
 			if (stdin == aFile)
 			{
-                // NOT TESTED  KmsLib.ToolBase.Console
-                //             Ask a question on the stdin
 				printf("%s\t(Range: %u to %u;\tDefault: %u) : ", aName, aMin, aMax, aDefault);
 			}
 
@@ -114,8 +112,6 @@ namespace KmsLib
 		}
 	}
 
-    // aFile [---;RW-]
-    // aName [---;R--]
     // aOut  [---;-W-]
 	void ToolBase::AskUser(FILE * aFile, const char * aName, char * aOut, unsigned int aOutSize_byte)
 	{
@@ -128,8 +124,6 @@ namespace KmsLib
 		{
 			if (stdin == aFile)
 			{
-                // NOT TESTED  KmsLib.ToolBase.Console
-                //             Ask a question on the stdin
 				printf("%s : ", aName);
 			}
 
@@ -163,9 +157,6 @@ namespace KmsLib
 		}
 	}
 
-    // aFile    [---;RW-]
-    // aName    [---;R--]
-    // aDefault [---;R--]
     // aOut     [---;-W-]
 	void ToolBase::AskUser(FILE * aFile, const char * aName, const char * aDefault, char * aOut, unsigned int aOutSize_byte)
 	{
@@ -179,8 +170,6 @@ namespace KmsLib
 		{
 			if (stdin == aFile)
 			{
-                // NOT TESTED  KmsLib.ToolBase.Console
-                //             Ask a question on the stdin
                 printf("%s\t(Default: \"%s\") : ", aName, aDefault);
 			}
 
@@ -215,12 +204,10 @@ namespace KmsLib
 		}
 	}
 
-    // aFile [---;RW-]
-    // aName [---;R--]
-    // aOut  [---;-W-]
-
     // NOT TESTED  KmsLib.ToolBase.AskUser_InputFileName
     //             Asking a input file name to the user
+
+    // aOut  [---;-W-]
 	void ToolBase::AskUser_InputFileName(FILE * aFile, const char * aName, char * aOut, unsigned int aOutSize_byte)
 	{
 		assert(NULL != aFile        );
@@ -241,13 +228,10 @@ namespace KmsLib
 		}
 	}
 
-    // aFile    [---;RW-]
-    // aName    [---;R--]
-    // aDefault [---;R--]
-    // aOut     [---;-W-]
-
     // NOT TESTED  KmsLib.ToolBase.AskUser_OutputFileName
     //             Asking a output file name to the user
+
+    // aOut     [---;-W-]
     void ToolBase::AskUser_OutputFileName(FILE * aFile, const char * aName, const char * aDefault, char * aOut, unsigned int aOutSize_byte)
 	{
 		assert(NULL != aFile        );
@@ -291,7 +275,6 @@ namespace KmsLib
         COLOR(WHITE);
 	}
 
-    // aException [---;R--]
 	void ToolBase::Report(ReportType aType, const KmsLib::Exception * aException)
 	{
 		assert(NULL != aException);
@@ -303,7 +286,6 @@ namespace KmsLib
 		aException->Write(stdout);
 	}
 
-    // aMessage [---;R--]
 	void ToolBase::Report(ReportType aType, const char * aMessage)
 	{
 		assert(NULL != aMessage);
@@ -325,11 +307,9 @@ namespace KmsLib
         { NULL, NULL, NULL, NULL }
     };
 
-    // aThis [---;RW-]
-    // aArgs [---;R--]
-
     // NOT TESTED  KmsLib::ToolBase.Abort
     //             Aborting execution
+
     void ToolBase::Abort(ToolBase * aThis, const char * aArgs)
     {
         assert(NULL != aThis);
@@ -338,8 +318,14 @@ namespace KmsLib
         aThis->Abort(aArgs);
     }
 
-    // aThis [---;RW-]
-    // aArgs [---;R--]
+    void ToolBase::ChangeDir(ToolBase * aThis, const char * aArgs)
+    {
+        assert(NULL != aThis);
+        assert(NULL != aArgs);
+
+        aThis->ChangeDir(aArgs);
+    }
+
     void ToolBase::Delay(ToolBase * aThis, const char * aArgs)
     {
         assert(NULL != aThis);
@@ -348,8 +334,6 @@ namespace KmsLib
         aThis->Delay(aArgs);
     }
 
-    // aThis [---;RW-]
-    // aArg  [---;R--]
     void ToolBase::Echo(ToolBase * aThis, const char * aArgs)
     {
         assert(NULL != aArgs);
@@ -357,7 +341,6 @@ namespace KmsLib
         printf("%s\n", aArgs);
     }
 
-    // aThis [---;RW-]
     // aArg  [---;---]
     void ToolBase::Error_Abort(ToolBase * aThis, const char * aArgs)
     {
@@ -366,7 +349,6 @@ namespace KmsLib
         aThis->Error_Abort();
     }
 
-    // aThis [---;RW-]
     // aArg  [---;---]
     void ToolBase::Error_Clear(ToolBase * aThis, const char * aArg)
     {
@@ -375,7 +357,6 @@ namespace KmsLib
         aThis->ClearError();
     }
 
-    // aThis [---;RW-]
     // aArg  [---;---]
     void ToolBase::Error_Display(ToolBase * aThis, const char * aArg)
     {
@@ -384,7 +365,6 @@ namespace KmsLib
         aThis->Error_Display();
     }
 
-    // aThis [---;RW-]
     // aArg  [---;---] 
     void ToolBase::Error_Exit(ToolBase * aThis, const char * aArg)
     {
@@ -393,8 +373,6 @@ namespace KmsLib
         aThis->Error_Exit();
     }
 
-    // aThis [---;RW-]
-    // aArgs [---;R--] Format : {FileName}
     void ToolBase::ExecuteScript(ToolBase * aThis, const char * aArgs)
     {
         assert(NULL != aThis);
@@ -403,8 +381,6 @@ namespace KmsLib
         aThis->ParseCommands(aArgs);
     }
 
-    // aThis [---;RW-]
-    // aArgs [---;RW-]
     void ToolBase::Exit(ToolBase * aThis, const char * aArgs)
     {
         assert(NULL != aThis);
@@ -413,11 +389,9 @@ namespace KmsLib
         aThis->Exit(aArgs);
     }
 
-    // aThis [---;RW-]
-    // aArg  [---;R--]
-
     // NOT TESTED  KmsLib::ToolBase.Pause
     //             Pause command
+
     void ToolBase::Pause(ToolBase * aThis, const char * aArg)
     {
         assert(NULL != aThis);
@@ -431,8 +405,6 @@ namespace KmsLib
         ReadLine(stdin, lLine, sizeof(lLine));
     }
 
-    // aThis [---;RW-]
-    // aArgs [---;R--]
     void ToolBase::Repeat(ToolBase * aThis, const char * aArgs)
     {
         assert(NULL != aThis);
@@ -457,7 +429,6 @@ namespace KmsLib
         return mError_Code;
     }
 
-    // aDesc [---;R--]
     int ToolBase::SetError(int aCode, const char * aDesc, ReportType aType)
     {
         assert(NULL       != aDesc);
@@ -478,50 +449,32 @@ namespace KmsLib
         return mError_Code;
     }
 
-    // aVector [---;R--]
 	bool ToolBase::ParseArguments(int aCount, const char ** aVector)
 	{
         assert(NULL != aVector);
 
-		size_t lLen;
+        for (int i = 1; i < aCount; i++)
+        {
+            const char * lArg = aVector[i];
+            assert(NULL != lArg);
 
-		switch (aCount)
-		{
-		case 1 :
-			break;
+            char lData[LINE_LENGTH_MAX];
 
-		case 3 :
-			lLen = strlen(aVector[1]);
-
-			if (0 == _strnicmp("Command", aVector[1], lLen))
-			{
-				ExecuteCommand(aVector[2]);
-				return true;
-			}
-
-			if (0 == _strnicmp("File", aVector[1], lLen))
-			{
-				ParseCommands(aVector[2]);
-				return true;
-			}
-
-			// No break;
-
-		default :
-			throw new Exception(Exception::CODE_INVALID_COMMAND_LINE, "Invalid command line", NULL, __FILE__, __FUNCTION__, __LINE__, aCount);
-		}
+            if (1 == sscanf_s(lArg, "Command=%[^\n\r\t]", lData, sizeof(lData))) { ExecuteCommand(lData); return true; }
+            if (1 == sscanf_s(lArg, "Execute=%[^\n\r\t]", lData, sizeof(lData))) { ExecuteCommand(lData); }
+        }
 
 		return false;
 	}
 
     // NOT TESTED  KmsLib.ToolBase.ParseCommands
     //             Reading command from stdin
+
     int ToolBase::ParseCommands()
 	{
         return ParseCommands(stdin);
 	}
 
-    // aFileName [---;R--]
 	int ToolBase::ParseCommands(const char * aFileName)
 	{
 		assert(NULL != aFileName);
@@ -571,7 +524,6 @@ namespace KmsLib
 	// Private
 	/////////////////////////////////////////////////////////////////////////
 
-    // aArgs [---;RW-] Format : [ErrorCode] [ErrorDescription]
     void ToolBase::Abort(const char * aArgs)
     {
         assert(NULL != aArgs);
@@ -581,8 +533,6 @@ namespace KmsLib
 
         switch (sscanf_s(aArgs, "%d %[^\n\r]", &lCode, lDesc, static_cast<unsigned int>(sizeof(lDesc))))
         {
-        // NOT TESTED  KmsLib::ToolBase.Abort
-        //             Aborting execution
         case EOF: exit(0);
         case 1  : exit(SetError(lCode, "Abort", REPORT_FATAL_ERROR));
         case 2  : exit(SetError(lCode, lDesc  , REPORT_FATAL_ERROR));
@@ -592,7 +542,16 @@ namespace KmsLib
         }
     }
 
-    // aArgs [---;R--] Format : [Delay]
+    void ToolBase::ChangeDir(const char * aArgs)
+    {
+        assert(NULL != aArgs);
+
+        if (!SetCurrentDirectory(aArgs))
+        {
+            SetError(-592, "Invalid directory", REPORT_USER_ERROR);
+        }
+    }
+
     void ToolBase::Delay(const char * aArgs)
     {
         assert(NULL != aArgs);
@@ -643,7 +602,6 @@ namespace KmsLib
         }
     }
 
-	// aLine [---;R--] Format : {Command} [Arguments]
 	void ToolBase::ExecuteCommand(const char * aLine)
 	{
 		assert(NULL != aLine);
@@ -651,8 +609,6 @@ namespace KmsLib
 		ExecuteCommand(mCommands, aLine);
 	}
 
-	// aCommands [---;R--]
-	// aLine     [---;R--] Format : {Command} [Arguments]
 	void ToolBase::ExecuteCommand(const KmsLib::ToolBase::CommandInfo * aCommands, const char * aLine)
 	{
 		assert(NULL != aCommands);
@@ -724,7 +680,6 @@ namespace KmsLib
 		}
 	}
 
-    // aArgs [---;R--] Format : [ExitCode] [ErrorDescription]
     void ToolBase::Exit(const char * aArgs)
     {
         assert(NULL != aArgs);
@@ -759,7 +714,6 @@ namespace KmsLib
         }
     }
 
-	// aFile  [---;RW-]
 	int ToolBase::ParseCommands(FILE * aFile)
 	{
 		assert(NULL != aFile);
@@ -813,7 +767,6 @@ namespace KmsLib
         return mError_Code;
 	}
 
-    // aArgs [---;R--] Format : {Count} {Command}
     void ToolBase::Repeat(const char * aArgs)
     {
         assert(NULL != aArgs);
@@ -840,7 +793,6 @@ namespace KmsLib
 // Fonction statique
 /////////////////////////////////////////////////////////////////////////////
 
-// aCommandInfo  [---;R--]
 void DisplayHelp(const KmsLib::ToolBase::CommandInfo * aCommandInfo)
 {
 	assert(NULL != aCommandInfo);
@@ -855,7 +807,6 @@ void DisplayHelp(const KmsLib::ToolBase::CommandInfo * aCommandInfo)
 	printf("Help                          Display this help message\n");
 }
 
-// aFile [---;RW-]
 // aOut  [---;-W-]
 //
 // Exception  KmsLib::Exception  CODE_FILE_READ_ERROR

@@ -1,11 +1,11 @@
 
-// Product  KmsBase
+// License http ://www.apache.org/licenses/LICENSE-2.0
+// Product KmsBase
 
-/// \author  KMS - Martin Dubois, ing.
-/// \file    Includes/KmsLib/ToolBase.h
-/// \brief   ToolBase
-
-// CODE REVIEW  2019-10-20  KMS - Martin Dubois, ing.
+/// \author    KMS - Martin Dubois, ing.
+/// \copyright Copyright &copy; 2020 KMS. All rights reserved.
+/// \file      Includes/KmsLib/ToolBase.h
+/// \brief     ToolBase
 
 #pragma once
 
@@ -20,6 +20,7 @@
 
 #define KMS_LIB_TOOL_BASE_FUNCTIONS                                                                                       \
     { "Abort"        , KmsLib::ToolBase::Abort        , "Abort {Code} [Desc]"       , NULL                             }, \
+    { "ChangeDir"    , KmsLib::ToolBase::ChangeDir    , "ChangeDir {Directory}"     , NULL                             }, \
     { "Delay"        , KmsLib::ToolBase::Delay        , "Delay [Delay_ms]"          , NULL                             }, \
     { "Echo"         , KmsLib::ToolBase::Echo         , "Echo {Message}"            , NULL                             }, \
     { "Error"        , NULL                           , "Error ..."                 , KmsLib::ToolBase::ERROR_COMMANDS }, \
@@ -240,6 +241,17 @@ namespace KmsLib
         /// \endcond
         static void Abort(ToolBase * aToolBase, const char * aArg);
 
+        /// \cond  en
+        /// \brief Change the current working directory
+        /// \param aToolBase  A ToolBase instance
+        /// \endcond
+        /// \cond  fr
+        /// \brief Changer le r&eacute;pertoire de travail courrant
+        /// \param aToolBase  Une instance de ToolBase
+        /// \endcond
+        /// \param aArg       Format : {Directory}
+        static void ChangeDir(ToolBase * aToolBase, const char * aArg);
+
         /// \cond   en
         /// \brief  Sleep
         /// \param  aToolBase  A ToolBase instance
@@ -447,6 +459,7 @@ namespace KmsLib
     private:
 
         void Abort(const char * aArgs);
+        void ChangeDir(const char * aArgs);
         void Delay(const char * aArgs);
 
         void Error_Abort  ();

@@ -96,9 +96,6 @@
     <ClCompile Include="Socket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HTML5.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TextFileEditor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -42,7 +42,6 @@
     <ClCompile Include="Exception.cpp" />
     <ClCompile Include="File.cpp" />
     <ClCompile Include="FileHandle.cpp" />
-    <ClCompile Include="HTML5.cpp" />
     <ClCompile Include="IgnoreList.cpp" />
     <ClCompile Include="KmsLib.cpp" />
     <ClCompile Include="MemTester.cpp" />

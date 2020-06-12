@@ -60,7 +60,6 @@ extern int Walker_Base			();
 	extern int ComPortHandle_SetupA		();
 	extern int DriverHandle_SetupA		();
 	extern int DriverHandle_SetupC		();
-	extern int HTML5_Base          		();
 	extern int NetworkAddress_Base      ();
 	extern int RegistryKey_Base			();
 	extern int Service_Base				();
@@ -103,7 +102,6 @@ KMS_TEST_LIST_BEGIN
 		KMS_TEST_LIST_ENTRY(ComPortHandle_SetupA	, "ComPortHandle - SetupA"		, 2, KMS_TEST_FLAG_INTERACTION_NEEDED	)
 		KMS_TEST_LIST_ENTRY(DriverHandle_SetupA		, "DriverHandle - Setup A"		, 2, KMS_TEST_FLAG_INTERACTION_NEEDED	)
 		KMS_TEST_LIST_ENTRY(DriverHandle_SetupC		, "DriverHandle - Setup C"		, 4, KMS_TEST_FLAG_INTERACTION_NEEDED	)
-		KMS_TEST_LIST_ENTRY(HTML5_Base              , "HTML5 - Base"                , 0, 0                                  )
 		KMS_TEST_LIST_ENTRY(NetworkAddress_Base     , "NetworkAddress - Base"       , 0, 0                                  )
 		KMS_TEST_LIST_ENTRY(RegistryKey_Base		, "RegistryKey - Base"			, 0, 0									)
 		KMS_TEST_LIST_ENTRY(Service_Base			, "Service - Base"				, 0, 0									)

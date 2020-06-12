@@ -3,6 +3,8 @@ Author   KMS - Martin Dubois, ing.
 Product  KmsBase
 File     KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
 
+- HTML5 - Removed
+
 3.0.16
 - KMS_TOOL_BANNER - Fix _DEBUG inversion on Windows
 - ToolBase

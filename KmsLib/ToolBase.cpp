@@ -1,7 +1,7 @@
 
 // Author    KMS - Martin Dubois, P.Eng.
 // Copyright (C) 2020 KMS. All rights reserved.
-// License   http ://www.apache.org/licenses/LICENSE-2.0
+// License   http://www.apache.org/licenses/LICENSE-2.0
 // Product   KmsBase
 // File      KmsLib/ToolBase.cpp
 

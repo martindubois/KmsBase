@@ -1,7 +1,7 @@
 
 Authot    KMS - Martin Dubois, ing.
 Copyright (C) 2020 KMS. All rights reserved.
-Licence   http://www.apache.org/licenses/LICENSE-2.0
+License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      _DocDev/Procedures/PrepDevComputer_Windows.txt
 

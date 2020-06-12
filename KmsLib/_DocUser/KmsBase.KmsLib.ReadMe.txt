@@ -1,8 +1,12 @@
 
-Author   KMS - Martin Dubois, ing.
-Product  KmsBase
-File     KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
+Author    KMS - Martin Dubois, P.Eng.
+Copyright (C) 2020 KMS. All rights reserved.
+License   http://www.apache.org/licenses/LICENSE-2.0
+Product   KmsBase
+File      KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
 
+3.0.17 Windows
+- ToolBase use single argument format and ignore unknown arguments
 - HTML5 - Removed
 
 3.0.16

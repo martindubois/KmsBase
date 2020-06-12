@@ -19,13 +19,7 @@
 // Constants / Constantes
 /////////////////////////////////////////////////////////////////////////////
 
-#ifdef _KMS_LINUX_
-	#define TEST_FOLDER "KmsLib_Test/Tests"
-#endif
-
-#ifdef _KMS_WINDOWS_
-	#define TEST_FOLDER "KmsLib_Test" SLASH "Tests"
-#endif
+#define TEST_FOLDER "KmsLib_Test" SLASH "Tests"
 
 // Tests
 /////////////////////////////////////////////////////////////////////////////
@@ -64,7 +58,8 @@ static const char * ARGUMENTS_C6[] =
 {
     "KmsLib_Test.exe"		             ,
     "Execute=ChangeDir " TEST_FOLDER     ,
-    "Command=ExecuteScript ToolBase0.txt",
+    "Execute=ExecuteScript ToolBase0.txt",
+    "Command=ChangeDir .." SLASH ".."    ,
 };
 
 static void A(KmsLib::ToolBase * aThis, const char * aArguments)
@@ -271,7 +266,7 @@ KMS_TEST_BEGIN(ToolBase_Base)
     KMS_TEST_COMPARE(0, lTB0.GetErrorCode());
 
     lTB0.ClearError();
-    lRetB = lTB0.ParseArguments(3, ARGUMENTS_C6);
+    lRetB = lTB0.ParseArguments(4, ARGUMENTS_C6);
     KMS_TEST_ASSERT(lRetB);
     KMS_TEST_COMPARE(0, lTB0.GetErrorCode());
 

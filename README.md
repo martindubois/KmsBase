@@ -5,7 +5,7 @@
     Product    KmsBase
     File       README.md
 
-===== Introduction - English ================================================
+    ===== Introduction - English ============================================
 
 The KmsBase product contains the basic functionnalities used into many KMS's
 products.
@@ -13,7 +13,7 @@ products.
 Because these basic functionnalities are often used in product KMS develops
 for clients, the sources of the KmsBase product are made available.
 
-===== Introduction - Francais ===============================================
+    ===== Introduction - Francais ===========================================
 
 Le produit KmsBase contient les fonctionnalites de bases utilises dans
 plusieurs produit de KMS.
@@ -22,7 +22,7 @@ Comme ces fonctionnalites de bases sont souvent utilises dans des produits
 que KMS realise pour des clients, les sources du produit KmsBase sont rendues
 disponible.
 
-====== Legal notice =========================================================
+    ===== Legal notice ======================================================
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -36,11 +36,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-===== Preparing development computer ========================================
+    ===== Preparing development computer ====================================
 
 See _DocDev/Procedures/PrepDevComputer_Linux.txt or
 _DocDev/Procedures/PrepDevComputer_Windows.txt.
 
-===== Compiling =============================================================
+    ===== Compiling =========================================================
 
 See _DocDev/Procedures/Build.txt.

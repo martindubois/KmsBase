@@ -1,9 +1,11 @@
 
-# Author   KMS - Martin Dubois, ing.
-# Product  KmsBase
-# File     Scripts/Import.sh.txt
+# Author    KMS - Martin Dubois, P.Eng.
+# Copyright (C) 2020 KMS. All rights reserved.
+# License   http://www.apache.org/licenses/LICENSE-2.0
+# Product   KmsBase
+# File      Scripts/Import.txt
 
-# CODE REVIEW  2019-07-26  KMS - Martin Dubois, ing.
+# CODE REVIEW 2020-06-12 KMS - Martin Dubois, P.Eng.
 
 .
     DoxyFile_en.txt
@@ -28,7 +30,6 @@ Includes/KmsLib
     Exception.h
     File.h
     FileHandle.h
-    HTML5.h
     IgnoreList.h
     KmsLib.h
     MemTester.h

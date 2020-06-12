@@ -1,20 +1,19 @@
 
-// Author   KMS - Martin Dubois, ing.
-// Product  KmsBase
-// File     Common/Version.h
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2020 KMS. All rights reserved.
+// License   http ://www.apache.org/licenses/LICENSE-2.0
+// Product   KmsBase
+// File      Common/Version.h
 
 #pragma  once
 
-// Constants
-/////////////////////////////////////////////////////////////////////////////
+#define VERSION_MAJOR         ( 3)
+#define VERSION_MINOR         ( 0)
+#define VERSION_BUILD         (17)
+#define VERSION_COMPATIBILITY ( 0)
 
-#define  VERSION_MAJOR          ( 3)
-#define  VERSION_MINOR          ( 0)
-#define  VERSION_BUILD          (16)
-#define  VERSION_COMPATIBILITY  ( 0)
+#define VERSION_RC   3,0,17,0
+#define	VERSION_STR  "3.0.17.0"
+#define	VERSION_STR0 "3.0.17.0\0"
 
-#define  VERSION_RC    3,0,16,0
-#define	 VERSION_STR   "3.0.16.0"
-#define	 VERSION_STR0  "3.0.16.0\0"
-
-#define  VERSION_TYPE  ""
+#define VERSION_TYPE ""

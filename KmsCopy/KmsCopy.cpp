@@ -175,7 +175,7 @@ int Execute(FILE * aFile, const char * aSrcRoot, const char * aDstRoot)
 			char lDstFile[1024];
 			char lSrcFile[1024];
 
-			switch (sscanf_s(lLine, " %[^ \n\r\t] %[^ \n\r\t]", lSrcFile SIZE_INFO( static_cast<int>(sizeof(lSrcFile) / sizeof(lSrcFile[0])) ), lDstFile SIZE_INFO( static_cast<int>(sizeof(lDstFile) / sizeof(lDstFile[0])) ) ))
+			switch (sscanf_s(lLine, " %[^ \n\r\t] %[^ \n\r\t]", lSrcFile SIZE_INFO(sizeof(lSrcFile) / sizeof(lSrcFile[0])), lDstFile SIZE_INFO(sizeof(lDstFile) / sizeof(lDstFile[0]))))
 			{
 			case EOF: break; // Empty line
 
@@ -212,7 +212,7 @@ int Execute(FILE * aFile, const char * aSrcRoot, const char * aDstRoot)
 			break;
 
 		default : // Folder
-			switch (sscanf_s(lLine, "%[^ \n\r\t] %[^ \n\r\t]", lSrcFolder SIZE_INFO( static_cast<int>(sizeof(lSrcFolder) / sizeof(lSrcFolder[0])) ), lDstFolder SIZE_INFO( static_cast<int>(sizeof(lDstFolder) / sizeof(lDstFolder[0])) ) ))
+			switch (sscanf_s(lLine, "%[^ \n\r\t] %[^ \n\r\t]", lSrcFolder SIZE_INFO(sizeof(lSrcFolder) / sizeof(lSrcFolder[0])), lDstFolder SIZE_INFO(sizeof(lDstFolder) / sizeof(lDstFolder[0]))))
 			{
 			case 1:
 				strcpy_s(lDstFolder, lSrcFolder);

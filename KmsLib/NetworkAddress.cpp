@@ -156,7 +156,7 @@ namespace KmsLib
 		char lMsg	[1024];
 		char lName	[1024];
 
-		lRetI = sscanf_s(aAddr, "%[^: /\\\n\r\t]:%u", lName SIZE_INFO(static_cast<int>(sizeof(lName) / sizeof(lName[0]))), &lPortNumber);
+		lRetI = sscanf_s(aAddr, "%[^: /\\\n\r\t]:%u", lName SIZE_INFO(sizeof(lName) / sizeof(lName[0])), &lPortNumber);
 		switch (lRetI)
 		{
 		case 2 :

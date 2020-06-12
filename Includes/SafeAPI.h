@@ -28,5 +28,5 @@
 #endif // _KMS_LINUX_ || _LMS_OS_X_
 
 #ifdef _KMS_WINDOWS_
-	#define SIZE_INFO(S)	, (S)
+	#define SIZE_INFO(S)	, static_cast<unsigned int>(S)
 #endif // _KMS_WINDOWS_

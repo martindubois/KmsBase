@@ -135,7 +135,7 @@ namespace KmsLib
 
 			memset(&lValue, 0, sizeof(lValue));
 
-			int lRetI = sscanf_s(lLine, "%[^\n\r\t]", lValue SIZE_INFO( static_cast<int>(sizeof( lValue ) - 1 )) );
+			int lRetI = sscanf_s(lLine, "%[^\n\r\t]", lValue SIZE_INFO(sizeof(lValue) - 1));
 			switch (lRetI)
 			{
 			case 1:
@@ -181,7 +181,7 @@ namespace KmsLib
 
 			memset(&lValue, 0, sizeof(lValue));
 
-			int lRetI = sscanf_s(lLine, "%[^\n\r\t]", lValue SIZE_INFO( static_cast<int>(sizeof( lValue ) - 1 )) );
+			int lRetI = sscanf_s(lLine, "%[^\n\r\t]", lValue SIZE_INFO(sizeof(lValue) - 1));
 			switch (lRetI)
 			{
 			case 1:
@@ -460,8 +460,8 @@ namespace KmsLib
 
             char lData[LINE_LENGTH_MAX];
 
-            if (1 == sscanf_s(lArg, "Command=%[^\n\r\t]", lData, sizeof(lData))) { ExecuteCommand(lData); return true; }
-            if (1 == sscanf_s(lArg, "Execute=%[^\n\r\t]", lData, sizeof(lData))) { ExecuteCommand(lData); }
+            if (1 == sscanf_s(lArg, "Command=%[^\n\r\t]", lData SIZE_INFO(sizeof(lData)))) { ExecuteCommand(lData); return true; }
+            if (1 == sscanf_s(lArg, "Execute=%[^\n\r\t]", lData SIZE_INFO(sizeof(lData)))) { ExecuteCommand(lData); }
         }
 
 		return false;

@@ -1,39 +1,21 @@
 
-# Author   KMS - Martin Dubois, ing.
-# Product  KmsBase
-# File     Scripts/Import.cmd.txt
+# Author    KMS - Martin Dubois, P.Eng.
+# Copyright (C) 2020 KMS. All rights reserved.
+# License   http://www.apache.org/licenses/LICENSE-2.0
+# Product   KmsBase
+# File      Scripts/Import.cmd.txt
 
-# CODE REVIEW  2019-07-26  KMS - Martin Dubois, ing.
+# CODE REVIEW 2020-06-13 KMS - Martin Dubois, P.Eng.
 
 .	Binaries
 .	Libraries
 .	Templates
 
-Binaries/Debug_32_DLL
-	DepCheck.exe
-	DepCheck_Net.exe
-
-Binaries/Debug_64_DLL
-	DepCheck.exe
-	DepCheck_Net.exe
-
 Binaries/Release_32
 	KmsCopy.exe
 
-Binaries/Release_32_DLL
-	DepCheck.exe
-	DepCheck_Net.exe
-
 Binaries/Release_64
 	KmsCopy.exe
-
-Binaries/Release_64_DLL
-	DepCheck.exe
-	DepCheck_Net.exe
-
-# TODO  Importation
-#       Normal (Cleanup) - Utiliser un fichier Includes.txt a partir de
-#       Export.cmd.txt et Install.cmd.txt
 
 Libraries/Debug_32
 	KmsLib.lib
@@ -58,15 +40,3 @@ Libraries/Release_64
 
 Libraries/Release_64_DLL
 	KmsLib.lib
-
-# TODO  Importation
-#       Normal (Cleanup) - Utiliser un fichier Templates.txt a partir de
-#       Export.cmd.txt et Install.cmd.txt
-
-Templates/Service
-	.gitignore
-	Messages.mc
-	Service.cpp
-
-Templates/Service/_DocUser
-	Use.txt

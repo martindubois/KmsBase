@@ -1,22 +1,20 @@
 
-# Auteur   KMS - Martin Dubois, ing.
-# Produit  KmsBase
-# Fichier  Export.cmd.txt
+# Author    KMS - Martin Dubois, P.Eng.
+# Copyright (C) 2020 KMS. All rights reserved.
+# License   http://www.apache.org/licenses/LICENSE-2.0
+# Produit   KmsBase
+# Fichier   Export.cmd.txt
 
-# CODE REVIEW  2019-07-26  KMS - Martin Dubois, ing.
+# CODE REVIEW 2020-06-13 KMS - Martin Dubois, P.Eng.
+
 .
     RunDoxygen.cmd
 
 .	Binaries
 .	Libraries
-.	Templates
 
 Debug	Libraries/Debug_32
     KmsLib.lib
-
-Debug_DLL	Binaries/Debug_32_DLL
-    DepCheck.exe
-    DepCheck_Net.exe
 
 Debug_DLL	Libraries/Debug_32_DLL
     KmsLib.lib
@@ -30,39 +28,15 @@ Release	Binaries/Release_32
 Release	Libraries/Release_32
     KmsLib.lib
 
-Release_DLL	.
-    DepCheck.exe
-    DepCheck_Net.exe
-
-Release_DLL	Binaries/Release_32_DLL
-    DepCheck.exe
-    DepCheck_Net.exe
-
 Release_DLL	Libraries/Release_32_DLL
     KmsLib.lib
 
 Scripts	.
     Import.cmd
     Import.cmd.txt
-    Verify.cmd
-
-Templates/Service
-    .gitignore
-    Messages.mc
-    Service.cpp
-
-Templates/Service/_DocUser
-    Use.txt
-
-# TODO  Export
-#       Normal (Cleanup) - Renommer le fichier Use.txt
 
 x64/Debug	Libraries/Debug_64
     KmsLib.lib
-
-x64/Debug_DLL	Binaries/Debug_64_DLL
-    DepCheck.exe
-    DepCheck_Net.exe
 
 x64/Debug_DLL	Libraries/Debug_64_DLL
     KmsLib.lib
@@ -72,10 +46,6 @@ x64/Release	Binaries/Release_64
 
 x64/Release	Libraries/Release_64
     KmsLib.lib
-
-x64/Release_DLL	Binaries/Release_64_DLL
-    DepCheck.exe
-    DepCheck_Net.exe
 
 x64/Release_DLL	Libraries/Release_64_DLL
     KmsLib.lib

@@ -5,9 +5,9 @@
 // Product   KmsBase
 // File      KmsLib/ToolBase.cpp
 
-// CODE REVIEW 2020-06-12 KMS - Martin Dubois, P.Eng.
+// CODE REVIEW 2020-06-13 KMS - Martin Dubois, P.Eng.
 
-// TEST COVERAGE 2020-06-12 KMS - Martin Dubois, P.Eng.
+// TEST COVERAGE 2020-06-13 KMS - Martin Dubois, P.Eng.
 
 #include "Component.h"
 
@@ -414,7 +414,7 @@ namespace KmsLib
     }
 
     // aCommands [-K-;R--]
-    ToolBase::ToolBase(const CommandInfo * aCommands) : mCommands(aCommands)
+    ToolBase::ToolBase(const CommandInfo * aCommands) : mCommands(aCommands), mExit(false)
 	{
 		assert(NULL != mCommands);
 	}
@@ -449,7 +449,7 @@ namespace KmsLib
         return mError_Code;
     }
 
-	bool ToolBase::ParseArguments(int aCount, const char ** aVector)
+	void ToolBase::ParseArguments(int aCount, const char ** aVector)
 	{
         assert(NULL != aVector);
 
@@ -460,11 +460,8 @@ namespace KmsLib
 
             char lData[LINE_LENGTH_MAX];
 
-            if (1 == sscanf_s(lArg, "Command=%[^\n\r\t]", lData SIZE_INFO(sizeof(lData)))) { ExecuteCommand(lData); return true; }
             if (1 == sscanf_s(lArg, "Execute=%[^\n\r\t]", lData SIZE_INFO(sizeof(lData)))) { ExecuteCommand(lData); }
         }
-
-		return false;
 	}
 
     // NOT TESTED  KmsLib.ToolBase.ParseCommands
@@ -717,8 +714,6 @@ namespace KmsLib
 	int ToolBase::ParseCommands(FILE * aFile)
 	{
 		assert(NULL != aFile);
-
-        mExit = false;
 
 		while ( ! mExit )
 		{

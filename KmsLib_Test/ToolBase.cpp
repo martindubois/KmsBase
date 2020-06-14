@@ -27,31 +27,31 @@
 static const char * ARGUMENTS_C0[] =
 {
 	"KmsLib_Test.exe",
-	"Command=Invalid",
+	"Execute=Invalid",
 };
 
 static const char * ARGUMENTS_C1[] =
 {
 	"KmsLib_Test.exe"                   ,
-	"Command=ExecuteScript DoesNotExist",
+	"Execute=ExecuteScript DoesNotExist",
 };
 
 static const char * ARGUMENTS_C2[] =
 {
 	"KmsLib_Test.exe",
-	"Command=A"		 ,
+	"Execute=A"		 ,
 };
 
 static const char * ARGUMENTS_C3[] =
 {
 	"KmsLib_Test.exe",
-	"Command=Help"   ,
+	"Execute=Help"   ,
 };
 
 static const char * ARGUMENTS_C5[] =
 {
 	"KmsLib_Test.exe"		                                  ,
-	"Command=ExecuteScript " TEST_FOLDER SLASH "ToolBase0.txt",
+	"Execute=ExecuteScript " TEST_FOLDER SLASH "ToolBase0.txt",
 };
 
 static const char * ARGUMENTS_C6[] =
@@ -59,7 +59,7 @@ static const char * ARGUMENTS_C6[] =
     "KmsLib_Test.exe"		             ,
     "Execute=ChangeDir " TEST_FOLDER     ,
     "Execute=ExecuteScript ToolBase0.txt",
-    "Command=ChangeDir .." SLASH ".."    ,
+    "Execute=ChangeDir .." SLASH ".."    ,
 };
 
 static void A(KmsLib::ToolBase * aThis, const char * aArguments)
@@ -233,41 +233,32 @@ KMS_TEST_BEGIN(ToolBase_Base)
 
     // ===== ParseArguments =================================================
 
-    bool lRetB;
-
     lTB0.ClearError();
-    lRetB = lTB0.ParseArguments(1, ARGUMENTS_C0);
-    KMS_TEST_ASSERT(!lRetB);
+    lTB0.ParseArguments(1, ARGUMENTS_C0);
     KMS_TEST_COMPARE(0, lTB0.GetErrorCode());
 
     lTB0.ClearError();
-    lRetB = lTB0.ParseArguments(2, ARGUMENTS_C0);
-    KMS_TEST_ASSERT(lRetB);
+    lTB0.ParseArguments(2, ARGUMENTS_C0);
     KMS_TEST_COMPARE(-5, lTB0.GetErrorCode());
 
     lTB0.ClearError();
-    lRetB = lTB0.ParseArguments(2, ARGUMENTS_C1);
-    KMS_TEST_ASSERT(lRetB);
+    lTB0.ParseArguments(2, ARGUMENTS_C1);
     KMS_TEST_COMPARE(-2, lTB0.GetErrorCode());
 
     lTB0.ClearError();
-    lRetB = lTB0.ParseArguments(2, ARGUMENTS_C2);
-    KMS_TEST_ASSERT(lRetB);
+    lTB0.ParseArguments(2, ARGUMENTS_C2);
     KMS_TEST_COMPARE(-6, lTB0.GetErrorCode());
 
     lTB0.ClearError();
-    lRetB = lTB0.ParseArguments(2, ARGUMENTS_C3);
-    KMS_TEST_ASSERT(lRetB);
+    lTB0.ParseArguments(2, ARGUMENTS_C3);
     KMS_TEST_COMPARE(0, lTB0.GetErrorCode());
 
     lTB0.ClearError();
-    lRetB = lTB0.ParseArguments(2, ARGUMENTS_C5);
-    KMS_TEST_ASSERT(lRetB);
+    lTB0.ParseArguments(2, ARGUMENTS_C5);
     KMS_TEST_COMPARE(0, lTB0.GetErrorCode());
 
     lTB0.ClearError();
-    lRetB = lTB0.ParseArguments(4, ARGUMENTS_C6);
-    KMS_TEST_ASSERT(lRetB);
+    lTB0.ParseArguments(4, ARGUMENTS_C6);
     KMS_TEST_COMPARE(0, lTB0.GetErrorCode());
 
     // ===== ParseCommands ==================================================

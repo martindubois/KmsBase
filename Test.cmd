@@ -1,58 +1,40 @@
 @echo off
 
-rem  Auteur		KMS -	Martin Dubois, ing.
-rem  Produit	KmsBase
-rem  Fichier	Test.cmd
-rem  Usage		Test.cmd
+rem Author    KMS - Martin Dubois, P.Eng.
+rem Copyright (C) 2020 KMS. All rights reserved.
+rem License   http://www.apache.org/licenses/LICENSE-2.0
+rem Product   KmsBase
+rem File      Test.cmd
+rem Usage     .\Test.cmd
 
-echo  Executing Test.cmd ...
+echo Executing  Test.cmd  ...
 
-rem  ===== Verification =====================================================
+rem ===== Initialisation ====================================================
 
 set FOR_EACH_CONFIG_NO_DLL="ForEachConfig_NoDLL.cmd"
-if not exist %FOR_EACH_CONFIG_NO_DLL% (
-    echo  FATAL ERROR : %FOR_EACH_CONFIG_NO_DLL% does not exist
-	pause
-	exit /B 1
-)
 
 set FOR_EACH_CONFIG_DLL="ForEachConfig_DLL.cmd"
-if not exist %FOR_EACH_CONFIG_DLL% (
-    echo  FATAL ERROR : %FOR_EACH_CONFIG_DLL% does not exist
-	pause
-	exit /B 2
-)
 
-rem  ===== Execution ========================================================
+set KMS_LIB_TEST_EXE="KmsLib_Test.exe"
 
-call %FOR_EACH_CONFIG_DLL% DepCheck.exe
+rem ===== Verification ======================================================
+
+rem ===== Execution =========================================================
+
+call %FOR_EACH_CONFIG_DLL% %KMS_LIB_TEST_EXE%
 if ERRORLEVEL 1 (
-    echo  ERROR : %FOR_EACH_CONFIG_DLL% reported an error - DepCheck.exe
+    echo  ERROR  %FOR_EACH_CONFIG_DLL% %KMS_LIB_TEST_EXE%  reported an error - %ERRORLEVEL%
 	pause
-	exit /B 3
+	exit /B 10
 )
 
-call %FOR_EACH_CONFIG_DLL% DepCheck_Net.exe
+call %FOR_EACH_CONFIG_NO_DLL% %KMS_LIB_TEST_EXE%
 if ERRORLEVEL 1 (
-    echo  ERROR : %FOR_EACH_CONFIG_DLL% reported an error - DepCheck_Net.exe
+    echo  ERROR  %FOR_EACH_CONFIG_NO_DLL% %KMS_LIB_TEST_EXE%  reported an error - %ERRORLEVEL%
 	pause
-	exit /B 4
+	exit /B 20
 )
 
-call %FOR_EACH_CONFIG_DLL% KmsLib_Test.exe
-if ERRORLEVEL 1 (
-    echo  ERROR : %FOR_EACH_CONFIG_DLL% reported an error - KmsLib_Test.lib - DLL
-	pause
-	exit /B 5
-)
-
-call %FOR_EACH_CONFIG_NO_DLL% KmsLib_Test.exe
-if ERRORLEVEL 1 (
-    echo  ERROR : %FOR_EACH_CONFIG_NO_DLL% reported an error - KmsLib_Test.lib - No DLL
-	pause
-	exit /B 6
-)
-
-rem  ===== Fin ==============================================================
+rem ===== End ===============================================================
 
 echo  OK

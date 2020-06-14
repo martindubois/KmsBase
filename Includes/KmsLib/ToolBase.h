@@ -421,19 +421,15 @@ namespace KmsLib
         /// \brief   Parse the arguments the user passed to the tools
         /// \param   aCount              Argument count
         /// \param   aVector  [---;R--]  Arguments
-        /// \retval  false	The method did not execute command
-        /// \retval  true	The method executed at least one command
         /// \endcond
         /// \cond	 fr
         /// \brief   Interprete les artuments passees a l'outils par
         ///          l'utilisateur
         /// \param   aCount              Le nombre d'arguments
         /// \param   aVector  [---;R--]  Les arguments
-        /// \retval  false	La methode n'a pas execute de commande
-        /// \retval  true	La methode a au moins execute une commande
         /// \endcond
         /// \exception  Exception  CODE_INVALID_COMMAND_LINE
-        bool ParseArguments(int aCount, const char ** aVector);
+        void ParseArguments(int aCount, const char ** aVector);
 
         /// \cond   en
         /// \brief  Parse the commands read from the standard input

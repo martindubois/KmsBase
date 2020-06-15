@@ -5,6 +5,8 @@ License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      _DocUser/KmsBase.ReadMe.txt
 
+- KmsVersion (Moved from KmsTools product)
+
 3.0.18 Windows
 - Remove templates DepCheck and DepCheck_Net
 

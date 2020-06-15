@@ -2,10 +2,10 @@
 # Author    KMS - Martin Dubois, P.Eng.
 # Copyright (C) 2020 KMS. All rights reserved.
 # License   http://www.apache.org/licenses/LICENSE-2.0
-# Produit   KmsBase
-# Fichier   Export.cmd.txt
+# Product   KmsBase
+# File      Export.cmd.txt
 
-# CODE REVIEW 2020-06-13 KMS - Martin Dubois, P.Eng.
+# CODE REVIEW 2020-06-15 KMS - Martin Dubois, P.Eng.
 
 .
     RunDoxygen.cmd
@@ -24,6 +24,7 @@ Release .
 
 Release	Binaries/Release_32
     KmsCopy.exe
+	KmsVersion.exe
 
 Release	Libraries/Release_32
     KmsLib.lib

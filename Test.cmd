@@ -11,13 +11,15 @@ echo Executing  Test.cmd  ...
 
 rem ===== Initialisation ====================================================
 
+set DEBUG_32=Debug
+
 set FOR_EACH_CONFIG_NO_DLL="ForEachConfig_NoDLL.cmd"
 
 set FOR_EACH_CONFIG_DLL="ForEachConfig_DLL.cmd"
 
 set KMS_LIB_TEST_EXE="KmsLib_Test.exe"
 
-rem ===== Verification ======================================================
+set RELEASE_32=Release
 
 rem ===== Execution =========================================================
 
@@ -34,6 +36,26 @@ if ERRORLEVEL 1 (
 	pause
 	exit /B 20
 )
+
+echo Testing  KmsVersion.exe  ...
+
+pushd  KmsVersion
+
+    call Test.cmd %DEBUG_32%
+	if ERRORLEVEL 1 (
+	    echo ERROR  call Test.cmd %DEBUG_32%  reported and error - %ERRORLEVEL%
+		pause
+		exit /B 30
+	)
+
+    call Test.cmd  %RELEASE_32%
+	if ERRORLEVEL 1 (
+	    echo ERROR  call Test.cmd  %RELEASE_32%  reported and error - %ERRORLEVEL%
+		pause
+		exit /B 40
+	)
+
+popd
 
 rem ===== End ===============================================================
 

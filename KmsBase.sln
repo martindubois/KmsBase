@@ -85,6 +85,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Export.txt = Export.txt
 		ForEachConfig_DLL.cmd = ForEachConfig_DLL.cmd
 		ForEachConfig_NoDLL.cmd = ForEachConfig_NoDLL.cmd
+		KmsBase.iss = KmsBase.iss
+		License.txt = License.txt
 		README.md = README.md
 		RunDoxygen.cmd = RunDoxygen.cmd
 		Test.cmd = Test.cmd
@@ -96,7 +98,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KmsLib_Test", "KmsLib_Test\KmsLib_Test.vcxproj", "{E7A45A2C-BD9F-4BAB-83DE-0BDBA896FE64}"
 	ProjectSection(ProjectDependencies) = postProject
-		{195EC26E-8CB6-4654-A00E-FC084D9691A9} = {195EC26E-8CB6-4654-A00E-FC084D9691A9}
 		{08D0977C-7912-4A9E-9937-CC0AF78956A7} = {08D0977C-7912-4A9E-9937-CC0AF78956A7}
 	EndProjectSection
 EndProject
@@ -132,6 +133,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DocUser", "_DocUser", "{720F3E0F-7548-4599-AE64-A4B048B5C65C}"
 	ProjectSection(SolutionItems) = preProject
 		_DocUser\KmsBase.ReadMe.txt = _DocUser\KmsBase.ReadMe.txt
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KmsVersion", "KmsVersion\KmsVersion.vcxproj", "{6B390FF4-657D-4884-AFCC-E3F85919DCCC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{08D0977C-7912-4A9E-9937-CC0AF78956A7} = {08D0977C-7912-4A9E-9937-CC0AF78956A7}
 	EndProjectSection
 EndProject
 Global
@@ -222,6 +228,16 @@ Global
 		{96E3FC78-F2C1-4367-BE12-4F88CFD2238B}.Release_DLL|x64.ActiveCfg = Release_DLL|x64
 		{96E3FC78-F2C1-4367-BE12-4F88CFD2238B}.Release|Win32.ActiveCfg = Release_DLL|Win32
 		{96E3FC78-F2C1-4367-BE12-4F88CFD2238B}.Release|x64.ActiveCfg = Release_DLL|x64
+		{6B390FF4-657D-4884-AFCC-E3F85919DCCC}.Debug_DLL|Win32.ActiveCfg = Debug|Win32
+		{6B390FF4-657D-4884-AFCC-E3F85919DCCC}.Debug_DLL|x64.ActiveCfg = Release|Win32
+		{6B390FF4-657D-4884-AFCC-E3F85919DCCC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6B390FF4-657D-4884-AFCC-E3F85919DCCC}.Debug|Win32.Build.0 = Debug|Win32
+		{6B390FF4-657D-4884-AFCC-E3F85919DCCC}.Debug|x64.ActiveCfg = Debug|Win32
+		{6B390FF4-657D-4884-AFCC-E3F85919DCCC}.Release_DLL|Win32.ActiveCfg = Release|Win32
+		{6B390FF4-657D-4884-AFCC-E3F85919DCCC}.Release_DLL|x64.ActiveCfg = Release|Win32
+		{6B390FF4-657D-4884-AFCC-E3F85919DCCC}.Release|Win32.ActiveCfg = Release|Win32
+		{6B390FF4-657D-4884-AFCC-E3F85919DCCC}.Release|Win32.Build.0 = Release|Win32
+		{6B390FF4-657D-4884-AFCC-E3F85919DCCC}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

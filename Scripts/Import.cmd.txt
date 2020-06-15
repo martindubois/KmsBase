@@ -9,10 +9,10 @@
 
 .	Binaries
 .	Libraries
-.	Templates
 
 Binaries/Release_32
 	KmsCopy.exe
+	KmsVersion.exe
 
 Binaries/Release_64
 	KmsCopy.exe

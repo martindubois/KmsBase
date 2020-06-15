@@ -1,34 +1,31 @@
 @echo off
 
-rem Auteur   KMS - Martin Dubois, ing.
-rem Produit  KmsBase
-rem Fichier  Build.cmd
-rem Usage    Build.cmd
+rem Author    KMS - Martin Dubois, P.Eng.
+rem Copyright (C) 2020 KMS. All rights reserved.
+rem License   http://www.apache.org/licenses/LICENSE-2.0
+rem Product   KmsBase
+rem File      Build.cmd
+rem Usage     .\Build.cmd
 
-echo  Executing  Build.cmd  ...
+echo Executing  Build.cmd  ...
 
 rem ===== Initialisation ====================================================
 
 set EXPORT_CMD="Export.cmd"
-set KMS_VERSION="C:\Software\KmsTools\KmsVersion.exe"
+set KMS_VERSION="Debug\KmsVersion.exe"
 set MSBUILD="C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\15.0\Bin\MSBuild.exe"
-set OPTIONS="KmsBase.sln" /target:rebuild
+set PRODUCT=KmsBase
 set VERSION_H="Common/Version.h"
 
-rem ===== Verification ======================================================
+set OPTIONS="%PRODUCT%.sln" /target:rebuild
 
-if not exist %KMS_VERSION% (
-    echo FATAL ERROR  %KMS_VERSION%  does not exist
-	echo Install KmsTools version 2.4.0 or higher
-	pause
-	exit /B 1
-)
+rem ===== Verification ======================================================
 
 if not exist %MSBUILD% (
 	echo FATAL ERROR  %MSBUILD%  does not exist
     echo Install Visual Studio 2017 Professional
 	pause
-	exit /B 2
+	exit /B 10
 )
 
 rem ===== Execution =========================================================
@@ -37,72 +34,86 @@ rem ===== Execution =========================================================
 if ERRORLEVEL 1 (
 	echo ERROR  %MSBUILD% %OPTIONS% /property:Configuration=Debug /property:Platform=Win32  failed - %ERRORLEVEL%
 	pause
-	exit /B 3
+	exit /B 20
 )
 
 %MSBUILD% %OPTIONS% /property:Configuration=Debug /property:Platform=x64
 if ERRORLEVEL 1 (
 	echo ERROR  %MSBUILD% %OPTIONS% /property:Configuration=Debug /property:Platform=x64  failed - %ERRORLEVEL%
 	pause
-	exit /B 4
+	exit /B 30
 )
 
 %MSBUILD% %OPTIONS% /property:Configuration=Debug_DLL /property:Platform=Win32
 if ERRORLEVEL 1 (
 	echo  ERROR  %MSBUILD% %OPTIONS% /property:Configuration=Debug_DLL /property:Platform=Win32  failed - %ERRORLEVEL%
 	pause
-	exit /B 5
+	exit /B 40
 )
 
 %MSBUILD% %OPTIONS% /property:Configuration=Debug_DLL /property:Platform=x64
 if ERRORLEVEL 1 (
 	echo ERROR  %MSBUILD% %OPTIONS% /property:Configuration=Debug_DLL /property:Platform=x64  failed - %ERRORLEVEL%
 	pause
-	exit /B 6
+	exit /B 50
 )
 
 %MSBUILD% %OPTIONS% /property:Configuration=Release /property:Platform=Win32
 if ERRORLEVEL 1 (
 	echo ERROR  %MSBUILD% %OPTIONS% /property:Configuration=Release /property:Platform=Win32  failed - %ERRORLEVEL%
 	pause
-	exit /B 7
+	exit /B 60
 )
 
 %MSBUILD% %OPTIONS% /property:Configuration=Release /property:Platform=x64
 if ERRORLEVEL 1 (
 	echo  ERROR  %MSBUILD% %OPTIONS% /property:Configuration=Release /property:Platform=x64  failed - %ERRORLEVEL%
 	pause
-	exit /B 8
+	exit /B 70
 )
 
 %MSBUILD% %OPTIONS% /property:Configuration=Release_DLL /property:Platform=Win32
 if ERRORLEVEL 1 (
 	echo ERROR  %MSBUILD% %OPTIONS% /property:Configuration=Release_DLL /property:Platform=Win32  failed - %ERRORLEVEL%
 	pause
-	exit /B 9
+	exit /B 80
 )
 
 %MSBUILD% %OPTIONS% /property:Configuration=Release_DLL /property:Platform=x64
 if ERRORLEVEL 1 (
 	echo ERROR  %MSBUILD% %OPTIONS% /property:Configuration=Release_DLL /property:Platform=x64  failed - %ERRORLEVEL%
 	pause
-	exit /B 10
+	exit /B 90
 )
 
 call Test.cmd
 if ERRORLEVEL 1 (
     echo ERROR  Test.cmd reported an error - %ERRORLEVEL%
 	pause
-	exit /B 11
+	exit /B 100
+)
+
+%KMS_VERSION% Common\Version.h Export.cmd.txt %PRODUCT%.iss
+if ERRORLEVEL 1 (
+	echo ERROR  %KMS_VERSION% Common\Version.h Export.cmd.txt %PRODUCT%.iss  failed - %ERRORLEVEL%
+	pause
+	exit /B 110
+)
+
+%INNO_COMPIL32% /cc %PRODUCT%.iss
+if ERRORLEVEL 1 (
+	echo ERROR  %INNO_COMPIL32% /cc %PRODUCT%.iss  failed - %ERRORLEVEL%
+	pause
+	exit /B 120
 )
 
 %KMS_VERSION% -S %VERSION_H% %EXPORT_CMD%
 if ERRORLEVEL 1 (
     echo  ERROR  %KMS_VERSION% -S %VERSION_H% %EXPORT_CMD%  reported an error - %ERRORLEVEL%
 	pause
-	exit /B 12
+	exit /B 130
 )
 
-rem  ===== Fin ==============================================================
+rem ===== End ===============================================================
 
 echo  OK

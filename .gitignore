@@ -1,14 +1,13 @@
 
-# Author   KMS - Martin Dubois, ing.
-# Product  KmsBase
-# File     .gitignore
+# Author    KMS - Martin Dubois, P.Eng.
+# Copyright (C) 2020 KMS. All Rights reserved.
+# License   http://www.apache.org/licenses/LICENSE-2.0
+# Product   KmsBase
+# File      .gitignore
 
+/Installer/
 /KmsDoc/
 
-HTML5_Base.html
-KmsBase.VC.opendb
-KmsBase.VC.db
-KmsBase.VC.VC.opendb
 Linux_Windows_Test0.txt
 /Test1.txt
 /Test2.txt
@@ -16,9 +15,6 @@ Linux_Windows_Test0.txt
 *~
 *.bak
 *.o
-*.opensdf
-*.sdf
-*.v12.suo
 
 .vs/
 Binaries/
@@ -28,14 +24,9 @@ Export/
 Libraries/
 Release/
 Release_DLL/
-Win7Debug/
-Win7Release/
-Win8.1Debug/
-Win8.1Release/
 
 doxygen_en/
 doxygen_fr/
-ipch/
 x64/
 
 

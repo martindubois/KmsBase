@@ -39,7 +39,6 @@ KMS_TEST_BEGIN(IgnoreList_Base)
     lIL0.ReadFromFile(".", ".gitignore");
 
     KMS_TEST_ASSERT(!lIL0.IsFileIgnored("Test.cmd"));
-    KMS_TEST_ASSERT( lIL0.IsFileIgnored("KmsBase.sdf"));
     KMS_TEST_ASSERT( lIL0.IsFileIgnored("Linux_Windows_Test0.txt"));
 
     KMS_TEST_ASSERT(!lIL0.IsFolderIgnored("KmsLib_Test"));

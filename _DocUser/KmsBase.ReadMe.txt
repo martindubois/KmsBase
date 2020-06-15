@@ -5,6 +5,7 @@ License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      _DocUser/KmsBase.ReadMe.txt
 
+3.0.19 Windows
 - KmsVersion (Moved from KmsTools product)
 
 3.0.18 Windows

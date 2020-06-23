@@ -19,12 +19,14 @@ Binaries/Release_64
 
 Libraries/Debug_32
 	KmsLib.lib
+	KmsLib.pdb
 
 Libraries/Debug_32_DLL
 	KmsLib.lib
 
 Libraries/Debug_64
 	KmsLib.lib
+	KmsLib.pdb
 
 Libraries/Debug_64_DLL
 	KmsLib.lib

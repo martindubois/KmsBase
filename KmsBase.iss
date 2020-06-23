@@ -13,13 +13,13 @@ AppName=KmsBase
 AppPublisher=KMS
 AppPublisherURL=http://www.kms-quebec.com
 AppSupportURL=http://www.kms-quebec.com
-AppVersion=3.0.19
+AppVersion=3.0.20
 ArchitecturesAllowed=x64 x86
 ArchitecturesInstallIn64BitMode=x64
 DefaultDirName={pf}\KmsBase
 LicenseFile=License.txt
 MinVersion=10.0
-OutputBaseFilename=KmsBase_3.0.19
+OutputBaseFilename=KmsBase_3.0.20
 OutputDir=Installer
 
 [Files]
@@ -67,7 +67,7 @@ Source: "Release\KmsCopy.exe"                      ; DestDir: "{app}\Binaries\Re
 Source: "Release\KmsLib.lib"                       ; DestDir: "{app}\Libraries\Release_32"
 Source: "Release\KmsVersion.exe"                   ; DestDir: "{app}"
 Source: "Release\KmsVersion.exe"                   ; DestDir: "{app}\Binaries\Release_32"
-Source: "Release_DLL\KmsLib.lib"                   ; DestDir: "{app}\Libraries\Debug_32_DLL"
+Source: "Release_DLL\KmsLib.lib"                   ; DestDir: "{app}\Libraries\Release_32_DLL"
 Source: "RunDoxygen.cmd"                           ; DestDir: "{app}"
 Source: "Scripts\Import.cmd"                       ; DestDir: "{app}"
 Source: "Scripts\Import.cmd.txt"                   ; DestDir: "{app}"

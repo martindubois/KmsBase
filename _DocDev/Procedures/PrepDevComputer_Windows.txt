@@ -1,5 +1,5 @@
 
-Authot    KMS - Martin Dubois, ing.
+Authot    KMS - Martin Dubois, P.Eng.
 Copyright (C) 2020 KMS. All rights reserved.
 License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
@@ -17,6 +17,7 @@ Computer            _________________________________________________________
 		git config --global user.name "{FirstName} {LastName}"
 		git config --global user.email "{UserName}@kms-quebec.com"
 		exit
+[ ] Install "Inno Setup"
 [ ] Install "Visual Studio 2017"
 
 Time and duration   ______ : ______           ______ hours and ______ minutes

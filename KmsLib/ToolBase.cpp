@@ -300,7 +300,7 @@ namespace KmsLib
     const ToolBase::CommandInfo ToolBase::ERROR_COMMANDS[] =
     {
         { "Abort"  , ToolBase::Error_Abort  , "Abort"  , NULL },
-        { "Clear"  , ToolBase::Error_Clear  , "Close"  , NULL },
+        { "Clear"  , ToolBase::Error_Clear  , "Clear"  , NULL },
         { "Display", ToolBase::Error_Display, "Display", NULL },
         { "Exit"   , ToolBase::Error_Exit   , "Exit"   , NULL },
 

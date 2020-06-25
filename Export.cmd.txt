@@ -36,6 +36,11 @@ Release	Libraries/Release_32
 Release_DLL	Libraries/Release_32_DLL
     KmsLib.lib
 
+Scripts
+	KmsBase_Build_Begin.cmd
+	KmsBase_Build_End.cmd
+	KmsBase_Export.cmd
+
 Scripts	.
     Import.cmd
     Import.cmd.txt

@@ -5,8 +5,6 @@
 # Product   KmsBase
 # File      Scripts/Import.cmd.txt
 
-# CODE REVIEW 2020-06-13 KMS - Martin Dubois, P.Eng.
-
 .	Binaries
 .	Libraries
 
@@ -19,14 +17,12 @@ Binaries/Release_64
 
 Libraries/Debug_32
 	KmsLib.lib
-	KmsLib.pdb
 
 Libraries/Debug_32_DLL
 	KmsLib.lib
 
 Libraries/Debug_64
 	KmsLib.lib
-	KmsLib.pdb
 
 Libraries/Debug_64_DLL
 	KmsLib.lib
@@ -42,3 +38,8 @@ Libraries/Release_64
 
 Libraries/Release_64_DLL
 	KmsLib.lib
+
+Scripts
+	KmsBase_Build_Begin.cmd
+	KmsBase_Build_End.cmd
+	KmsBase_Export.cmd

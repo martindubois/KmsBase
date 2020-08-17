@@ -1,7 +1,7 @@
 @echo off
 
 rem Author    KMS - Martin Dubois, P.Eng.
-rem Copyright (C) 2020 KMS. All rights reserved.
+rem Copyright (C) 2020 KMS
 rem License   http://www.apache.org/licenses/LICENSE-2.0
 rem Product   KmsBase
 rem File      Scripts\KmsBase_Build_End.cmd
@@ -64,9 +64,9 @@ if ERRORLEVEL 1 (
 	exit /B 80
 )
 
-%KMS_VERSION% -S %VERSION_H% %EXPORT_CMD%
+%KMS_VERSION_EXE% -S %VERSION_H% %EXPORT_CMD%
 if ERRORLEVEL 1 (
-    echo ERROR  %KMS_VERSION% -S %VERSION_H% %EXPORT_CMD%  reported an error - %ERRORLEVEL%
+    echo ERROR  %KMS_VERSION_EXE% -S %VERSION_H% %EXPORT_CMD%  reported an error - %ERRORLEVEL%
 	pause
 	exit /B 90
 )

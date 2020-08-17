@@ -1,13 +1,13 @@
 
 // Author    KMS - Martin Dubois, P.Eng.
-// Copyright (C) 2020 KMS. All rights reserved.
+// Copyright (C) 2020 KMS
 // License   http://www.apache.org/licenses/LICENSE-2.0
 // Product   KmsBase
 // File      KmsLib/ToolBase.cpp
 
-// CODE REVIEW 2020-06-13 KMS - Martin Dubois, P.Eng.
+// CODE REVIEW 2020-08-17 KMS - Martin Dubois, P.Eng.
 
-// TEST COVERAGE 2020-06-13 KMS - Martin Dubois, P.Eng.
+// TEST COVERAGE 2020-08-17 KMS - Martin Dubois, P.Eng.
 
 #include "Component.h"
 
@@ -543,7 +543,11 @@ namespace KmsLib
     {
         assert(NULL != aArgs);
 
-        if (!SetCurrentDirectory(aArgs))
+        if (SetCurrentDirectory(aArgs))
+        {
+            Report(REPORT_OK, aArgs);
+        }
+        else
         {
             SetError(-592, "Invalid directory", REPORT_USER_ERROR);
         }

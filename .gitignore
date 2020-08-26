@@ -1,33 +1,35 @@
 
 # Author    KMS - Martin Dubois, P.Eng.
-# Copyright (C) 2020 KMS. All Rights reserved.
+# Copyright (C) 2020 KMS.
 # License   http://www.apache.org/licenses/LICENSE-2.0
 # Product   KmsBase
 # File      .gitignore
 
-/Installer/
 /KmsDoc/
+/doxygen_en/
+/doxygen_fr/
 
 Linux_Windows_Test0.txt
 /Test1.txt
 /Test2.txt
 
+# Linux
+
+/Binaries/
+/Libraries/
+/Packages/
+
 *~
 *.bak
 *.o
 
+# Windows
+
+/Installer/
+
 .vs/
-Binaries/
 Debug/
 Debug_DLL/
-Export/
-Libraries/
 Release/
 Release_DLL/
-
-doxygen_en/
-doxygen_fr/
 x64/
-
-
-

@@ -5,9 +5,9 @@
 // Product   KmsBase
 // File      KmsLib/ToolBase.cpp
 
-// CODE REVIEW 2020-08-17 KMS - Martin Dubois, P.Eng.
+// CODE REVIEW 2020-08-267 KMS - Martin Dubois, P.Eng.
 
-// TEST COVERAGE 2020-08-17 KMS - Martin Dubois, P.Eng.
+// TEST COVERAGE 2020-08-26 KMS - Martin Dubois, P.Eng.
 
 #include "Component.h"
 
@@ -414,7 +414,7 @@ namespace KmsLib
     }
 
     // aCommands [-K-;R--]
-    ToolBase::ToolBase(const CommandInfo * aCommands) : mCommands(aCommands), mExit(false)
+    ToolBase::ToolBase(const CommandInfo * aCommands) : mCommands(aCommands), mError_Code(0), mExit(false)
 	{
 		assert(NULL != mCommands);
 	}
@@ -528,7 +528,7 @@ namespace KmsLib
         int  lCode;
         char lDesc[LINE_LENGTH_MAX];
 
-        switch (sscanf_s(aArgs, "%d %[^\n\r]", &lCode, lDesc, static_cast<unsigned int>(sizeof(lDesc))))
+        switch (sscanf_s(aArgs, "%d %[^\n\r]", &lCode, lDesc SIZE_INFO(sizeof(lDesc))))
         {
         case EOF: exit(0);
         case 1  : exit(SetError(lCode, "Abort", REPORT_FATAL_ERROR));
@@ -543,7 +543,14 @@ namespace KmsLib
     {
         assert(NULL != aArgs);
 
-        if (SetCurrentDirectory(aArgs))
+        #ifdef _KMS_LINUX_
+            if (0 == chdir(aArgs))
+        #endif
+
+        #ifdef _KMS_WINDOWS_
+            if (SetCurrentDirectory(aArgs))
+        #endif
+
         {
             Report(REPORT_OK, aArgs);
         }
@@ -688,7 +695,7 @@ namespace KmsLib
         int  lCode;
         char lDesc[LINE_LENGTH_MAX];
 
-        switch (sscanf_s(aArgs, "%d %[^\n\r]", &lCode, lDesc, static_cast<unsigned int>(sizeof(lDesc))))
+        switch (sscanf_s(aArgs, "%d %[^\n\r]", &lCode, lDesc SIZE_INFO(sizeof(lDesc))))
         {
         case EOF:
             mExit = true;
@@ -773,7 +780,7 @@ namespace KmsLib
         char         lCommand[LINE_LENGTH_MAX];
         unsigned int lCount;
 
-        switch (sscanf_s(aArgs, "%u %[^\n\r]", &lCount, lCommand, static_cast<unsigned int>(sizeof(lCommand))))
+        switch (sscanf_s(aArgs, "%u %[^\n\r]", &lCount, lCommand SIZE_INFO(sizeof(lCommand))))
         {
         case 2:
             for (unsigned int i = 0; (! mExit) && ( i < lCount); i++)

@@ -1,0 +1,9 @@
+Package: kms-kmsbase
+Version: 3.0-22
+Section: base
+Priority: optional
+Architecture: amd64
+Maintainer: KMS <kmsbase@kms-quebec.com>
+Description: KmsBase
+ KmsBase 3.0.22
+ 

@@ -5,6 +5,9 @@ License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      _DocUser/KmsBase.ReadMe.txt
 
+3.0.23 Windows
+- Scripts/KmsBase_Build_Installer.cmd
+
 3.0.22 Linux
 - Debian package
 

@@ -161,6 +161,9 @@
   <ItemGroup>
     <ResourceCompile Include="..\Common\Version.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="_DocUser\KmsBase.KmsCopy.ReadMe.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

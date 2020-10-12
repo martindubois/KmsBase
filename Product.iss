@@ -3,7 +3,9 @@
 ; Copyright (C) 2020 KMS. All rights reserved.
 ; License   http://www.apache.org/licenses/LICENSE-2.0
 ; Product   KmsBase
-; File      KmsBase.iss
+; File      Product.iss
+
+; CODE REVIEW 2020-10-11 KMS - Martin Dubois, P.Eng.
 
 [Setup]
 AllowNetworkDrive=no
@@ -13,13 +15,13 @@ AppName=KmsBase
 AppPublisher=KMS
 AppPublisherURL=http://www.kms-quebec.com
 AppSupportURL=http://www.kms-quebec.com
-AppVersion=3.0.20
+AppVersion=3.0.23
 ArchitecturesAllowed=x64 x86
 ArchitecturesInstallIn64BitMode=x64
 DefaultDirName={pf}\KmsBase
 LicenseFile=License.txt
 MinVersion=10.0
-OutputBaseFilename=KmsBase_3.0.20
+OutputBaseFilename=KmsBase_3.0.23
 OutputDir=Installer
 
 [Files]
@@ -73,7 +75,7 @@ Source: "Scripts\Import.cmd"                       ; DestDir: "{app}"
 Source: "Scripts\Import.cmd.txt"                   ; DestDir: "{app}"
 Source: "Scripts\Import.txt"                       ; DestDir: "{app}"
 Source: "Scripts\KmsBase_Build_Begin.cmd"          ; DestDir: "{app}\Scripts"
-Source: "Scripts\KmsBase_Build_End.cmd"            ; DestDir: "{app}\Scripts"
+Source: "Scripts\KmsBase_Build_Installer.cmd"      ; DestDir: "{app}\Scripts"
 Source: "Scripts\KmsBase_Export.cmd"               ; DestDir: "{app}\Scritps"
 Source: "x64\Debug\KmsLib.lib"                     ; DestDir: "{app}\Libraries\Debug_64"
 Source: "x64\Debug\KmsLib.pdb"                     ; DestDir: "{app}\Libraries\Debug_64"

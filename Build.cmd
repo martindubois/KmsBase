@@ -7,7 +7,7 @@ rem Product   KmsBase
 rem File      Build.cmd
 rem Usage     .\Build.cmd
 
-rem CODE REVIEW 2020-06-24 KMS - Martin Dubois, P.Eng.
+rem CODE REVIEW 2020-10-11 KMS - Martin Dubois, P.Eng.
 
 echo Executing  Build.cmd  ...
 
@@ -16,7 +16,7 @@ rem ===== Initialisation ====================================================
 set SCRIPT_FOLDER=Scripts
 
 set KMS_BASE_BUILD_BEGIN_CMD="%SCRIPT_FOLDER%\KmsBase_Build_Begin.cmd"
-set KMS_BASE_BUILD_END_CMD="%SCRIPT_FOLDER%\KmsBase_Build_End.cmd"
+set KMS_BASE_BUILD_INSTALLER_CMD="%SCRIPT_FOLDER%\KmsBase_Build_Installer.cmd"
 
 rem ===== Execution =========================================================
 
@@ -83,11 +83,32 @@ if ERRORLEVEL 1 (
 	exit /B 90
 )
 
-call %KMS_BASE_BUILD_END_CMD%
+call %TEST_CMD%
 if ERRORLEVEL 1 (
-	echo FATAL ERROR  call %KMS_BASE_BUILD_END_CMD%  reported an error - %ERRORLEVEL%
+	echo ERROR  call %TEST_CMD%  reported an error - %ERRORLEVEL%
 	pause
 	exit /B 100
+)
+
+call %KMS_BASE_BUILD_INSTALLER_CMD% %PRODUCT_ISS%
+if ERRORLEVEL 1 (
+	echo FATAL ERROR  call %KMS_BASE_BUILD_INSTALLER_CMD% %PRODUCT_ISS%  reported an error - %ERRORLEVEL%
+	pause
+	exit /B 110
+)
+
+%KMS_VERSION_EXE% %VERSION_H% %EXPORT_CMD_TXT%
+if ERRORLEVEL 1 (
+	echo ERROR  %KMS_VERSION_EXE% %VERSION_H% %EXPORT_CMD_TXT%  reported an error - %ERRORLEVEL%
+	pause
+	exit /B 120
+)
+
+%KMS_VERSION_EXE% -S %VERSION_H% %EXPORT_CMD%
+if ERRORLEVEL 1 (
+    echo ERROR  %KMS_VERSION_EXE% -S %VERSION_H% %EXPORT_CMD%  reported an error - %ERRORLEVEL%
+	pause
+	exit /B 130
 )
 
 rem ===== End ===============================================================

@@ -5,7 +5,7 @@
 # Product   KmsBase
 # File      Export.cmd.txt
 
-# CODE REVIEW 2020-06-15 KMS - Martin Dubois, P.Eng.
+# CODE REVIEW 2020-10-11 KMS - Martin Dubois, P.Eng.
 
 .
     RunDoxygen.cmd
@@ -21,7 +21,7 @@ Debug_DLL	Libraries/Debug_32_DLL
 
 Installer .
 # KmsVersion "KmsBase_" ".exe" 3
-	KmsBase_3.0.20.exe
+	KmsBase_3.0.23.exe
 
 Release .
     KmsCopy.exe
@@ -38,7 +38,7 @@ Release_DLL	Libraries/Release_32_DLL
 
 Scripts
 	KmsBase_Build_Begin.cmd
-	KmsBase_Build_End.cmd
+	KmsBase_Build_Installer.cmd
 	KmsBase_Export.cmd
 
 Scripts	.

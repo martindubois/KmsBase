@@ -10,11 +10,12 @@ echo Executing  Scripts\KmsBase_Export.cmd %1 %2 %3  ...
 
 rem ===== Initialisation ====================================================
 
-set EXPORT_CMD_TXT="Export.cmd.txt"
-set EXPORT_TXT="Export.txt"
 set PRODUCT=%1
 set VERSION_MMB=%2
 set VERSION_TYPE=%3
+
+set EXPORT_CMD_TXT="Export.cmd.txt"
+set EXPORT_TXT="Export.txt"
 
 set KMS_COPY="Import\Binaries\Release_32\KmsCopy.exe"
 
@@ -32,14 +33,14 @@ rem ===== Verification ======================================================
 
 if ""=="%1" (
     echo USER ERROR  Invalid command line
-    echo Usage  Scripts\Export.cmd {Product} {Ma.Mi.Bu} [Type]
+    echo Usage  Scripts\KmsBase_Export.cmd {Product} {Ma.Mi.Bu} [Type]
     pause
     exit /B 10
 )
 
 if ""=="%2" (
     echo USER ERROR  Invalid command line
-    echo Usage  Scripts\Export.cmd {Product} {Ma.Mi.Bu} [Type]
+    echo Usage  Scripts\KmsBase_Export.cmd {Product} {Ma.Mi.Bu} [Type]
     pause
     exit /B 20
 )

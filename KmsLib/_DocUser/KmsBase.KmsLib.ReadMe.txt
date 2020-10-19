@@ -5,6 +5,7 @@ License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
 
+3.0.24 Windows
 - KmsLib::ToolBase::Parse
 
 3.0.23 Windows

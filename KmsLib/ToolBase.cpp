@@ -56,7 +56,11 @@
 
 static void  DisplayHelp(const KmsLib::ToolBase::CommandInfo * aCommandInfo);
 
+static void GoOverBlank(const char ** aArg);
+
 static void  ReadLine(FILE * aFile, char * aOut, unsigned int aOutsize_byte);
+
+static int ScanUnsigned(const char ** aArg, unsigned int * aOut, bool aHex);
 
 namespace KmsLib
 {
@@ -449,7 +453,100 @@ namespace KmsLib
         return mError_Code;
     }
 
-	void ToolBase::ParseArguments(int aCount, const char ** aVector)
+    bool ToolBase::Parse(const char ** aArg, bool * aOut)
+    {
+        char lWord[8];
+
+        bool lResult = Parse(aArg, lWord, sizeof(lWord));
+        if (lResult)
+        {
+            lResult = TextToBool(lWord, aOut);
+        }
+
+        return lResult;
+    }
+
+    bool ToolBase::Parse(const char ** aArg, bool * aOut, bool aDefault)
+    {
+        char lWord[8];
+
+        bool lResult = Parse(aArg, lWord, sizeof(lWord), aDefault ? "true" : "false");
+        if (lResult)
+        {
+            lResult = TextToBool(lWord, aOut);
+        }
+
+        return lResult;
+    }
+
+    bool ToolBase::Parse(const char ** aArg, unsigned int * aOut, unsigned int aMin, unsigned int aMax, bool aHex)
+    {
+        assert(NULL != aArg);
+        assert(NULL != aOut);
+        assert(aMin <= aMax);
+
+        GoOverBlank(aArg);
+
+        int lRet = ScanUnsigned(aArg, aOut, aHex);
+        switch (lRet)
+        {
+        case 1: return Verify(*aOut, aMin, aMax);
+
+        default: SetError(__LINE__, "Invalid unsigned value"); return false;
+        }
+
+        return true;
+    }
+
+    bool ToolBase::Parse(const char ** aArg, unsigned int * aOut, unsigned int aMin, unsigned int aMax, bool aHex, unsigned int aDefault)
+    {
+        assert(NULL != aArg);
+        assert(NULL != aOut);
+        assert(aMin <= aMax);
+
+        GoOverBlank(aArg);
+
+        int lRet = ScanUnsigned(aArg, aOut, aHex);
+        switch (lRet)
+        {
+        case EOF: *aOut = aDefault; break;
+
+        case 1: return Verify(*aOut, aMin, aMax);
+
+        default: SetError(__LINE__, "Invalid unsigned value"); return false;
+        }
+
+        return true;
+    }
+
+    bool ToolBase::Parse(const char ** aArg, char * aOut, unsigned int aOutSize_byte, const char * aDefault)
+    {
+        assert(NULL != aArg);
+        assert(NULL != aOut);
+        assert(1 < aOutSize_byte);
+
+        GoOverBlank(aArg);
+
+        switch (sscanf_s(*aArg, "%s", aOut SIZE_INFO(aOutSize_byte)))
+        {
+        case EOF:
+            if (NULL == aDefault)
+            {
+                SetError(__LINE__, "Invalid text value");
+                return false;
+            }
+            strcpy_s(aOut SIZE_INFO(aOutSize_byte), aDefault);
+            break;
+
+        case 1: (*aArg) += strlen(aOut); break;
+
+        default: SetError(__LINE__, "Invalid text value"); return false;
+        }
+
+        return true;
+    }
+
+    void ToolBase::ParseArguments(int aCount, const char ** aVector)
 	{
         assert(NULL != aVector);
 
@@ -794,6 +891,46 @@ namespace KmsLib
         }
     }
 
+    bool ToolBase::TextToBool(const char * aText, bool * aOut)
+    {
+        assert(NULL != aText);
+        assert(NULL != aOut);
+
+        if ((0 == _stricmp("false", aText)) || (0 == _stricmp("0", aText)))
+        {
+            *aOut = false;
+            return true;
+        }
+
+        if ((0 == _stricmp("true", aText)) || (0 == _stricmp("1", aText)))
+        {
+            *aOut = true;
+            return true;
+        }
+
+        SetError(__LINE__, "Invalid boolean value");
+        return false;
+    }
+
+    bool ToolBase::Verify(unsigned int aValue, unsigned int aMin, unsigned int aMax)
+    {
+        assert(aMin <= aMax);
+
+        if (aMin > aValue)
+        {
+            SetError(__LINE__, "The unsigned value is too small");
+            return false;
+        }
+
+        if (aMax < aValue)
+        {
+            SetError(__LINE__, "The unsigned value is too large");
+            return false;
+        }
+
+        return true;
+    }
+
 };
 
 // Fonction statique
@@ -813,6 +950,17 @@ void DisplayHelp(const KmsLib::ToolBase::CommandInfo * aCommandInfo)
 	printf("Help                          Display this help message\n");
 }
 
+void GoOverBlank(const char ** aArg)
+{
+    assert(NULL != aArg);
+    assert(NULL != (*aArg));
+
+    while ((' ' == **aArg) || ('\t' == **aArg))
+    {
+        (*aArg)++;
+    }
+}
+
 // aOut  [---;-W-]
 //
 // Exception  KmsLib::Exception  CODE_FILE_READ_ERROR
@@ -826,4 +974,40 @@ void ReadLine(FILE * aFile, char * aOut, unsigned int aOutSize_byte)
         //             Cannot read input line
 		throw new KmsLib::Exception(KmsLib::Exception::CODE_FILE_READ_ERROR, "fgets( , ,  ) failed", NULL, __FILE__, __FUNCTION__, __LINE__, aOutSize_byte);
 	}
+}
+
+int ScanUnsigned(const char ** aArg, unsigned int * aOut, bool aHex)
+{
+    assert(NULL != aArg);
+    assert(NULL != (*aArg));
+    assert(NULL != aOut);
+
+    int lResult;
+
+    if (aHex)
+    {
+        lResult = sscanf_s(*aArg, "%x", aOut);
+        if (1 == lResult)
+        {
+            while ((('0' <= **aArg) && ('9' >= **aArg))
+                || (('a' <= **aArg) && ('f' >= **aArg))
+                || (('A' <= **aArg) && ('F' >= **aArg)))
+            {
+                (*aArg)++;
+            }
+        }
+    }
+    else
+    {
+        lResult = sscanf_s(*aArg, "%u", aOut);
+        if (1 == lResult)
+        {
+            while (('0' <= **aArg) && ('9' >= **aArg))
+            {
+                (*aArg)++;
+            }
+        }
+    }
+
+    return lResult;
 }

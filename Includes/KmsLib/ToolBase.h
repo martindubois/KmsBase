@@ -417,6 +417,103 @@ namespace KmsLib
         /// \endcond
         int SetError(int aCode, const char * aDesc, ReportType aType = REPORT_ERROR);
 
+        /// \cond en
+        /// \brief Parse a boolean value
+        /// \param aArg The arguments
+        /// \param aOut The value
+        /// \retval false Error
+        /// \endcond
+        /// \cond fr
+        /// \brief Interprete une valeur boolean
+        /// \param aArg Les arguments
+        /// \param aOut La valeur
+        /// \retval false Erreur
+        /// \endcond
+        /// \retval true OK
+        bool Parse(const char ** aArg, bool * aOut);
+
+        /// \cond en
+        /// \brief Parse a boolean value
+        /// \param aArg     The arguments
+        /// \param aOut     The value
+        /// \param aDefault The default value
+        /// \retval false Error
+        /// \endcond
+        /// \cond fr
+        /// \brief Interprete une valeur boolean
+        /// \param aArg     Les arguments
+        /// \param aOut     La valeur
+        /// \param aDefault La valeur par defaut
+        /// \retval false Erreur
+        /// \endcond
+        /// \retval true OK
+        bool Parse(const char ** aArg, bool * aOut, bool aDefault);
+
+        /// \cond en
+        /// \brief Parse an unsigned value
+        /// \param aArg The arguments
+        /// \param aOut The value
+        /// \param aMin The minimum value
+        /// \param aMax The maximum value
+        /// \param aHex The value is in hexadecimal
+        /// \retval false Error
+        /// \endcond
+        /// \cond fr
+        /// \brief Interprete une valeur non sign&eacute;e
+        /// \param aArg Les arguments
+        /// \param aOut La valeur
+        /// \param aMin La valeur minimal
+        /// \param aMax La valeur maximal
+        /// \param aHex La valeur est en hexadecimal
+        /// \retval false Erreur
+        /// \endcond
+        /// \retval true OK
+        bool Parse(const char ** aArg, unsigned int * aOut, unsigned int aMin = 0, unsigned int aMax = 0xffffffff, bool aHex = false);
+
+        /// \cond en
+        /// \brief Parse an unsigned value
+        /// \param aArg     The arguments
+        /// \param aOut     The value
+        /// \param aMin     The minimum value
+        /// \param aMax     The maximum value
+        /// \param aHex     The value is in hexadecimal
+        /// \param aDefault The default value
+        /// \retval false Error
+        /// \endcond
+        /// \cond fr
+        /// \brief Interprete une valeur non sign&eacute;e
+        /// \param aArg Les arguments
+        /// \param aOut     La valeur
+        /// \param aMin     La valeur minimal
+        /// \param aMax     La valeur maximal
+        /// \param aHex     La valeur est en hexadecimal
+        /// \param aDefault La valeur par defaut
+        /// \retval false Erreur
+        /// \endcond
+        /// \retval true OK
+        bool Parse(const char ** aArg, unsigned int * aOut, unsigned int aMin, unsigned int aMax, bool aHex, unsigned int aDefault);
+
+        /// \cond en
+        /// \brief Parse a text value without space
+        /// \param aArg          The arguments
+        /// \param aOut          The value
+        /// \param aOutSize_byte The maximum size of the value including the
+        ///                      end marker
+        /// \param aDefault      The default value
+        /// \retval false Error
+        /// \endcond
+        /// \cond fr
+        /// \brief Interprete une valeur texte sans espace
+        /// \param aArg          Les arguments
+        /// \param aOut          La valeur
+        /// \param aOutSize_byte La taille maximale de la valeur incluant le
+        ///                      marqueur de fin
+        /// \param aDefault      La valeur par defaut
+        /// \retval false Erreur
+        /// \endcond
+        /// \retval true OK
+        bool Parse(const char ** aArg, char * aOut, unsigned int aOutSize_byte, const char * aDefault = NULL);
+
         /// \cond    en
         /// \brief   Parse the arguments the user passed to the tools
         /// \param   aCount              Argument count
@@ -471,6 +568,10 @@ namespace KmsLib
         int ParseCommands(FILE * aFile);
 
         void Repeat(const char * aArgs);
+
+        bool TextToBool(const char * aText, bool * aOut);
+
+        bool Verify(unsigned int aValue, unsigned int aMin, unsigned int aMax);
 
         const CommandInfo * mCommands;
 

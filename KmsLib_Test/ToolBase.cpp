@@ -231,6 +231,84 @@ KMS_TEST_BEGIN(ToolBase_Base)
     lTB0.SetError(2, "Test", KmsLib::ToolBase::REPORT_ERROR);
     KMS_TEST_COMPARE(1, lTB0.GetErrorCode());
 
+    // ===== Parse ==========================================================
+
+    const char * lArg;
+    bool lBool;
+
+    lArg = "Invalid";
+    KMS_TEST_ASSERT(!lTB0.Parse(&lArg, &lBool));
+    lArg = "";
+    KMS_TEST_ASSERT(!lTB0.Parse(&lArg, &lBool));
+    lArg = "false";
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lBool));
+    KMS_TEST_ASSERT(!lBool);
+    lArg = "0";
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lBool));
+    KMS_TEST_ASSERT(!lBool);
+    lArg = "true";
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lBool));
+    KMS_TEST_ASSERT(lBool);
+    lArg = "1";
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lBool));
+    KMS_TEST_ASSERT(lBool);
+    lArg = " false other";
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lBool));
+    KMS_TEST_ASSERT(0 == strcmp(" other", lArg));
+    KMS_TEST_ASSERT(!lBool);
+    lArg = " 0 other";
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lBool));
+    KMS_TEST_ASSERT(0 == strcmp(" other", lArg));
+    KMS_TEST_ASSERT(!lBool);
+    lArg = " true other";
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lBool));
+    KMS_TEST_ASSERT(0 == strcmp(" other", lArg));
+    KMS_TEST_ASSERT(lBool);
+    lArg = " 1 other";
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lBool));
+    KMS_TEST_ASSERT(0 == strcmp(" other", lArg));
+    KMS_TEST_ASSERT(lBool);
+
+    lArg = "Invalid";
+    KMS_TEST_ASSERT(!lTB0.Parse(&lArg, &lBool, false));
+    lArg = "";
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lBool, false));
+    KMS_TEST_ASSERT(!lBool);
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lBool, true));
+    KMS_TEST_ASSERT(lBool);
+    lArg = " false other";
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lBool, false));
+    KMS_TEST_ASSERT(0 == strcmp(" other", lArg));
+    KMS_TEST_ASSERT(!lBool);
+
+    unsigned int lUnsigned;
+
+    lArg = "Invalid";
+    KMS_TEST_ASSERT(!lTB0.Parse(&lArg, &lUnsigned));
+    lArg = "0 other";
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lUnsigned));
+    KMS_TEST_ASSERT(0 == strcmp(" other", lArg));
+    KMS_TEST_COMPARE(0, lUnsigned);
+    lArg = " 1";
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lUnsigned));
+    KMS_TEST_COMPARE(1, lUnsigned);
+    lArg = "a";
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lUnsigned, 0, 15, true));
+    KMS_TEST_COMPARE(0xa, lUnsigned);
+    lArg = "10";
+    KMS_TEST_ASSERT(!lTB0.Parse(&lArg, &lUnsigned, 0, 15, true));
+    lArg = "10";
+    KMS_TEST_ASSERT(!lTB0.Parse(&lArg, &lUnsigned, 32, 64, true));
+
+    lArg = "Invalid";
+    KMS_TEST_ASSERT(!lTB0.Parse(&lArg, &lUnsigned, 0, 0xffffffff, false, 32));
+    lArg = "";
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lUnsigned, 0, 0xffffffff, false, 32));
+    KMS_TEST_COMPARE(32, lUnsigned);
+    lArg = "64";
+    KMS_TEST_ASSERT(lTB0.Parse(&lArg, &lUnsigned, 0, 0xffffffff, false, 32));
+    KMS_TEST_COMPARE(64, lUnsigned);
+
     // ===== ParseArguments =================================================
 
     lTB0.ClearError();

@@ -12,7 +12,7 @@ echo Executing  CreatePakcages.sh
 
 # ===== Version =============================================================
 
-PACKAGE_VERSION=3.0-22
+PACKAGE_VERSION=3.0-25
 
 VERSION=3.0
 
@@ -38,6 +38,7 @@ mkdir Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Libraries
 
 cp _DocUser/KmsBase.ReadMe.txt                 Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
 cp Binaries/KmsCopy                            Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Binaries
+cp Binaries/KmsVersion                         Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Binaries
 cp Includes/*.h                                Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Includes
 cp Includes/KmsLib/*.h                         Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Includes/KmsLib
 cp Includes/KmsLib/Linux/*.h                   Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Includes/KmsLib/Linux

@@ -5,6 +5,8 @@ License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      _DocDev/Procedures/Build.txt
 
+CODE REVIEW 2020-10-26 KMS - Martin Dubois, P.Eng.
+
 Name               __________________________________________________________
 
 Date and time      20 ______ - ______ - ______                ______ : ______
@@ -18,6 +20,7 @@ Version            ______ . ______ . ______ . ______ - ______________________
 [ ] File "_DocUser/KmsBase.ReadMe.txt"
 [ ] File "KmsCopy/_DocUser/KmsBase.KmsCopy.ReadMe.txt"
 [ ] File "KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt"
+[ ] File "KmsVersion/_DocUser/KmsBase.KmsVersion.ReadMe.txt"
 
 ===== Linux Only ============================================================
 [ ] File "CreatePakages.sh"

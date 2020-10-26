@@ -6,7 +6,7 @@
 # Product   KmsBase
 # Files     CreatePackages.sh
 
-# CODE REVIEW 2020-08-26 KMS - Martin Dubois, P.Eng.
+# CODE REVIEW 2020-10-26 KMS - Martin Dubois, P.Eng.
 
 echo Executing  CreatePakcages.sh
 
@@ -36,20 +36,22 @@ mkdir Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Includes/KmsLib/Linux
 mkdir Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Includes/KmsLib/Windows
 mkdir Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Libraries
 
-cp _DocUser/KmsBase.ReadMe.txt                 Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
-cp Binaries/KmsCopy                            Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Binaries
-cp Binaries/KmsVersion                         Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Binaries
-cp Includes/*.h                                Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Includes
-cp Includes/KmsLib/*.h                         Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Includes/KmsLib
-cp Includes/KmsLib/Linux/*.h                   Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Includes/KmsLib/Linux
-cp Includes/KmsLib/Windows/*.h                 Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Includes/KmsLib/Windows
-cp KmsCopy/_DocUser/KmsBase.KmsCopy.ReadMe.txt Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
-cp Scripts/Import.sh                           Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
-cp Scripts/Import.sh.txt                       Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
-cp Scripts/Import.txt                          Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
-cp DoxyFile_*.txt                              Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
-cp License.txt                                 Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
-cp RunDoxygen.sh                               Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
+cp _DocUser/KmsBase.ReadMe.txt                       Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
+cp Binaries/KmsCopy                                  Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Binaries
+cp Binaries/KmsVersion                               Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Binaries
+cp Includes/*.h                                      Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Includes
+cp Includes/KmsLib/*.h                               Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Includes/KmsLib
+cp Includes/KmsLib/Linux/*.h                         Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Includes/KmsLib/Linux
+cp Includes/KmsLib/Windows/*.h                       Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION/Includes/KmsLib/Windows
+cp KmsCopy/_DocUser/KmsBase.KmsCopy.ReadMe.txt       Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
+cp KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt         Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
+cp KmsVersion/_DocUser/KmsBase.KmsVersion.ReadMe.txt Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
+cp Scripts/Import.sh                                 Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
+cp Scripts/Import.sh.txt                             Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
+cp Scripts/Import.txt                                Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
+cp DoxyFile_*.txt                                    Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
+cp License.txt                                       Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
+cp RunDoxygen.sh                                     Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
 
 mkdir Packages/$PACKAGE_NAME/DEBIAN
 

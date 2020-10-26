@@ -1,11 +1,13 @@
 #!/bin/sh
 
-# Author   KMS - Martin Dubois, ing.
-# Product  KmsBase
-# File     Make.sh
-# Usage    ./Make.sh
+# Author    KMS - Martin Dubois, P.Eng.
+# Copyright (C) 2020 KMS
+# License   http://www.apache.org/licenses/LICENSE-2.0
+# Product   KmsBase
+# File      Make.sh
+# Usage     ./Make.sh
 
-# CODE REVIEW  2019-07-22  KMS - Martin Dubois, ing.
+# CODE REVIEW 2020-10-26 KMS - Martin Dubois, P.Eng.
 
 echo Executing  Make.sh  ....
 
@@ -26,6 +28,15 @@ make
 if [ 0 != $? ] ; then
     echo ERROR  KmsCopy - make  failed
     exit 15
+fi
+cd ..
+
+echo Building KmsVersion
+cd KmsVersion
+make
+if [ 0 != $? ] ; then
+    echo ERROR  KmsVersion - make  failed
+    exit 18
 fi
 cd ..
 

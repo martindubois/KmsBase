@@ -1,12 +1,13 @@
 
 // Author    KMS - Martin Dubois, P.Eng.
-// Copyright (C) 2020 KMS. All rights reserved.
+// Copyright (C) 2020 KMS
 // License   http://www.apache.org/licenses/LICENSE-2.0
 // Product   KmsBase
 // File      KmsVersion/VersionAndType.cpp
 
+#include "Component.h"
+
 // ===== C ==================================================================
-#include <assert.h>
 #include <stdio.h>
 
 // ===== Includes ===========================================================

@@ -4,30 +4,18 @@
 # Copyright (C) 2020 KMS
 # License   http://www.apache.org/licenses/LICENSE-2.0
 # Product   KmsBase
-# File      Clean.sh
+# File      KmsVersion/Clean.sh
 # Usage     ./Clean.sh
 
-# CODE REVIEW 2019-10-26 KMS - Martin Dubois, P.Eng.
+# CODE REVIEW 2020-10-26 KMS - Martin Dubois, P.Eng.
 
-echo Executing  Clean.sh  ...
+echo Executing  KmsCopy/Clean.sh  ...
 
 # ===== Execution ===========================================================
 
-cd KmsLib
-./Clean.sh
-cd ..
+rm -f ../Binaries/KmsVersion
 
-cd KmsCopy
-./Clean.sh
-cd ..
-
-cd KmsLib_Test
-./Clean.sh
-cd ..
-
-cd KmsVersion
-./Clean.sh
-cd ..
+rm -f *.o
 
 # ===== End =================================================================
 

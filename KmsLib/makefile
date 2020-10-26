@@ -1,7 +1,11 @@
 
-# Author   KMS - Martin Dubois, ing.
-# Product  KmsBase
-# File     KmsLib/makefile
+# Author    KMS - Martin Dubois, ing.
+# Copyright (C) 2020 KMS
+# License   http://www.apache.org/licenses/LICENSE-2.0
+# Product   KmsBase
+# File      KmsLib/makefile
+
+# CODE REVIEW 2020-10-26 KMS - Martin Dubois, P.Eng.
 
 include ../User.mk
 
@@ -42,6 +46,7 @@ $(OUTPUT) : $(OBJECTS)
 
 depend:
 	makedepend -Y $(INCLUDES) $(SOURCES)
+
 # DO NOT DELETE
 
 CmdLineParser.o: ../Includes/KmsBase.h ../Includes/SafeAPI.h
@@ -84,9 +89,10 @@ TextFile.o: ../Includes/KmsLib/TextFile.h
 ThreadBase.o: ../Includes/KmsBase.h ../Includes/SafeAPI.h
 ThreadBase.o: ../Includes/WindowsToLinux.h ../Includes/KmsLib/Exception.h
 ThreadBase.o: ../Includes/KmsLib/ThreadBase.h
-ToolBase.o: ../Includes/KmsBase.h ../Includes/SafeAPI.h
+ToolBase.o: Component.h ../Includes/KmsBase.h ../Includes/SafeAPI.h
 ToolBase.o: ../Includes/WindowsToLinux.h ../Includes/KmsLib/Exception.h
-ToolBase.o: ../Includes/KmsLib/File.h ../Includes/KmsLib/ToolBase.h
+ToolBase.o: ../Includes/KmsLib/File.h ../Includes/KmsLib/ThreadBase.h
+ToolBase.o: ../Includes/KmsLib/ToolBase.h
 ValueVector.o: ../Includes/KmsLib/ValueVector.h
 Walker.o: ../Includes/KmsBase.h ../Includes/SafeAPI.h
 Walker.o: ../Includes/WindowsToLinux.h ../Includes/KmsLib/Exception.h

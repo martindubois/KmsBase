@@ -1,7 +1,11 @@
 
-# Author   KMS - Martin Dubois, ing.
-# Product  KmsBase
-# File     KmsCopy/makefile
+# Author    KMS - Martin Dubois, P.Eng.
+# Copyright (C) 2020 KMS
+# License   http://www.apache.org/licenses/LICENSE-2.0
+# Product   KmsBase
+# File      KmsCopy/makefile
+
+# CODE REVIEW 2020-10-26 KMS - Martin Dubois, P.Eng.
 
 include ../User.mk
 
@@ -32,4 +36,4 @@ depend:
 
 KmsCopy.o: ../Includes/KmsBase.h ../Includes/SafeAPI.h
 KmsCopy.o: ../Includes/WindowsToLinux.h ../Includes/KmsTool.h
-KmsCopy.o: ../Common/Version.h
+KmsCopy.o: ../Includes/KmsLib/Linux/Windows.h ../Common/Version.h

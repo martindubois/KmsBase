@@ -1,19 +1,23 @@
 
-// Author    KMS - Martin Dubois.ing
-// Copyright (C) 2019-2020 KMS. All rights reserved
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2019-2020 KMS
 // License   http://www.apache.org/licenses/LICENSE-2.0
 // Product   KmsBase
 // File      KmsVersion/KmsVersion.cpp
 
+#include "Component.h"
+
 // ===== C ==================================================================
-#include <assert.h>
 #include <stdio.h>
 
-// ===== Windows ============================================================
-#include <Windows.h>
+#ifdef _KMS_WINDOWS_
+    // ===== Windows ========================================================
+    #include <Windows.h>
+#endif
 
 // ===== KmsBase ============================================================
 #include <KmsLib/CmdLineParser.h>
+#include <KmsLib/Linux/Windows.h>
 
 // ===== Common =============================================================
 #include "../Common/Version.h"
@@ -64,17 +68,20 @@ static int  Script_Execute(const KmsLib::CmdLineParser & aCLP, const VersionAndT
 static void Slave_Modify    (const KmsLib::CmdLineParser & aCLP   , const Version & aVersion);
 static void Slave_Modify    (const char                  * aSlave , const Version & aVersion);
 static void Slave_Modify_CMD(const char                  * aSlave , const Version & aVersion);
-static void Slave_Modify_INF(const char                  * aSlave , const Version & aVersion);
-static void Slave_Modify_ISS(const char                  * aSlave , const Version & aVersion);
 static void Slave_Modify_TXT(const char                  * aSlave , const Version & aVersion);
 static void Slave_Modify_XML(const char                  * aSlave , const Version & aVersion);
 
 static void  String_Trunk(char * aStr, char aEnd);
 
+#ifdef _KMS_WINDOWS_
+    static void Slave_Modify_INF(const char * aSlave , const Version & aVersion);
+    static void Slave_Modify_ISS(const char * aSlave , const Version & aVersion);
+#endif
+
 // Entry point
 /////////////////////////////////////////////////////////////////////////////
 
-int main(unsigned int aCount, const char ** aVector)
+int main(int aCount, const char ** aVector)
 {
     assert(1    <= aCount );
     assert(NULL != aVector);
@@ -349,30 +356,30 @@ void Master_Parse(const char * aMaster, VersionAndType * aVT)
         else if (1 == sscanf_s(lLine, "#define VERSION_MINOR (%u)"        , &aVT->mMinor )) { lInfo.mCount.mMinor ++; }
         else if (1 == sscanf_s(lLine, "#define VERSION_BUILD (%u)"        , &aVT->mBuild )) { lInfo.mCount.mBuild ++; }
         else if (1 == sscanf_s(lLine, "#define VERSION_COMPATIBILITY (%u)", &aVT->mCompat)) { lInfo.mCount.mCompat++; }
-        else if (1 == sscanf_s(lLine, "#define VERSION_INTERNAL (%s"      , lStr, sizeof(lStr)))
+        else if (1 == sscanf_s(lLine, "#define VERSION_INTERNAL (%s"      , lStr SIZE_INFO(sizeof(lStr))))
         {
             String_Trunk(lStr, ')');
             aVT->SetInternal(lStr);
             lInfo.mCountType++;
         }
-        else if (1 == sscanf_s(lLine, "#define VERSION_RC %s"             , lStr, sizeof(lStr)))
+        else if (1 == sscanf_s(lLine, "#define VERSION_RC %s"             , lStr SIZE_INFO(sizeof(lStr))))
         {
             lInfo.mVersionRC.Parse(lStr, ',');
             lInfo.mCountRC++;
         }
-        else if (1 == sscanf_s(lLine, "#define VERSION_STR \"%s\""        , lStr, sizeof(lStr)))
+        else if (1 == sscanf_s(lLine, "#define VERSION_STR \"%s\""        , lStr SIZE_INFO(sizeof(lStr))))
         {
             String_Trunk(lStr, '"');
             lInfo.mVersionStr.Parse(lStr, '.');
             lInfo.mCountStr++;
         }
-        else if (1 == sscanf_s(lLine, "#define VERSION_STR0 \"%s"         , lStr, sizeof(lStr)))
+        else if (1 == sscanf_s(lLine, "#define VERSION_STR0 \"%s"         , lStr SIZE_INFO(sizeof(lStr))))
         {
             String_Trunk(lStr, '\\');
             lInfo.mVersionStr0.Parse(lStr, '.');
             lInfo.mCountStr0++;
         }
-        else if (1 == sscanf_s(lLine, "#define VERSION_TYPE \"%s"         , lStr, sizeof(lStr)))
+        else if (1 == sscanf_s(lLine, "#define VERSION_TYPE \"%s"         , lStr SIZE_INFO(sizeof(lStr))))
         {
             String_Trunk(lStr, '"');
             aVT->SetType(lStr);
@@ -430,7 +437,7 @@ void Master_ParseAndModify(const char * aMaster, VersionAndType * aVT, const Kms
                 fprintf(lWrite, "#define  VERSION_COMPATIBILITY   (%u)\n", aVT->mCompat);
                 lInfo.mCount.mCompat++;
             }
-            else if (1 == sscanf_s(lLine, "#define VERSION_INTERNAL (%s", lStr, sizeof(lStr)))
+            else if (1 == sscanf_s(lLine, "#define VERSION_INTERNAL (%s", lStr SIZE_INFO(sizeof(lStr))))
             {
                 String_Trunk(lStr, ')');
                 aVT->SetInternal(lStr);
@@ -438,14 +445,14 @@ void Master_ParseAndModify(const char * aMaster, VersionAndType * aVT, const Kms
                 fprintf(lWrite, "#define  VERSION_INTERNAL  (%s)\n", aVT->IsInternal() ? "true" : "false");
                 lInfo.mCountType++;
             }
-            else if (1 == sscanf_s(lLine, "#define VERSION_RC %s", lStr, sizeof(lStr)))
+            else if (1 == sscanf_s(lLine, "#define VERSION_RC %s", lStr SIZE_INFO(sizeof(lStr))))
             {
                 lInfo.mVersionRC.Parse(lStr, ',');
                 Process(&lInfo.mVersionRC, aCLP);
                 fprintf(lWrite, "#define  VERSION_RC     %s\n", lInfo.mVersionRC.GetText4(','));
                 lInfo.mCountRC++;
             }
-            else if (1 == sscanf_s(lLine, "#define VERSION_STR \"%s", lStr, sizeof(lStr)))
+            else if (1 == sscanf_s(lLine, "#define VERSION_STR \"%s", lStr SIZE_INFO(sizeof(lStr))))
             {
                 String_Trunk(lStr, '"');
                 lInfo.mVersionStr.Parse(lStr, '.');
@@ -453,7 +460,7 @@ void Master_ParseAndModify(const char * aMaster, VersionAndType * aVT, const Kms
                 fprintf(lWrite, "#define  VERSION_STR    \"%s\"\n", lInfo.mVersionStr.GetText4('.'));
                 lInfo.mCountStr++;
             }
-            else if (1 == sscanf_s(lLine, "#define VERSION_STR0 \"%s", lStr, sizeof(lStr)))
+            else if (1 == sscanf_s(lLine, "#define VERSION_STR0 \"%s", lStr SIZE_INFO(sizeof(lStr))))
             {
                 String_Trunk(lStr, '\\');
                 lInfo.mVersionStr0.Parse(lStr, '.');
@@ -461,7 +468,7 @@ void Master_ParseAndModify(const char * aMaster, VersionAndType * aVT, const Kms
                 fprintf(lWrite, "#define  VERSION_STR0   \"%s\\0\"\n", lInfo.mVersionStr0.GetText4('.'));
                 lInfo.mCountStr0++;
             }
-            else if (1 == sscanf_s(lLine, "#define VERSION_TYPE \"%s", lStr, sizeof(lStr)))
+            else if (1 == sscanf_s(lLine, "#define VERSION_TYPE \"%s", lStr SIZE_INFO(sizeof(lStr))))
             {
                 String_Trunk(lStr, '"');
                 aVT->SetType(lStr);
@@ -673,12 +680,14 @@ void Slave_Modify(const char * aSlave, const Version & aVersion)
 
     if      (0 == _strnicmp(".bat", lExt, 5)) { Slave_Modify_CMD(aSlave, aVersion); }
     else if (0 == _strnicmp(".cmd", lExt, 5)) { Slave_Modify_CMD(aSlave, aVersion); }
-    else if (0 == _strnicmp(".inf", lExt, 5)) { Slave_Modify_INF(aSlave, aVersion); }
-    else if (0 == _strnicmp(".inx", lExt, 5)) { Slave_Modify_INF(aSlave, aVersion); }
-    else if (0 == _strnicmp(".iss", lExt, 5)) { Slave_Modify_ISS(aSlave, aVersion); }
     else if (0 == _strnicmp(".txt", lExt, 5)) { Slave_Modify_TXT(aSlave, aVersion); }
     else if (0 == _strnicmp(".wxs", lExt, 5)) { Slave_Modify_XML(aSlave, aVersion); }
     else if (0 == _strnicmp(".xml", lExt, 5)) { Slave_Modify_XML(aSlave, aVersion); }
+    #ifdef _KMS_WINDOWS_
+        else if (0 == _strnicmp(".inf", lExt, 5)) { Slave_Modify_INF(aSlave, aVersion); }
+        else if (0 == _strnicmp(".inx", lExt, 5)) { Slave_Modify_INF(aSlave, aVersion); }
+        else if (0 == _strnicmp(".iss", lExt, 5)) { Slave_Modify_ISS(aSlave, aVersion); }
+    #endif
     else
     {
         sprintf_s(lMsg, "%s is not a supported slave file name", aSlave);
@@ -714,7 +723,7 @@ void  Slave_Modify_CMD(const char * aSlave, const Version & aVersion)
 
             if (0 == _strnicmp("rem", lLine, 3))
             {
-                int lRet = sscanf_s(lLine + 3, " KmsVersion \"%[^\"]\" \"%[^\"]\" %u", lBefore, sizeof(lBefore), lAfter, sizeof(lAfter), &lN);
+                int lRet = sscanf_s(lLine + 3, " KmsVersion \"%[^\"]\" \"%[^\"]\" %u", lBefore SIZE_INFO(sizeof(lBefore)), lAfter SIZE_INFO(sizeof(lAfter)), &lN);
                 switch (lRet)
                 {
                 case 0:
@@ -763,6 +772,8 @@ void  Slave_Modify_CMD(const char * aSlave, const Version & aVersion)
 
     File_Close(lRead, lWrite);
 }
+
+#ifdef _KMS_WINDOWS_
 
 // REQUIREMENT KmsVersion.Slave.INF
 //              KmsVersion process .inf or .inx slave files.
@@ -878,6 +889,8 @@ void Slave_Modify_ISS(const char * aSlave, const Version & aVersion)
     File_Close(lRead, lWrite);
 }
 
+#endif
+
 // REQUIREMENT KmsVersion.Slave.TXT
 //             KmsVersion processes .txt slave files.
 
@@ -906,7 +919,7 @@ void Slave_Modify_TXT(const char * aSlave, const Version & aVersion)
 
             if (0 == _strnicmp("#", lLine, 1))
             {
-                int lRet = sscanf_s(lLine + 1, " KmsVersion \"%[^\"]\" \"%[^\"]\" %u", lBefore, sizeof(lBefore), lAfter, sizeof(lAfter), &lN);
+                int lRet = sscanf_s(lLine + 1, " KmsVersion \"%[^\"]\" \"%[^\"]\" %u", lBefore SIZE_INFO(sizeof(lBefore)), lAfter SIZE_INFO(sizeof(lAfter)), &lN);
                 switch (lRet)
                 {
                 case 0:
@@ -982,7 +995,7 @@ void Slave_Modify_XML(const char * aSlave, const Version & aVersion)
             char         lBefore[1024];
             unsigned int lN;
 
-            int lRet = sscanf_s(lLine, " <!-- KmsVersion (%[^)]) (%[^)]) %u -->", lBefore, sizeof(lBefore), lAfter, sizeof(lAfter), &lN);
+            int lRet = sscanf_s(lLine, " <!-- KmsVersion (%[^)]) (%[^)]) %u -->", lBefore SIZE_INFO(sizeof(lBefore)), lAfter SIZE_INFO(sizeof(lAfter)), &lN);
             switch (lRet)
             {
             case EOF :

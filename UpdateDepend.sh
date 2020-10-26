@@ -1,11 +1,13 @@
 #!/bin/sh
 
-# Author   KMS - Martin Dubois, ing.
-# Product  KmsBase
-# File     UpdateDepend.sh
-# Usage    ./UpdateDepend.sh
+# Author    KMS - Martin Dubois, P.Eng.
+# Copyright (C) 2020 KMS
+# License   http://www.apache.org/licenses/LICENSE-2.0
+# Product   KmsBase
+# File      UpdateDepend.sh
+# Usage     ./UpdateDepend.sh
 
-# CODE REVIEW  2019-07-22  KMS - Martin Dubois, ing.
+# CODE REVIEW 2020-10-26 KMS - Martin Dubois, P.Eng.
 
 echo Executing  UpdateDepend.sh  ....
 
@@ -26,6 +28,15 @@ make depend
 if [ 0 != $? ] ; then
     echo ERROR  KmsCopy - make depend  failed
     exit 15
+fi
+cd ..
+
+echo Updating dependencies for KmsVersion
+cd KmsVersion
+make depend
+if [ 0 != $? ] ; then
+    echo ERROR  KmsVersion - make depend  failed
+    exit 18
 fi
 cd ..
 

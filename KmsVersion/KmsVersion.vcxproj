@@ -102,6 +102,7 @@
     <Text Include="Tests\Slave_04.txt" />
     <Text Include="Tests\Slave_05.txt" />
     <Text Include="Tests\Slave_OK.txt" />
+    <Text Include="_DocUser\KmsBase.KmsVersion.ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KmsVersion.cpp" />

@@ -1,11 +1,11 @@
 
 Author    KMS - Martin Dubois, P.Eng.
-Copyright (C) 2020 KMS.
+Copyright (C) 2020 KMS
 License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
-File      _DocDev/Procedures/Build.txt
+File      _DocDev/Build.txt
 
-CODE REVIEW 2020-10-26 KMS - Martin Dubois, P.Eng.
+CODE REVIEW 2020-10-27 KMS - Martin Dubois, P.Eng.
 
 Name               __________________________________________________________
 
@@ -41,7 +41,11 @@ Version            ______ . ______ . ______ . ______ - ______________________
 ===== Windows Seulement =====================================================
 [ ] Tool "Command Windows" - In the product folder
         .\RunDoxygen.cmd
+		.\UploadDocumentation.cmd
+[ ] Connect the signing key to the computer
+[ ] Tool "Command Windows" - In the product folder
         .\Build.cmd
+[ ] Disconnect the signing key from the computer
 [ ] Connect the RS232 to USB adapter to a USB port of the computer
 [ ] Tool "Command Windows" - Already open
         .\Test_Setup.cmd 2

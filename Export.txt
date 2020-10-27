@@ -1,11 +1,11 @@
 
 # Auteur    KMS - Martin Dubois, P.Eng.
-# Copyright (C) 2020 KMS. All rights reserved.
+# Copyright (C) 2020 KMS
 # License   http://www.apache.org/licenses/LICENSE-2.0
 # Produit   KmsBase
 # Fichier   Export.txt
 
-# CODE REVIEW  2019-06-12 KMS - Martin Dubois, P.Eng.
+# CODE REVIEW  2020-10-27 KMS - Martin Dubois, P.Eng.
 
 .
     DoxyFile_en.txt
@@ -55,8 +55,14 @@ Includes/KmsLib/Windows
     SystemLog.h
     Windows.h
 
+KmsCopy/_DocUser .
+	KmsBase.KmsCopy.ReadMe.txt
+
 KmsLib/_DocUser	.
     KmsBase.KmsLib.ReadMe.txt
+
+KmsVersion/_DocUser .
+	KmsBase.KmsVersion.ReadMe.txt
 
 Scripts	.
     Import.txt

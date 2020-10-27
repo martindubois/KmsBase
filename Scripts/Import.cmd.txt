@@ -1,6 +1,6 @@
 
 # Author    KMS - Martin Dubois, P.Eng.
-# Copyright (C) 2020 KMS. All rights reserved.
+# Copyright (C) 2020 KMS
 # License   http://www.apache.org/licenses/LICENSE-2.0
 # Product   KmsBase
 # File      Scripts/Import.cmd.txt
@@ -43,3 +43,4 @@ Scripts
 	KmsBase_Build_Begin.cmd
 	KmsBase_Build_Installer.cmd
 	KmsBase_Export.cmd
+	KmsBase_Sign.cmd

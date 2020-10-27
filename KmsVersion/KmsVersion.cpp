@@ -17,7 +17,10 @@
 
 // ===== KmsBase ============================================================
 #include <KmsLib/CmdLineParser.h>
-#include <KmsLib/Linux/Windows.h>
+
+#ifdef _KMS_LINUX_
+    #include <KmsLib/Linux/Windows.h>
+#endif
 
 // ===== Common =============================================================
 #include "../Common/Version.h"

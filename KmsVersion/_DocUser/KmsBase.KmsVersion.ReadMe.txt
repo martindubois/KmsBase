@@ -5,4 +5,6 @@ License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      KmsVersion/_DocUser/KmsBase.KmsVersion.ReadMe.txt
 
+3.0.26 Windows
+
 3.0.25 Linux

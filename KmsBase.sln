@@ -55,10 +55,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{EB86
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DocDev", "_DocDev", "{00EEE413-B9A0-44E8-9AE8-8FD3EAC01E7D}"
+	ProjectSection(SolutionItems) = preProject
+		_DocDev\Build.txt = _DocDev\Build.txt
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{EA71243B-5549-4F76-9D8B-547E36BE8BB4}"
 	ProjectSection(SolutionItems) = preProject
-		_DocDev\Procedures\Build.txt = _DocDev\Procedures\Build.txt
 		_DocDev\Procedures\PrepDevComputer_Linux.txt = _DocDev\Procedures\PrepDevComputer_Linux.txt
 		_DocDev\Procedures\PrepDevComputer_Windows.txt = _DocDev\Procedures\PrepDevComputer_Windows.txt
 	EndProjectSection
@@ -73,6 +75,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{F88C
 		Scripts\KmsBase_Build_Begin.cmd = Scripts\KmsBase_Build_Begin.cmd
 		Scripts\KmsBase_Build_Installer.cmd = Scripts\KmsBase_Build_Installer.cmd
 		Scripts\KmsBase_Export.cmd = Scripts\KmsBase_Export.cmd
+		Scripts\KmsBase_Sign.cmd = Scripts\KmsBase_Sign.cmd
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EDCA233C-71A7-4C3E-9F35-105EA6BCE7CF}"

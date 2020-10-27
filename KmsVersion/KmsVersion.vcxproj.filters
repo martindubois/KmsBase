@@ -16,6 +16,9 @@
     <Filter Include="Tests">
       <UniqueIdentifier>{71f8f07a-583f-4bcf-b1ae-3f8c1618fa2a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="_DocUser">
+      <UniqueIdentifier>{6aeb84a9-fc06-44b4-bfd0-38a3791b7829}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Tests\Master_00.h">
@@ -50,6 +53,9 @@
     </Text>
     <Text Include="Tests\Slave_05.txt">
       <Filter>Tests</Filter>
+    </Text>
+    <Text Include="_DocUser\KmsBase.KmsVersion.ReadMe.txt">
+      <Filter>_DocUser</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

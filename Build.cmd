@@ -1,13 +1,13 @@
 @echo off
 
 rem Author    KMS - Martin Dubois, P.Eng.
-rem Copyright (C) 2020 KMS. All rights reserved.
+rem Copyright (C) 2020 KMS
 rem License   http://www.apache.org/licenses/LICENSE-2.0
 rem Product   KmsBase
 rem File      Build.cmd
 rem Usage     .\Build.cmd
 
-rem CODE REVIEW 2020-10-11 KMS - Martin Dubois, P.Eng.
+rem CODE REVIEW 2020-10-27 KMS - Martin Dubois, P.Eng.
 
 echo Executing  Build.cmd  ...
 
@@ -17,6 +17,7 @@ set SCRIPT_FOLDER=Scripts
 
 set KMS_BASE_BUILD_BEGIN_CMD="%SCRIPT_FOLDER%\KmsBase_Build_Begin.cmd"
 set KMS_BASE_BUILD_INSTALLER_CMD="%SCRIPT_FOLDER%\KmsBase_Build_Installer.cmd"
+set KMS_BASE_SIGN_CMD="%SCRIPT_FOLDER%\KmsBase_Sign.cmd"
 
 rem ===== Execution =========================================================
 
@@ -95,6 +96,13 @@ if ERRORLEVEL 1 (
 	echo FATAL ERROR  call %KMS_BASE_BUILD_INSTALLER_CMD% %PRODUCT_ISS%  reported an error - %ERRORLEVEL%
 	pause
 	exit /B 110
+)
+
+call %KMS_BASE_SIGN_CMD% Installer/%PRODUCT%*.exe
+if ERRORLEVEL 1 (
+	echo ERROR  call %KMS_BASE_SIGN_CMD% Installer/%PRODUCT%*.exe  failed - %ERRORLEVEL%
+	pause
+	exit /B 115
 )
 
 %KMS_VERSION_EXE% %VERSION_H% %EXPORT_CMD_TXT%

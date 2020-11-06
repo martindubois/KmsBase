@@ -5,13 +5,27 @@
 # License   http://www.apache.org/licenses/LICENSE-2.0
 # Product   KmsBase
 # File      Build.sh
-# Usage     ./Build.sh {Ma.Mi.Bu_Type}
+# Usage     ./Build.sh
 
-# CODE REVIEW 2020-08-26 KMS - Martin Dubois, P.Eng.
+# CODE REVIEW 2020-11-05 KMS - Martin Dubois, P.Eng.
 
-echo Executing  Build.sh $1  ...
+echo Executing  Build.sh  ...
 
-# ===== Execution ============================================================
+# ===== Initialisation ======================================================
+
+KMS_VERSION=Binaries/KmsVersion
+
+VERSION_H=Common/Version.h
+
+# ===== Verification ========================================================
+
+if [ ! -x $KMS_VERSION ] ; then
+    echo FATAL ERROR  $KMS_VERSION  does not exist
+    echo Compile before exporting
+    exit 5
+fi
+
+# ===== Execution ===========================================================
 
 ./Clean.sh
 
@@ -30,22 +44,30 @@ then
 	exit 20
 fi
 
+$KMS_VERSION $VERSION_H CreatePackages.sh
+
+if [ $? -ne 0 ]
+then
+	echo ERROR  $KMS_VERSION $VERSION_H CreatePackages.sh  failed
+	exit 25
+fi
+
 ./CreatePackages.sh
 
 if [ $? -ne 0 ]
 then
-	echo ERROR  CreatePackages.sh  failed
+	echo ERROR  ./CreatePackages.sh  failed
 	exit 30
 fi
 
-./Export.sh $1
+$KMS_VERSION -S $VERSION_H ./Export.sh
 
 if [ $? -ne 0 ]
 then
-	echo ERROR  Export.sh $1  failed
+	echo ERROR  $KMS_VERSION -S $VERSION_H ./Export.sh  failed
 	exit 40
 fi
 
-# ===== End ==================================================================
+# ===== End =================================================================
 
 echo OK

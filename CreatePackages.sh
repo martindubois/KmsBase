@@ -12,8 +12,10 @@ echo Executing  CreatePakcages.sh
 
 # ===== Version =============================================================
 
-PACKAGE_VERSION=3.0-25
+# KmsVersion "PACKAGE_VERSION=" "\n" 13
+PACKAGE_VERSION=3.0-27
 
+# KmsVersion "VERSION=" "\n" 2
 VERSION=3.0
 
 # ===== Initialisation ======================================================

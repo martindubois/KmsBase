@@ -5,7 +5,7 @@ License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      _DocDev/Build.txt
 
-CODE REVIEW 2020-10-27 KMS - Martin Dubois, P.Eng.
+CODE REVIEW 2020-11-05 KMS - Martin Dubois, P.Eng.
 
 Name               __________________________________________________________
 
@@ -23,11 +23,10 @@ Version            ______ . ______ . ______ . ______ - ______________________
 [ ] File "KmsVersion/_DocUser/KmsBase.KmsVersion.ReadMe.txt"
 
 ===== Linux Only ============================================================
-[ ] File "CreatePakages.sh"
 [ ] File "Scripts/control"
 [ ] Tool "Terminal" - In the product folder
         ./RunDoxygen.sh
-        ./Build.sh {Major.Minor.Build_Type}
+        ./Build.sh
 [ ] Copy the exported files to the server
 
 ===== OS X Only =============================================================

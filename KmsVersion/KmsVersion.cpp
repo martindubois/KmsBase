@@ -74,6 +74,8 @@ static void Slave_Modify_CMD(const char                  * aSlave , const Versio
 static void Slave_Modify_TXT(const char                  * aSlave , const Version & aVersion);
 static void Slave_Modify_XML(const char                  * aSlave , const Version & aVersion);
 
+static void String_Escape(char * aInOut);
+
 static void  String_Trunk(char * aStr, char aEnd);
 
 #ifdef _KMS_WINDOWS_
@@ -611,6 +613,8 @@ bool ReplaceVersion(char * aLine, FILE * aWrite, const Version & aVersion, unsig
     case 3: lVersion = aVersion.GetText3(   ); break;
     case 4: lVersion = aVersion.GetText4('.'); break;
 
+    case 13: lVersion = aVersion.GetText3('.', '-'); break;
+
     default: throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_ARGUMENT, "Invalid aNumber value", NULL, __FILE__, __FUNCTION__, __LINE__, aNumber);
     }
 
@@ -683,6 +687,7 @@ void Slave_Modify(const char * aSlave, const Version & aVersion)
 
     if      (0 == _strnicmp(".bat", lExt, 5)) { Slave_Modify_CMD(aSlave, aVersion); }
     else if (0 == _strnicmp(".cmd", lExt, 5)) { Slave_Modify_CMD(aSlave, aVersion); }
+    else if (0 == _strnicmp(".sh" , lExt, 4)) { Slave_Modify_TXT(aSlave, aVersion); }
     else if (0 == _strnicmp(".txt", lExt, 5)) { Slave_Modify_TXT(aSlave, aVersion); }
     else if (0 == _strnicmp(".wxs", lExt, 5)) { Slave_Modify_XML(aSlave, aVersion); }
     else if (0 == _strnicmp(".xml", lExt, 5)) { Slave_Modify_XML(aSlave, aVersion); }
@@ -932,6 +937,8 @@ void Slave_Modify_TXT(const char * aSlave, const Version & aVersion)
                 case 3:
                     fprintf(lWrite, "%s", lLine);
 
+                    String_Escape(lAfter);
+
                     if (NULL == fgets(lLine, sizeof(lLine), lRead))
                     {
                         throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_DATA, "The KmsVersion instruction cannot be executed", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
@@ -1042,6 +1049,37 @@ void Slave_Modify_XML(const char * aSlave, const Version & aVersion)
     }
 
     File_Close(lRead, lWrite);
+}
+
+void String_Escape(char * aInOut)
+{
+    assert(NULL != aInOut);
+
+    const char * lIn = aInOut;
+
+    char * lOut = aInOut;
+
+    for (;;)
+    {
+        switch (*lIn)
+        {
+        case '\0': *lOut = *lIn; return;
+
+        case '\\':
+            *lIn ++;
+            switch (*lIn)
+            {
+            case 'n' : *lOut = '\n'; break;
+            default: *lOut = * lIn;
+            }
+            break;
+
+        default: *lOut = *lIn;
+        }
+
+        lIn++;
+        lOut++;
+    }
 }
 
 // Exception KmsLib::Exception *  CODE_INVALID_DATA

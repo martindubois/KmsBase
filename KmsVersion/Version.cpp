@@ -57,11 +57,11 @@ const char * Version::GetText2() const
 }
 
 // Return  This method returns the address of an internal buffer.
-const char * Version::GetText3() const
+const char * Version::GetText3(char aS0, char aS1) const
 {
     static char sText[64];
 
-    sprintf_s(sText, "%u.%u.%u", mMajor, mMinor, mBuild);
+    sprintf_s(sText, "%u%c%u%c%u", mMajor, aS0, mMinor, aS1, mBuild);
 
     return sText;
 }

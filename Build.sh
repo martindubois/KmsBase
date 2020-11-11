@@ -7,7 +7,7 @@
 # File      Build.sh
 # Usage     ./Build.sh
 
-# CODE REVIEW 2020-11-05 KMS - Martin Dubois, P.Eng.
+# CODE REVIEW 2020-11-11 KMS - Martin Dubois, P.Eng.
 
 echo Executing  Build.sh  ...
 
@@ -44,11 +44,11 @@ then
 	exit 20
 fi
 
-$KMS_VERSION $VERSION_H CreatePackages.sh
+$KMS_VERSION $VERSION_H CreatePackages.sh Export.sh.txt
 
 if [ $? -ne 0 ]
 then
-	echo ERROR  $KMS_VERSION $VERSION_H CreatePackages.sh  failed
+	echo ERROR  $KMS_VERSION $VERSION_H CreatePackages.sh Export.sh.txt  failed
 	exit 25
 fi
 

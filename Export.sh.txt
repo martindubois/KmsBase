@@ -5,7 +5,7 @@
 # Product   KmsBase
 # File      Export.sh.txt
 
-# CODE REVIEW 2020-08-26 KMS - Martin Dubois, P.Eng.
+# CODE REVIEW 2020-11-11 KMS - Martin Dubois, P.Eng.
 
 .
     RunDoxygen.sh
@@ -21,6 +21,7 @@ Libraries
     KmsLib.a
 
 Packages .
+# KmsVersion "kmsbase_" ".deb" 13
     kms-kmsbase_3.0-22.deb
 
 Scripts    .

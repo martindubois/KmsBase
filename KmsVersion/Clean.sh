@@ -9,7 +9,7 @@
 
 # CODE REVIEW 2020-10-26 KMS - Martin Dubois, P.Eng.
 
-echo Executing  KmsCopy/Clean.sh  ...
+echo Executing  KmsVersion/Clean.sh  ...
 
 # ===== Execution ===========================================================
 

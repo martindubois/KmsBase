@@ -54,7 +54,7 @@ int main(int aCount, const char ** aVector)
 	assert(1	<= aCount	);
 	assert(NULL != aVector	);
 
-    KMS_TOOL_BANNER("KMS_BASE", "KmsCopy", VERSION_STR, VERSION_TYPE);
+    KMS_TOOL_BANNER("KmsBase", "KmsCopy", VERSION_STR, VERSION_TYPE);
 
 	if (4 != aCount)
 	{

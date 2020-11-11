@@ -12,6 +12,7 @@
 
 Binaries
     KmsCopy
+    KmsVersion
 
 Binaries Tests
     KmsLib_Test

@@ -17,6 +17,7 @@
 
 // ===== KmsBase ============================================================
 #include <KmsLib/CmdLineParser.h>
+#include <KmsTool.h>
 
 #ifdef _KMS_LINUX_
     #include <KmsLib/Linux/Windows.h>
@@ -32,18 +33,34 @@
 // Constants
 /////////////////////////////////////////////////////////////////////////////
 
-#define OPT_INC_MAJOR    'a'
-#define OPT_INC_MINOR    'm'
-#define OPT_INC_BUILD    'b'
-#define OPT_INC_COMPAT   'c'
-#define OPT_SET_EXTERNAL 'e'
-#define OPT_SET_INTERNAL 'i'
+#define OPTS "?234ABCIMSTabcehimqt"
+
+#define OPT_2              '2'
+#define OPT_3              '3'
+#define OPT_4              '4'
+#define OPT_MAJOR_A        'A'
+#define OPT_BUILD_B        'B'
+#define OPT_COMPAT_C       'C'
+#define OPT_INTERNAL_I     'I'
+#define OPT_MINOR_M        'M'
+#define OPT_SCRIPT_S       'S'
+#define OPT_TYPE_T         'T'
+#define OPT_INC_MAJOR_a    'a'
+#define OPT_INC_BUILD_b    'b'
+#define OPT_INC_COMPAT_c   'c'
+#define OPT_SET_EXTERNAL_e 'e'
+#define OPT_HELP_h         'h'
+#define OPT_SET_INTERNAL_i 'i'
+#define OPT_INC_MINOR_m    'm'
+#define OPT_QUIET_q        'q'
+#define OPT_TXT_t          't'
 
 // Static function declarations
 /////////////////////////////////////////////////////////////////////////////
 
+static void Command_Execute(FILE * aRead, FILE * aWrite, const Version & aVersion, unsigned int aN, const char * aBefore, const char * aAfter);
+
 static void DisplayHelp       (FILE * aOut);
-static void DisplayToolInfo   ();
 static void DisplayUserError  (const char * aMsg);
 static void DisplayVersionInfo(const VersionAndType & aVersion, const KmsLib::CmdLineParser & aCLP);
 
@@ -71,6 +88,7 @@ static int  Script_Execute(const KmsLib::CmdLineParser & aCLP, const VersionAndT
 static void Slave_Modify    (const KmsLib::CmdLineParser & aCLP   , const Version & aVersion);
 static void Slave_Modify    (const char                  * aSlave , const Version & aVersion);
 static void Slave_Modify_CMD(const char                  * aSlave , const Version & aVersion);
+static void Slave_Modify_TXT(const KmsLib::CmdLineParser & aCLP   , const Version & aVersion);
 static void Slave_Modify_TXT(const char                  * aSlave , const Version & aVersion);
 static void Slave_Modify_XML(const char                  * aSlave , const Version & aVersion);
 
@@ -86,33 +104,39 @@ static void  String_Trunk(char * aStr, char aEnd);
 // Entry point
 /////////////////////////////////////////////////////////////////////////////
 
+// REQUIREMENT KmsVersion.Master.Parse
+//             KmsVersion extracts version information from a master header file and validate this information.
+
+// REQUIREMENT KmsVersion.Master.Modify
+//             KmsVersion provides function to modify the master header file.
+
 int main(int aCount, const char ** aVector)
 {
     assert(1    <= aCount );
     assert(NULL != aVector);
 
-    KmsLib::CmdLineParser lCLP("?234ABCIMSTabcehimq", "");
+    KmsLib::CmdLineParser lCLP(OPTS, "");
 
     lCLP.Parse(aCount, aVector);
 
-    if (!lCLP.IsPresent('q'))
+    if (!lCLP.IsPresent(OPT_QUIET_q))
     {
-        DisplayToolInfo();
+        KMS_TOOL_BANNER("KmsBase", "KmsVersion", VERSION_STR, VERSION_TYPE);
     }
 
     if (0 != lCLP.GetErrorFlags())
     {
         DisplayUserError("The command line is not valid!");
-        return 1; // APP RESULT CODE
+        return 1;
     }
 
-    if (lCLP.IsPresent('?') || lCLP.IsPresent('h'))
+    if (lCLP.IsPresent('?') || lCLP.IsPresent(OPT_HELP_h))
     {
         DisplayHelp(stdout);
-        return 0; // APP RESULT CODE
+        return 0;
     }
 
-    int  lResult;
+    int lResult;
 
     if (lCLP.IsPresent(0))
     {
@@ -124,18 +148,12 @@ int main(int aCount, const char ** aVector)
 
             lCLP.GetData(0, lMaster, sizeof(lMaster));
 
-            // REQUIREMENT KmsVersion.Master.Parse
-            //             KmsVersion extracts version information from a master header file and validate this information.
-
-            // REQUIREMENT KmsVersion.Master.Modify
-            //             KmsVersion provides function to modify the master header file.
-
-            if (   lCLP.IsPresent(OPT_INC_MAJOR   )
-                || lCLP.IsPresent(OPT_INC_MINOR   )
-                || lCLP.IsPresent(OPT_INC_BUILD   )
-                || lCLP.IsPresent(OPT_INC_COMPAT  )
-                || lCLP.IsPresent(OPT_SET_EXTERNAL)
-                || lCLP.IsPresent(OPT_SET_INTERNAL))
+            if (   lCLP.IsPresent(OPT_INC_MAJOR_a   )
+                || lCLP.IsPresent(OPT_INC_MINOR_m   )
+                || lCLP.IsPresent(OPT_INC_BUILD_b   )
+                || lCLP.IsPresent(OPT_INC_COMPAT_c  )
+                || lCLP.IsPresent(OPT_SET_EXTERNAL_e)
+                || lCLP.IsPresent(OPT_SET_INTERNAL_i))
             {
                 Master_ParseAndModify(lMaster, &lVT, lCLP);
             }
@@ -146,34 +164,60 @@ int main(int aCount, const char ** aVector)
 
             DisplayVersionInfo(lVT, lCLP);
 
-            if (lCLP.IsPresent('S'))
+            if (lCLP.IsPresent(OPT_SCRIPT_S))
             {
-                lResult = Script_Execute(lCLP, lVT); // APP RESULT CODE
+                lResult = Script_Execute(lCLP, lVT);
+            }
+            else if (lCLP.IsPresent(OPT_TXT_t))
+            {
+                Slave_Modify_TXT(lCLP, lVT);
+                lResult = 0;
             }
             else
             {
                 Slave_Modify(lCLP, lVT);
-                lResult = 0; // APP RESULT CODE
+                lResult = 0;
             }
         }
         catch (KmsLib::Exception * eE)
         {
             fprintf(stderr, "\nEXCEPTION :\n");
             eE->Write(stderr);
-            lResult = 2; // APP RESULT CODE
+            lResult = 2;
         }
     }
     else
     {
         DisplayUserError("The command line is not valid!");
-        lResult = 3; // APP RESULT CODE
+        lResult = 3;
     }
 
-    return lResult; // APP RESULT CODE
+    return lResult;
 }
 
 // Static functions
 /////////////////////////////////////////////////////////////////////////////
+
+void Command_Execute(FILE * aRead, FILE * aWrite, const Version & aVersion, unsigned int aN, const char * aBefore, const char * aAfter)
+{
+    assert(NULL != aRead);
+    assert(NULL != aWrite);
+    assert(NULL != &aVersion);
+    assert(NULL != aBefore);
+    assert(NULL != aAfter);
+
+    char lLine[1024];
+
+    if (NULL == fgets(lLine, sizeof(lLine), aRead))
+    {
+        throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_DATA, "The KmsVersion instruction cannot be executed", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
+    }
+
+    if (!ReplaceVersion(lLine, aWrite, aVersion, aN, aBefore, aAfter))
+    {
+        throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_DATA, "The KmsVersion instruction failed", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
+    }
+}
 
 void DisplayHelp(FILE * aOut)
 {
@@ -183,34 +227,21 @@ void DisplayHelp(FILE * aOut)
         "KmsVersion.exe [Options] {Master} [Slave|Script] ...\n"
         "   Options\n"
         "      ?   Display this message\n"
-        "      B   Read the build number\n"
-        "      C   Read the compatibility number\n"
-        "      F   Read the full version information\n"
-        "      I   Read the internal status\n"
-        "      M   Read the major and minor number\n"
-        "      S   Execute scripts"
-        "      T   Read the version type\n"
-        "      V   Read the version\n"
-        "      a   Increment the major number\n"         // OPT_INC_MAJOR
-        "      b   Increment the build number\n"         // OPT_INC_BUILD
-        "      c   Increment the compatibility number\n" // OPT_INC_COMPAT
-        "      e   Set external\n"                       // OPT_SET_EXTERNAL
-        "      h   Display this message\n"
-        "      i   Set internal\n"                       // OPT_SET_INTERNAL
-        "      m   Increment the minor number\n"         // OPT_INC_MINOR
-        "      q   Quiet\n"
-        "      v   Verbose\n");
-}
-
-void DisplayToolInfo()
-{
-    printf("KmsBase - KmsVersion\n");
-    printf("Version " VERSION_STR);
-#ifdef _DEBUG
-    printf(" (Debug)");
-#endif // _DEBUG
-    printf("\n");
-    printf("Compiled at " __TIME__ " on " __DATE__ "\n");
+        "      B   Read the build number\n"                   // OPT_BUILD_B
+        "      C   Read the compatibility number\n"           // OPT_COMPAT_C
+        "      I   Read the internal status\n"                // OPT_INTERNAL_I
+        "      M   Read the minor number\n"                   // OPT_MINOR_M
+        "      S   Execute scripts"                           // OPT_SCRIPT_S
+        "      T   Read the version type\n"                   // OPT_TYPE_T
+        "      a   Increment the major number\n"              // OPT_INC_MAJOR_a
+        "      b   Increment the build number\n"              // OPT_INC_BUILD_B
+        "      c   Increment the compatibility number\n"      // OPT_INC_COMPAT_c
+        "      e   Set external\n"                            // OPT_SET_EXTERNAL_e
+        "      h   Display this message\n"                    // OPT_HELP_h
+        "      i   Set internal\n"                            // OPT_SET_INTERNAL_i
+        "      m   Increment the minor number\n"              // OPT_INC_MINOR_m
+        "      q   Quiet\n"                                   // OPT_QUIET_q
+        "      t   Use txt file type for all slave files\n"); // OPT_TXT_t
 }
 
 void DisplayUserError(const char * aMsg)
@@ -230,18 +261,17 @@ void DisplayVersionInfo(const VersionAndType & aVT, const KmsLib::CmdLineParser 
     assert(NULL != &aVT );
     assert(NULL != &aCLP);
 
-    if (aCLP.IsPresent('A')) { printf("%s\n", aVT.GetText1()   ); }
-    if (aCLP.IsPresent('B')) { printf("%u\n", aVT.mBuild       ); }
-    if (aCLP.IsPresent('C')) { printf("%u\n", aVT.mCompat      ); }
-    if (aCLP.IsPresent('I')) { printf("%s\n", aVT.GetInternal()); }
-    if (aCLP.IsPresent('M')) { printf("%u\n", aVT.mMinor       ); }
-    if (aCLP.IsPresent('T')) { printf("%s\n", aVT.mType        ); }
-    if (aCLP.IsPresent('2')) { printf("%s\n", aVT.GetText2()   ); }
-    if (aCLP.IsPresent('3')) { printf("%s\n", aVT.GetText3()   ); }
-    if (aCLP.IsPresent('4')) { printf("%s\n", aVT.GetText4('.')); }
+    if (aCLP.IsPresent(OPT_MAJOR_A   )) { printf("%s\n", aVT.GetText1()   ); }
+    if (aCLP.IsPresent(OPT_BUILD_B   )) { printf("%u\n", aVT.mBuild       ); }
+    if (aCLP.IsPresent(OPT_COMPAT_C  )) { printf("%u\n", aVT.mCompat      ); }
+    if (aCLP.IsPresent(OPT_INTERNAL_I)) { printf("%s\n", aVT.GetInternal()); }
+    if (aCLP.IsPresent(OPT_MINOR_M   )) { printf("%u\n", aVT.mMinor       ); }
+    if (aCLP.IsPresent(OPT_TYPE_T    )) { printf("%s\n", aVT.mType        ); }
+    if (aCLP.IsPresent(OPT_2         )) { printf("%s\n", aVT.GetText2()   ); }
+    if (aCLP.IsPresent(OPT_3         )) { printf("%s\n", aVT.GetText3()   ); }
+    if (aCLP.IsPresent(OPT_4         )) { printf("%s\n", aVT.GetText4('.')); }
 }
 
-// aRead [D--;RW-]
 void File_Close(FILE * aRead)
 {
     assert(NULL != aRead);
@@ -250,8 +280,6 @@ void File_Close(FILE * aRead)
     assert(0 == lRet);
 }
 
-// aRead  [D--;RW-]
-// aWrite [D--;RW-]
 void  File_Close(FILE * aRead, FILE * aWrite)
 {
     assert(NULL != aRead );
@@ -515,9 +543,9 @@ void Process_Build(Version * aVersion, const KmsLib::CmdLineParser & aCLP)
     assert(NULL !=  aVersion);
     assert(NULL != &aCLP    );
 
-    if (aCLP.IsPresent(OPT_INC_MAJOR)) { aVersion->mBuild = 0; }
-    if (aCLP.IsPresent(OPT_INC_MINOR)) { aVersion->mBuild = 0; }
-    if (aCLP.IsPresent(OPT_INC_BUILD)) { aVersion->mBuild ++ ; }
+    if (aCLP.IsPresent(OPT_INC_MAJOR_a)) { aVersion->mBuild = 0; }
+    if (aCLP.IsPresent(OPT_INC_MINOR_m)) { aVersion->mBuild = 0; }
+    if (aCLP.IsPresent(OPT_INC_BUILD_b)) { aVersion->mBuild ++ ; }
 }
 
 void Process_Compatibility(Version * aVersion, const KmsLib::CmdLineParser & aCLP)
@@ -525,7 +553,7 @@ void Process_Compatibility(Version * aVersion, const KmsLib::CmdLineParser & aCL
     assert(NULL !=  aVersion);
     assert(NULL != &aCLP    );
 
-    if (aCLP.IsPresent(OPT_INC_COMPAT)) { aVersion->mCompat++; }
+    if (aCLP.IsPresent(OPT_INC_COMPAT_c)) { aVersion->mCompat++; }
 }
 
 void Process_Internal(VersionAndType * aVT, const  KmsLib::CmdLineParser & aCLP)
@@ -533,8 +561,8 @@ void Process_Internal(VersionAndType * aVT, const  KmsLib::CmdLineParser & aCLP)
     assert(NULL !=  aVT );
     assert(NULL != &aCLP);
 
-    if (aCLP.IsPresent(OPT_SET_EXTERNAL)) { aVT->SetExternal(); }
-    if (aCLP.IsPresent(OPT_SET_INTERNAL)) { aVT->SetInternal(); }
+    if (aCLP.IsPresent(OPT_SET_EXTERNAL_e)) { aVT->SetExternal(); }
+    if (aCLP.IsPresent(OPT_SET_INTERNAL_i)) { aVT->SetInternal(); }
 }
 
 void Process_Major(Version * aVersion, const KmsLib::CmdLineParser & aCLP)
@@ -542,7 +570,7 @@ void Process_Major(Version * aVersion, const KmsLib::CmdLineParser & aCLP)
     assert(NULL !=  aVersion);
     assert(NULL != &aCLP    );
 
-    if (aCLP.IsPresent(OPT_INC_MAJOR)) { aVersion->mMajor ++; }
+    if (aCLP.IsPresent(OPT_INC_MAJOR_a)) { aVersion->mMajor ++; }
 }
 
 void Process_Minor(Version * aVersion, const KmsLib::CmdLineParser & aCLP)
@@ -550,8 +578,8 @@ void Process_Minor(Version * aVersion, const KmsLib::CmdLineParser & aCLP)
     assert(NULL !=  aVersion);
     assert(NULL != &aCLP    );
 
-    if (aCLP.IsPresent(OPT_INC_MAJOR)) { aVersion->mMinor = 0; }
-    if (aCLP.IsPresent(OPT_INC_MINOR)) { aVersion->mMinor  ++; }
+    if (aCLP.IsPresent(OPT_INC_MAJOR_a)) { aVersion->mMinor = 0; }
+    if (aCLP.IsPresent(OPT_INC_MINOR_m)) { aVersion->mMinor  ++; }
 }
 
 void Process_Type(VersionAndType * aVT, const KmsLib::CmdLineParser & aCLP)
@@ -559,12 +587,12 @@ void Process_Type(VersionAndType * aVT, const KmsLib::CmdLineParser & aCLP)
     assert(NULL !=  aVT );
     assert(NULL != &aCLP);
 
-    if (aCLP.IsPresent(OPT_SET_EXTERNAL))
+    if (aCLP.IsPresent(OPT_SET_EXTERNAL_e))
     {
         aVT->SetExternal();
     }
 
-    if (aCLP.IsPresent(OPT_SET_INTERNAL))
+    if (aCLP.IsPresent(OPT_SET_INTERNAL_i))
     {
         if (aVT->IsExternal())
         {
@@ -685,12 +713,13 @@ void Slave_Modify(const char * aSlave, const Version & aVersion)
         throw new KmsLib::Exception(KmsLib::Exception::CODE_USER_ERROR, "Invalid slave file name", lMsg, __FILE__, __FUNCTION__, __LINE__, 0);
     }
 
-    if      (0 == _strnicmp(".bat", lExt, 5)) { Slave_Modify_CMD(aSlave, aVersion); }
-    else if (0 == _strnicmp(".cmd", lExt, 5)) { Slave_Modify_CMD(aSlave, aVersion); }
-    else if (0 == _strnicmp(".sh" , lExt, 4)) { Slave_Modify_TXT(aSlave, aVersion); }
-    else if (0 == _strnicmp(".txt", lExt, 5)) { Slave_Modify_TXT(aSlave, aVersion); }
-    else if (0 == _strnicmp(".wxs", lExt, 5)) { Slave_Modify_XML(aSlave, aVersion); }
-    else if (0 == _strnicmp(".xml", lExt, 5)) { Slave_Modify_XML(aSlave, aVersion); }
+    if      (0 == _strnicmp(".bat" , lExt, 5)) { Slave_Modify_CMD(aSlave, aVersion); }
+    else if (0 == _strnicmp(".cmd" , lExt, 5)) { Slave_Modify_CMD(aSlave, aVersion); }
+    else if (0 == _strnicmp(".conf", lExt, 6)) { Slave_Modify_TXT(aSlave, aVersion); }
+    else if (0 == _strnicmp(".sh"  , lExt, 4)) { Slave_Modify_TXT(aSlave, aVersion); }
+    else if (0 == _strnicmp(".txt" , lExt, 5)) { Slave_Modify_TXT(aSlave, aVersion); }
+    else if (0 == _strnicmp(".wxs" , lExt, 5)) { Slave_Modify_XML(aSlave, aVersion); }
+    else if (0 == _strnicmp(".xml" , lExt, 5)) { Slave_Modify_XML(aSlave, aVersion); }
     #ifdef _KMS_WINDOWS_
         else if (0 == _strnicmp(".inf", lExt, 5)) { Slave_Modify_INF(aSlave, aVersion); }
         else if (0 == _strnicmp(".inx", lExt, 5)) { Slave_Modify_INF(aSlave, aVersion); }
@@ -740,17 +769,7 @@ void  Slave_Modify_CMD(const char * aSlave, const Version & aVersion)
 
                 case 3 :
                     fprintf(lWrite, "%s", lLine);
-
-                    if (NULL == fgets(lLine, sizeof(lLine), lRead))
-                    {
-                        throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_DATA, "The KmsVersion instruction cannot be executed", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
-                    }
-
-                    if (!ReplaceVersion(lLine, lWrite, aVersion, lN, lBefore, lAfter))
-                    {
-                        throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_DATA, "The KmsVersion instruction failed", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
-                    }
-
+                    Command_Execute(lRead, lWrite, aVersion, lN, lBefore, lAfter);
                     lCount++;
                     break;
 
@@ -899,6 +918,22 @@ void Slave_Modify_ISS(const char * aSlave, const Version & aVersion)
 
 #endif
 
+// Exception KmsLib::Exception *  See Slave_Modify_TXT
+void Slave_Modify_TXT(const KmsLib::CmdLineParser & aCLP, const Version & aVersion)
+{
+    assert(NULL != &aCLP    );
+    assert(NULL != &aVersion);
+
+    for (unsigned int i = 1; i < aCLP.GetArgumentCount(); i++)
+    {
+        char lSlave[2048];
+
+        aCLP.GetData(i, lSlave, sizeof(lSlave));
+
+        Slave_Modify_TXT(lSlave, aVersion);
+    }
+}
+
 // REQUIREMENT KmsVersion.Slave.TXT
 //             KmsVersion processes .txt slave files.
 
@@ -936,19 +971,8 @@ void Slave_Modify_TXT(const char * aSlave, const Version & aVersion)
 
                 case 3:
                     fprintf(lWrite, "%s", lLine);
-
                     String_Escape(lAfter);
-
-                    if (NULL == fgets(lLine, sizeof(lLine), lRead))
-                    {
-                        throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_DATA, "The KmsVersion instruction cannot be executed", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
-                    }
-
-                    if (!ReplaceVersion(lLine, lWrite, aVersion, lN, lBefore, lAfter))
-                    {
-                        throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_DATA, "The KmsVersion instruction failed", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
-                    }
-
+                    Command_Execute(lRead, lWrite, aVersion, lN, lBefore, lAfter);
                     lCount++;
                     break;
 
@@ -1015,17 +1039,7 @@ void Slave_Modify_XML(const char * aSlave, const Version & aVersion)
 
             case 3:
                 fprintf(lWrite, "%s", lLine);
-
-                if (NULL == fgets(lLine, sizeof(lLine), lRead))
-                {
-                    throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_DATA, "The KmsVersion instruction cannot be executed", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
-                }
-
-                if (!ReplaceVersion(lLine, lWrite, aVersion, lN, lBefore, lAfter))
-                {
-                    throw new KmsLib::Exception(KmsLib::Exception::CODE_INVALID_DATA, "The KmsVersion instruction failed", NULL, __FILE__, __FUNCTION__, __LINE__, 0);
-                }
-
+                Command_Execute(lRead, lWrite, aVersion, lN, lBefore, lAfter);
                 lCount++;
                 break;
 

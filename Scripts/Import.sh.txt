@@ -7,6 +7,7 @@
 
 Binaries
     KmsCopy
+    KmsVersion
 
 Libraries
     KmsLib.a

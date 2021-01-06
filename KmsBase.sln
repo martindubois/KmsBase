@@ -74,7 +74,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{F88C
 		Scripts\Import.txt = Scripts\Import.txt
 		Scripts\KmsBase_Build_Begin.cmd = Scripts\KmsBase_Build_Begin.cmd
 		Scripts\KmsBase_Build_Installer.cmd = Scripts\KmsBase_Build_Installer.cmd
+		Scripts\KmsBase_CreateCab.cmd = Scripts\KmsBase_CreateCab.cmd
 		Scripts\KmsBase_Export.cmd = Scripts\KmsBase_Export.cmd
+		Scripts\KmsBase_Export_Signed.cmd = Scripts\KmsBase_Export_Signed.cmd
 		Scripts\KmsBase_Sign.cmd = Scripts\KmsBase_Sign.cmd
 	EndProjectSection
 EndProject

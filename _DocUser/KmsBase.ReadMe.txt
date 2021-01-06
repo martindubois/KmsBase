@@ -5,6 +5,10 @@ License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      _DocUser/KmsBase.ReadMe.txt
 
+- Script/KmsBase_CreateCab.cmd
+- Script/KmsBase_Export_Signed.cmd
+- Use SDK 10.0.17763.0
+
 3.0.28 Linux
 
 3.0.27 Linux

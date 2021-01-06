@@ -42,5 +42,7 @@ Libraries/Release_64_DLL
 Scripts
 	KmsBase_Build_Begin.cmd
 	KmsBase_Build_Installer.cmd
+	KmsBase_CreateCab.cmd
 	KmsBase_Export.cmd
+	KmsBase_Export_Signed.cmd
 	KmsBase_Sign.cmd

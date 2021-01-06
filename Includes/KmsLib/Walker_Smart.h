@@ -41,7 +41,7 @@ namespace KmsLib
 		/// \cond	fr
 		/// \brief	Constructeur
 		/// \endcond
-		Walker_Smart::Walker_Smart();
+		Walker_Smart();
 
 		/// \cond	en
 		/// \brief	Add a name of a file containing a list of file to ignore.

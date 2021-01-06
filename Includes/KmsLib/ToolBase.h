@@ -29,6 +29,8 @@
     { "Pause"        , KmsLib::ToolBase::Pause        , "Pause {Message}"           , NULL                             }, \
     { "Repeat"       , KmsLib::ToolBase::Repeat       , "Repeat {Count} {Command}"  , NULL                             },
 
+#define KMS_LIB_TOOL_BASE_HANDLER(N) static void N(KmsLib::ToolBase * aToolBase, const char * aArg)
+
 namespace KmsLib
 {
 
@@ -229,147 +231,34 @@ namespace KmsLib
 
         static const CommandInfo ERROR_COMMANDS[];
 
-        /// \cond   en
-        /// \brief  Abort
-        /// \param  aToolBase  A ToolBase instance
-        /// \param  aArg       Format : [ErrorCode] [ErrorDescription]
-        /// \endcond
-        /// \cond   fr
-        /// \brief  Terminer l'execution de l'outil
-        /// \param  aToolBase  Une instance de ToolBase
-        /// \param  aArg       Format : [CodeErreur] [DescriptionErreur]
-        /// \endcond
-        static void Abort(ToolBase * aToolBase, const char * aArg);
+        // [ErrorCode] [ErrorDescription]
+        KMS_LIB_TOOL_BASE_HANDLER(Abort);
 
-        /// \cond  en
-        /// \brief Change the current working directory
-        /// \param aToolBase  A ToolBase instance
-        /// \endcond
-        /// \cond  fr
-        /// \brief Changer le r&eacute;pertoire de travail courrant
-        /// \param aToolBase  Une instance de ToolBase
-        /// \endcond
-        /// \param aArg       Format : {Directory}
-        static void ChangeDir(ToolBase * aToolBase, const char * aArg);
+        // {Directory}
+        KMS_LIB_TOOL_BASE_HANDLER(ChangeDir);
 
-        /// \cond   en
-        /// \brief  Sleep
-        /// \param  aToolBase  A ToolBase instance
-        /// \param  aArg       Format : [Delay_ms]
-        /// \endcond
-        /// \cond   fr
-        /// \brief  Dormir
-        /// \param  aToolBase  Une instance de ToolBase
-        /// \param  aArg       Format : [Temps_ms]
-        /// \endcond
-        static void Delay(ToolBase * aToolBase, const char * aArg);
+        // [Delay_ms]
+        KMS_LIB_TOOL_BASE_HANDLER(Delay);
 
-        /// \cond   en
-        /// \brief  Display a message
-        /// \param  aToolBase  A ToolBase instance
-        /// \endcond
-        /// \cond   fr
-        /// \brief  Afficher un message
-        /// \param  aToolBase  Une instance de ToolBase
-        /// \endcond
-        /// \param  aArg       Format : {Message}
-        static void Echo(ToolBase * aToolBase, const char * aArg);
+        // {Message}
+        KMS_LIB_TOOL_BASE_HANDLER(Echo);
 
-        /// \cond   en
-        /// \brief  Abort if an error happened
-        /// \param  aToolBase  A ToolBase instance
-        /// \param  aArg       Not used
-        /// \endcond
-        /// \cond   fr
-        /// \brief  Terminer l'execution si une erreur est survenue
-        /// \param  aToolBase  Une instance de ToolBase
-        /// \param  aArg       Pas utilis&eacute;  
-        /// \endcond
-        static void Error_Abort(ToolBase * aToolBase, const char * aArg);
+        KMS_LIB_TOOL_BASE_HANDLER(Error_Abort);
+        KMS_LIB_TOOL_BASE_HANDLER(Error_Clear);
+        KMS_LIB_TOOL_BASE_HANDLER(Error_Display);
+        KMS_LIB_TOOL_BASE_HANDLER(Error_Exit);
 
-        /// \cond   en
-        /// \brief  Clear error status
-        /// \param  aToolBase  A ToolBase instance
-        /// \param  aArg       Not used
-        /// \endcond
-        /// \cond   fr
-        /// \brief  Effacer l'information d'erreur
-        /// \param  aToolBase  Une instance de ToolBase
-        /// \param  aArg       Pas utilis&eacute;
-        /// \endcond
-        static void Error_Clear(ToolBase * aToolBase, const char * aArg);
+        // {FileName}
+        KMS_LIB_TOOL_BASE_HANDLER(ExecuteScript);
 
-        /// \cond   en
-        /// \brief  Display the error information
-        /// \param  aToolBase  A ToolBase instance
-        /// \param  aArg       Not used
-        /// \endcond
-        /// \cond   fr
-        /// \brief  Effacer l'information d'erreur
-        /// \param  aToolBase  Une instance de ToolBase
-        /// \param  aArg       Pas utilis&eacute;
-        /// \endcond
-        static void Error_Display(ToolBase * aToolBase, const char * aArg);
+        // [ErrorCode] [ErrorDescription]
+        KMS_LIB_TOOL_BASE_HANDLER(Exit);
 
-        /// \cond   en
-        /// \brief  Exit if an error happened
-        /// \param  aToolBase  A ToolBase instance
-        /// \param  aArg       Not used
-        /// \endcond
-        /// \cond   fr
-        /// \brief  Sortir si une erreur est survenue
-        /// \param  aToolBase  Une instance de ToolBase
-        /// \param  aArg       Pas utilis&eacute;
-        /// \endcond
-        static void Error_Exit(ToolBase * aToolBase, const char * aArg);
+        // {Message}
+        KMS_LIB_TOOL_BASE_HANDLER(Pause);
 
-        /// \cond   en
-        /// \brief  Execute a script
-        /// \param  aToolBase  A ToolBase instance
-        /// \param  aArg       Format : {FileName}
-        /// \endcond
-        /// \cond   fr
-        /// \brief  Execute un fichier de commande
-        /// \param  aToolBase  Une instance de ToolBase
-        /// \param  aArg       Format : {NomFichier}
-        /// \endcond
-        static void ExecuteScript(ToolBase * aToolBase, const char * aArg);
-
-        /// \cond   en
-        /// \brief  Exit
-        /// \param  aToolBase  A ToolBase instance
-        /// \param  aArg       Format : [ErrorCode] [ErrorDescription]
-        /// \endcond
-        /// \cond   fr
-        /// \brief  Sortir
-        /// \param  aToolBase  Une instance de ToolBase
-        /// \param  aArg       Format : [CodeErreur] [DescriptionErreur]
-        /// \endcond
-        static void	Exit(ToolBase * aToolBase, const char * aArg);
-
-        /// \cond   en
-        /// \brief  Wait for user input
-        /// \param  aToolBase  A ToolBase instance
-        /// \endcond
-        /// \cond   fr
-        /// \brief  Attendre un signal de l'utilisateur
-        /// \param  aToolBase  Une instance de ToolBase
-        /// \endcond
-        /// \param  aArg       Format : {Message}
-        static void Pause(ToolBase * aToolBase, const char * aArg);
-
-        /// \cond   en
-        /// \brief  Repeate a command
-        /// \param  aToolBase  A ToolBase instance
-        /// \param  aArg       Format : {RepeatCount} {Command}
-        /// \endcond
-        /// \cond   fr
-        /// \brief  Repeter une commande
-        /// \param  aToolBase  Une instance de ToolBase
-        /// \param  aArg       Format : {NombreRepetition} {Commande}
-        ///                               commande
-        /// \endcond
-        static void Repeat(ToolBase * aToolBase, const char * aArg);
+        // {RepeatCount} {Command}
+        KMS_LIB_TOOL_BASE_HANDLER(Repeat);
 
         /// \cond   en
         /// \brief  Constructor

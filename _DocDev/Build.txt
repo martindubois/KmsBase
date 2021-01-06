@@ -30,7 +30,7 @@ Version            ______ . ______ . ______ . ______ - ______________________
 [ ] Copy the exported files to the server
 
 ===== OS X Only =============================================================
-[ ] Tools "Termina" - In the product folder
+[ ] Tools "Terminal" - In the product folder
         make -f makefile_os_x clean
         make -f makefile_os_x
         ./Test.sh
@@ -45,15 +45,6 @@ Version            ______ . ______ . ______ . ______ - ______________________
 [ ] Tool "Command Windows" - In the product folder
         .\Build.cmd
 [ ] Disconnect the signing key from the computer
-[ ] Connect the RS232 to USB adapter to a USB port of the computer
-[ ] Tool "Command Windows" - Already open
-        .\Test_Setup.cmd 2
-[ ] Tool "Command Windows" - In the product folder - Running as administrator
-	    .\Test_Setup.cmd 1
-	    .\Test_Setup.cmd 3
-	    .\Test_Setup.cmd 4
-	    exit
-[ ] Disconnect the RS232 to USB adapter
 
 [ ] Tool "GIT"
     - Index the modified files and commit them using

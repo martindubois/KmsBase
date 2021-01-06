@@ -5,6 +5,8 @@ License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      KmsVersion/_DocUser/KmsBase.KmsVersion.ReadMe.txt
 
+3.0.29 Windows
+
 3.0.28 Linux
 - Option t force "txt" type for slave files
 - Slave file .conf

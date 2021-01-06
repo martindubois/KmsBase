@@ -21,7 +21,7 @@ Debug_DLL	Libraries/Debug_32_DLL
 
 Installer .
 # KmsVersion "KmsBase_" ".exe" 3
-	KmsBase_3.0.26.exe
+	KmsBase_3.0.29.exe
 
 Release .
     KmsCopy.exe

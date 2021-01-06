@@ -57,6 +57,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_DocDev", "_DocDev", "{00EEE413-B9A0-44E8-9AE8-8FD3EAC01E7D}"
 	ProjectSection(SolutionItems) = preProject
 		_DocDev\Build.txt = _DocDev\Build.txt
+		_DocDev\Test.txt = _DocDev\Test.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{EA71243B-5549-4F76-9D8B-547E36BE8BB4}"

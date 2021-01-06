@@ -5,6 +5,7 @@ License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      KmsLib/_DocUser/KmsBase.KmsLib.ReadMe.txt
 
+3.0.29 Windows
 - Fix declaration issue in KmsLib::Walker_Smart
 - KMS_LIB_TOOL_BASE_HANDLER macro
 

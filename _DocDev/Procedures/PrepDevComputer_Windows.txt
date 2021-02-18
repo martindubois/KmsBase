@@ -17,8 +17,8 @@ Computer            _________________________________________________________
 		git config --global user.name "{FirstName} {LastName}"
 		git config --global user.email "{UserName}@kms-quebec.com"
 		exit
-[ ] Install "Inno Setup"
-[ ] Install "Visual Studio 2017"
+[ ] Install "Inno Setup 6.1.12"
+[ ] Install "Visual Studio 2019"
 
 Time and duration   ______ : ______           ______ hours and ______ minutes
 

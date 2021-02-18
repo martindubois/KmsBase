@@ -12,7 +12,7 @@ rem ===== Initialisation ====================================================
 
 set FILE_ISS=%1
 
-set INNO_COMPIL32="C:\Program Files (x86)\Inno Setup 5\Compil32.exe"
+set INNO_COMPIL32="C:\Program Files (x86)\Inno Setup 6\Compil32.exe"
 
 rem ===== Verification ======================================================
 

@@ -5,6 +5,10 @@ License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      _DocUser/KmsBase.ReadMe.txt
 
+3.0.30 Windows
+- VisualStudio 2019 (v142)
+- InnoSetup 6.1.2
+
 3.0.29 Windows
 - Script/KmsBase_CreateCab.cmd
 - Script/KmsBase_Export_Signed.cmd

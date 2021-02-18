@@ -16,7 +16,7 @@ set CERT_SHA=D5B26E6B4E3159472C2C98307C45D40B129F2078
 
 set FILES="%1"
 
-set SIGNTOOL_EXE="C:\Program Files (x86)\Windows Kits\10\Tools\bin\i386\signtool.exe"
+set SIGNTOOL_EXE="C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe"
 
 rem ===== Verification ======================================================
 

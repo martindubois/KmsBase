@@ -14,7 +14,7 @@ set PRODUCT=%1
 
 set EXPORT_CMD="Export.cmd"
 set EXPORT_CMD_TXT="Export.cmd.txt"
-set MSBUILD="C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\15.0\Bin\MSBuild.exe"
+set MSBUILD="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\MSBuild\Current\Bin\MSBuild.exe"
 set TEST_CMD="Test.cmd"
 set VERSION_H="Common/Version.h"
 

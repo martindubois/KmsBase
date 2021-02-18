@@ -158,12 +158,12 @@ namespace KmsLib
 		/// \param	aPort		Local port number with byte in host	order.
 		/// \retval	false	Cannot connect
 		/// \endcond
+		/// \cond	fr
 		/// \brief	See connect.
 		/// \param	aAddress	L'adresse avec les octets en ordre reseau.
 		/// \param	aPort		Le numero de port avec les octets en ordre
 		///						hote.
 		/// \retval	false	Impossible de connecter
-		/// \cond	fr
 		/// \endcond
 		/// \retval	true	OK
 		bool	Connect(unsigned int aAddress, unsigned short aPort);

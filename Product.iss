@@ -15,13 +15,13 @@ AppName=KmsBase
 AppPublisher=KMS
 AppPublisherURL=http://www.kms-quebec.com
 AppSupportURL=http://www.kms-quebec.com
-AppVersion=3.0.29
+AppVersion=3.0.30
 ArchitecturesAllowed=x64 x86
 ArchitecturesInstallIn64BitMode=x64
 DefaultDirName={pf}\KmsBase
 LicenseFile=License.txt
 MinVersion=10.0
-OutputBaseFilename=KmsBase_3.0.29
+OutputBaseFilename=KmsBase_3.0.30
 OutputDir=Installer
 
 [Files]

@@ -5,8 +5,6 @@ License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      _DocDev/Build.txt
 
-CODE REVIEW 2020-11-05 KMS - Martin Dubois, P.Eng.
-
 Name               __________________________________________________________
 
 Date and time      20 ______ - ______ - ______                ______ : ______
@@ -23,6 +21,7 @@ Version            ______ . ______ . ______ . ______ - ______________________
 [ ] File "KmsVersion/_DocUser/KmsBase.KmsVersion.ReadMe.txt"
 
 ===== Linux Only ============================================================
+Arcitecture         [ ] amd64                                       [ ] arm64
 [ ] File "Scripts/control"
 [ ] Tool "Terminal" - In the product folder
         ./RunDoxygen.sh

@@ -5,6 +5,8 @@ License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      _DocUser/KmsBase.ReadMe.txt
 
+3.0.31 Jetson
+
 3.0.30 Windows
 - VisualStudio 2019 (v142)
 - InnoSetup 6.1.2

@@ -37,7 +37,7 @@ public:
 
 	unsigned int mTestIndex;
 
-	bool	mTestResult[10];
+	bool	mTestResult[9];
 
 };
 
@@ -128,21 +128,6 @@ void Walker_Test::OnFile(const char * aFile, const FILETIME & aLastWrite)
 		break;
 
 	case 8 :
-		try
-		{
-			CreateFolder("KmsLib_Test", "Debug" SLASH "Test" SLASH "Invalid:");
-			mTestResult[mTestIndex] = false;
-		}
-		catch (KmsLib::Exception * eE)
-		{
-			KMS_TEST_ERROR_INFO;
-			eE->Write(stdout);
-			mTestResult[mTestIndex] = KmsLib::Exception::CODE_DIRECTORY_ERROR == eE->GetCode();
-		}
-		mTestIndex++;
-		break;
-
-	case 9 :
 		try
 		{
 			GetFolder(lOut, 4, "Titi" SLASH "Tata");

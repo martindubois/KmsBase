@@ -1,9 +1,8 @@
 Package: kms-kmsbase
-Version: 3.0-28
+Version: 3.0-31
 Section: base
 Priority: optional
-Architecture: amd64
+Architecture: arm64
 Maintainer: KMS <kmsbase@kms-quebec.com>
 Description: KmsBase
- KmsBase 3.0.28
- 
+ KmsBase 3.0.31

@@ -1,6 +1,6 @@
 
 # Author    KMS - Martin Dubois, P.Eng.
-# Copyright (C) 2020 KMS
+# Copyright (C) 2020-2021 KMS
 # License   http://www.apache.org/licenses/LICENSE-2.0
 # Product   KmsBase
 # File      Export.sh.txt
@@ -22,7 +22,7 @@ Libraries
 
 Packages .
 # KmsVersion "kmsbase_" ".deb" 13
-    kms-kmsbase_3.0-31.deb
+    kms-kmsbase_3.0-32.deb
 
 Scripts    .
     Import.sh

@@ -1,8 +1,10 @@
 
-// Product  KmsBase
+// License http://www.apache.org/licenses/LICENSE-2.0
+// Product KmsBase
 
-/// \author	KMS - Martin Dubois, ing.
-/// \file	Includes/KmsLib/FileHandle.h
+/// \author    KMS - Martin Dubois, P.Eng.
+/// \copyright Copyright &copy; 2021 KMS
+/// \file	   Includes/KmsLib/FileHandle.h
 
 #pragma once
 
@@ -108,7 +110,7 @@ namespace KmsLib
         /// \exception	Exception	CODE_IO_ERROR
         void Write(const void * aIn, unsigned int aInSize_byte);
 
-        #ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
             /// \cond	en
             ///	\brief	Cast operator
@@ -134,7 +136,7 @@ namespace KmsLib
 
     protected:
 
-        #ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
             int mHandle;
         #endif
 
@@ -155,7 +157,7 @@ namespace KmsLib
 
     inline bool FileHandle::IsOpen() const
     {
-        #ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
             return ((-1) != mHandle);
         #endif
 

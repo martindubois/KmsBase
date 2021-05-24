@@ -1,8 +1,10 @@
 
-// Product  KmsBase
+// License http://www.apache.org/licenses/LICENSE-2.0
+// Product KmsBase
 
-/// \author	KMS - Martin Dubois, ing.
-/// \file	Includes/KmsLib/ThreadBase.h
+/// \author    KMS - Martin Dubois, P.Eng.
+/// \copyright Copyright &copy; 2021 KMS
+/// \file      Includes/KmsLib/ThreadBase.h
 
 #pragma once
 
@@ -256,7 +258,7 @@ namespace KmsLib
         Priority mPriority;
         State    mState   ;
 
-        #ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
             pthread_t mThread;
         #endif
 

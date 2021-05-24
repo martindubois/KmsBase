@@ -1,7 +1,9 @@
 
-// Author / Auteur    KMS - Martin Dubois, ing.
-// Product / Produit  KmsBase
-// File / Fichier     KmsLib/Walker.cpp
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2021 KMS
+// License   http://www.apache.org/licenses/LICENSE-2.0
+// Product   KmsBase
+// File      KmsLib/Walker.cpp
 
 // Inclusions
 /////////////////////////////////////////////////////////////////////////////
@@ -30,7 +32,7 @@
 #include <KmsLib/Exception.h>
 #include <KmsLib/File.h>
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 	#include <KmsLib/Linux/Windows.h>
 #endif // _KMS_LINUX_
 
@@ -62,7 +64,7 @@ namespace KmsLib
 
 		if (NULL == aName)
 		{
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 			sprintf(aOut, "%s", aRoot);
 #endif // _KMS_LINUX_
 
@@ -72,7 +74,7 @@ namespace KmsLib
 		}
 		else
 		{
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 			sprintf(aOut, "%s" SLASH "%s", aRoot, aName);
 #endif // _KMS_LINUX_
 

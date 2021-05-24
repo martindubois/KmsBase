@@ -1,7 +1,9 @@
 
-// Author   KMS - Martin Dubois, ing.
-// Product  KmsBase
-// File     KmsLib_Test/DriverHandle.cpp
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2021 KMS
+// License   http://www.apache.org/licenses/LICENSE-2.0
+// Product   KmsBase
+// File      KmsLib_Test/DriverHandle.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -27,7 +29,7 @@
 // Constants / Constantes
 /////////////////////////////////////////////////////////////////////////////
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
     #define NULL_DEVICE     "/dev/null"
     #define READ_AND_WRITE  O_RDWR

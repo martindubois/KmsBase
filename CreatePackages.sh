@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Author    KMS - Martin Dubois, P.Eng.
-# Copyright (C) 2020 KMS
+# Copyright (C) 2020-2021 KMS
 # License   http://www.apache.org/licenses/LICENSE-2.0
 # Product   KmsBase
 # Files     CreatePackages.sh
@@ -13,7 +13,7 @@ echo Executing  CreatePakcages.sh
 # ===== Version =============================================================
 
 # KmsVersion "PACKAGE_VERSION=" "\n" 13
-PACKAGE_VERSION=3.0-31
+PACKAGE_VERSION=3.0-32
 
 # KmsVersion "VERSION=" "\n" 2
 VERSION=3.0

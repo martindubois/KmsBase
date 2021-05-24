@@ -1,7 +1,9 @@
 
-// Author   KMS - Martin Dubois, ing.
-// Product  KmsBase
-// File     KmsLib_Test/Walker.cpp
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2021 KMS
+// License   http://www.apache.org/licenses/LICENSE-2.0
+// Product   KmsBase
+// File      KmsLib_Test/Walker.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -17,7 +19,7 @@
 #include <KmsLib/Exception.h>
 #include <KmsTest.h>
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 #include <KmsLib/Linux/Windows.h>
 #endif // _KMS_LINUX_
 
@@ -76,7 +78,7 @@ void Walker_Test::OnFile(const char * aFile, const FILETIME & aLastWrite)
 	switch (mTestIndex)
 	{
 	case 0 :
-		#ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 			mTestResult[mTestIndex] = true;
 		#endif
 		#ifdef _KMS_WINDOWS_
@@ -87,7 +89,7 @@ void Walker_Test::OnFile(const char * aFile, const FILETIME & aLastWrite)
 
 	case 1 :
 		GetAbsolute(lOut, lOutLen, aFile);
-		#ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 			mTestResult[mTestIndex] = true;
 		#endif
 		#ifdef _KMS_WINDOWS_

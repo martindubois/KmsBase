@@ -1,8 +1,10 @@
 
-// Product / Produit	KmsBase
+// License http://www.apache.org/licenses/LICENSE-2.0
+// Product KmsBase
 
-/// \author	KMS -	Martin Dubois, ing.
-/// \file	Includes/KmsBase.h
+/// \author    KMS - Martin Dubois, P.Eng.
+/// \copyright Copyright &copy; 2021 KMS
+/// \file	   Includes/KmsBase.h
 
 #pragma once
 
@@ -41,7 +43,7 @@
 #define SLASH_C	'\\'
 #endif // _KMS_WINDOWS_
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 #define SLASH	"/"
 #define SLASH_C	'/'
 #endif // _KMS_LINUX_

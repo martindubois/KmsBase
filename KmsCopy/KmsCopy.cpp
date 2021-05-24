@@ -1,7 +1,9 @@
 
-// Author   KMS - Martin Dubois, ing.
-// Product  KmsBase
-// File     KmsCopy/KmsCopy.cpp
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2021 KMS
+// License   http://www.apache.org/licenses/LICENSE-2.0
+// Product   KmsBase
+// File      KmsCopy/KmsCopy.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -28,7 +30,7 @@
 // ===== Includes ===========================================================
 #include "../Includes/KmsTool.h"
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
     #include "../Includes/KmsLib/Linux/Windows.h"
 #endif
 

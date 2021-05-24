@@ -1,7 +1,9 @@
 
-// Author / Auteur    KMS - Martin Dubois, ing.
-// Product / Produit  KmsBase
-// File / Fichier     KmsLib_Test/CmdLineParser.cpp
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2021 KMS
+// License   http://www.apache.org/licenses/LICENSE-2.0
+// Product   KmsBase
+// File      KmsLib_Test/CmdLineParser.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -78,6 +80,7 @@ KMS_TEST_BEGIN(CmdLineParser_Base)
 
     const char * lVector[7];
 
+    lVector[0] = "ExecName";
     lVector[1] = "-abc";
     lVector[2] = "KmsLib_Test/CmdLineParser.cpp";
     lVector[3] = "-";

@@ -1,7 +1,9 @@
 
-// Author / Auteur		KMS	-	Martin Dubois, ing.
-// Product / Produit	KmsBase
-// File / Fichier		KmsLib/Walker_Smart.cpp
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2021 KMS
+// License   http://www.apache.org/licenses/LICENSE-2.0
+// Product   KmsBase
+// File      KmsLib/Walker_Smart.cpp
 
 // Include
 /////////////////////////////////////////////////////////////////////////////
@@ -21,7 +23,7 @@
 #endif // _KMS_WINDOWS_
 
 // ===== KmsBase ============================================================
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 	#include <KmsLib/Linux/Windows.h>
 #endif // _KMS_LINUX_
 

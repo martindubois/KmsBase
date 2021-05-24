@@ -1,7 +1,9 @@
 
-// Author   KMS - Martin Dubois, ing.
-// Product  KmsBase
-// File     KmsLib/FileHandle.cpp
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2021 KMS
+// License   http://www.apache.org/licenses/LICENSE-2.0
+// Product   KmsBase
+// File      KmsLib/FileHandle.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -11,7 +13,7 @@
 // ===== C ==================================================================
 #include <assert.h>
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
     // ===== System =========================================================
     #include <sys/fcntl.h>
 #endif
@@ -29,7 +31,7 @@
 // Constants
 /////////////////////////////////////////////////////////////////////////////
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
     #define INVALID_HANDLE_VALUE (-1)
 #endif
 
@@ -55,7 +57,7 @@ namespace KmsLib
 	{
 		assert(INVALID_HANDLE_VALUE != mHandle);
 
-        #ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
             close(mHandle);
 
@@ -90,7 +92,7 @@ namespace KmsLib
 
         char lMessage[2048];
 
-        #ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
             mHandle = open( aFileName, aDesiredAccess | aSharedMode | aCreationDisposition | aFlagsAndAttributes );
             if (INVALID_HANDLE_VALUE == mHandle)
@@ -124,13 +126,11 @@ namespace KmsLib
 		assert(NULL !=	aOut			);
 		assert(0	<	aOutSize_byte	);
 
-        assert(INVALID_HANDLE_VALUE != mHandle);
-
         char lMessage[2048];
 
         unsigned int lResult_byte;
 
-        #ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
             int lRet = read(mHandle, aOut, aOutSize_byte);
             if (0 > lRet)
@@ -169,12 +169,10 @@ namespace KmsLib
 		assert(NULL != aIn);
 		assert(0    <  aInSize_byte);
 
-        assert(INVALID_HANDLE_VALUE != mHandle);
-
         unsigned int lInfo_byte;
         char         lMessage[2048];
         
-        #ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
             int lRet = write(mHandle, aIn, aInSize_byte);
             if (0 > lRet)
@@ -215,7 +213,7 @@ namespace KmsLib
 		}
 	}
 
-    #ifdef _KMS_LINUX_
+    #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
         FileHandle::operator int ()
         {

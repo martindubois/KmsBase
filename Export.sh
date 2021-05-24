@@ -1,8 +1,10 @@
 #!/bin/sh
 
-# Author   KMS - Martin Dubois, ing.
-# Product  KmsBase
-# File     Export.sh
+# Author    KMS - Martin Dubois, P.Eng.
+# Copyright (C) 2021 KMS
+# License   http://www.apache.org/licenses/LICENSE-2.0
+# Product   KmsBase
+# File      Export.sh
 
 # CODE REVIEW  2019-07-26  KMS - Martin Dubois, ing.
 
@@ -10,7 +12,7 @@ echo  Executing Export.sh $1 ...
 
 # ===== Initialisation ======================================================
 
-DST=~/Export/KmsBase/$1_Linux
+DST=~/Export/KmsBase/$1_`uname`
 
 KMS_COPY=Binaries/KmsCopy
 

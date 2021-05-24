@@ -1,6 +1,6 @@
 
 // Author    KMS - Martin Dubois, P.Eng.
-// Copyright (C) 2019-2020 KMS
+// Copyright (C) 2019-2021 KMS
 // License   http://www.apache.org/licenses/LICENSE-2.0
 // Product   KmsBase
 // File      KmsVersion/KmsVersion.cpp
@@ -19,7 +19,7 @@
 #include <KmsLib/CmdLineParser.h>
 #include <KmsTool.h>
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
     #include <KmsLib/Linux/Windows.h>
 #endif
 
@@ -1080,7 +1080,7 @@ void String_Escape(char * aInOut)
         case '\0': *lOut = *lIn; return;
 
         case '\\':
-            *lIn ++;
+            (void)*lIn ++;
             switch (*lIn)
             {
             case 'n' : *lOut = '\n'; break;

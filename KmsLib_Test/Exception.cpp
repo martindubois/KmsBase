@@ -1,7 +1,9 @@
 
-// Author   KMS - Martin Dubois, ing.
-// Product  KmsBase
-// File     KmsLib_Test/DebugLog.cpp
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2021 KMS
+// License   http://www.apache.org/licenses/LICENSE-2.0
+// Product   KmsBase
+// File      KmsLib_Test/DebugLog.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -97,12 +99,16 @@ KMS_TEST_BEGIN(Exception_Base)
         KMS_TEST_COMPARE(25, lE->GetLastError());
     #endif
 
+    #ifdef _KMS_OS_X_
+        KMS_TEST_COMPARE(19, lE->GetLastError());
+    #endif
+
     #ifdef _KMS_WINDOWS_
         KMS_TEST_COMPARE(0, lE->GetLastError());
     #endif
 
     // ===== GetLine ========================================================
-    KMS_TEST_COMPARE(__LINE__ - 25, lE->GetLine());
+    KMS_TEST_COMPARE(__LINE__ - 29, lE->GetLine());
 
     // ===== GetMessage =====================================================
     KMS_TEST_COMPARE(0, strcmp("Unknown"   , lE->GetMessage ()));

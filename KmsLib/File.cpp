@@ -1,10 +1,11 @@
 
-// Author   KMS - Martin Dubois, ing.
-// Product  KmsBase
-// File     KmsLib/File.cpp
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2021 KMS
+// License   http://www.apache.org/licenses/LICENSE-2.0
+// Product   KmsBase
+// File      KmsLib/File.cpp
 
-// Last test coverage update / Derniere mise a jour de la couverture de test
-// 2017-11-10
+// TEST COVERAGE 2017-11-10 KMS - Martin Dubois, P.Eng
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -16,6 +17,11 @@
 
 #ifdef _KMS_WINDOWS_
 	#include <io.h>
+#endif
+
+#ifdef _KMS_OS_X_
+    // ===== System =========================================================
+    #include <sys/errno.h>
 #endif
 
 #ifdef _KMS_WINDOWS_

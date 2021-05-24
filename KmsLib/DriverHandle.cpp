@@ -1,7 +1,9 @@
 
-// Author   KMS - Martin Dubois, ing.
-// Product  KmsBase
-// File     KmsLib/DriverHandle.cpp
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2021 KMS
+// License   http://www.apache.org/licenses/LICENSE-2.0
+// Product   KmsBase
+// File      KmsLib/DriverHandle.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -11,7 +13,7 @@
 // ===== C ==================================================================
 #include <assert.h>
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
     // ===== System =========================================================
     #include <sys/ioctl.h>
 #endif
@@ -33,7 +35,7 @@
 // Constants
 /////////////////////////////////////////////////////////////////////////////
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
     #define INVALID_HANDLE_VALUE (-1)
     #define OPEN_EXISTING        ( 0)
@@ -45,7 +47,7 @@
 // Static function declarations
 /////////////////////////////////////////////////////////////////////////////
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
     static bool DeviceIoControl(int aHandle, unsigned int aCode, void * aIn, unsigned int aInSize_byte, void * aOut, unsigned int aOutSize_byte, unsigned int * aInfo_byte, void *);
 #endif
 
@@ -104,8 +106,6 @@ namespace KmsLib
 
 	unsigned int DriverHandle::Control(unsigned int aCode, const void * aIn, unsigned int aInSize_byte, void * aOut, unsigned int aOutSize_byte)
 	{
-        assert(INVALID_HANDLE_VALUE != mHandle);
-
         char lMessage[2048];
 
         unsigned int lResult;
@@ -219,12 +219,11 @@ namespace KmsLib
 // Static functions
 /////////////////////////////////////////////////////////////////////////////
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
     // See DeviceIoControl
     bool DeviceIoControl(int aHandle, unsigned int aCode, void * aIn, unsigned int aInSize_byte, void * aOut, unsigned int aOutSize_byte, unsigned int * aInfo_byte, void *)
     {
-        assert(INVALID_HANDLE_VALUE != aHandle   );
         assert(NULL                 != aInfo_byte);
 
         unsigned char * lBuffer = NULL;

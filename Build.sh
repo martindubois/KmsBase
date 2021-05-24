@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Author    KMS - Martin Dubois, P.Eng.
-# Copyright (C) 2020 KMS
+# Copyright (C) 2020-2021 KMS
 # License   http://www.apache.org/licenses/LICENSE-2.0
 # Product   KmsBase
 # File      Build.sh
@@ -15,15 +15,9 @@ echo Executing  Build.sh  ...
 
 KMS_VERSION=Binaries/KmsVersion
 
+OS=`uname`
+
 VERSION_H=Common/Version.h
-
-# ===== Verification ========================================================
-
-if [ ! -x $KMS_VERSION ] ; then
-    echo FATAL ERROR  $KMS_VERSION  does not exist
-    echo Compile before exporting
-    exit 5
-fi
 
 # ===== Execution ===========================================================
 
@@ -52,12 +46,15 @@ then
 	exit 25
 fi
 
-./CreatePackages.sh
-
-if [ $? -ne 0 ]
+if [ $OS -ne Darwin ]
 then
-	echo ERROR  ./CreatePackages.sh  failed
-	exit 30
+	./CreatePackages.sh
+
+	if [ $? -ne 0 ]
+	then
+		echo ERROR  ./CreatePackages.sh  failed
+		exit 30
+	fi
 fi
 
 $KMS_VERSION -S $VERSION_H ./Export.sh

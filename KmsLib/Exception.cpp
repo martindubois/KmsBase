@@ -1,7 +1,9 @@
 
-// Author   KMS - Martin Dubois, ing.
-// Product  KmsBase
-// File     KmsLib/Exception.cpp
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2021 KMS
+// License   http://www.apache.org/licenses/LICENSE-2.0
+// Product   KmsBase
+// File      KmsLib/Exception.cpp
 
 // CODE REVIEW    2019-07-23  KMS - Martin Dubois, ing.
 
@@ -17,6 +19,11 @@
 
 // ===== C++ ================================================================
 #include <map>
+
+#ifdef _KMS_OS_X_
+    // ===== System =========================================================
+    #include <sys/errno.h>
+#endif
 
 #ifdef _KMS_WINDOWS_
     // ===== Windows ========================================================

@@ -1,7 +1,9 @@
 
-// Author   KMS - Martin Dubois, ing.
-// Product  KmsBase
-// File     KmsLib_Test/FileHandle.cpp
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2021 KMS
+// License   http://www.apache.org/licenses/LICENSE-2.0
+// Product   KmsBase
+// File      KmsLib_Test/FileHandle.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -24,7 +26,7 @@
 // Constants
 /////////////////////////////////////////////////////////////////////////////
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
     #define OPEN_EXISTING   0
     #define GENERIC_READ    O_RDONLY

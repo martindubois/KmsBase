@@ -1,6 +1,6 @@
 
 Author    KMS - Martin Dubois, P.Eng.
-Copyright (C) 2020 KMS
+Copyright (C) 2020-2021 KMS
 License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      _DocDev/Build.txt
@@ -30,16 +30,13 @@ Arcitecture         [ ] amd64                                       [ ] arm64
 
 ===== OS X Only =============================================================
 [ ] Tools "Terminal" - In the product folder
-        make -f makefile_os_x clean
-        make -f makefile_os_x
-        ./Test.sh
-        ./Export.sh {Major.Minor.Build_Type}
+        ./Build.sh
 [ ] Copy the exported files to the server
 
 ===== Windows Seulement =====================================================
 [ ] Tool "Command Windows" - In the product folder
         .\RunDoxygen.cmd
-		.\UploadDocumentation.cmd
+	.\UploadDocumentation.cmd
 [ ] Connect the signing key to the computer
 [ ] Tool "Command Windows" - In the product folder
         .\Build.cmd
@@ -47,8 +44,8 @@ Arcitecture         [ ] amd64                                       [ ] arm64
 
 [ ] Tool "GIT"
     - Index the modified files and commit them using
-    "{Major.Minor.Build_Type_Windows|Linux|OSX}" as message
-    - Add the tag "{Major.Minor.Build_Type_Windows|Linux|OSX}"
+      "{Major.Minor.Build_Type_Darwin|Linux|Windows}" as message
+    - Add the tag "{Major.Minor.Build_Type_Darwin|Linux|Windows}"
     - Push the repository to the servers
 
 Time and duration  ______ : ______              ______ heures, ______ minutes

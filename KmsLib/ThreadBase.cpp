@@ -1,7 +1,9 @@
 
-// Author   KMS - Martin Dubois, ing.
-// Product  KmsBase
-// File     KmsLib/ThreadBase.cpp
+// Author    KMS - Martin Dubois, P.Eng.
+// Copyright (C) 2021 KMS
+// License   http://www.apache.org/licenses/LICENSE-2.0
+// Product   KmsBase
+// File      KmsLib/ThreadBase.cpp
 
 // Includes
 /////////////////////////////////////////////////////////////////////////////
@@ -11,9 +13,14 @@
 // ===== C ==================================================================
 #include <assert.h>
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
     #include <pthread.h>
     #include <signal.h>
+#endif
+
+#ifdef _KMS_OS_X_
+    // ===== System =========================================================
+    #include <sys/errno.h>
 #endif
 
 #ifdef _KMS_WINDOWS_
@@ -49,7 +56,7 @@
 // Static function declarations
 /////////////////////////////////////////////////////////////////////////////
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
     static void * Run(void * aParameter);
 #endif
 
@@ -65,7 +72,7 @@ namespace KmsLib
 
     void ThreadBase::Sleep_ms(unsigned int aDelay_ms)
     {
-        #ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
             usleep(aDelay_ms * 1000);
         #endif
 
@@ -76,7 +83,7 @@ namespace KmsLib
 
     void ThreadBase::Sleep_s(unsigned int aDelay_s)
     {
-        #ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
             sleep(aDelay_s);
         #endif
 
@@ -87,7 +94,7 @@ namespace KmsLib
 
     void ThreadBase::Sleep_us(unsigned int aDelay_us)
     {
-        #ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
             usleep(aDelay_us);
         #endif
 
@@ -112,7 +119,7 @@ namespace KmsLib
         if (STATE_INIT != mState)
         {
 
-            #ifdef _KMS_LINUX_
+            #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
                 return PRIORITY_NORMAL;
 
@@ -208,7 +215,7 @@ namespace KmsLib
 
             mState = STATE_START_REQUESTED;
 
-            #ifdef _KMS_LINUX_
+            #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
                 int lRet;
 
@@ -418,7 +425,7 @@ namespace KmsLib
     // Exception  Exception  CODE_THREAD_ERROR
     void ThreadBase::Terminate()
     {
-        #ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
             int lRet = pthread_kill(mThread, SIGKILL);
 
@@ -436,7 +443,7 @@ namespace KmsLib
 
         assert(STATE_INIT == mState);
 
-        #ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
             if (0 != lRet)
             {
@@ -466,7 +473,7 @@ namespace KmsLib
     {
         unsigned int lResult;
 
-        #ifdef _KMS_LINUX_
+        #if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
             switch ( pthread_join(mThread, NULL) )
             {
@@ -512,7 +519,7 @@ namespace KmsLib
 
 // ===== Entry point ========================================================
 
-#ifdef _KMS_LINUX_
+#if defined(_KMS_LINUX_) || defined(_KMS_OS_X_)
 
     void * Run(void * aParameter)
     {

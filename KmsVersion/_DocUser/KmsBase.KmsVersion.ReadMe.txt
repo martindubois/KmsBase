@@ -1,9 +1,11 @@
 
 Author    KMS - Martin Dubois, P.Eng.
-Copyright (C) 2020 KMS
+Copyright (C) 2020-2021 KMS
 License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      KmsVersion/_DocUser/KmsBase.KmsVersion.ReadMe.txt
+
+3.0.32 Darwin - KMS Internal
 
 3.0.31 Jetson
 

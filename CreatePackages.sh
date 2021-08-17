@@ -6,14 +6,16 @@
 # Product   KmsBase
 # Files     CreatePackages.sh
 
-# CODE REVIEW 2020-10-26 KMS - Martin Dubois, P.Eng.
+# CODE REVIEW 2021-08-17 KMS - Martin Dubois, P.Eng.
 
 echo Executing  CreatePakcages.sh
 
 # ===== Version =============================================================
 
+OS=`uname`
+
 # KmsVersion "PACKAGE_VERSION=" "\n" 13
-PACKAGE_VERSION=3.0-32
+PACKAGE_VERSION=3.0-33
 
 # KmsVersion "VERSION=" "\n" 2
 VERSION=3.0
@@ -55,16 +57,28 @@ cp DoxyFile_*.txt                                    Packages/$PACKAGE_NAME/usr/
 cp License.txt                                       Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
 cp RunDoxygen.sh                                     Packages/$PACKAGE_NAME/usr/local/KmsBase-$VERSION
 
-mkdir Packages/$PACKAGE_NAME/DEBIAN
-
-cp Scripts/control Packages/$PACKAGE_NAME/DEBIAN/control
-
-dpkg-deb --build Packages/$PACKAGE_NAME
-
-if [ $? -ne 0 ]
+if [ "Darwin" = "$OS" ]
 then
-	echo ERROR  dpkg-deb --build Packages/$PACKAGE_NAME  failed
-	exit 10
+	productbuild --root Packages/$PACKAGE_NAME/usr/local /Applications Packages/$PACKAGE_NAME.pkg
+	if [ 0 != $? ]
+	then
+		echo ERROR  productbuild --root Packages/$PACKAGE_NAME/usr/local /Applications Packages/$PACKAGE_NAME.pkg  failed
+		exit 5
+	fi
+fi
+
+if [ "Linux" = "$OS" ]
+then
+	mkdir Packages/$PACKAGE_NAME/DEBIAN
+
+	cp Scripts/control Packages/$PACKAGE_NAME/DEBIAN/control
+
+	dpkg-deb --build Packages/$PACKAGE_NAME
+	if [ $? -ne 0 ]
+	then
+		echo ERROR  dpkg-deb --build Packages/$PACKAGE_NAME  failed
+		exit 10
+	fi
 fi
 
 rm -r Packages/$PACKAGE_NAME

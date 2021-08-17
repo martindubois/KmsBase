@@ -5,7 +5,8 @@ License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      _DocUser/KmsBase.ReadMe.txt
 
-3.0.32 Darwin - KMS Internal
+3.0.33 Darwin
+- Darwin package
 
 3.0.31 Jetson
 

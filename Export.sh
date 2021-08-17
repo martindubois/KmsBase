@@ -6,13 +6,17 @@
 # Product   KmsBase
 # File      Export.sh
 
-# CODE REVIEW  2019-07-26  KMS - Martin Dubois, ing.
+# CODE REVIEW 2020-08-17 KMS - Martin Dubois, P.Eng.
 
 echo  Executing Export.sh $1 ...
 
 # ===== Initialisation ======================================================
 
-DST=~/Export/KmsBase/$1_`uname`
+OS=`uname`
+
+DST=~/Export/KmsBase/$1_$OS
+
+EXPORT_SH_TXT=Export.$OS.sh.txt
 
 KMS_COPY=Binaries/KmsCopy
 
@@ -43,13 +47,12 @@ if [ 0 != $? ] ; then
     exit 40
 fi
 
-$KMS_COPY . $DST Export.sh.txt
+$KMS_COPY . $DST $EXPORT_SH_TXT
 if [ 0 != $? ] ; then
-    echo ERROR  $KMS_COPY . $DST Export.sh.txt  failed
+    echo ERROR  $KMS_COPY . $DST $EXPORT_SH_TXT  failed
     exit 50
 fi
 
 # ===== End =================================================================
 
 echo  OK!
-

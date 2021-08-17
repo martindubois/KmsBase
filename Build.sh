@@ -7,7 +7,7 @@
 # File      Build.sh
 # Usage     ./Build.sh
 
-# CODE REVIEW 2020-11-11 KMS - Martin Dubois, P.Eng.
+# CODE REVIEW 2021-08-17 KMS - Martin Dubois, P.Eng.
 
 echo Executing  Build.sh  ...
 
@@ -18,6 +18,8 @@ KMS_VERSION=Binaries/KmsVersion
 OS=`uname`
 
 VERSION_H=Common/Version.h
+
+EXPORT_SH_TXT=Export.$OS.sh.txt
 
 # ===== Execution ===========================================================
 
@@ -38,23 +40,18 @@ then
 	exit 20
 fi
 
-$KMS_VERSION $VERSION_H CreatePackages.sh Export.sh.txt
-
+$KMS_VERSION $VERSION_H CreatePackages.sh $EXPORT_SH_TXT
 if [ $? -ne 0 ]
 then
-	echo ERROR  $KMS_VERSION $VERSION_H CreatePackages.sh Export.sh.txt  failed
+	echo ERROR  $KMS_VERSION $VERSION_H CreatePackages.sh $EXPORT_SH_TXT  failed
 	exit 25
 fi
 
-if [ $OS -ne Darwin ]
+./CreatePackages.sh
+if [ $? -ne 0 ]
 then
-	./CreatePackages.sh
-
-	if [ $? -ne 0 ]
-	then
-		echo ERROR  ./CreatePackages.sh  failed
-		exit 30
-	fi
+	echo ERROR  ./CreatePackages.sh  failed
+	exit 30
 fi
 
 $KMS_VERSION -S $VERSION_H ./Export.sh

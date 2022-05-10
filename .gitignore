@@ -1,19 +1,18 @@
 
-# Auteur	:	KMS -	Martin Dubois, ing.
-# Projet	:	KmsBase
-# Fichier	:	.gitignore
+# Author    KMS - Martin Dubois, P. Eng.
+# Copyright (C) 2002 KMS
+# License   http://www.apache.org/licenses/LICENSE-2.0
+# Product   KmsBase
+# File      .gitignore
 
-*.opensdf
-*.sdf
-*.v12.suo
+# ===== Visual Studio =======================================================
+
+/.vs/
 
 Debug/
 Debug_DLL/
 Release/
 Release_DLL/
 x64/
-Win7Debug/
-Win7Release/
-Win8.1Debug/
 
-
+*.vcxproj.user

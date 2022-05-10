@@ -1,9 +1,15 @@
 
-Auteur	:	KMS -	Martin Dubois, ing.
-Projet	:	KmsBase
-Fichier	:	_DocDev/Procedures/Compiler.txt
+Author    KMS - Martin Dubois, P. Eng.
+Copyright (C) 2022 KMS
+License   http://www.apache.org/licenses/LICENSE-2.0
+Product   KmsBase
+File      _DocDev/Build.txt
 
-[ ]	Ouvrir la solution en utilisant Visual Studio 2013
+Name                _________________________________________________________
+
+Date and time       20 ______ - ______ - ______               ______ : ______
+
+[ ]	Ouvrir la solution en utilisant Visual Studio 2019
 	- Modifier le fichier "Common/Version.h" pour incrementer le numero de
 	  compilation;
 	- Modifier le fichier "Script/Install.cmd" pour incrementer le numero de
@@ -26,3 +32,7 @@ Fichier	:	_DocDev/Procedures/Compiler.txt
 [ ] Ouvrir un "GIT BASH" pour le repertoire du projet
 	- Entrer la commande "git tag Ma.Mi.Bu".
 [ ] Pousser le depot GIT sur le serveur.
+
+Time and duration   ______ : ______              ______ hours, ______ minutes
+
+Signature           _________________________________________________________

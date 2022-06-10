@@ -23,6 +23,16 @@ EXPORT_SH_TXT=Export.$OS.sh.txt
 
 # ===== Execution ===========================================================
 
+if [ ! -d Binaries ]
+then
+	mkdir Binaries
+fi
+
+if [ ! -d Libraries ]
+then
+	mkdir Libraries
+fi
+
 ./Clean.sh
 
 ./Make.sh

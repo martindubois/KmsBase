@@ -29,6 +29,7 @@ Arcitecture         [ ] amd64                                       [ ] arm64
 [ ] Copy the exported files to the server
 
 ===== OS X Only =============================================================
+Architecture        [ ] arm64                                        [ ] i386
 [ ] Tools "Terminal" - In the product folder
         ./Build.sh
 [ ] Copy the exported files to the server

@@ -14,7 +14,11 @@ echo  Executing Export.sh $1 ...
 
 OS=`uname`
 
-DST=~/Export/KmsBase/$1_$OS
+EXPORT=~/Export
+
+EXP_PROD=$EXPORT/KmsBase
+
+DST=$EXP_PROD/$1_$OS
 
 EXPORT_SH_TXT=Export.$OS.sh.txt
 
@@ -40,6 +44,16 @@ if [ ! -x $KMS_COPY ] ; then
 fi
 
 # ===== Execution ===========================================================
+
+if [ ! -d $EXPORT ]
+then
+    mkdir $EXPORT
+fi
+
+if [ ! -d %EXP_PROD ]
+then
+    mkdir $EXP_PROD
+fi
 
 $KMS_COPY . $DST Export.txt
 if [ 0 != $? ] ; then

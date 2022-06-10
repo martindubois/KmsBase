@@ -5,6 +5,8 @@ License   http://www.apache.org/licenses/LICENSE-2.0
 Product   KmsBase
 File      KmsVersion/_DocUser/KmsBase.KmsVersion.ReadMe.txt
 
+3.0.32 Darwin arm64 2022-06-10
+
 3.0.33 Darwin
 
 3.0.31 Jetson
